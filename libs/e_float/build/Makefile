@@ -54,7 +54,8 @@ ifeq ($(TYP_TEST),)
 endif
 
 ifeq ($(TYP_TEST),E_FLOAT_TEST_PI_ALGOS_TESTS)
-  FILES_TEST := ../test/pi_test/pi_algos                                   \
+  FILES_TEST := ../test/test                                                 \
+                ../test/pi_test/pi_algos                                     \
                 ../test/pi_test/test_pi
 endif
 
