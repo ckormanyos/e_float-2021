@@ -23,3 +23,17 @@ jobs:
           dir ./x64-release-efx/e_float.exe
           ./x64-release-efx/e_float.exe
         working-directory: ./libs/e_float/build/
+  gcc-native-efx:
+    runs-on: ubuntu-20.04
+    if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: gcc-native-efx
+        run: |
+          make MP=efx rebuild
+          ls -la ./unix-efx/e_float.exe
+          ./unix-efx/e_float.exe
+        working-directory: ./libs/e_float/build/
+        shell: bash

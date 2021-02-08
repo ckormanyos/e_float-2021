@@ -19,8 +19,12 @@
   #include <type_traits>
 
   //#define E_FLOAT_TEST_PI_ALGOS_TESTS
-  #define E_FLOAT_TEST_REAL_IMAG_TESTS
+  //#define E_FLOAT_TEST_REAL_IMAG_TESTS
   //#define E_FLOAT_TEST_ALGEBRA_TESTS
+
+  #if !defined(E_FLOAT_TEST_PI_ALGOS_TESTS) && !defined(E_FLOAT_TEST_REAL_IMAG_TESTS) && !defined(E_FLOAT_TEST_ALGEBRA_TESTS)
+  #define E_FLOAT_TEST_REAL_IMAG_TESTS
+  #endif
 
   // Select the number of decimal digits in e_float
   // by setting the value of E_FLOAT_DIGITS10.
