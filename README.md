@@ -11,27 +11,36 @@ e_float-2021 implements multiple-precision floating-point
 data types in modern C++11. Three versions are supported
 in three individual build configurations. There is a native,
 portable decimal float type called `efx::e_float`.
-There are also wrapped versoins for GMP and MPFR
+There are also wrapped versoins
+for [GMP](https://gmplib.org/)
+and [MPFR](https://www.mpfr.org)
 called `gmp::e_float` and `mpfr::e_float`, respectively.
 
 e_float-2021 is derived from the original work mentione above.
 In this derived work, the code has been updated to conform with
 C++11, 14, 17, 20. The code has been modernized and kept
-updated. Certain special function tests have been removed
+compatible with C++ language evolution.
+Certain special function tests have been removed
 retaining just a core of key functions and tests.
 
 For the _efx_ version (which is a decimal floating point implementation),
 a naive FFT brings the digit range up to a million decimal digits or more.
-The _gmp_ and _mpfr_ versions support high digit counts matively
+This digit range was not available in the original e_float paper.
+The _gmp_ and _mpfr_ versions support high digit counts natively
 from their wrapped libraries.
 
 ## History
 
-The e_float project influenced the concept and creation.
-After the publication in TOMS, the code was adapted
-significantly for Boost.Multiprecision.
-It was re-implemented for Boost with a header-only template
-design with a novel, flexible and strong frontend/backend concept.
+The e_float project influenced the concept and creation
+of [Boost.Multiprecision](https://www.boost.org/doc/libs/1_75_0/libs/multiprecision/doc/html/index.html).
+After the publication of the e_float paper in TOMS,
+the code was essentially evaluated as to how it
+wrapped and implemented certain big number backends.
+This original rudimentary concept was adapted and significantly
+strenthened for the design of Boost.Multiprecision.
+Along the way, it was entirely re-implemented and extended
+for Boost's novel, flexible, header-only template design
+having its own frontend/backend concept.
 
 ## Legacy
 
