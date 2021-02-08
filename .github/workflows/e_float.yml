@@ -48,7 +48,21 @@ jobs:
           fetch-depth: '0'
       - name: gcc-native-efx-cpp11
         run: |
-          make MP=efx rebuild
+          make MP=efx TYP_STD=c++11 rebuild
+          ls -la ./unix-efx/e_float.exe
+          ./unix-efx/e_float.exe
+        working-directory: ./libs/e_float/build/
+        shell: bash
+  gcc-native-efx-cpp14:
+    runs-on: ubuntu-20.04
+    if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: gcc-native-efx-cpp14
+        run: |
+          make MP=efx TYP_STD=c++14 rebuild
           ls -la ./unix-efx/e_float.exe
           ./unix-efx/e_float.exe
         working-directory: ./libs/e_float/build/
@@ -62,7 +76,7 @@ jobs:
           fetch-depth: '0'
       - name: Install packages
         run: sudo apt install libgmp-dev
-      - name: gcc-native-efx-cpp11
+      - name: gcc-native-gmp-cpp11
         run: |
           make MP=gmp rebuild
           ls -la ./unix-gmp/e_float.exe
