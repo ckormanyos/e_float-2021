@@ -26,29 +26,3 @@ const e_float& ef::value_eps()
 const e_float& ef::zero() { static const e_float val(0U);    return val; }
 const e_float& ef::one () { static const e_float val(1U);    return val; }
 const e_float& ef::half() { static const e_float val("0.5"); return val; }
-
-#if defined(__GNUC__)
-  const bool                    std::numeric_limits<e_float>::is_specialized;
-  const bool                    std::numeric_limits<e_float>::is_signed;
-  const bool                    std::numeric_limits<e_float>::is_integer;
-  const bool                    std::numeric_limits<e_float>::is_exact;
-  const bool                    std::numeric_limits<e_float>::is_bounded;
-  const bool                    std::numeric_limits<e_float>::is_modulo;
-  const bool                    std::numeric_limits<e_float>::is_iec559;
-  const int                     std::numeric_limits<e_float>::digits;
-  const int                     std::numeric_limits<e_float>::digits10;
-  const int                     std::numeric_limits<e_float>::max_digits10;
-  const std::int64_t                   std::numeric_limits<e_float>::min_exponent;
-  const std::int64_t                   std::numeric_limits<e_float>::min_exponent10;
-  const std::int64_t                   std::numeric_limits<e_float>::max_exponent;
-  const std::int64_t                   std::numeric_limits<e_float>::max_exponent10;
-  const int                     std::numeric_limits<e_float>::radix;
-  const std::float_round_style  std::numeric_limits<e_float>::round_style;
-  const bool                    std::numeric_limits<e_float>::has_infinity;
-  const bool                    std::numeric_limits<e_float>::has_quiet_NaN;
-  const bool                    std::numeric_limits<e_float>::has_signaling_NaN;
-  const std::float_denorm_style std::numeric_limits<e_float>::has_denorm;
-  const bool                    std::numeric_limits<e_float>::has_denorm_loss;
-  const bool                    std::numeric_limits<e_float>::traps;
-  const bool                    std::numeric_limits<e_float>::tinyness_before;
-#endif // __GNUC__

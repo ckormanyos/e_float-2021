@@ -47,29 +47,29 @@
     template <> class numeric_limits<e_float>
     {
     public:
-      static const bool                    is_specialized    = true;
-      static const bool                    is_signed         = true;
-      static const bool                    is_integer        = false;
-      static const bool                    is_exact          = false;
-      static const bool                    is_bounded        = true;
-      static const bool                    is_modulo         = false;
-      static const bool                    is_iec559         = false;
-      static const std::int64_t            digits            = e_float::ef_digits;       // Type differs from int.
-      static const std::int64_t            digits10          = e_float::ef_digits10;     // Type differs from int.
-      static const std::int64_t            max_digits10      = e_float::ef_max_digits10; // Type differs from int.
-      static const std::int64_t            min_exponent      = e_float::ef_min_exp;      // Type differs from int.
-      static const std::int64_t            min_exponent10    = e_float::ef_min_exp10;    // Type differs from int.
-      static const std::int64_t            max_exponent      = e_float::ef_max_exp;      // Type differs from int.
-      static const std::int64_t            max_exponent10    = e_float::ef_max_exp10;    // Type differs from int.
-      static const int                     radix             = e_float::ef_radix;
-      static const std::float_round_style  round_style       = std::round_to_nearest;
-      static const bool                    has_infinity      = true;
-      static const bool                    has_quiet_NaN     = true;
-      static const bool                    has_signaling_NaN = false;
-      static const std::float_denorm_style has_denorm        = std::denorm_absent;
-      static const bool                    has_denorm_loss   = false;
-      static const bool                    traps             = false;
-      static const bool                    tinyness_before   = false;
+      static constexpr bool                    is_specialized    = true;
+      static constexpr bool                    is_signed         = true;
+      static constexpr bool                    is_integer        = false;
+      static constexpr bool                    is_exact          = false;
+      static constexpr bool                    is_bounded        = true;
+      static constexpr bool                    is_modulo         = false;
+      static constexpr bool                    is_iec559         = false;
+      static constexpr std::int64_t            digits            = e_float::ef_digits;       // Type differs from int.
+      static constexpr std::int64_t            digits10          = e_float::ef_digits10;     // Type differs from int.
+      static constexpr std::int64_t            max_digits10      = e_float::ef_max_digits10; // Type differs from int.
+      static constexpr std::int64_t            min_exponent      = e_float::ef_min_exp;      // Type differs from int.
+      static constexpr std::int64_t            min_exponent10    = e_float::ef_min_exp10;    // Type differs from int.
+      static constexpr std::int64_t            max_exponent      = e_float::ef_max_exp;      // Type differs from int.
+      static constexpr std::int64_t            max_exponent10    = e_float::ef_max_exp10;    // Type differs from int.
+      static constexpr int                     radix             = e_float::ef_radix;
+      static constexpr std::float_round_style  round_style       = std::round_to_nearest;
+      static constexpr bool                    has_infinity      = true;
+      static constexpr bool                    has_quiet_NaN     = true;
+      static constexpr bool                    has_signaling_NaN = false;
+      static constexpr std::float_denorm_style has_denorm        = std::denorm_absent;
+      static constexpr bool                    has_denorm_loss   = false;
+      static constexpr bool                    traps             = false;
+      static constexpr bool                    tinyness_before   = false;
 
       static const e_float& (min)        () throw() { return ef::value_min(); }
       static const e_float& (max)        () throw() { return ef::value_max(); }

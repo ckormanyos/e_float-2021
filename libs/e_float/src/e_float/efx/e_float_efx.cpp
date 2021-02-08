@@ -1689,7 +1689,7 @@ bool efx::e_float::rd_string(const char* const s)
     )
   {
     // Remove the exponent part from the string.
-    my_exp = Util::numeric_cast<std::int64_t>(static_cast<const char* const>(str.c_str() + (pos + 1U)));
+    my_exp = Util::numeric_cast<std::int64_t>(static_cast<const char*>(str.c_str() + (pos + 1U)));
 
     str = str.substr(static_cast<std::size_t>(0U), pos);
   }

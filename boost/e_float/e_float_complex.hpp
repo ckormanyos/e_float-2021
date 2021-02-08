@@ -2009,7 +2009,7 @@
           c__my_stringstream << c__my_mr[1U] << c__my_mr[2U];
           c__my_stringstream >> c__my_real_input;
 
-          c__my_imag_input = T(0U);
+          c__my_imag_input = e_float(0U);
         }
       }
 
@@ -2028,7 +2028,7 @@
       }
       else
       {
-        c__my_z = complex<T>(c__my_real_input, c__my_imag_input);
+        c__my_z = complex<e_float>(c__my_real_input, c__my_imag_input);
       }
 
       return c__my_istream;
@@ -2051,17 +2051,6 @@
 
       return (c__my_ostream << c__my_tmp_ostream.str());
     }
-
-    #if defined(_MSC_VER) && (_MSC_VER <= 1800)
-    #else
-    inline complex<float>       operator""if(long double c__my_imag_literal)        { return complex<float>      {0.0F, static_cast<float>      (c__my_imag_literal)}; }
-    inline complex<double>      operator""i (long double c__my_imag_literal)        { return complex<double>     {0.0,  static_cast<double>     (c__my_imag_literal)}; }
-    inline complex<long double> operator""il(long double c__my_imag_literal)        { return complex<long double>{0.0L, static_cast<long double>(c__my_imag_literal)}; }
-
-    inline complex<float>       operator""if(unsigned long long c__my_imag_literal) { return complex<float>      {0.0F, static_cast<float>      (c__my_imag_literal)}; }
-    inline complex<double>      operator""i (unsigned long long c__my_imag_literal) { return complex<double>     {0.0,  static_cast<double>     (c__my_imag_literal)}; }
-    inline complex<long double> operator""il(unsigned long long c__my_imag_literal) { return complex<long double>{0.0L, static_cast<long double>(c__my_imag_literal)}; }
-    #endif
   } // namespace ef
 
 #endif // E_FLOAT_COMPLEX_2017_08_23_HPP_
