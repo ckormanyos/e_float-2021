@@ -53,6 +53,11 @@ ifeq ($(TYP_TEST),)
   TYP_TEST = E_FLOAT_TEST_REAL_IMAG_TESTS
 endif
 
+ifeq ($(TYP_TEST),E_FLOAT_TEST_PI_ALGOS_TESTS)
+  FILES_TEST := ../test/pi_test/pi_algos                                   \
+                ../test/pi_test/test_pi
+endif
+
 # ------------------------------------------------------------------------------
 # symbols
 # ------------------------------------------------------------------------------
@@ -127,10 +132,7 @@ FILES_ALL = $(FILES_MP)               \
             $(FILES_EF)               \
             $(FILES_UTILITY)          \
             $(FILES_FUNCTIONS)        \
-            $(FILES_EXAMPLES)         \
-            $(FILES_TEST)             \
-            $(FILES_TEST_REAL)        \
-            $(FILES_TEST_IMAG)
+            $(FILES_TEST)
 
 FILES_O = $(addprefix $(PATH_OBJ)/, $(notdir $(addsuffix .o, $(FILES_ALL))))
 

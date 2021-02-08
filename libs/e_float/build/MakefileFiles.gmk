@@ -54,12 +54,6 @@ FILES_EXAMPLES  = ../example/example_001_basic_usage_real                      \
                   ../example/example_008_gauss_laguerre
 
 #
-# Test files
-#
-FILES_TEST      = ../test/test                                                 \
-                  ../test/test_case_base
-
-#
 # Real test files
 #
 FILES_TEST_REAL = ../test/real/test_real                                       \
@@ -126,3 +120,11 @@ FILES_TEST_IMAG = ../test/imag/test_imag                                       \
                   ../test/imag/cases/test_case_02902_z_zeta_all_x              \
                   ../test/imag/cases/test_case_02903_z_zeta_neg_x              \
                   ../test/imag/cases/test_case_02911_z_zeta_crit_strip
+
+#
+# Test files
+#
+FILES_TEST      = ../test/test                                                 \
+                  ../test/test_case_base                                       \
+                  $(FILES_TEST_REAL)                                           \
+                  $(FILES_TEST_IMAG)
