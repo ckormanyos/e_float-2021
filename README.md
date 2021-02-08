@@ -2,7 +2,7 @@
 Multiple precision floating point (legacy project) derived work from e_float
 
 This work is based on an earlier work:\
-C.M. Kormanyos Algorithm 910: A Portable C++ Multiple-Precision System for Special-Function Calculations",\
+C.M. Kormanyos, _Algorithm 910: A Portable C++ Multiple-Precision System for Special-Function Calculations_,\
 in [ACM TOMS (37) 4, February 2011](https://doi.acm.org/10.1145/1916461.1916469)
 
 ## Description
