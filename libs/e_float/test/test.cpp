@@ -53,7 +53,7 @@ namespace
     std::cout << str_real << std::endl;
     std::cout << str_imag << std::endl;
 
-    std::cout << "Elapsed time: " << elapsed << " (seconds)" << std::endl;
+    std::cout << "Elapsed time: " << elapsed << " seconds" << std::endl;
 
     const bool result_is_ok = (test_real_ok && test_imag_ok);
 

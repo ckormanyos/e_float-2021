@@ -9,16 +9,15 @@
 // in ACM TOMS, {VOL 37, ISSUE 4, (February 2011)} (C) ACM, 2011. http://doi.acm.org/10.1145/1916461.1916469
 
 #include <algorithm>
-#include <ctime>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <limits>
 #include <sstream>
 #include <string>
-#include <vector>
 
 #include <boost/e_float/e_float_functions.hpp>
+#include <src/utility/util_timer.h>
 #include "pi_algos.h"
 
 // *****************************************************************************
@@ -413,7 +412,7 @@ namespace
               << "Total computation time : "
               << std::fixed
               << std::setprecision(2)
-              << elapsed / 1000.0F
+              << elapsed
               << " seconds"
               << '\n'
               << "================================================="
@@ -423,18 +422,16 @@ namespace
 
 bool print_pi(calculate_pi_pfn pfn, std::ostream& os)
 {
-  const std::clock_t start = std::clock();
+  const Util::timer my_timer;
 
   pfn(true);
 
-  const std::clock_t stop = std::clock();
-
-  const float elapsed = static_cast<float>(stop) - static_cast<float>(start) / static_cast<float>(CLOCKS_PER_SEC);
+  const double elapsed = my_timer.elapsed();
 
   std::cout << std::endl;
 
-  report_pi_timing<e_float>(std::cout, elapsed);
-  report_pi_timing<e_float>(os, elapsed);
+  report_pi_timing<e_float>(std::cout, (float) elapsed);
+  report_pi_timing<e_float>(os,        (float) elapsed);
 
   // Report that we are writing the output file.
   std::cout << std::endl;
