@@ -93,7 +93,7 @@ const e_float& calculate_pi(const bool b_trace)
 
       static_cast<void>(dummy_double);
 
-      const std::int64_t approximate_digits10_of_iteration_term = -exp10;
+      const std::int64_t approximate_digits10_of_iteration_term = (std::max)((std::int64_t) -exp10, (std::int64_t) 0);
 
       if(b_trace)
       {
@@ -111,7 +111,7 @@ const e_float& calculate_pi(const bool b_trace)
       // insignificantly small.
       const std::uint64_t digits10_iteration_goal = static_cast<std::uint64_t>((std::numeric_limits<e_float>::digits10 / 2) + 16);
 
-      if(approximate_digits10_of_iteration_term > digits10_iteration_goal)
+      if((std::uint64_t) approximate_digits10_of_iteration_term > digits10_iteration_goal)
       {
         break;
       }
@@ -458,8 +458,8 @@ bool print_pi(calculate_pi_pfn pfn, std::ostream& os)
   //        4811174502 8410270193 8521105559 6446229489 5493038196 : 200
   //        ...
 
-  constexpr char* char_set_separator   = " ";
-  constexpr char* char_group_separator = "\n";
+  const char char_set_separator  [] = " ";
+  const char char_group_separator[] = "\n";
 
   constexpr std::size_t digits_per_set   = 10U;
   constexpr std::size_t digits_per_line  = digits_per_set  * 10U;
