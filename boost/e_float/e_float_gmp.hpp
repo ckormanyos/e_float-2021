@@ -17,6 +17,7 @@
   #endif
 
   #include <cmath>
+  #include <climits>
   #include <limits>
   #include <string>
   #include <type_traits>

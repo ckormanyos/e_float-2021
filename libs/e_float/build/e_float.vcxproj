@@ -349,7 +349,7 @@
       <Culture>0x0407</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>../src/e_float/gmp/mpir/3.0.0/vc14/x64/mpir.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)../src/e_float/gmp/mpir/3.0.0/vc14/x64/mpir.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)e_float.exe</OutputFile>
       <SubSystem>Console</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -696,7 +696,7 @@
       <Culture>0x0407</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>../src/e_float/gmp/mpir/3.0.0/vc14/x64/mpir.lib;../src/e_float/mpfr/3.1.5/vc14/x64/mpfr.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)../src/e_float/gmp/mpir/3.0.0/vc14/x64/mpir.lib;$(SolutionDir)../src/e_float/mpfr/3.1.5/vc14/x64/mpfr.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)e_float.exe</OutputFile>
       <SubSystem>Console</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
