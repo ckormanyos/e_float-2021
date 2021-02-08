@@ -1,0 +1,612 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="libs">
+      <UniqueIdentifier>{dc618afc-db82-427e-b3a5-6441ed18c876}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float">
+      <UniqueIdentifier>{bc66d909-39fc-45a0-89a3-5ff18bbefa82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\build">
+      <UniqueIdentifier>{82b321c5-a710-4378-b292-b4267b51cda3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\example">
+      <UniqueIdentifier>{b5648d3e-3c94-4e6d-82fc-a792a1ff820f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\licence">
+      <UniqueIdentifier>{e40684d3-e066-4eb2-9ab0-087f6548550c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src">
+      <UniqueIdentifier>{eeb500a7-0118-4d22-bd9b-9d0f8a4f17ea}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="libs\e_float\src\e_float">
+      <UniqueIdentifier>{01e39304-f4d4-42b4-af61-697858303ab4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src\e_float\efx">
+      <UniqueIdentifier>{c94c0589-dbb6-4bae-b71c-ac3bef0417a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src\e_float\gmp">
+      <UniqueIdentifier>{e161e079-748f-42c5-b3be-4010045e326a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src\e_float\mpfr">
+      <UniqueIdentifier>{b86af12a-cb5d-4db2-96a7-8e055b6732d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src\functions">
+      <UniqueIdentifier>{d45e8aee-a017-4781-897d-be24935b78be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src\functions\gamma">
+      <UniqueIdentifier>{7dce61f1-00ec-4e54-93bd-a72352543dd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src\functions\tables">
+      <UniqueIdentifier>{a5b13044-8e0c-40ff-9c41-68c0c75ba923}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src\functions\zeta">
+      <UniqueIdentifier>{94b0b952-b3ad-45c3-985a-b9e41815545f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src\functions\integer">
+      <UniqueIdentifier>{4b82f0ab-4d72-4374-8907-8b953f02710f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src\functions\elementary">
+      <UniqueIdentifier>{1eedc77c-29e7-4f5b-8b96-ffd90d877815}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src\functions\constants">
+      <UniqueIdentifier>{cc4f2986-d17b-422b-9586-109c3d0b49da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src\utility">
+      <UniqueIdentifier>{11f357a9-d05b-4fb5-88a0-5f92afd3fa9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src\generic_functions">
+      <UniqueIdentifier>{8560fcf8-dff7-4d36-a98c-8d079eade1a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src\generic_functions\elementary">
+      <UniqueIdentifier>{2141e3a0-747f-4465-acea-240585f76171}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src\generic_functions\constants">
+      <UniqueIdentifier>{07ad78d5-5685-4c9b-96d4-5c86529b9a09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\test">
+      <UniqueIdentifier>{bbddb5ca-79f9-477f-8652-e38bbe8e40ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\test\real">
+      <UniqueIdentifier>{6a01c86d-31b9-4a46-9121-74bd203d7961}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\test\real\cases">
+      <UniqueIdentifier>{665a964c-4598-4dc6-a02f-d9ae5c2dddcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\test\imag">
+      <UniqueIdentifier>{0c01fae0-3ff0-4f1a-ac00-d6238bdabd01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\test\imag\cases">
+      <UniqueIdentifier>{c10ac75a-ed22-4f7d-89e1-4b0745923caf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="boost">
+      <UniqueIdentifier>{f5907b86-108b-444b-9efc-f596cabf046f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="boost\e_float">
+      <UniqueIdentifier>{087ba7fc-16a5-4e6d-b74a-3309a6462c13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="doc">
+      <UniqueIdentifier>{72f8e7eb-332a-4eee-800b-bf29ce6170ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\test\linpack_test">
+      <UniqueIdentifier>{0aee33a7-b5df-4fb7-ba56-0865c0756b00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\test\naive_test">
+      <UniqueIdentifier>{c1e4b722-ab0a-431d-a2fc-594922e9fcfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\test\linpack_test\libf2c">
+      <UniqueIdentifier>{73700a00-2458-408c-a554-8352b1fcf152}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\test\linpack_test\gmp">
+      <UniqueIdentifier>{8ed1a5cd-3ea1-4fc5-b19d-1ad9517e07d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="boost\multiprecision">
+      <UniqueIdentifier>{c8551df9-ef45-40ba-9496-21e1a55634d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\test\pi_test">
+      <UniqueIdentifier>{845f611b-efbc-4832-851f-6bf18a27b08a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\test\independent_algebra_test">
+      <UniqueIdentifier>{34ed32e9-3f50-4636-8515-af0f705196c7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\e_float\e_float.cpp">
+      <Filter>libs\e_float\src\e_float</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_float\e_float_base.cpp">
+      <Filter>libs\e_float\src\e_float</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_float\efx\e_float_efx.cpp">
+      <Filter>libs\e_float\src\e_float\efx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_float\gmp\e_float_gmp.cpp">
+      <Filter>libs\e_float\src\e_float\gmp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_float\mpfr\e_float_mpfr.cpp">
+      <Filter>libs\e_float\src\e_float\mpfr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\gamma\factorial.cpp">
+      <Filter>libs\e_float\src\functions\gamma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\gamma\factorial2.cpp">
+      <Filter>libs\e_float\src\functions\gamma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\gamma\gamma.cpp">
+      <Filter>libs\e_float\src\functions\gamma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\gamma\gamma_util.cpp">
+      <Filter>libs\e_float\src\functions\gamma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\gamma\pochhammer.cpp">
+      <Filter>libs\e_float\src\functions\gamma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\tables\A000142.cpp">
+      <Filter>libs\e_float\src\functions\tables</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\tables\A000367.cpp">
+      <Filter>libs\e_float\src\functions\tables</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\tables\A002445.cpp">
+      <Filter>libs\e_float\src\functions\tables</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\tables\A006882.cpp">
+      <Filter>libs\e_float\src\functions\tables</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\tables\A007318.cpp">
+      <Filter>libs\e_float\src\functions\tables</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\zeta\zeta.cpp">
+      <Filter>libs\e_float\src\functions\zeta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\integer\bernoulli_b.cpp">
+      <Filter>libs\e_float\src\functions\integer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\integer\prime.cpp">
+      <Filter>libs\e_float\src\functions\integer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\integer\prime_factor.cpp">
+      <Filter>libs\e_float\src\functions\integer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\elementary\elementary_complex.cpp">
+      <Filter>libs\e_float\src\functions\elementary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\elementary\elementary_hyper_g.cpp">
+      <Filter>libs\e_float\src\functions\elementary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\elementary\elementary_math.cpp">
+      <Filter>libs\e_float\src\functions\elementary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\elementary\elementary_trans.cpp">
+      <Filter>libs\e_float\src\functions\elementary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\elementary\elementary_trig.cpp">
+      <Filter>libs\e_float\src\functions\elementary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\constants\constants.cpp">
+      <Filter>libs\e_float\src\functions\constants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\utility\util_digit_scale.cpp">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\utility\util_power_j_pow_x.cpp">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\utility\util_timer.cpp">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\example\example_001_basic_usage_real.cpp">
+      <Filter>libs\e_float\example</Filter>
+    </ClCompile>
+    <ClCompile Include="..\example\example_002_basic_usage_imag.cpp">
+      <Filter>libs\e_float\example</Filter>
+    </ClCompile>
+    <ClCompile Include="..\example\example_005_recursive_trapezoid_integral.cpp">
+      <Filter>libs\e_float\example</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\test.cpp">
+      <Filter>libs\e_float\test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\test_case_base.cpp">
+      <Filter>libs\e_float\test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\test_real.cpp">
+      <Filter>libs\e_float\test\real</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_0000x_overflow_underflow.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00011_various_elem_math.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00021_bernoulli.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00051_factorial.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00052_factorial2.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00071_various_int_func.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00101_sin.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00102_cos.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00103_exp.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00104_log.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00105_sqrt.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00106_rootn.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00111_sin_small_x.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00112_cos_x_near_pi_half.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00113_atan_x_small_to_large.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00114_various_trig.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00115_various_elem_trans.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00121_sinh.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00122_cosh.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00123_tanh.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00124_asinh.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00125_acosh.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00126_atanh.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00201_gamma.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00202_gamma_medium_x.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00203_gamma_small_x.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00204_gamma_tiny_x.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00205_gamma_near_neg_n.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00221_various_gamma_func.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00901_zeta_small_x.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00902_zeta_all_x.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00903_zeta_neg_x.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\test_imag.cpp">
+      <Filter>libs\e_float\test\imag</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02101_z_sin.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02102_z_cos.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02103_z_exp.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02104_z_log.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02105_z_sqrt.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02106_z_rootn.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02111_z_asin.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02112_z_acos.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02113_z_atan.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02114_z_various_trig.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02115_z_various_elem_trans_log.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02116_z_various_elem.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02121_z_sinh.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02122_z_cosh.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02123_z_tanh.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02124_z_asinh.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02125_z_acosh.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02126_z_atanh.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02201_z_gamma.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02202_z_gamma_medium_x.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02901_z_zeta_small_x.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02902_z_zeta_all_x.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02903_z_zeta_neg_x.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\imag\cases\test_case_02911_z_zeta_crit_strip.cpp">
+      <Filter>libs\e_float\test\imag\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_0000y_write_to_ostream.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\example\example_008_gauss_laguerre.cpp">
+      <Filter>libs\e_float\example</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_0000z_global_ops_pod.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\linpack_test\linpack-benchmark.cpp">
+      <Filter>libs\e_float\test\linpack_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\naive_test\naive_test.cpp">
+      <Filter>libs\e_float\test\naive_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\example\example_021_boost_bindings.cpp">
+      <Filter>libs\e_float\example</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\pi_test\test_pi.cpp">
+      <Filter>libs\e_float\test\pi_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\pi_test\pi_algos.cpp">
+      <Filter>libs\e_float\test\pi_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\independent_algebra_test\independent_algebra_test.cpp">
+      <Filter>libs\e_float\test\independent_algebra_test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\functions\gamma\gamma_util.h">
+      <Filter>libs\e_float\src\functions\gamma</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\functions\tables\tables.h">
+      <Filter>libs\e_float\src\functions\tables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\util_alternating_sum.h">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\util_coefficient_expansion.h">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\util_digit_scale.h">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\util_find_root_base.h">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\util_find_root_bisect.h">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\util_find_root_newton_raphson.h">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\util_function.h">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\util_function_derivative.h">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\util_function_operation.h">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\util_interpolate.h">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\util_lexical_cast.h">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\util_noncopyable.h">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\util_numeric_cast.h">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\util_point.h">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\util_power_j_pow_x.h">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\util_power_x_pow_n.h">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\util_ranged_function_operation.h">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\util_timer.h">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\util_trapezoid.h">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\generic_functions\elementary\generic_functions_elementary.h">
+      <Filter>libs\e_float\src\generic_functions\elementary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\generic_functions\constants\generic_functions_constants.h">
+      <Filter>libs\e_float\src\generic_functions\constants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\example\examples.h">
+      <Filter>libs\e_float\example</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\test_case_base.h">
+      <Filter>libs\e_float\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\real\test_case_real.h">
+      <Filter>libs\e_float\test\real</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\real\test_real.h">
+      <Filter>libs\e_float\test\real</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\imag\test_case_imag.h">
+      <Filter>libs\e_float\test\imag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\imag\test_imag.h">
+      <Filter>libs\e_float\test\imag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\functions\integer\prime_factors.h">
+      <Filter>libs\e_float\src\functions\integer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\linpack_test\libf2c\f2c.h">
+      <Filter>libs\e_float\test\linpack_test\libf2c</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\linpack_test\gmp\gmp.h">
+      <Filter>libs\e_float\test\linpack_test\gmp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\linpack_test\gmp\gmpxx.h">
+      <Filter>libs\e_float\test\linpack_test\gmp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\boost\e_float\e_float.hpp">
+      <Filter>boost\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\boost\e_float\e_float_base.hpp">
+      <Filter>boost\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\boost\e_float\e_float_detail_dynamic_array.hpp">
+      <Filter>boost\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\boost\e_float\e_float_detail_fft.hpp">
+      <Filter>boost\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\boost\e_float\e_float_detail_karatsuba.hpp">
+      <Filter>boost\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\boost\e_float\e_float_efx.hpp">
+      <Filter>boost\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\boost\e_float\e_float_functions.hpp">
+      <Filter>boost\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\boost\e_float\e_float_gmp.hpp">
+      <Filter>boost\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\boost\e_float\e_float_mpfr.hpp">
+      <Filter>boost\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\boost\multiprecision\e_float_backend.hpp">
+      <Filter>boost\multiprecision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\boost\e_float\e_float_complex.hpp">
+      <Filter>boost\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\boost\e_float\e_float_functions_complex.hpp">
+      <Filter>boost\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\boost\e_float\e_float_detail_pown_template.hpp">
+      <Filter>boost\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\boost\e_float\e_float_gmp_protos.hpp">
+      <Filter>boost\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\boost\e_float\e_float_mpfr_protos.hpp">
+      <Filter>boost\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\pi_test\test_pi.h">
+      <Filter>libs\e_float\test\pi_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\pi_test\pi_algos.h">
+      <Filter>libs\e_float\test\pi_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\independent_algebra_test\independent_algebra_test_base.h">
+      <Filter>libs\e_float\test\independent_algebra_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\independent_algebra_test\independent_algebra_test_e_float.h">
+      <Filter>libs\e_float\test\independent_algebra_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\independent_algebra_test\independent_algebra_test_boost_cpp.h">
+      <Filter>libs\e_float\test\independent_algebra_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\independent_algebra_test\independent_algebra_test.h">
+      <Filter>libs\e_float\test\independent_algebra_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utility\util_dynamic_array.h">
+      <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile">
+      <Filter>libs\e_float\build</Filter>
+    </None>
+    <None Include="MakefileFiles.gmk">
+      <Filter>libs\e_float\build</Filter>
+    </None>
+    <None Include="..\license\ACM_e_float_boost_license.pdf">
+      <Filter>libs\e_float\licence</Filter>
+    </None>
+    <None Include="..\license\LICENSE_1_0.pdf">
+      <Filter>libs\e_float\licence</Filter>
+    </None>
+    <None Include="..\license\LICENSE_1_0.txt">
+      <Filter>libs\e_float\licence</Filter>
+    </None>
+    <None Include="..\..\..\doc\e_float_manual.pdf">
+      <Filter>doc</Filter>
+    </None>
+    <None Include="..\..\..\doc\e_float_poster.pdf">
+      <Filter>doc</Filter>
+    </None>
+    <None Include="..\..\..\doc\e_float_poster_courier.pdf">
+      <Filter>doc</Filter>
+    </None>
+    <None Include="vc_libs.txt">
+      <Filter>libs\e_float\build</Filter>
+    </None>
+  </ItemGroup>
+</Project>

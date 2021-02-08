@@ -1,0 +1,88 @@
+
+//          Copyright Christopher Kormanyos 1999 - 2021.
+// Distributed under the Boost Software License, Version 1.0.
+//    (See accompanying file LICENSE_1_0.txt or copy at
+//          http://www.boost.org/LICENSE_1_0.txt)
+
+// This work is based on an earlier work:
+// "Algorithm 910: A Portable C++ Multiple-Precision System for Special-Function Calculations",
+// in ACM TOMS, {VOL 37, ISSUE 4, (February 2011)} (C) ACM, 2011. http://doi.acm.org/10.1145/1916461.1916469
+
+#include <boost/e_float/e_float.hpp>
+
+// cd C:/Users/User/Documents/Ks/PC_Software/NumericalPrograms/ExtendedNumberTypes/e_float/libs/e_float/build
+// make MP=efx rebuild
+
+// In e_float_base.h can be found the definition for either
+//   E_FLOAT_TEST_PI_ALGOS_TESTS
+//   E_FLOAT_TEST_REAL_IMAG_TESTS
+//   E_FLOAT_TEST_ALGEBRA_TESTS
+
+
+#if defined(E_FLOAT_TEST_ALGEBRA_TESTS)
+#include <test/independent_algebra_test/independent_algebra_test.h>
+#endif
+
+#if defined(E_FLOAT_TEST_PI_ALGOS_TESTS)
+#include "pi_test/test_pi.h"
+#endif
+
+#if defined(E_FLOAT_TEST_REAL_IMAG_TESTS)
+#include "imag/test_imag.h"
+#include "real/test_real.h"
+
+#include "../src/utility/util_timer.h"
+
+namespace
+{
+  bool test_real_imag()
+  {
+    const Util::timer my_timer;
+
+    const bool test_real_ok = test::real::test_real(true);
+    const bool test_imag_ok = test::imag::test_imag(true);
+
+    const double elapsed = my_timer.elapsed();
+
+    std::string str_real("Real test: ");
+    std::string str_imag("Imag test: ");
+
+    str_real += (test_real_ok ? "Passed: All tests OK." : "Failed: Not all tests OK.");
+    str_imag += (test_imag_ok ? "Passed: All tests OK." : "Failed: Not all tests OK.");
+
+    std::cout << str_real << std::endl;
+    std::cout << str_imag << std::endl;
+
+    std::cout << "Elapsed time: " << elapsed << " (seconds)" << std::endl;
+
+    const bool result_is_ok = (test_real_ok && test_imag_ok);
+
+    return result_is_ok;
+  }
+}
+#endif
+
+int main()
+{
+  bool result_is_ok;
+
+  #if defined(E_FLOAT_TEST_ALGEBRA_TESTS)
+  const bool b_add  = test::independent_algebra::independent_algebra_test_add <100U, 8U, test::independent_algebra::independent_algebra_test_boost_cpp>();
+  const bool b_sub  = test::independent_algebra::independent_algebra_test_sub <100U, 8U, test::independent_algebra::independent_algebra_test_boost_cpp>();
+  const bool b_mul  = test::independent_algebra::independent_algebra_test_mul <100U, 8U, test::independent_algebra::independent_algebra_test_boost_cpp>();
+  const bool b_div  = test::independent_algebra::independent_algebra_test_div <100U, 8U, test::independent_algebra::independent_algebra_test_boost_cpp>();
+  const bool b_sqrt = test::independent_algebra::independent_algebra_test_sqrt<100U, 8U, test::independent_algebra::independent_algebra_test_boost_cpp>();
+
+  result_is_ok = (b_add && b_sub && b_mul && b_div && b_sqrt);
+  #endif
+
+  #if defined(E_FLOAT_TEST_PI_ALGOS_TESTS)
+  result_is_ok = test::pi::test_pi();
+  #endif
+
+  #if defined(E_FLOAT_TEST_REAL_IMAG_TESTS)
+  result_is_ok = test_real_imag();
+  #endif
+
+  return (result_is_ok ? 0 : -1);
+}

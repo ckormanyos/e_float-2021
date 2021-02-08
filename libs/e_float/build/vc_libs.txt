@@ -1,0 +1,25 @@
+
+# This work is based on an earlier work:
+# "Algorithm 910: A Portable C++ Multiple-Precision System for Special-Function Calculations",
+# in ACM TOMS, {VOL 37, ISSUE 4, (February 2011)} (C) ACM, 2011. http://doi.acm.org/10.1145/1916461.1916469
+
+Microsoft Visual C++ x86 gmp build needs these libraries:
+  ./e_float/e_float/gmp/4-2-4/vc9/p4/gmp.lib
+  ./e_float/e_float/gmp/4-2-4/vc9/p4/gmp.pdb
+
+Microsoft Visual C++ x64 gmp build needs these libraries:
+  ./e_float/e_float/gmp/4-2-4/vc9/x64/gmp.lib
+  ./e_float/e_float/gmp/4-2-4/vc9/x64/gmp.pdb
+
+Microsoft Visual C++ x86 mpfr build needs these libraries:
+  ./e_float/e_float/mpfr/2-4-1/vc9/p4/mpfr.lib
+  ./e_float/e_float/mpfr/2-4-1/vc9/p4/mpfr.pdb
+  ./e_float/e_float/gmp/4-2-4/vc9/p4/gmp.lib
+  ./e_float/e_float/gmp/4-2-4/vc9/p4/gmp.pdb
+
+Microsoft Visual C++ x64 mpfr build needs these libraries:
+  ./e_float/e_float/mpfr/2-4-1/vc9/x64/mpfr.lib
+  ./e_float/e_float/mpfr/2-4-1/vc9/x64/mpfr.pdb
+  ./e_float/e_float/gmp/4-2-4/vc9/x64/gmp.lib
+  ./e_float/e_float/gmp/4-2-4/vc9/x64/gmp.pdb
+
