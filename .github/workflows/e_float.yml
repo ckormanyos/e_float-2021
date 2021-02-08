@@ -23,6 +23,22 @@ jobs:
           dir ./x64-release-efx/e_float.exe
           ./x64-release-efx/e_float.exe
         working-directory: ./libs/e_float/build/
+  msvc-release-gmp:
+    runs-on: windows-latest
+    if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: msvc-release-gmp
+        shell: pwsh
+        env:
+          PATH: '${env:PATH};C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\amd64'
+        run: |
+          MSBuild -m e_float.sln -p:Configuration=release-gmp -p:Platform=x64 /t:Rebuild
+          dir ./x64-release-gmp/e_float.exe
+          ./x64-release-gmp/e_float.exe
+        working-directory: ./libs/e_float/build/
   gcc-native-efx-cpp11:
     runs-on: ubuntu-20.04
     if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
@@ -35,5 +51,21 @@ jobs:
           make MP=efx rebuild
           ls -la ./unix-efx/e_float.exe
           ./unix-efx/e_float.exe
+        working-directory: ./libs/e_float/build/
+        shell: bash
+  gcc-native-gmp-cpp11:
+    runs-on: ubuntu-20.04
+    if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Install packages
+        run: sudo apt install libgmp-dev
+      - name: gcc-native-efx-cpp11
+        run: |
+          make MP=gmp rebuild
+          ls -la ./unix-gmp/e_float.exe
+          ./unix-gmp/e_float.exe
         working-directory: ./libs/e_float/build/
         shell: bash
