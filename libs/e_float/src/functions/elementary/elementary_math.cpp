@@ -19,6 +19,11 @@ namespace my
   inline int _finite(double x) { return (((x - x) == 0.0) ? 1 : 0); }
 }
 
+e_float ef::fabs(const e_float& x)
+{
+  return (x.isneg() ? e_float(x).negate() : x);
+}
+
 e_float ef::floor(const e_float& x)
 {
   if(!ef::isfinite(x) || ef::isint(x)) { return x; }

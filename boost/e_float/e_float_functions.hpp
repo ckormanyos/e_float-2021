@@ -23,8 +23,7 @@
     inline std::int32_t   max_iteration() { return static_cast<std::int32_t>(10000); }
     inline std::int64_t   tolerance    () { return static_cast<std::int64_t>(e_float::ef_max_digits10 + (e_float::ef_max_digits10 / 10)); }
 
-    inline e_float fabs(const e_float& x) { return (x.isneg() ? e_float(x).negate() : x); }
-
+    e_float      fabs (const e_float& x);
     e_float      floor(const e_float& x);
     e_float      ceil (const e_float& x);
     std::int32_t sgn  (const e_float& x);
