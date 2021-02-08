@@ -290,7 +290,7 @@ e_float ef::pow2(const std::int64_t p)
 
   if((p > static_cast<std::int64_t>(-128)) && (p < static_cast<std::int64_t>(+128)))
   {
-    return p2_data[static_cast<std::size_t>(p + ((p2_data.size() - 1U) / 2U))];
+    return p2_data[static_cast<std::size_t>(p + static_cast<std::int64_t>((p2_data.size() - 1U) / 2U))];
   }
 
   // Compute and return 2^p.
@@ -801,8 +801,8 @@ void ef::sinhcosh(const e_float& x, e_float* const p_sinh, e_float* const p_cosh
   const e_float e_px = ef::exp(x);
   const e_float e_mx = ef::one() / e_px;
 
-  if(p_sinh != static_cast<e_float* const>(0U)) { *p_sinh  = (e_px - e_mx) / static_cast<std::int32_t>(2); }
-  if(p_cosh != static_cast<e_float* const>(0U)) { *p_cosh  = (e_px + e_mx) / static_cast<std::int32_t>(2); }
+  if(p_sinh != nullptr) { *p_sinh  = (e_px - e_mx) / static_cast<std::int32_t>(2); }
+  if(p_cosh != nullptr) { *p_cosh  = (e_px + e_mx) / static_cast<std::int32_t>(2); }
 }
 
 e_float ef::tanh(const e_float& x)
