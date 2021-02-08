@@ -15,7 +15,7 @@
   {
     namespace pi
     {
-      void test_pi();
+      bool test_pi();
     }
   }
 

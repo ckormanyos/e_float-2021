@@ -18,8 +18,10 @@
 #include "pi_algos.h"
 #include "test_pi.h"
 
-void test::pi::test_pi()
+bool test::pi::test_pi()
 {
+  bool result_is_ok = false;
+
   std::ofstream out("pi.out");
 
   if(out.is_open())
@@ -29,10 +31,10 @@ void test::pi::test_pi()
     //calculate_pi_pfn pfn = calculate_pi_borwein_quartic;
     //calculate_pi_pfn pfn = calculate_pi_borwein_quintic;
 
-    const bool print_pi_is_ok = print_pi(pfn, out);
-
-    static_cast<void>(print_pi_is_ok);
+    result_is_ok = print_pi(pfn, out);
 
     out.close();
   }
+
+  return result_is_ok;
 }
