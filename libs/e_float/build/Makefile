@@ -58,7 +58,8 @@ EXTENSION    = exe
 # ------------------------------------------------------------------------------
 CFLAGS_BASE = -std=c++11                        \
               -O3                               \
-              -I../../../
+              -I../../../                       \
+              -I../../../libs/e_float
 
 CFLAGS_WARN = -Wall                             \
               -Wextra                           \
@@ -104,14 +105,13 @@ LFLAGS        = $(LFLAGS_BASE)
 # ------------------------------------------------------------------------------
 # object files
 # ------------------------------------------------------------------------------
-FILES_ALL = $(FILES_MP)        \
-            $(FILES_EF)        \
-            $(FILES_UTILITY)   \
-            $(FILES_FUNCTIONS) \
-            $(FILES_EXAMPLES)  \
-            $(FILES_TEST)      \
-            $(FILES_TEST_SPOT) \
-            $(FILES_TEST_REAL) \
+FILES_ALL = $(FILES_MP)               \
+            $(FILES_EF)               \
+            $(FILES_UTILITY)          \
+            $(FILES_FUNCTIONS)        \
+            $(FILES_EXAMPLES)         \
+            $(FILES_TEST)             \
+            $(FILES_TEST_REAL)        \
             $(FILES_TEST_IMAG)
 
 FILES_O = $(addprefix $(PATH_OBJ)/, $(notdir $(addsuffix .o, $(FILES_ALL))))

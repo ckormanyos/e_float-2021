@@ -60,12 +60,6 @@ FILES_TEST      = ../test/test                                                 \
                   ../test/test_case_base
 
 #
-# Spot test files
-#
-FILES_TEST_SPOT = ../test/spot/test_spot                                       \
-                  ../test/pi/pi
-
-#
 # Real test files
 #
 FILES_TEST_REAL = ../test/real/test_real                                       \
