@@ -8,6 +8,10 @@
 // "Algorithm 910: A Portable C++ Multiple-Precision System for Special-Function Calculations",
 // in ACM TOMS, {VOL 37, ISSUE 4, (February 2011)} (C) ACM, 2011. http://doi.acm.org/10.1145/1916461.1916469
 
+#include <iomanip>
+#include <iostream>
+#include <string>
+
 #include <boost/e_float/e_float.hpp>
 
 // cd C:/Users/User/Documents/Ks/PC_Software/NumericalPrograms/ExtendedNumberTypes/e_float/libs/e_float/build
@@ -31,7 +35,7 @@
 #include "imag/test_imag.h"
 #include "real/test_real.h"
 
-#include "../src/utility/util_timer.h"
+#include <src/utility/util_timer.h>
 
 namespace
 {
@@ -53,7 +57,12 @@ namespace
     std::cout << str_real << std::endl;
     std::cout << str_imag << std::endl;
 
-    std::cout << "Elapsed time: " << elapsed << " seconds" << std::endl;
+    std::cout << "Elapsed time: "
+              << std::fixed
+              << std::setprecision(2)
+              << elapsed
+              << " seconds"
+              << std::endl;
 
     const bool result_is_ok = (test_real_ok && test_imag_ok);
 
