@@ -25,14 +25,14 @@
     class e_float : public ::e_float_base
     {
     public:
-      static constexpr std::int64_t ef_digits    = static_cast<std::int64_t>((static_cast<signed long long>(ef_digits10) * 1000LL) / 301LL);
-      static constexpr std::int64_t ef_radix     = 2;
+      static const std::int32_t ef_digits    = static_cast<std::int32_t>((static_cast<signed long long>(ef_digits10) * 1000LL) / 301LL);
+      static const std::int32_t ef_radix     = 2;
 
-      static constexpr std::int64_t ef_max_exp   = static_cast<std::int64_t>((std::numeric_limits<std::int32_t>::max)() - 31LL);
-      static constexpr std::int64_t ef_min_exp   = static_cast<std::int64_t>((std::numeric_limits<std::int32_t>::min)() + 31LL);
+      static const std::int64_t ef_max_exp   = static_cast<std::int64_t>((std::numeric_limits<std::int32_t>::max)() / static_cast<signed long>(2L)); // TBD: Ensure that (std::int64_t >= long)
+      static const std::int64_t ef_min_exp   = static_cast<std::int64_t>((std::numeric_limits<std::int32_t>::min)() / static_cast<signed long>(2L)); // TBD: Ensure that (std::int64_t >= long)
 
-      static constexpr std::int64_t ef_max_exp10 = static_cast<std::int64_t>(static_cast<std::int64_t>(static_cast<std::int64_t>(ef_max_exp) * 301LL) / 1000LL);
-      static constexpr std::int64_t ef_min_exp10 = static_cast<std::int64_t>(static_cast<std::int64_t>(static_cast<std::int64_t>(ef_min_exp) * 301LL) / 1000LL);
+      static const std::int64_t ef_max_exp10 = static_cast<std::int64_t>((static_cast<std::int64_t>(ef_max_exp) * 301LL) / 1000LL);
+      static const std::int64_t ef_min_exp10 = static_cast<std::int64_t>((static_cast<std::int64_t>(ef_min_exp) * 301LL) / 1000LL);
 
       // Default constructor.
       e_float() : my_rop()
