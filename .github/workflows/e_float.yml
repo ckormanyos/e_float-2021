@@ -65,9 +65,34 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: '0'
+      - name: Install packages
+        run: sudo apt install libgmp-dev
       - name: gcc-native-gmp
         run: |
           make MP=gmp TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
           ls -la ./unix-gmp/e_float.exe
           ./unix-gmp/e_float.exe
+        working-directory: ./libs/e_float/build/
+  gcc-native-mpfr:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS, E_FLOAT_TEST_PI_ALGOS_TESTS ]
+        standard: [ c++11, c++14, c++17, c++2a ]
+    if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Install packages
+        run: sudo apt install libgmp-dev libmpfr-dev
+      - name: gcc-native-mpfr
+        run: |
+          make MP=mpfr TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
+          ls -la ./unix-mpfr/e_float.exe
+          ./unix-mpfr/e_float.exe
         working-directory: ./libs/e_float/build/
