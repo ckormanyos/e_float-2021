@@ -16,8 +16,8 @@
     #pragma warning (disable:981)
   #endif
 
-  #include <cmath>
   #include <climits>
+  #include <cmath>
   #include <limits>
   #include <string>
   #include <type_traits>
