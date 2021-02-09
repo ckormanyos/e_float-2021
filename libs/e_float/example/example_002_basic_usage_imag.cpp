@@ -17,7 +17,7 @@
 #include <e_float/e_float_functions.h>
 #include <e_float/e_float_functions_complex.h>
 
-#include "../src/utility/util_timer.h"
+#include <utility/util_timer.h>
 
 #include "examples.h"
 

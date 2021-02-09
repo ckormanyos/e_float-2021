@@ -29,7 +29,7 @@ jobs:
           dir ./x64-release-${{ matrix.mpkind }}/e_float.exe
           ./x64-release-${{ matrix.mpkind }}/e_float.exe
         working-directory: ./libs/e_float/build/
-  gcc-native-efx:
+  gcc-clang-native-efx:
     runs-on: ubuntu-20.04
     defaults:
       run:
@@ -47,13 +47,13 @@ jobs:
           fetch-depth: '0'
       - name: Install packages
         run: sudo apt install clang
-      - name: gcc-native-efx
+      - name: gcc-clang-native-efx
         run: |
           make MP=efx TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
           ls -la ./unix-efx/e_float.exe
           ./unix-efx/e_float.exe
         working-directory: ./libs/e_float/build/
-  gcc-native-gmp:
+  gcc-clang-native-gmp:
     runs-on: ubuntu-20.04
     defaults:
       run:
@@ -71,13 +71,13 @@ jobs:
           fetch-depth: '0'
       - name: Install packages
         run: sudo apt install clang libgmp-dev
-      - name: gcc-native-gmp
+      - name: gcc-clang-native-gmp
         run: |
           make MP=gmp TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
           ls -la ./unix-gmp/e_float.exe
           ./unix-gmp/e_float.exe
         working-directory: ./libs/e_float/build/
-  gcc-native-mpfr:
+  gcc-clang-native-mpfr:
     runs-on: ubuntu-20.04
     defaults:
       run:
@@ -95,7 +95,7 @@ jobs:
           fetch-depth: '0'
       - name: Install packages
         run: sudo apt install clang libgmp-dev libmpfr-dev
-      - name: gcc-native-mpfr
+      - name: gcc-clang-native-mpfr
         run: |
           make MP=mpfr TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
           ls -la ./unix-mpfr/e_float.exe

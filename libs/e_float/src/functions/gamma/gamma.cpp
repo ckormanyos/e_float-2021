@@ -15,8 +15,8 @@
 #include <e_float/e_float_functions.h>
 #include <e_float/e_float_functions_complex.h>
 
-#include "../../utility/util_coefficient_expansion.h"
-#include "../../utility/util_digit_scale.h"
+#include <utility/util_coefficient_expansion.h>
+#include <utility/util_digit_scale.h>
 
 #include "../tables/tables.h"
 

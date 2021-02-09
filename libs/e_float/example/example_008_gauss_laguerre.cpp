@@ -13,11 +13,11 @@
 #include <e_float/e_float.h>
 #include <e_float/e_float_functions.h>
 
-#include "../src/utility/util_digit_scale.h"
-#include "../src/utility/util_find_root_newton_raphson.h"
-#include "../src/utility/util_lexical_cast.h"
-#include "../src/utility/util_noncopyable.h"
-#include "../src/utility/util_point.h"
+#include <utility/util_digit_scale.h>
+#include <utility/util_find_root_newton_raphson.h>
+#include <utility/util_lexical_cast.h>
+#include <utility/util_noncopyable.h>
+#include <utility/util_point.h>
 
 #include "examples.h"
 

@@ -30,7 +30,7 @@
     class complex<e_float>;
   }
 
-  #include "../src/utility/util_noncopyable.h"
+  #include <utility/util_noncopyable.h>
 
   namespace test
   {
