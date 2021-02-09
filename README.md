@@ -22,7 +22,8 @@ C++11, 14, 17, 20. The code has been modernized and a dedicated
 effort has been made to keep it
 compatible with C++ language evolution.
 Certain special function tests have been removed
-retaining just a core of key functions and tests remain in e_float-2021.
+retaining just a core of the most essential key functions
+and tests in e_float-2021.
 
 For the _efx_ version (which is a decimal floating point implementation),
 a naive FFT brings the digit range up to a million decimal digits or more.
@@ -38,9 +39,10 @@ of [Boost.Multiprecision](https://www.boost.org/doc/libs/1_75_0/libs/multiprecis
 After the publication of the e_float paper in TOMS,
 the code was essentially evaluated as to how it
 wrapped and implemented certain big number backends.
-This original rudimentary concept was adapted and significantly
-strenthened for the design of Boost.Multiprecision.
-Along the way, it was entirely re-implemented and extended
+This was adopted for the partial early design of `cpp_dec_float`
+in Boost.Multiprecision. As Boost.Multiprecision progressed,
+the original rudimentary concept motivated partially from e_float
+was entirely re-implemented, strengthened and extended
 for Boost's novel, flexible, header-only template design
 having its own frontend/backend concept.
 
