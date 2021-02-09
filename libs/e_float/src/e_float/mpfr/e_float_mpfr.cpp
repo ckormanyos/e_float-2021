@@ -470,8 +470,10 @@ std::int64_t mpfr::e_float::get_order_exact() const
   // Extract the base-10 exponent.
   const std::size_t pos_letter_e = str.rfind(static_cast<char>('e'));
 
-  const std::int64_t my_exp = ((pos_letter_e != std::string::npos) ? Util::numeric_cast<std::int64_t>(static_cast<const char* const>(str.c_str() + (pos_letter_e + 1U)))
-                                                            : static_cast<std::int64_t>(0));
+  const std::int64_t my_exp =
+    ((pos_letter_e != std::string::npos)
+      ? Util::numeric_cast<std::int64_t>(static_cast<const char*>(str.c_str() + (pos_letter_e + 1U)))
+      : static_cast<std::int64_t>(0));
 
   return my_exp;
 }
@@ -533,7 +535,7 @@ void mpfr::e_float::get_output_string(std::string& str, std::int64_t& the_exp, c
 
   if(pos_letter_e != std::string::npos)
   {
-    str.erase(str.cbegin() + pos_letter_e, str.cend());
+    str.erase(str.cbegin() + (std::string::difference_type) pos_letter_e, str.cend());
   }
 
   // Erase the decimal point.
@@ -541,8 +543,8 @@ void mpfr::e_float::get_output_string(std::string& str, std::int64_t& the_exp, c
 
   if(pos_decimal_point != std::string::npos)
   {
-    str.erase(str.cbegin() +  pos_decimal_point,
-              str.cbegin() + (pos_decimal_point + 1U));
+    str.erase(str.cbegin() + (std::string::difference_type)  pos_decimal_point,
+              str.cbegin() + (std::string::difference_type) (pos_decimal_point + 1U));
   }
 }
 
