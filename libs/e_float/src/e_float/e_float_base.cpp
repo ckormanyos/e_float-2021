@@ -72,7 +72,7 @@ std::istream& operator>>(std::istream& is, e_float_base& f)
 const e_float& e_float_base::my_value_max() const
 {
   static const std::string str_max =   std::string("9." + std::string(static_cast<std::size_t>(ef_max_digits10), static_cast<char>('9')))
-                                     + std::string("e+" + Util::lexical_cast(e_float::ef_max_exp10));
+                                     + std::string("e+" + Util::lexical_cast(std::numeric_limits<e_float>::max_exponent10));
 
   static const e_float val_max(str_max);
 
@@ -81,7 +81,7 @@ const e_float& e_float_base::my_value_max() const
 
 const e_float& e_float_base::my_value_min() const
 {
-  static const e_float val_min("1.0e" + Util::lexical_cast(e_float::ef_min_exp10));
+  static const e_float val_min("1.0e" + Util::lexical_cast(std::numeric_limits<e_float>::min_exponent10));
 
   return val_min;
 }

@@ -11,6 +11,7 @@
 #ifndef E_FLOAT_2004_06_01_HPP_
   #define E_FLOAT_2004_06_01_HPP_
 
+  #include <cstdint>
   #include <limits>
   #include <type_traits>
 
@@ -44,7 +45,8 @@
   // Specialization of std::numeric_limits<e_float>.
   namespace std
   {
-    template <> class numeric_limits<e_float>
+    template <>
+    class numeric_limits<e_float>
     {
     public:
       static constexpr bool                    is_specialized    = true;
@@ -81,6 +83,30 @@
       static const e_float& signaling_NaN() throw() { return ef::zero(); }
       static const e_float& denorm_min   () throw() { return ef::zero(); }
     };
+
+    constexpr bool                    numeric_limits<e_float>::is_specialized;
+    constexpr bool                    numeric_limits<e_float>::is_signed;
+    constexpr bool                    numeric_limits<e_float>::is_integer;
+    constexpr bool                    numeric_limits<e_float>::is_exact;
+    constexpr bool                    numeric_limits<e_float>::is_bounded;
+    constexpr bool                    numeric_limits<e_float>::is_modulo;
+    constexpr bool                    numeric_limits<e_float>::is_iec559;
+    constexpr std::int64_t            numeric_limits<e_float>::digits;
+    constexpr std::int64_t            numeric_limits<e_float>::digits10;
+    constexpr std::int64_t            numeric_limits<e_float>::max_digits10;
+    constexpr std::int64_t            numeric_limits<e_float>::min_exponent;
+    constexpr std::int64_t            numeric_limits<e_float>::min_exponent10;
+    constexpr std::int64_t            numeric_limits<e_float>::max_exponent;
+    constexpr std::int64_t            numeric_limits<e_float>::max_exponent10;
+    constexpr int                     numeric_limits<e_float>::radix;
+    constexpr std::float_round_style  numeric_limits<e_float>::round_style;
+    constexpr bool                    numeric_limits<e_float>::has_infinity;
+    constexpr bool                    numeric_limits<e_float>::has_quiet_NaN;
+    constexpr bool                    numeric_limits<e_float>::has_signaling_NaN;
+    constexpr std::float_denorm_style numeric_limits<e_float>::has_denorm;
+    constexpr bool                    numeric_limits<e_float>::has_denorm_loss;
+    constexpr bool                    numeric_limits<e_float>::traps;
+    constexpr bool                    numeric_limits<e_float>::tinyness_before;
   }
 
   // Global unary operators of e_float reference.
