@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="libs">
+      <UniqueIdentifier>{e3143767-6c98-4152-8855-c2e103088d82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float">
+      <UniqueIdentifier>{149d0538-0c47-42f0-9c75-8b569e415311}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src">
+      <UniqueIdentifier>{902020ad-0956-4344-9b3b-b8a888e50647}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src\e_float">
+      <UniqueIdentifier>{cc243370-8ca5-4744-9f05-d7caa6eacc45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src\e_float\efx">
+      <UniqueIdentifier>{ff62c875-f3f0-4f4c-bfd3-fa0860e60462}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src\functions">
+      <UniqueIdentifier>{bdf818b8-0e64-4e67-a5a7-638b0211d787}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src\functions\constants">
+      <UniqueIdentifier>{1181ef74-420c-42f0-92ae-ce2ad7f28539}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src\functions\elementary">
+      <UniqueIdentifier>{1433d3f3-0dce-49ba-87f5-9c3d6485d929}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\e_float\efx\e_float_efx.cpp">
+      <Filter>libs\e_float\src\e_float\efx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_float\e_float.cpp">
+      <Filter>libs\e_float\src\e_float</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_float\e_float_base.cpp">
+      <Filter>libs\e_float\src\e_float</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\constants\constants.cpp">
+      <Filter>libs\e_float\src\functions\constants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\elementary\elementary_hyper_g.cpp">
+      <Filter>libs\e_float\src\functions\elementary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\elementary\elementary_math.cpp">
+      <Filter>libs\e_float\src\functions\elementary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\elementary\elementary_trans.cpp">
+      <Filter>libs\e_float\src\functions\elementary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\elementary\elementary_trig.cpp">
+      <Filter>libs\e_float\src\functions\elementary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\functions\elementary\elementary_complex.cpp">
+      <Filter>libs\e_float\src\functions\elementary</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\e_float\efx\e_float_efx.h">
+      <Filter>libs\e_float\src\e_float\efx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\e_float.h">
+      <Filter>libs\e_float\src\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\e_float_base.h">
+      <Filter>libs\e_float\src\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\e_float_complex.h">
+      <Filter>libs\e_float\src\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\e_float_functions.h">
+      <Filter>libs\e_float\src\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\e_float_functions_complex.h">
+      <Filter>libs\e_float\src\e_float</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

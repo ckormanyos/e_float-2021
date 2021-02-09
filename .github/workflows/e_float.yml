@@ -4,7 +4,7 @@
 #  Version 1.0. (See accompanying file LICENSE_1_0.txt
 #  or copy at http://www.boost.org/LICENSE_1_0.txt)
 
-name: real-time-cpp
+name: e_float
 on: [push,pull_request]
 jobs:
   msvc-release:

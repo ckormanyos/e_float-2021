@@ -98,20 +98,8 @@
     <Filter Include="libs\e_float\test\pi_test">
       <UniqueIdentifier>{845f611b-efbc-4832-851f-6bf18a27b08a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="libs\e_float\test\independent_algebra_test">
-      <UniqueIdentifier>{34ed32e9-3f50-4636-8515-af0f705196c7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="libs\e_float\src\e_float\detail">
       <UniqueIdentifier>{7d87c116-8403-471b-9213-28fd70293785}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="boost">
-      <UniqueIdentifier>{4dd1269a-84d4-45ad-91d4-7559c31b72a7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="boost\math">
-      <UniqueIdentifier>{5c680083-3af2-4303-86d8-670618a5ade3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="boost\math\bindings">
-      <UniqueIdentifier>{8c640bc4-c465-42a2-9451-85f2e7780835}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -412,9 +400,6 @@
     <ClCompile Include="..\test\pi_test\pi_algos.cpp">
       <Filter>libs\e_float\test\pi_test</Filter>
     </ClCompile>
-    <ClCompile Include="..\test\independent_algebra_test\independent_algebra_test.cpp">
-      <Filter>libs\e_float\test\independent_algebra_test</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\functions\gamma\gamma_util.h">
@@ -522,18 +507,6 @@
     <ClInclude Include="..\test\pi_test\pi_algos.h">
       <Filter>libs\e_float\test\pi_test</Filter>
     </ClInclude>
-    <ClInclude Include="..\test\independent_algebra_test\independent_algebra_test_base.h">
-      <Filter>libs\e_float\test\independent_algebra_test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\test\independent_algebra_test\independent_algebra_test_e_float.h">
-      <Filter>libs\e_float\test\independent_algebra_test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\test\independent_algebra_test\independent_algebra_test_boost_cpp.h">
-      <Filter>libs\e_float\test\independent_algebra_test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\test\independent_algebra_test\independent_algebra_test.h">
-      <Filter>libs\e_float\test\independent_algebra_test</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\utility\util_dynamic_array.h">
       <Filter>libs\e_float\src\utility</Filter>
     </ClInclude>
@@ -578,9 +551,6 @@
     </ClInclude>
     <ClInclude Include="..\src\e_float\mpfr\e_float_mpfr_protos.h">
       <Filter>libs\e_float\src\e_float\mpfr</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\boost\math\bindings\e_float.hpp">
-      <Filter>boost\math\bindings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

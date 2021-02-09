@@ -23,10 +23,6 @@
 //   E_FLOAT_TEST_ALGEBRA_TESTS
 
 
-#if defined(E_FLOAT_TEST_ALGEBRA_TESTS)
-#include <test/independent_algebra_test/independent_algebra_test.h>
-#endif
-
 #if defined(E_FLOAT_TEST_PI_ALGOS_TESTS)
 #include "pi_test/test_pi.h"
 #endif
@@ -73,24 +69,12 @@ namespace
 
 int main()
 {
-  bool result_is_ok;
-
-  #if defined(E_FLOAT_TEST_ALGEBRA_TESTS)
-  const bool b_add  = test::independent_algebra::independent_algebra_test_add <100U, 8U, test::independent_algebra::independent_algebra_test_boost_cpp>();
-  const bool b_sub  = test::independent_algebra::independent_algebra_test_sub <100U, 8U, test::independent_algebra::independent_algebra_test_boost_cpp>();
-  const bool b_mul  = test::independent_algebra::independent_algebra_test_mul <100U, 8U, test::independent_algebra::independent_algebra_test_boost_cpp>();
-  const bool b_div  = test::independent_algebra::independent_algebra_test_div <100U, 8U, test::independent_algebra::independent_algebra_test_boost_cpp>();
-  const bool b_sqrt = test::independent_algebra::independent_algebra_test_sqrt<100U, 8U, test::independent_algebra::independent_algebra_test_boost_cpp>();
-
-  result_is_ok = (b_add && b_sub && b_mul && b_div && b_sqrt);
-  #endif
-
   #if defined(E_FLOAT_TEST_PI_ALGOS_TESTS)
-  result_is_ok = test::pi::test_pi();
+  const bool result_is_ok = test::pi::test_pi();
   #endif
 
   #if defined(E_FLOAT_TEST_REAL_IMAG_TESTS)
-  result_is_ok = test_real_imag();
+  const bool result_is_ok = test_real_imag();
   #endif
 
   return (result_is_ok ? 0 : -1);
