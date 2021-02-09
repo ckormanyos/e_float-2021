@@ -13,7 +13,7 @@
 #include <iomanip>
 #include <iostream>
 
-#include <boost/e_float/e_float.hpp>
+#include <e_float/e_float.h>
 
 #include "pi_algos.h"
 #include "test_pi.h"

@@ -10,8 +10,8 @@
 
 #include <vector>
 
-#include <boost/e_float/e_float.hpp>
-#include <boost/e_float/e_float_functions.hpp>
+#include <e_float/e_float.h>
+#include <e_float/e_float_functions.h>
 
 #include "../src/utility/util_digit_scale.h"
 #include "../src/utility/util_find_root_newton_raphson.h"

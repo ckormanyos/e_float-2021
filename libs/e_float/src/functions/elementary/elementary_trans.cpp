@@ -13,11 +13,11 @@
 #include <numeric>
 #include <vector>
 
-#include <boost/e_float/e_float_functions.hpp>
-#include <boost/e_float/e_float_detail_pown_template.hpp>
+#include <e_float/e_float_functions.h>
+#include <e_float/detail/e_float_detail_pown_template.h>
 
-#include "../../utility/util_lexical_cast.h"
-#include "../../utility/util_power_x_pow_n.h"
+#include <utility/util_lexical_cast.h>
+#include <utility/util_power_x_pow_n.h>
 
 namespace ElementaryTrans_Series
 {

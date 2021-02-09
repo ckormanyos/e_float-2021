@@ -8,7 +8,7 @@
 // "Algorithm 910: A Portable C++ Multiple-Precision System for Special-Function Calculations",
 // in ACM TOMS, {VOL 37, ISSUE 4, (February 2011)} (C) ACM, 2011. http://doi.acm.org/10.1145/1916461.1916469
 
-#include <boost/e_float/e_float.hpp>
+#include <e_float/e_float.h>
 #include "../utility/util_lexical_cast.h"
 
 const e_float& ef::value_nan() { static const e_float val = e_float().my_value_nan(); return val; }

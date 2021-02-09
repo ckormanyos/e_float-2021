@@ -10,7 +10,7 @@
 
 #include <algorithm>
 
-#include <boost/e_float/e_float.hpp>
+#include <e_float/e_float.h>
 #include "../utility/util_lexical_cast.h"
 
 namespace ef

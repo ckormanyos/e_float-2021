@@ -13,8 +13,8 @@
 #include <iterator>
 #include <vector>
 
-#include <boost/e_float/e_float.hpp>
-#include <boost/e_float/e_float_functions.hpp>
+#include <e_float/e_float.h>
+#include <e_float/e_float_functions.h>
 #include "../src/utility/util_timer.h"
 
 #include "examples.h"

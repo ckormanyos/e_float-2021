@@ -12,7 +12,7 @@
 #include <iostream>
 #include <string>
 
-#include <boost/e_float/e_float.hpp>
+#include <e_float/e_float.h>
 
 // cd C:/Users/User/Documents/Ks/PC_Software/NumericalPrograms/ExtendedNumberTypes/e_float/libs/e_float/build
 // make MP=efx rebuild
@@ -35,7 +35,7 @@
 #include "imag/test_imag.h"
 #include "real/test_real.h"
 
-#include <src/utility/util_timer.h>
+#include <utility/util_timer.h>
 
 namespace
 {

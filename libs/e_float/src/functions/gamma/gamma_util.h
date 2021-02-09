@@ -11,7 +11,7 @@
 #ifndef GAMMA_UTIL_2008_01_10_H_
   #define GAMMA_UTIL_2008_01_10_H_
   
-  #include <boost/e_float/e_float.hpp>
+  #include <e_float/e_float.h>
 
   namespace GammaUtil
   {

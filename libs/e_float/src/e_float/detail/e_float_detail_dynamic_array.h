@@ -12,7 +12,7 @@
   #define E_FLOAT_DETAIL_DYNAMIC_ARRAY_2014_08_11_HPP_
 
   #include <memory>
-  #include <src/utility/util_dynamic_array.h>
+  #include <utility/util_dynamic_array.h>
 
   namespace ef { namespace detail {
 

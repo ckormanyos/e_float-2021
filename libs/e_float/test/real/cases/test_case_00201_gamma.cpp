@@ -10,7 +10,7 @@
 
 // Automatically generated file
 #include <array>
-#include <boost/e_float/e_float_functions.hpp>
+#include <e_float/e_float_functions.h>
 #include "../test_case_real.h"
 
 namespace test

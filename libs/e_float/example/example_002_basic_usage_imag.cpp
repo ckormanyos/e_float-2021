@@ -13,9 +13,9 @@
 #include <iterator>
 #include <vector>
 
-#include <boost/e_float/e_float_complex.hpp>
-#include <boost/e_float/e_float_functions.hpp>
-#include <boost/e_float/e_float_functions_complex.hpp>
+#include <e_float/e_float_complex.h>
+#include <e_float/e_float_functions.h>
+#include <e_float/e_float_functions_complex.h>
 
 #include "../src/utility/util_timer.h"
 

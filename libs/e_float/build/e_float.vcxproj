@@ -245,40 +245,40 @@
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='release-mpfr|x64'" />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug-mpfr|x64'">
-    <IncludePath>C:\boost\boost_1_75_0;$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\boost_1_75_0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release-gmp|x64'">
-    <IncludePath>C:\boost\boost_1_75_0;$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\boost_1_75_0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release-efx|x64'">
-    <IncludePath>C:\boost\boost_1_75_0;$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\boost_1_75_0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release-mpfr|x64'">
-    <IncludePath>C:\boost\boost_1_75_0;$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\boost_1_75_0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug-efx|x64'">
-    <IncludePath>C:\boost\boost_1_75_0;$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\boost_1_75_0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug-gmp|x64'">
-    <IncludePath>C:\boost\boost_1_75_0;$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\boost_1_75_0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release-efx|Win32'">
-    <IncludePath>C:\boost\boost_1_75_0;$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\boost_1_75_0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug-efx|Win32'">
-    <IncludePath>C:\boost\boost_1_75_0;$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\boost_1_75_0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release-gmp|Win32'">
-    <IncludePath>C:\boost\boost_1_75_0;$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\boost_1_75_0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug-gmp|Win32'">
-    <IncludePath>C:\boost\boost_1_75_0;$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\boost_1_75_0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug-mpfr|Win32'">
-    <IncludePath>C:\boost\boost_1_75_0;$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\boost_1_75_0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release-mpfr|Win32'">
-    <IncludePath>C:\boost\boost_1_75_0;$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\boost_1_75_0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release-gmp|Win32'">
     <Midl>
@@ -1236,22 +1236,22 @@
     <ClCompile Include="..\test\real\test_real.cpp" />
     <ClCompile Include="..\test\test.cpp" />
     <ClCompile Include="..\test\test_case_base.cpp" />
-    <ClInclude Include="..\..\..\boost\e_float\e_float.hpp" />
-    <ClInclude Include="..\..\..\boost\e_float\e_float_base.hpp" />
-    <ClInclude Include="..\..\..\boost\e_float\e_float_complex.hpp" />
-    <ClInclude Include="..\..\..\boost\e_float\e_float_detail_dynamic_array.hpp" />
-    <ClInclude Include="..\..\..\boost\e_float\e_float_detail_pown_template.hpp" />
-    <ClInclude Include="..\..\..\boost\e_float\e_float_efx.hpp" />
-    <ClInclude Include="..\..\..\boost\e_float\e_float_detail_fft.hpp" />
-    <ClInclude Include="..\..\..\boost\e_float\e_float_functions.hpp" />
-    <ClInclude Include="..\..\..\boost\e_float\e_float_functions_complex.hpp" />
-    <ClInclude Include="..\..\..\boost\e_float\e_float_gmp.hpp" />
-    <ClInclude Include="..\..\..\boost\e_float\e_float_detail_karatsuba.hpp" />
-    <ClInclude Include="..\..\..\boost\e_float\e_float_gmp_protos.hpp" />
-    <ClInclude Include="..\..\..\boost\e_float\e_float_mpfr.hpp" />
-    <ClInclude Include="..\..\..\boost\e_float\e_float_mpfr_protos.hpp" />
-    <ClInclude Include="..\..\..\boost\multiprecision\e_float_backend.hpp" />
+    <ClInclude Include="..\..\..\boost\math\bindings\e_float.hpp" />
     <ClInclude Include="..\example\examples.h" />
+    <ClInclude Include="..\src\e_float\detail\e_float_detail_dynamic_array.h" />
+    <ClInclude Include="..\src\e_float\detail\e_float_detail_fft.h" />
+    <ClInclude Include="..\src\e_float\detail\e_float_detail_karatsuba.h" />
+    <ClInclude Include="..\src\e_float\detail\e_float_detail_pown_template.h" />
+    <ClInclude Include="..\src\e_float\efx\e_float_efx.h" />
+    <ClInclude Include="..\src\e_float\e_float.h" />
+    <ClInclude Include="..\src\e_float\e_float_base.h" />
+    <ClInclude Include="..\src\e_float\e_float_complex.h" />
+    <ClInclude Include="..\src\e_float\e_float_functions.h" />
+    <ClInclude Include="..\src\e_float\e_float_functions_complex.h" />
+    <ClInclude Include="..\src\e_float\gmp\e_float_gmp.h" />
+    <ClInclude Include="..\src\e_float\gmp\e_float_gmp_protos.h" />
+    <ClInclude Include="..\src\e_float\mpfr\e_float_mpfr.h" />
+    <ClInclude Include="..\src\e_float\mpfr\e_float_mpfr_protos.h" />
     <ClInclude Include="..\src\functions\integer\prime_factors.h" />
     <ClInclude Include="..\src\utility\util_dynamic_array.h" />
     <ClInclude Include="..\test\imag\test_case_imag.h" />

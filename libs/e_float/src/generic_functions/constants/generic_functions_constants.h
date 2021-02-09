@@ -11,7 +11,7 @@
 #ifndef GENERIC_FUNCTIONS_CONSTANTS_2011_06_18_H_
   #define GENERIC_FUNCTIONS_CONSTANTS_2011_06_18_H_
 
-  #include <boost/e_float/e_float_functions.hpp>
+  #include <e_float/e_float_functions.h>
 
   namespace generic_functions
   {

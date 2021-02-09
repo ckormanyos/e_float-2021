@@ -8,12 +8,12 @@
 // "Algorithm 910: A Portable C++ Multiple-Precision System for Special-Function Calculations",
 // in ACM TOMS, {VOL 37, ISSUE 4, (February 2011)} (C) ACM, 2011. http://doi.acm.org/10.1145/1916461.1916469
 
-#include <boost/e_float/e_float_functions.hpp>
-#include <boost/e_float/e_float_detail_pown_template.hpp>
+#include <e_float/e_float_functions.h>
+#include <e_float/detail/e_float_detail_pown_template.h>
 
-#include "../functions/integer/prime_factors.h"
-#include "util_point.h"
-#include "util_power_j_pow_x.h"
+#include <functions/integer/prime_factors.h>
+#include <utility/util_point.h>
+#include <utility/util_power_j_pow_x.h>
 
 namespace Util
 {

@@ -80,12 +80,6 @@
     <Filter Include="libs\e_float\test\imag\cases">
       <UniqueIdentifier>{c10ac75a-ed22-4f7d-89e1-4b0745923caf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="boost">
-      <UniqueIdentifier>{f5907b86-108b-444b-9efc-f596cabf046f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="boost\e_float">
-      <UniqueIdentifier>{087ba7fc-16a5-4e6d-b74a-3309a6462c13}</UniqueIdentifier>
-    </Filter>
     <Filter Include="doc">
       <UniqueIdentifier>{72f8e7eb-332a-4eee-800b-bf29ce6170ab}</UniqueIdentifier>
     </Filter>
@@ -101,14 +95,23 @@
     <Filter Include="libs\e_float\test\linpack_test\gmp">
       <UniqueIdentifier>{8ed1a5cd-3ea1-4fc5-b19d-1ad9517e07d2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="boost\multiprecision">
-      <UniqueIdentifier>{c8551df9-ef45-40ba-9496-21e1a55634d9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="libs\e_float\test\pi_test">
       <UniqueIdentifier>{845f611b-efbc-4832-851f-6bf18a27b08a}</UniqueIdentifier>
     </Filter>
     <Filter Include="libs\e_float\test\independent_algebra_test">
       <UniqueIdentifier>{34ed32e9-3f50-4636-8515-af0f705196c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\e_float\src\e_float\detail">
+      <UniqueIdentifier>{7d87c116-8403-471b-9213-28fd70293785}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="boost">
+      <UniqueIdentifier>{4dd1269a-84d4-45ad-91d4-7559c31b72a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="boost\math">
+      <UniqueIdentifier>{5c680083-3af2-4303-86d8-670618a5ade3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="boost\math\bindings">
+      <UniqueIdentifier>{8c640bc4-c465-42a2-9451-85f2e7780835}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -513,51 +516,6 @@
     <ClInclude Include="..\test\linpack_test\gmp\gmpxx.h">
       <Filter>libs\e_float\test\linpack_test\gmp</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\boost\e_float\e_float.hpp">
-      <Filter>boost\e_float</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\boost\e_float\e_float_base.hpp">
-      <Filter>boost\e_float</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\boost\e_float\e_float_detail_dynamic_array.hpp">
-      <Filter>boost\e_float</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\boost\e_float\e_float_detail_fft.hpp">
-      <Filter>boost\e_float</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\boost\e_float\e_float_detail_karatsuba.hpp">
-      <Filter>boost\e_float</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\boost\e_float\e_float_efx.hpp">
-      <Filter>boost\e_float</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\boost\e_float\e_float_functions.hpp">
-      <Filter>boost\e_float</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\boost\e_float\e_float_gmp.hpp">
-      <Filter>boost\e_float</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\boost\e_float\e_float_mpfr.hpp">
-      <Filter>boost\e_float</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\boost\multiprecision\e_float_backend.hpp">
-      <Filter>boost\multiprecision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\boost\e_float\e_float_complex.hpp">
-      <Filter>boost\e_float</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\boost\e_float\e_float_functions_complex.hpp">
-      <Filter>boost\e_float</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\boost\e_float\e_float_detail_pown_template.hpp">
-      <Filter>boost\e_float</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\boost\e_float\e_float_gmp_protos.hpp">
-      <Filter>boost\e_float</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\boost\e_float\e_float_mpfr_protos.hpp">
-      <Filter>boost\e_float</Filter>
-    </ClInclude>
     <ClInclude Include="..\test\pi_test\test_pi.h">
       <Filter>libs\e_float\test\pi_test</Filter>
     </ClInclude>
@@ -578,6 +536,51 @@
     </ClInclude>
     <ClInclude Include="..\src\utility\util_dynamic_array.h">
       <Filter>libs\e_float\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\detail\e_float_detail_karatsuba.h">
+      <Filter>libs\e_float\src\e_float\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\detail\e_float_detail_pown_template.h">
+      <Filter>libs\e_float\src\e_float\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\detail\e_float_detail_dynamic_array.h">
+      <Filter>libs\e_float\src\e_float\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\detail\e_float_detail_fft.h">
+      <Filter>libs\e_float\src\e_float\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\e_float.h">
+      <Filter>libs\e_float\src\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\e_float_base.h">
+      <Filter>libs\e_float\src\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\e_float_complex.h">
+      <Filter>libs\e_float\src\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\e_float_functions.h">
+      <Filter>libs\e_float\src\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\e_float_functions_complex.h">
+      <Filter>libs\e_float\src\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\efx\e_float_efx.h">
+      <Filter>libs\e_float\src\e_float\efx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\gmp\e_float_gmp.h">
+      <Filter>libs\e_float\src\e_float\gmp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\gmp\e_float_gmp_protos.h">
+      <Filter>libs\e_float\src\e_float\gmp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\mpfr\e_float_mpfr.h">
+      <Filter>libs\e_float\src\e_float\mpfr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\mpfr\e_float_mpfr_protos.h">
+      <Filter>libs\e_float\src\e_float\mpfr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\boost\math\bindings\e_float.hpp">
+      <Filter>boost\math\bindings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -13,7 +13,7 @@
 #include <cstdint>
 #include <iterator>
 
-#include <boost/e_float/e_float_functions.hpp>
+#include <e_float/e_float_functions.h>
 
 namespace Primes
 {

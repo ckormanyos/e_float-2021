@@ -5,11 +5,12 @@
 #include <boost/math/special_functions/cbrt.hpp>
 #include <boost/math/special_functions/gamma.hpp>
 
-#include <boost/multiprecision/e_float_backend.hpp>
+#include <boost/math/bindings/e_float.hpp>
+#include <boost/multiprecision/number.hpp>
 
 #include "examples.h"
 
-typedef boost::multiprecision::number<boost::multiprecision::e_float_backend<100>,
+typedef boost::multiprecision::number<boost::math::ef::e_float,
                                       boost::multiprecision::et_off>
 e_float_type;
 

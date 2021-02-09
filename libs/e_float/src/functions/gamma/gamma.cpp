@@ -11,9 +11,9 @@
 #include <array>
 #include <numeric>
 
-#include <boost/e_float/e_float_complex.hpp>
-#include <boost/e_float/e_float_functions.hpp>
-#include <boost/e_float/e_float_functions_complex.hpp>
+#include <e_float/e_float_complex.h>
+#include <e_float/e_float_functions.h>
+#include <e_float/e_float_functions_complex.h>
 
 #include "../../utility/util_coefficient_expansion.h"
 #include "../../utility/util_digit_scale.h"

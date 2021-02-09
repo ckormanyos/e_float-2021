@@ -36,7 +36,7 @@ http://netlib.sandia.gov/f2c/index.html
   typedef mpf_class real_type;
   std::ostream & operator<<(std::ostream &o, const __mpf_struct*) { return o; } // TBD: Why the linker error? What should be done here?
 #elif defined(TEST_EFLOAT_NATIVE)
-  #include <boost/e_float/e_float.hpp>
+  #include <e_float/e_float.h>
   typedef e_float real_type;
 #define CAST_TO_RT(x) real_type(x)
 #else
@@ -71,7 +71,7 @@ extern "C" int s_stop(char *, ftnlen);
 
 
 #if defined(TEST_EFLOAT_NATIVE)
-#include <boost/e_float/e_float_functions.hpp>
+#include <e_float/e_float_functions.h>
 using namespace ef;
 #endif
 

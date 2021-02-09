@@ -11,13 +11,13 @@
 #include <algorithm>
 #include <cmath>
 
-#include <boost/e_float/e_float_complex.hpp>
-#include <boost/e_float/e_float_detail_pown_template.hpp>
-#include <boost/e_float/e_float_functions.hpp>
-#include <boost/e_float/e_float_functions_complex.hpp>
+#include <e_float/e_float_complex.h>
+#include <e_float/e_float_functions.h>
+#include <e_float/e_float_functions_complex.h>
+#include <e_float/detail/e_float_detail_pown_template.h>
 
-#include "../tables/tables.h"
-#include "../../utility/util_power_j_pow_x.h"
+#include <functions/tables/tables.h>
+#include <utility/util_power_j_pow_x.h>
 
 namespace Zeta_Series
 {

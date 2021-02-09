@@ -16,8 +16,8 @@
 #include <sstream>
 #include <string>
 
-#include <boost/e_float/e_float_functions.hpp>
-#include <src/utility/util_timer.h>
+#include <e_float/e_float_functions.h>
+#include <utility/util_timer.h>
 #include "pi_algos.h"
 
 // *****************************************************************************

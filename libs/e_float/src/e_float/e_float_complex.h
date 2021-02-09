@@ -20,9 +20,9 @@
   #include <sstream>
   #include <string>
 
-  #include <boost/e_float/e_float.hpp>
-  #include <boost/e_float/e_float_functions.hpp>
-  #include <boost/e_float/e_float_detail_pown_template.hpp>
+  #include <e_float/e_float.h>
+  #include <e_float/e_float_functions.h>
+  #include <e_float/detail/e_float_detail_pown_template.h>
 
   namespace ef
   {

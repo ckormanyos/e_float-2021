@@ -20,8 +20,8 @@
   #include <string>
   #include <type_traits>
 
-  #include <boost/e_float/e_float_base.hpp>
-  #include <boost/e_float/e_float_detail_dynamic_array.hpp>
+  #include <e_float/e_float_base.h>
+  #include <e_float/detail/e_float_detail_dynamic_array.h>
 
   namespace ef
   {

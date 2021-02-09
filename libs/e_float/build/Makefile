@@ -84,7 +84,7 @@ CFLAGS_BASE = -march=native                     \
               -O3                               \
               -D$(TYP_TEST)                     \
               -I../../../                       \
-              -I../../../libs/e_float
+              -I../../../libs/e_float/src
 
 CFLAGS_WARN = -Wall                             \
               -Wextra                           \

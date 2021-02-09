@@ -15,11 +15,11 @@
 #include <iomanip>
 #include <sstream>
 
-#include <boost/e_float/e_float_functions.hpp>
+#include <e_float/e_float_functions.h>
 
-#include <src/utility/util_dynamic_array.h>
-#include <src/utility/util_lexical_cast.h>
-#include <src/utility/util_numeric_cast.h>
+#include <utility/util_dynamic_array.h>
+#include <utility/util_lexical_cast.h>
+#include <utility/util_numeric_cast.h>
 
 namespace local
 {

@@ -13,7 +13,7 @@
 
   #include <vector>
 
-  #include <boost/e_float/e_float.hpp>
+  #include <e_float/e_float.h>
 
   namespace Tables
   {

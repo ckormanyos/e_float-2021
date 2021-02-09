@@ -20,11 +20,11 @@
   // the back-end big-number type that is to be compiled.
 
   #if defined(E_FLOAT_TYPE_EFX)
-    #include <boost/e_float/e_float_efx.hpp>
+    #include <e_float/efx/e_float_efx.h>
   #elif defined(E_FLOAT_TYPE_GMP)
-    #include <boost/e_float/e_float_gmp.hpp>
+    #include <e_float/gmp/e_float_gmp.h>
   #elif defined(E_FLOAT_TYPE_MPFR)
-    #include <boost/e_float/e_float_mpfr.hpp>
+    #include <e_float/mpfr/e_float_mpfr.h>
   #else
     #error e_float type undefined!
   #endif

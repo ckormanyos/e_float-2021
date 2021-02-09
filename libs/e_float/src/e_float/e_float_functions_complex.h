@@ -13,7 +13,7 @@
 
   #include <cstdint>
 
-  #include <boost/e_float/e_float_complex.hpp>
+  #include <e_float/e_float_complex.h>
 
   namespace ef
   {

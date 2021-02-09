@@ -12,7 +12,7 @@
   #define PI_ALGOS_2014_08_06_H_
 
   #include <ostream>
-  #include <boost/e_float/e_float.hpp>
+  #include <e_float/e_float.h>
 
   const e_float& calculate_pi                (const bool b_trace);
   const e_float& calculate_pi_borwein_cubic  (const bool b_trace);

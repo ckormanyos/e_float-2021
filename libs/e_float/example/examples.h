@@ -11,7 +11,7 @@
 #ifndef EXAMPLES_2010_01_02_H_
   #define EXAMPLES_2010_01_02_H_
 
-  #include <boost/e_float/e_float_functions.hpp>
+  #include <e_float/e_float_functions.h>
 
   namespace examples
   {

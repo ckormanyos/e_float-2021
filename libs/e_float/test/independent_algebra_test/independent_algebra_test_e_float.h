@@ -4,7 +4,7 @@
   #include <iomanip>
   #include <sstream>
 
-  #include <boost/e_float/e_float.hpp>
+  #include <e_float/e_float.h>
   #include <test/independent_algebra_test/independent_algebra_test_base.h>
 
   namespace test { namespace independent_algebra {

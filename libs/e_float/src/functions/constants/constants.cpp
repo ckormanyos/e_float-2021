@@ -12,7 +12,7 @@
   #pragma warning (disable:4127)
 #endif
 
-#include <boost/e_float/e_float_functions.hpp>
+#include <e_float/e_float_functions.h>
 
 const e_float& ef::two                   () { static const e_float val(         2U); return val; }
 const e_float& ef::three                 () { static const e_float val(         3U); return val; }

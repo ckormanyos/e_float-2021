@@ -22,9 +22,8 @@
   #include <string>
   #include <type_traits>
 
-  #include <boost/e_float/e_float_base.hpp>
-
-  #include "e_float_gmp_protos.hpp"
+  #include <e_float/e_float_base.h>
+  #include <e_float/gmp/e_float_gmp_protos.h>
 
   namespace gmp
   {

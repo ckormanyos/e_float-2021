@@ -12,7 +12,7 @@
 #include <numeric>
 #include <functional>
 
-#include <boost/e_float/e_float_functions.hpp>
+#include <e_float/e_float_functions.h>
 
 e_float ef::hypergeometric_0f0(const e_float& x)
 {

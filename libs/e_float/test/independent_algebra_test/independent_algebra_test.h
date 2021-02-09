@@ -4,7 +4,7 @@
   #include <iostream>
   #include <random>
 
-  #include <boost/e_float/e_float_functions.hpp>
+  #include <e_float/e_float_functions.h>
   #include <test/independent_algebra_test/independent_algebra_test_e_float.h>
   #include <test/independent_algebra_test/independent_algebra_test_boost_cpp.h>
 

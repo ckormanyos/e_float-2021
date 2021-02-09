@@ -13,8 +13,8 @@
 #include <sstream>
 #include <string>
 
-#include <boost/e_float/e_float.hpp>
-#include <boost/e_float/e_float_functions.hpp>
+#include <e_float/e_float.h>
+#include <e_float/e_float_functions.h>
 #include "../test_case_real.h"
 #include "../../../src/utility/util_lexical_cast.h"
 

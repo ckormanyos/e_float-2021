@@ -22,13 +22,13 @@
 #include <cmath>
 #include <iomanip>
 
-#include <boost/e_float/e_float_functions.hpp>
-#include <boost/e_float/e_float_detail_karatsuba.hpp>
-#include <boost/e_float/e_float_detail_fft.hpp>
+#include <e_float/e_float_functions.h>
+#include <e_float/detail/e_float_detail_karatsuba.h>
+#include <e_float/detail/e_float_detail_fft.h>
 
-#include "../../utility/util_lexical_cast.h"
-#include "../../utility/util_numeric_cast.h"
-#include "../../utility/util_noncopyable.h"
+#include <utility/util_lexical_cast.h>
+#include <utility/util_numeric_cast.h>
+#include <utility/util_noncopyable.h>
 
 efx::e_float::e_float(const double mantissa,
                       const std::int64_t exponent) : my_data     (),

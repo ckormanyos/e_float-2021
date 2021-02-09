@@ -21,7 +21,7 @@
 
 #include <algorithm>
 
-#include <boost/e_float/e_float_functions.hpp>
+#include <e_float/e_float_functions.h>
 
 e_float ef::sin(const e_float& x)
 {

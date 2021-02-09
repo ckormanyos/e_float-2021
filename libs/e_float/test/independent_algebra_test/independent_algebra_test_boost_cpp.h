@@ -4,8 +4,8 @@
   #include <iomanip>
   #include <sstream>
 
-  #include <boost/multiprecision/cpp_bin_float.hpp>
-  #include <boost/e_float/e_float.hpp>
+  #include <boost/multiprecision/cpp_bin_float.h>
+  #include <e_float/e_float.h>
   #include <test/independent_algebra_test/independent_algebra_test_base.h>
 
   namespace test { namespace independent_algebra {

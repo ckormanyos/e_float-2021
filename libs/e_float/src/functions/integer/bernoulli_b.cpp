@@ -10,10 +10,10 @@
 
 #include <algorithm>
 
-#include <boost/e_float/e_float_detail_pown_template.hpp>
-#include <boost/e_float/e_float_functions.hpp>
+#include <e_float/e_float_functions.h>
+#include <e_float/detail/e_float_detail_pown_template.h>
 
-#include "../tables/tables.h"
+#include <functions/tables/tables.h>
 
 e_float ef::bernoulli(const std::uint32_t n)
 {

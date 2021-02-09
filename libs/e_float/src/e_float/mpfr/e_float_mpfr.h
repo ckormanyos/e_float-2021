@@ -16,9 +16,8 @@
   #include <limits>
   #include <string>
 
-  #include <boost/e_float/e_float_base.hpp>
-
-  #include "e_float_mpfr_protos.hpp"
+  #include <e_float/e_float_base.h>
+  #include <e_float/mpfr/e_float_mpfr_protos.h>
 
   namespace mpfr
   {

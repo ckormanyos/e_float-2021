@@ -10,7 +10,7 @@
 
 #include <algorithm>
 
-#include <boost/e_float/e_float_functions.hpp>
+#include <e_float/e_float_functions.h>
 
 #include "prime_factors.h"
 

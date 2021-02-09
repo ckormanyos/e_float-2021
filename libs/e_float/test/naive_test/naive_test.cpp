@@ -42,8 +42,8 @@ using std::string;
 #include <boost/test/unit_test.hpp> // Enhanced for unit_test framework autolink.
 #include <boost/test/floating_point_comparison.hpp>
 
-#include <boost/e_float/e_float.hpp>
-#include <boost/e_float/e_float_constants.hpp>
+#include <e_float/e_float.h>
+#include <e_float/e_float_constants.h>
 
 //Macros to Check using manips output expected string result, for example:
 // CHECK_OUT(hex << showbase << setw(10) << i, "       0xf")

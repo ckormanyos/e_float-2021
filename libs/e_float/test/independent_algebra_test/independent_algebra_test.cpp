@@ -1,7 +1,7 @@
 #include <ctime>
 #include <random>
 
-#include <boost/e_float/e_float_functions.hpp>
+#include <e_float/e_float_functions.h>
 #include <test/independent_algebra_test/independent_algebra_test.h>
 
 std::ranlux24    test::independent_algebra::control::eng_sign    (std::clock());
