@@ -33,17 +33,17 @@
     class e_float : public ::e_float_base
     {
     public:
-      static const std::int32_t ef_radix             = static_cast<std::int32_t>(10);
-      static const std::int32_t ef_digits            = ef_digits10;
+      static constexpr std::int32_t ef_radix             = static_cast<std::int32_t>(10);
+      static constexpr std::int32_t ef_digits            = ef_digits10;
 
-      static const std::int64_t ef_max_exp           = static_cast<std::int64_t>(+9223372036854775795LL);
-      static const std::int64_t ef_min_exp           = static_cast<std::int64_t>(-9223372036854775795LL);
-      static const std::int64_t ef_max_exp10         = static_cast<std::int64_t>(+3063937869882635616LL); // Approx. [ef_max_exp / log10(2)], also an even multiple of 8
-      static const std::int64_t ef_min_exp10         = static_cast<std::int64_t>(-3063937869882635616LL);
+      static constexpr std::int64_t ef_max_exp           = static_cast<std::int64_t>(+9223372036854775795LL);
+      static constexpr std::int64_t ef_min_exp           = static_cast<std::int64_t>(-9223372036854775795LL);
+      static constexpr std::int64_t ef_max_exp10         = static_cast<std::int64_t>(+3063937869882635616LL); // Approx. [ef_max_exp / log10(2)], also an even multiple of 8
+      static constexpr std::int64_t ef_min_exp10         = static_cast<std::int64_t>(-3063937869882635616LL);
 
-      static const std::int32_t ef_elem_digits10     = static_cast<std::int32_t>(8);
-      static const std::int32_t ef_digits10_num_base = static_cast<std::int32_t>((ef_max_digits10 / ef_elem_digits10) + (((ef_max_digits10 % ef_elem_digits10) != 0) ? 1 : 0));
-      static const std::int32_t ef_elem_number       = static_cast<std::int32_t>(ef_digits10_num_base + 3);
+      static constexpr std::int32_t ef_elem_digits10     = static_cast<std::int32_t>(8);
+      static constexpr std::int32_t ef_digits10_num_base = static_cast<std::int32_t>((ef_max_digits10 / ef_elem_digits10) + (((ef_max_digits10 % ef_elem_digits10) != 0) ? 1 : 0));
+      static constexpr std::int32_t ef_elem_number       = static_cast<std::int32_t>(ef_digits10_num_base + 3);
 
       typedef enum fpclass_type_enum
       {
@@ -53,12 +53,12 @@
       }
       fpclass_type;
 
-      static const std::int32_t ef_elem_mask = static_cast<std::int32_t>(100000000);
+      static constexpr std::int32_t ef_elem_mask = static_cast<std::int32_t>(100000000);
 
-      typedef ef::detail::fixed_dynamic_array<std::uint32_t,
-                                              static_cast<std::size_t>(ef_elem_number),
-                                              std::allocator<std::uint32_t>>
-      array_type;
+      using array_type =
+        ef::detail::fixed_dynamic_array<std::uint32_t,
+                                        static_cast<std::size_t>(ef_elem_number),
+                                        std::allocator<std::uint32_t>>;
 
       // Default constructor.
       e_float() noexcept : my_data     (),
@@ -147,18 +147,11 @@
 
       virtual void precision(const std::int32_t prec_digits)
       {
-        if(prec_digits >= ef_digits10)
-        {
-          my_prec_elem = ef_elem_number;
-        }
-        else
-        {
-          const std::int32_t elems =
-            static_cast<std::int32_t>(  static_cast<std::int32_t>( (prec_digits + (ef_elem_digits10 / 2)) / ef_elem_digits10)
-                                      + static_cast<std::int32_t>(((prec_digits %  ef_elem_digits10) != 0) ? 1 : 0));
+        const std::int32_t elems =
+          static_cast<std::int32_t>(    static_cast<std::int32_t>(prec_digits / ef_elem_digits10)
+                                    +                          (((prec_digits % ef_elem_digits10) != 0) ? 1 : 0));
 
-          my_prec_elem = (std::min)(ef_elem_number, (std::max)(elems, static_cast<std::int32_t>(2)));
-        }
+        my_prec_elem = (std::min)(ef_elem_number, (std::max)(elems, static_cast<std::int32_t>(2)));
       }
 
       // Assignment operator.
@@ -200,15 +193,15 @@
       virtual e_float& mul_unsigned_long_long(const unsigned long long);
       virtual e_float& div_unsigned_long_long(const unsigned long long);
 
-      void swap(e_float& other_e_float)
+      void swap(e_float& other)
       {
-        if(this != &other_e_float)
+        if(this != &other)
         {
           const e_float tmp_value_this(*this);
 
-          *this = other_e_float;
+          *this = other;
 
-          other_e_float = tmp_value_this;
+          other = tmp_value_this;
         }
       }
 
@@ -291,7 +284,7 @@
         std::copy(temp, temp + (std::min)(i, static_cast<std::size_t>(ef_elem_number)), my_data.begin());
       }
 
-      void from_long_double(const long double        l);
+      void from_long_double(const long double l);
 
       std::int32_t cmp_data(const array_type& vd) const;
 

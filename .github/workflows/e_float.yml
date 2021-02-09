@@ -7,37 +7,27 @@
 name: real-time-cpp
 on: [push,pull_request]
 jobs:
-  msvc-release-efx:
+  msvc-release:
     runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+    strategy:
+      fail-fast: false
+      matrix:
+        mpkind: [ efx, gmp, mpfr ]
     if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: '0'
-      - name: msvc-release-efx
-        shell: pwsh
+      - name: msvc-release
         env:
           PATH: '${env:PATH};C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\amd64'
         run: |
-          MSBuild -m e_float.sln -p:Configuration=release-efx -p:Platform=x64 /t:Rebuild
-          dir ./x64-release-efx/e_float.exe
-          ./x64-release-efx/e_float.exe
-        working-directory: ./libs/e_float/build/
-  msvc-release-gmp:
-    runs-on: windows-latest
-    if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: '0'
-      - name: msvc-release-gmp
-        shell: pwsh
-        env:
-          PATH: '${env:PATH};C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\amd64'
-        run: |
-          MSBuild -m e_float.sln -p:Configuration=release-gmp -p:Platform=x64 /t:Rebuild
-          dir ./x64-release-gmp/e_float.exe
-          ./x64-release-gmp/e_float.exe
+          MSBuild -m e_float.sln -p:Configuration=release-${{ matrix.mpkind }} -p:Platform=x64 /t:Rebuild
+          dir ./x64-release-${{ matrix.mpkind }}/e_float.exe
+          ./x64-release-${{ matrix.mpkind }}/e_float.exe
         working-directory: ./libs/e_float/build/
   gcc-native-efx:
     runs-on: ubuntu-20.04
