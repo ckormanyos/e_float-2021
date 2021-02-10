@@ -791,6 +791,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release-gmp|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release-mpfr|x64'">true</ExcludedFromBuild>
     </None>
+    <None Include="..\..\..\README.md" />
     <None Include="..\license\ACM_e_float_boost_license.pdf">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug-efx|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug-gmp|x64'">true</ExcludedFromBuild>

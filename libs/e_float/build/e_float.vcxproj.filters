@@ -101,6 +101,9 @@
     <Filter Include="libs\e_float\src\e_float\detail">
       <UniqueIdentifier>{7d87c116-8403-471b-9213-28fd70293785}</UniqueIdentifier>
     </Filter>
+    <Filter Include="_doc">
+      <UniqueIdentifier>{77b8100e-df29-419b-a0e5-e64a2bd5fd10}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\e_float\e_float.cpp">
@@ -583,6 +586,9 @@
     </None>
     <None Include="vc_libs.txt">
       <Filter>libs\e_float\build</Filter>
+    </None>
+    <None Include="..\..\..\README.md">
+      <Filter>_doc</Filter>
     </None>
   </ItemGroup>
 </Project>

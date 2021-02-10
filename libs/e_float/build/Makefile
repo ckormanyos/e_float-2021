@@ -79,13 +79,6 @@ ifeq ($(TYP_SAN),THREAD)
 endif
 
 # ------------------------------------------------------------------------------
-# symbols
-# ------------------------------------------------------------------------------
-PAR_OPEN  = \(
-PAR_CLOSE = \)
-
-
-# ------------------------------------------------------------------------------
 # targets
 # ------------------------------------------------------------------------------
 PATH_TARGET  = unix-$(TYPE_MP)
@@ -100,7 +93,7 @@ EXTENSION    = exe
 # ------------------------------------------------------------------------------
 CFLAGS_BASE = -march=native                     \
               -std=$(TYP_STD)                   \
-              -O2                               \
+              -O3                               \
               -D$(TYP_TEST)                     \
               -I../../../                       \
               -I../../../libs/e_float/src       \
@@ -173,7 +166,6 @@ ECHO  = echo
 MAKE  = make
 MKDIR = mkdir
 RM    = rm
-GAWK  = gawk
 
 
 # ------------------------------------------------------------------------------
@@ -220,7 +212,7 @@ OutputDirs:
 Version:
   # Print the GNU make version, the toolset version and the cxx flags
 	@$(ECHO) +++ print GNUmake version
-	@-$(MAKE) --version | $(GAWK) '{ if(match($$0, "Make") > 0) print("GNUmake version: " $$0) }'
+	@-$(MAKE) --version
 	@$(ECHO) +++ print compiler version
 	@-$(CC) -v
 	@$(ECHO) +++ print compiler flags CXXFLAGS

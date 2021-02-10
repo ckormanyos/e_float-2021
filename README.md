@@ -32,6 +32,11 @@ of the original e_float paper.
 The _gmp_ and _mpfr_ versions support high digit counts natively
 from their wrapped libraries.
 
+## Building
+
+TBD: Provide instructions for building the project
+on Linux and MacOS (GNUmake), or Windows (MSVC with MSBuild)
+
 ## History
 
 The e_float project influenced the concept and creation
