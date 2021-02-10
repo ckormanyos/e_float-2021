@@ -218,11 +218,11 @@ OutputDirs:
 # ------------------------------------------------------------------------------
 .PHONY: Version
 Version:
-  # Print the GNU make version and the GCC version
+  # Print the GNU make version, the toolset version and the cxx flags
 	@$(ECHO) +++ print GNUmake version
 	@-$(MAKE) --version | $(GAWK) '{ if(match($$0, "Make") > 0) print("GNUmake version: " $$0) }'
 	@$(ECHO) +++ print compiler version
-	@-$(GCC) -v
+	@-$(CC) --version | $(GAWK) '{ if((match($$0, "gcc")  > 0) || (match($$0, "GCC")  > 0)) print("GCC version: " $$0) }'
 	@$(ECHO) +++ print compiler flags CXXFLAGS
 	@-$(ECHO) $(CXXFLAGS)
 
