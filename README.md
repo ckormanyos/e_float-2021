@@ -34,8 +34,15 @@ from their wrapped libraries.
 
 ## Building
 
-TBD: Provide instructions for building the project
-on Linux and MacOS (GNUmake), or Windows (MSVC with MSBuild)
+Build in Linux or MacOS with GNUmake.
+  - Open a terminal in the directory  [./libs/e_float/build](./libs/e_float/build).
+  - The terminal should be located directly in [./libs/e_float/build](./libs/e_float/build) for the paths to work out (be found by the upcoming build).
+  - Identify the [Makefile](./libs/e_float/build/Makefile).
+  - Execute `make` with the command below (or similar with other supported options).
+
+```
+make MP=efx TYP_TOOLSET=g++ TYP_STD=c++11 TYP_TEST=E_FLOAT_TEST_REAL_IMAG_TESTS rebuild
+```
 
 ## History
 
