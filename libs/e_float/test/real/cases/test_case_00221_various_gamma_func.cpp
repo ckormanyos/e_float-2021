@@ -15,7 +15,7 @@
 #include <e_float/e_float_functions.h>
 #include <e_float/e_float_functions_complex.h>
 
-#include "../test_case_real.h"
+#include <../test/real/test_case_real.h>
 
 namespace test
 {

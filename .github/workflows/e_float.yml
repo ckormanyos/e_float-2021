@@ -53,6 +53,30 @@ jobs:
           ls -la ./unix-efx/e_float.exe
           ./unix-efx/e_float.exe
         working-directory: ./libs/e_float/build/
+  gcc-clang-10-native-efx:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS, E_FLOAT_TEST_PI_ALGOS_TESTS ]
+        standard: [ c++11, c++14, c++17, c++20 ]
+        compiler: [ g++-10, clang++-10 ]
+    if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Install packages
+        run: sudo apt install gcc-10 clang-10
+      - name: gcc-clang-native-efx
+        run: |
+          make MP=efx TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
+          ls -la ./unix-efx/e_float.exe
+          ./unix-efx/e_float.exe
+        working-directory: ./libs/e_float/build/
   gcc-clang-native-gmp:
     runs-on: ubuntu-20.04
     defaults:

@@ -10,8 +10,8 @@
 
 #include <e_float/e_float_functions.h>
 
-#include "../../../src/utility/util_lexical_cast.h"
-#include "../test_case_real.h"
+#include <utility/util_lexical_cast.h>
+#include <../test/real/test_case_real.h>
 
 namespace test
 {
@@ -197,7 +197,7 @@ namespace test
         data.clear();
 
         static const std::string str_tiny_exp = Util::lexical_cast(std::numeric_limits<e_float>::min_exponent10 + static_cast<std::int64_t>(2));
-        static const std::string str_tiny = "1e" + str_tiny_exp;
+        static const std::string str_tiny     = "1e" + str_tiny_exp;
 
         e_float y(str_tiny);
 

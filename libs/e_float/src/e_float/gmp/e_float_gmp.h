@@ -30,14 +30,14 @@
     class e_float : public ::e_float_base
     {
     public:
-      static constexpr std::int64_t ef_digits    = static_cast<std::int64_t>((static_cast<signed long long>(ef_digits10) * 1000LL) / 301LL);
-      static constexpr std::int64_t ef_radix     = 2;
+      static constexpr int ef_digits    = static_cast<int>((static_cast<signed long long>(ef_digits10) * 1000LL) / 301LL);
+      static constexpr int ef_radix     = 2;
 
-      static constexpr std::int64_t ef_max_exp   = static_cast<std::int64_t>((std::numeric_limits<std::int32_t>::max)() - 31LL);
-      static constexpr std::int64_t ef_min_exp   = static_cast<std::int64_t>((std::numeric_limits<std::int32_t>::min)() + 31LL);
+      static constexpr int ef_max_exp   = (std::numeric_limits<int>::max)() - 31;
+      static constexpr int ef_min_exp   = (std::numeric_limits<int>::min)() + 31;
 
-      static constexpr std::int64_t ef_max_exp10 = static_cast<std::int64_t>(static_cast<std::int64_t>(static_cast<std::int64_t>(ef_max_exp) * 301LL) / 1000LL);
-      static constexpr std::int64_t ef_min_exp10 = static_cast<std::int64_t>(static_cast<std::int64_t>(static_cast<std::int64_t>(ef_min_exp) * 301LL) / 1000LL);
+      static constexpr int ef_max_exp10 = static_cast<int>(static_cast<long long>(static_cast<long long>(ef_max_exp) * 301LL) / 1000LL);
+      static constexpr int ef_min_exp10 = static_cast<int>(static_cast<long long>(static_cast<long long>(ef_min_exp) * 301LL) / 1000LL);
 
       typedef enum fpclass_type_enum
       {

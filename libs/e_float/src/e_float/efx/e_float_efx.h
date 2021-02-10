@@ -33,17 +33,18 @@
     class e_float : public ::e_float_base
     {
     public:
-      static constexpr std::int32_t ef_radix             = static_cast<std::int32_t>(10);
-      static constexpr std::int32_t ef_digits            = ef_digits10;
-
-      static constexpr std::int64_t ef_max_exp           = static_cast<std::int64_t>(+9223372036854775795LL);
-      static constexpr std::int64_t ef_min_exp           = static_cast<std::int64_t>(-9223372036854775795LL);
-      static constexpr std::int64_t ef_max_exp10         = static_cast<std::int64_t>(+3063937869882635616LL); // Approx. [ef_max_exp / log10(2)], also an even multiple of 8
-      static constexpr std::int64_t ef_min_exp10         = static_cast<std::int64_t>(-3063937869882635616LL);
-
       static constexpr std::int32_t ef_elem_digits10     = static_cast<std::int32_t>(8);
       static constexpr std::int32_t ef_digits10_num_base = static_cast<std::int32_t>((ef_max_digits10 / ef_elem_digits10) + (((ef_max_digits10 % ef_elem_digits10) != 0) ? 1 : 0));
       static constexpr std::int32_t ef_elem_number       = static_cast<std::int32_t>(ef_digits10_num_base + 3);
+
+      static constexpr int          ef_radix             = static_cast<std::int32_t>(10);
+      static constexpr int          ef_digits            = ef_digits10;
+
+      static constexpr int          ef_max_exp10         = (((std::numeric_limits<int>::max)() - 31LL) / ef_elem_digits10) * ef_elem_digits10;
+      static constexpr int          ef_min_exp10         = (((std::numeric_limits<int>::min)() + 31LL) / ef_elem_digits10) * ef_elem_digits10;
+
+      static constexpr int          ef_max_exp           = ef_max_exp10;
+      static constexpr int          ef_min_exp           = ef_min_exp10;
 
       typedef enum fpclass_type_enum
       {
