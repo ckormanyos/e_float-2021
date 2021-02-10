@@ -143,8 +143,8 @@ ifeq ($(TYPE_MP),mpfr)
 endif
 
 CFLAGS        = $(CFLAGS_BASE) $(CFLAGS_WARN)
-LDFLAGS       = $(LDFLAGS_BASE)
 CXXFLAGS      = $(CFLAGS)
+LDFLAGS       = $(LDFLAGS_BASE) $(CXXFLAGS)
 
 # ------------------------------------------------------------------------------
 # object files
