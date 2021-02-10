@@ -420,7 +420,7 @@ namespace
   }
 }
 
-bool print_pi(calculate_pi_pfn pfn, std::ostream& os)
+bool print_pi(calculate_pi_pfn pfn, std::ostream& out_stream)
 {
   const Util::timer my_timer;
 
@@ -430,8 +430,8 @@ bool print_pi(calculate_pi_pfn pfn, std::ostream& os)
 
   std::cout << std::endl;
 
-  report_pi_timing<e_float>(std::cout, (float) elapsed);
-  report_pi_timing<e_float>(os,        (float) elapsed);
+  report_pi_timing<e_float>(std::cout,  (float) elapsed);
+  report_pi_timing<e_float>(out_stream, (float) elapsed);
 
   // Report that we are writing the output file.
   std::cout << std::endl;
@@ -462,7 +462,7 @@ bool print_pi(calculate_pi_pfn pfn, std::ostream& os)
   constexpr std::size_t digits_per_line  = digits_per_set  * 10U;
   constexpr std::size_t digits_per_group = digits_per_line * 10U;
 
-  constexpr char line_end_delimiter_for_digits[] = ", // : ";
+  const char line_end_delimiter_for_digits[] = ", // : ";
 
   // The digits after the decimal point are grouped
   // in sets of digits_per_set with digits_per_line
@@ -493,7 +493,7 @@ bool print_pi(calculate_pi_pfn pfn, std::ostream& os)
     pos = 0U;
   }
 
-  os << "pi = " << str_pi.substr(0U, pos);
+  out_stream << "pi = " << str_pi.substr(0U, pos);
 
   const std::size_t digit_offset = pos;
 
@@ -508,7 +508,7 @@ bool print_pi(calculate_pi_pfn pfn, std::ostream& os)
     // Print a set of digits (i.e. having 10 digits per set).
     const std::string str_pi_substring(str_pi.substr(pos, digits_per_set));
 
-    os << str_pi_substring << char_set_separator;
+    out_stream << str_pi_substring << char_set_separator;
 
     pos += (std::min)(std::string::size_type(digits_per_set),
                       str_pi_substring.length());
@@ -524,7 +524,7 @@ bool print_pi(calculate_pi_pfn pfn, std::ostream& os)
       // Break from the printing loop.
       // Flush the output stream with std::endl.
 
-      os << line_end_delimiter_for_digits << number_of_digits << std::endl;
+      out_stream << line_end_delimiter_for_digits << number_of_digits << std::endl;
     }
     else
     {
@@ -534,7 +534,7 @@ bool print_pi(calculate_pi_pfn pfn, std::ostream& os)
       if(this_line_is_finished)
       {
         // Print the running-digit count and start a new line.
-        os << line_end_delimiter_for_digits << number_of_digits << std::endl;
+        out_stream << line_end_delimiter_for_digits << number_of_digits << std::endl;
 
         const bool this_group_of_lines_is_finished =
           (std::size_t(number_of_digits % digits_per_group) == std::size_t(0U));
@@ -543,14 +543,27 @@ bool print_pi(calculate_pi_pfn pfn, std::ostream& os)
         {
           // Insert a character (which might be a blank line)
           // after a group of lines.
-          os << char_group_separator;
+          out_stream << char_group_separator;
         }
 
         // Insert spaces at the start of the new line.
-        os << "       ";
+        out_stream << "       ";
       }
     }
   }
 
-  return true;
+  const std::string str_pi_control_head("3.14159265358979323846264338327950");
+  const std::string str_pi_control_tail(  "83996346460422090106105779458151");
+
+  const bool result_head_is_ok = std::equal(str_pi.cbegin(),
+                                            str_pi.cbegin() + str_pi_control_head.length(),
+                                            str_pi_control_head.cbegin());
+
+  const bool result_tail_is_ok = std::equal(str_pi.cbegin() + (1000002U - str_pi_control_tail.length()),
+                                            str_pi.cbegin() +  1000002U,
+                                            str_pi_control_tail.cbegin());
+
+  const bool result_is_ok = (result_head_is_ok && result_tail_is_ok);
+
+  return result_is_ok;
 }

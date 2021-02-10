@@ -17,12 +17,6 @@
 // cd C:/Users/User/Documents/Ks/PC_Software/NumericalPrograms/ExtendedNumberTypes/e_float/libs/e_float/build
 // make MP=efx rebuild
 
-// In e_float_base.h can be found the definition for either
-//   E_FLOAT_TEST_PI_ALGOS_TESTS
-//   E_FLOAT_TEST_REAL_IMAG_TESTS
-//   E_FLOAT_TEST_ALGEBRA_TESTS
-
-
 #if defined(E_FLOAT_TEST_PI_ALGOS_TESTS)
 #include "pi_test/test_pi.h"
 #endif

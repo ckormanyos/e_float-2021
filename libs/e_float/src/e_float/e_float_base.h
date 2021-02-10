@@ -18,6 +18,10 @@
   #include <string>
   #include <type_traits>
 
+  // Here we can manually override an unset setting of either:
+  //#define E_FLOAT_TEST_PI_ALGOS_TESTS
+  //#define E_FLOAT_TEST_REAL_IMAG_TESTS
+
   #if !defined(E_FLOAT_TEST_PI_ALGOS_TESTS) && !defined(E_FLOAT_TEST_REAL_IMAG_TESTS)
   #define E_FLOAT_TEST_REAL_IMAG_TESTS
   #endif

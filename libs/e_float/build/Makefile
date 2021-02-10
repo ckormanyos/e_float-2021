@@ -222,7 +222,7 @@ Version:
 	@$(ECHO) +++ print GNUmake version
 	@-$(MAKE) --version | $(GAWK) '{ if(match($$0, "Make") > 0) print("GNUmake version: " $$0) }'
 	@$(ECHO) +++ print compiler version
-	@-$(GCC) --version | $(GAWK) '{ if(match($$0, "gcc")  > 0) print("GCC version: " $$0) }'
+	@-$(GCC) -v
 	@$(ECHO) +++ print compiler flags CXXFLAGS
 	@-$(ECHO) $(CXXFLAGS)
 
@@ -232,7 +232,7 @@ Version:
 # ------------------------------------------------------------------------------
 $(PATH_TARGET)/$(TARGET).$(EXTENSION) : $(FILES_O)
 	@$(ECHO) +++ linking application: link to $(PATH_TARGET)/$(TARGET).$(EXTENSION)
-	@$(CC) $(FILES_O) $(LDFLAGS) -o $(PATH_TARGET)/$(TARGET).$(EXTENSION)
+	@$(CC) $(FILES_O) $(LDFLAGS) -x none -o $(PATH_TARGET)/$(TARGET).$(EXTENSION)
 
 
 # ------------------------------------------------------------------------------
