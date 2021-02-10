@@ -47,6 +47,7 @@ namespace test
     bool test_case_00124_asinh                         (const bool b_write_output);
     bool test_case_00125_acosh                         (const bool b_write_output);
     bool test_case_00126_atanh                         (const bool b_write_output);
+    bool test_case_00141_hypergeometric_pfq            (const bool b_write_output);
     bool test_case_00201_gamma                         (const bool b_write_output);
     bool test_case_00202_gamma_medium_x                (const bool b_write_output);
     bool test_case_00203_gamma_small_x                 (const bool b_write_output);
@@ -94,6 +95,7 @@ bool test::real::test_real(const bool b_write_output)
   test_ok &= test::real::test_case_00124_asinh                         (b_write_output);
   test_ok &= test::real::test_case_00125_acosh                         (b_write_output);
   test_ok &= test::real::test_case_00126_atanh                         (b_write_output);
+  test_ok &= test::real::test_case_00141_hypergeometric_pfq            (b_write_output);
   test_ok &= test::real::test_case_00201_gamma                         (b_write_output);
   test_ok &= test::real::test_case_00202_gamma_medium_x                (b_write_output);
   test_ok &= test::real::test_case_00203_gamma_small_x                 (b_write_output);

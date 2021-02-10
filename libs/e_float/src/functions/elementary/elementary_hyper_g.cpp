@@ -288,8 +288,8 @@ e_float ef::hypergeometric_pfq(const std::deque<e_float>& a, const  std::deque<e
     x_pow_n_div_n_fact /= n;
 
     // Increment each of the pochhammer elements in a and b.
-    std::transform(ap.cbegin(), ap.cend(), ap.begin(), std::bind1st(std::plus<e_float>(), ef::one()));
-    std::transform(bp.cbegin(), bp.cend(), bp.begin(), std::bind1st(std::plus<e_float>(), ef::one()));
+    std::transform(ap.cbegin(), ap.cend(), ap.begin(), std::bind(std::plus<e_float>(), ef::one(), std::placeholders::_1));
+    std::transform(bp.cbegin(), bp.cend(), bp.begin(), std::bind(std::plus<e_float>(), ef::one(), std::placeholders::_1));
 
     // Multiply the pochhammer product terms with the products of the incremented
     // pochhammer elements. These are products of the form:

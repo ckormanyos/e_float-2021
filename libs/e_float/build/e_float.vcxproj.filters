@@ -400,6 +400,9 @@
     <ClCompile Include="..\test\pi_test\pi_algos.cpp">
       <Filter>libs\e_float\test\pi_test</Filter>
     </ClCompile>
+    <ClCompile Include="..\test\real\cases\test_case_00141_hypergeometric_pfq.cpp">
+      <Filter>libs\e_float\test\real\cases</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\functions\gamma\gamma_util.h">

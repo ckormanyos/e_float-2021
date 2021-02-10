@@ -82,6 +82,7 @@ FILES_TEST_REAL = ../test/real/test_real                                       \
                   ../test/real/cases/test_case_00124_asinh                     \
                   ../test/real/cases/test_case_00125_acosh                     \
                   ../test/real/cases/test_case_00126_atanh                     \
+                  ../test/real/cases/test_case_00141_hypergeometric_pfq        \
                   ../test/real/cases/test_case_00201_gamma                     \
                   ../test/real/cases/test_case_00202_gamma_medium_x            \
                   ../test/real/cases/test_case_00203_gamma_small_x             \

@@ -666,6 +666,7 @@
     <ClCompile Include="..\test\real\cases\test_case_00124_asinh.cpp" />
     <ClCompile Include="..\test\real\cases\test_case_00125_acosh.cpp" />
     <ClCompile Include="..\test\real\cases\test_case_00126_atanh.cpp" />
+    <ClCompile Include="..\test\real\cases\test_case_00141_hypergeometric_pfq.cpp" />
     <ClCompile Include="..\test\real\cases\test_case_00201_gamma.cpp" />
     <ClCompile Include="..\test\real\cases\test_case_00202_gamma_medium_x.cpp" />
     <ClCompile Include="..\test\real\cases\test_case_00203_gamma_small_x.cpp" />
