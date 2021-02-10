@@ -1,5 +1,5 @@
 
-//          Copyright Christopher Kormanyos 2014.
+//          Copyright Christopher Kormanyos 2014 - 2021.
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file LICENSE_1_0.txt or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
@@ -556,11 +556,11 @@ bool print_pi(calculate_pi_pfn pfn, std::ostream& out_stream)
   const std::string str_pi_control_tail(  "83996346460422090106105779458151");
 
   const bool result_head_is_ok = std::equal(str_pi.cbegin(),
-                                            str_pi.cbegin() + str_pi_control_head.length(),
+                                            str_pi.cbegin() + std::string::difference_type(str_pi_control_head.length()),
                                             str_pi_control_head.cbegin());
 
-  const bool result_tail_is_ok = std::equal(str_pi.cbegin() + (1000002U - str_pi_control_tail.length()),
-                                            str_pi.cbegin() +  1000002U,
+  const bool result_tail_is_ok = std::equal(str_pi.cbegin() + std::string::difference_type(1000002UL - str_pi_control_tail.length()),
+                                            str_pi.cbegin() + std::string::difference_type(1000002LL),
                                             str_pi_control_tail.cbegin());
 
   const bool result_is_ok = (result_head_is_ok && result_tail_is_ok);
