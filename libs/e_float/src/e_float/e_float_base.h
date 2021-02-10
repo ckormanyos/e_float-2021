@@ -211,8 +211,10 @@
           return;
         }
 
+        using std::frexp;
+
         // Get the fraction and base-2 exponent.
-        native_float_type man = ::frexp(f, &e);
+        native_float_type man = (native_float_type) frexp(f, &e);
 
         std::uint32_t n2 = 0U;
 
