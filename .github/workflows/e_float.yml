@@ -173,3 +173,22 @@ jobs:
           ls -la ./unix-mpfr/e_float.exe
           ./unix-mpfr/e_float.exe
         working-directory: ./libs/e_float/build/
+  apple-clang-native-efx:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS, E_FLOAT_TEST_PI_ALGOS_TESTS ]
+        standard: [ c++11, c++14, c++17, c++2a ]
+        compiler: [ clang++ ]
+    if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: apple-clang-native-efx
+        run: |
+          make MP=efx TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
+          ls -la ./unix-efx/e_float.exe
+          ./unix-efx/e_float.exe
+        working-directory: ./libs/e_float/build/
