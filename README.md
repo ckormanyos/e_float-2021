@@ -44,6 +44,10 @@ Build in Linux or MacOS with GNUmake.
 make MP=efx TYP_TOOLSET=g++ TYP_STD=c++11 TYP_TEST=E_FLOAT_TEST_REAL_IMAG_TESTS rebuild
 ```
 
+Build in Microsoft Visual Studio
+  - Identify the `e_float` sln-project file [./libs/e_float/build/e_float.sln](./libs/e_float/build/e_float.sln).
+  - Rebuild the configuration `x64-release-efx`, as shown in the [build image](./images/e_float_in_vs.jpg).
+
 ## History
 
 The e_float project influenced the concept and creation
