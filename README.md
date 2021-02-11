@@ -32,7 +32,7 @@ of the original e_float paper.
 The _gmp_ and _mpfr_ versions support high digit counts natively
 from their wrapped libraries.
 
-## Building
+## Building and testing
 
 Build in Linux or MacOS with GNUmake.
   - Open a terminal in the directory  [./libs/e_float/build](./libs/e_float/build).
@@ -46,7 +46,13 @@ make MP=efx TYP_TOOLSET=g++ TYP_STD=c++11 TYP_TEST=E_FLOAT_TEST_REAL_IMAG_TESTS 
 
 Build in Microsoft Visual Studio
   - Identify the `e_float` sln-project file [./libs/e_float/build/e_float.sln](./libs/e_float/build/e_float.sln).
-  - Rebuild the configuration `x64-release-efx`, as shown in the [build image](./images/e_float_in_vs.jpg).
+  - Rebuild the configuration `release-efx`, as shown in the [build image](./images/e_float_in_vs.jpg).
+
+Two test suites are available in the project. These can be activated
+with preprocessor definitions.
+  - `E_FLOAT_TEST_REAL_IMAG_TESTS` performs low-digit (i.e., around 100-300 decimal digits) tests of algebraic operations, numeric limits, and real-valued and complex-valued elementary transcendental functions.
+  - `E_FLOAT_TEST_PI_ALGOS_TESTS` four different kinds of iterative, sub-quadratically converging million digit pi calculations.
+
 
 ## History
 
