@@ -51,7 +51,7 @@ Build in Microsoft Visual Studio
 Two test suites are available in the project. These can be activated
 with preprocessor definitions.
   - `E_FLOAT_TEST_REAL_IMAG_TESTS` performs low-digit (i.e., around 100-300 decimal digits) tests of algebraic operations, numeric limits, and real-valued and complex-valued elementary transcendental functions.
-  - `E_FLOAT_TEST_PI_ALGOS_TESTS` four different kinds of iterative, sub-quadratically converging million digit pi calculations.
+  - `E_FLOAT_TEST_PI_ALGOS_TESTS` exercised four different variations of iterative, sub-quadratically converging million digit pi calculations.
 
 
 ## History
