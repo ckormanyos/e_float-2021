@@ -63,10 +63,10 @@ the code was essentially evaluated as to how it
 wrapped and implemented certain big number backends.
 This was adopted for the partial early design of `cpp_dec_float`
 in Boost.Multiprecision. As Boost.Multiprecision progressed,
-the original rudimentary concept motivated partially from e_float
-was entirely re-implemented, strengthened and extended
-for Boost's novel, flexible, header-only template design
-having its own frontend/backend concept.
+the original rudimentary frontend/backend concept
+from e_float was entirely re-implemented and vastly extended
+for Boost's header-only template design having its own
+novel, flexible and much stronger frontend/backend concept.
 
 ## Legacy
 
