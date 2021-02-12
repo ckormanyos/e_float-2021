@@ -215,7 +215,7 @@ jobs:
           ./unix-efx/e_float.exe
         working-directory: ./libs/e_float/build/
   gcc-native-efx-platforms:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     defaults:
       run:
         shell: bash
@@ -230,9 +230,9 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: '0'
-      - name: gcc-native-efx-platforms
-        with:
-          platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x
+          arch: ppc64le
+          distro: ubuntu20.04
+      - name: gcc-native-efx-asan
         run: |
           make MP=efx TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
           ls -la ./unix-efx/e_float.exe
