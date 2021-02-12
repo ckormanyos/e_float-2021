@@ -214,25 +214,3 @@ jobs:
           ls -la ./unix-efx/e_float.exe
           ./unix-efx/e_float.exe
         working-directory: ./libs/e_float/build/
-  gcc-native-efx-ppc64le:
-    runs-on: ubuntu-20.04
-    defaults:
-      run:
-        shell: bash
-    strategy:
-      fail-fast: false
-      matrix:
-        suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS, E_FLOAT_TEST_PI_ALGOS_TESTS ]
-        standard: [ c++11, c++14, c++17 ]
-        compiler: [ g++ ]
-    if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
-    steps:
-      - uses: actions/checkout@v2
-      - name: gcc-native-efx-asan
-        with:
-          architecture: ppc64le
-        run: |
-          make MP=efx TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
-          ls -la ./unix-efx/e_float.exe
-          ./unix-efx/e_float.exe
-        working-directory: ./libs/e_float/build/
