@@ -7,7 +7,29 @@
 name: e_float
 on: [push]
 jobs:
-  gcc-native-efx-platforms:
+  msvc-release:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+    strategy:
+      fail-fast: false
+      matrix:
+        mpkind: [ efx, gmp, mpfr ]
+    if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: msvc-release
+        env:
+          PATH: '${env:PATH};C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\amd64'
+        run: |
+          MSBuild -m e_float.sln -p:Configuration=release-${{ matrix.mpkind }} -p:Platform=x64 /t:Rebuild
+          dir ./x64-release-${{ matrix.mpkind }}/e_float.exe
+          ./x64-release-${{ matrix.mpkind }}/e_float.exe
+        working-directory: ./libs/e_float/build/
+  gcc-clang-native-efx:
     runs-on: ubuntu-20.04
     defaults:
       run:
@@ -16,21 +38,179 @@ jobs:
       fail-fast: false
       matrix:
         suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS, E_FLOAT_TEST_PI_ALGOS_TESTS ]
-        standard: [ c++11, c++14, c++17 ]
+        standard: [ c++11, c++14, c++17, c++2a ]
+        compiler: [ g++, clang++ ]
+    if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Install packages
+        run: sudo apt install clang
+      - name: gcc-clang-native-efx
+        run: |
+          make MP=efx TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
+          ls -la ./unix-efx/e_float.exe
+          ./unix-efx/e_float.exe
+        working-directory: ./libs/e_float/build/
+  gcc-clang-10-efx:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS, E_FLOAT_TEST_PI_ALGOS_TESTS ]
+        standard: [ c++11, c++14, c++17, c++20 ]
+        compiler: [ g++-10, clang++-10 ]
+    if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Install packages
+        run: sudo apt install gcc-10 clang-10
+      - name: gcc-clang-10-efx
+        run: |
+          make MP=efx TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
+          ls -la ./unix-efx/e_float.exe
+          ./unix-efx/e_float.exe
+        working-directory: ./libs/e_float/build/
+  gcc-clang-native-gmp:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS, E_FLOAT_TEST_PI_ALGOS_TESTS ]
+        standard: [ c++11, c++14, c++17, c++2a ]
+        compiler: [ g++, clang++ ]
+    if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Install packages
+        run: sudo apt install clang libgmp-dev
+      - name: gcc-clang-native-gmp
+        run: |
+          make MP=gmp TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
+          ls -la ./unix-gmp/e_float.exe
+          ./unix-gmp/e_float.exe
+        working-directory: ./libs/e_float/build/
+  gcc-clang-10-gmp:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS, E_FLOAT_TEST_PI_ALGOS_TESTS ]
+        standard: [ c++11, c++14, c++17, c++20 ]
+        compiler: [ g++-10, clang++-10 ]
+    if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Install packages
+        run: sudo apt install gcc-10 clang-10 libgmp-dev
+      - name: gcc-clang-10-gmp
+        run: |
+          make MP=gmp TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
+          ls -la ./unix-gmp/e_float.exe
+          ./unix-gmp/e_float.exe
+        working-directory: ./libs/e_float/build/
+  gcc-clang-native-mpfr:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS, E_FLOAT_TEST_PI_ALGOS_TESTS ]
+        standard: [ c++11, c++14, c++17, c++2a ]
+        compiler: [ g++, clang++ ]
+    if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Install packages
+        run: sudo apt install clang libgmp-dev libmpfr-dev
+      - name: gcc-clang-native-mpfr
+        run: |
+          make MP=mpfr TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
+          ls -la ./unix-mpfr/e_float.exe
+          ./unix-mpfr/e_float.exe
+        working-directory: ./libs/e_float/build/
+  gcc-clang-10-mpfr:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS, E_FLOAT_TEST_PI_ALGOS_TESTS ]
+        standard: [ c++11, c++14, c++17, c++20 ]
+        compiler: [ g++-10, clang++-10 ]
+    if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Install packages
+        run: sudo apt install gcc-10 clang-10 libgmp-dev libmpfr-dev
+      - name: gcc-clang-10-mpfr
+        run: |
+          make MP=mpfr TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
+          ls -la ./unix-mpfr/e_float.exe
+          ./unix-mpfr/e_float.exe
+        working-directory: ./libs/e_float/build/
+  apple-clang-native-efx:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS, E_FLOAT_TEST_PI_ALGOS_TESTS ]
+        standard: [ c++11, c++14, c++17, c++2a ]
+        compiler: [ clang++ ]
+    if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: apple-clang-native-efx
+        run: |
+          make MP=efx TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
+          ls -la ./unix-efx/e_float.exe
+          ./unix-efx/e_float.exe
+        working-directory: ./libs/e_float/build/
+  gcc-native-efx-asan:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS, E_FLOAT_TEST_PI_ALGOS_TESTS ]
+        standard: [ c++11, c++14, c++17, c++2a ]
         compiler: [ g++ ]
     if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: '0'
-      - uses: uraimo/run-on-arch-action@v2.0.5
-        id: runcmd
-        with:
-          arch: ppc64le
-          distro: ubuntu20.04
-      - name: gcc-native-efx-platforms
+      - name: gcc-native-efx-asan
         run: |
-          make MP=efx TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
+          make MP=efx TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} TYP_SAN=ADDR rebuild
           ls -la ./unix-efx/e_float.exe
           ./unix-efx/e_float.exe
         working-directory: ./libs/e_float/build/
