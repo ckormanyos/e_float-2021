@@ -161,6 +161,7 @@ VPATH    := $(sort $(dir $(FILES_ALL)))
 # Development tools
 # ------------------------------------------------------------------------------
 CC    = $(TYP_TOOLSET)
+AR    = ar
 SED   = sed
 ECHO  = echo
 MAKE  = make
@@ -224,9 +225,9 @@ Version:
 # ------------------------------------------------------------------------------
 $(PATH_TARGET)/$(TARGET).$(EXTENSION) : $(FILES_O)
 	@$(ECHO) +++ linking application: link to $(PATH_TARGET)/$(TARGET).$(EXTENSION)
-	@$(CC) $(FILES_O) $(LDFLAGS) -x none -o $(PATH_TARGET)/$(TARGET).$(EXTENSION)
+	@-$(CC) $(FILES_O) $(LDFLAGS) -x none -o $(PATH_TARGET)/$(TARGET).$(EXTENSION)
 	@$(ECHO) +++ create library (archive): $(PATH_TARGET)/libe_float.a
-	@$(AR) rvs $(PATH_TARGET)/libe_float.a $(FILES_O_LIB)
+	@-$(AR) rvs $(PATH_TARGET)/libe_float.a $(FILES_O_LIB)
 
 # ------------------------------------------------------------------------------
 # include dependency files
