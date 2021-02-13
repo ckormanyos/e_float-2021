@@ -5,19 +5,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arch:
-          - name: IBM Z and LinuxONE
-            architecture: "s390x"
-          - name: POWER8
-            architecture: "ppc64le"
+        architecture: [ s390x, ppc64le ]
     runs-on: ubuntu-latest
-    name: Build on ${{ matrix.arch.name }}
+    name: Build on ${{ matrix.architecture }}
     steps:
       - uses: actions/checkout@v2
       - uses: uraimo/run-on-arch-action@master
         with:
-          architecture: ${{ matrix.arch.architecture }}
+          architecture: ${{ matrix.architecture }}
           distribution: ubuntu18.04
           run: |
+            sudo apt install gcc
             ls -la
             g++ -v
