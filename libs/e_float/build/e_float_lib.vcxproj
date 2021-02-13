@@ -64,13 +64,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug-efx-lib|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\libs\e_float\src;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)x64-debug-efx-lib\</OutDir>
     <IntDir>$(OutDir)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release-efx-lib|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\libs\e_float\src;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)x64-release-efx-lib\</OutDir>
     <IntDir>$(OutDir)</IntDir>
   </PropertyGroup>

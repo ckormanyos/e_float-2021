@@ -359,9 +359,22 @@ e_float ef::acos(const e_float& x)
     return e_float::my_own_acos(x);
   }
 
-  if(ef::fabs(x) > ef::one()) { return std::numeric_limits<e_float>::quiet_NaN(); }
+  const bool is_neg = (x < ef::zero());
 
-  return ef::iszero(x) ? ef::pi_half() : ef::pi_half() - ef::asin(x);
+  const e_float xx((!is_neg) ? x : -x);
+
+  if(xx > ef::one())
+  {
+    return std::numeric_limits<e_float>::quiet_NaN();
+  }
+  else if(xx < ef::one())
+  {
+    return ef::iszero(x) ? ef::pi_half() : ef::pi_half() - ef::asin(x);
+  }
+  else
+  {
+    return ((!is_neg) ? ef::zero() : ef::pi());
+  }
 }
 
 namespace Atan_Series

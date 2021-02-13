@@ -131,22 +131,22 @@
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='release-mpfr|x64'" />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug-mpfr|x64'">
-    <IncludePath>$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\libs\e_float\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release-gmp|x64'">
-    <IncludePath>$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\libs\e_float\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release-efx|x64'">
-    <IncludePath>$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\libs\e_float\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release-mpfr|x64'">
-    <IncludePath>$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\libs\e_float\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug-efx|x64'">
-    <IncludePath>$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\libs\e_float\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug-gmp|x64'">
-    <IncludePath>$(SolutionDir)..\..\..\;$(SolutionDir)..\..\..\libs\e_float\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\libs\e_float\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release-gmp|x64'">
     <Midl>

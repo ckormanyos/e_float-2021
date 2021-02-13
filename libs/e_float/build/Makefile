@@ -95,7 +95,6 @@ CFLAGS_BASE = -march=native                     \
               -std=$(TYP_STD)                   \
               -O3                               \
               -D$(TYP_TEST)                     \
-              -I../../../                       \
               -I../../../libs/e_float/src       \
               $(OPT_SAN)
 

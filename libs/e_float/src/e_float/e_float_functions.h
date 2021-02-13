@@ -137,10 +137,6 @@
     const e_float& catalan                 ();
     const e_float& khinchin                ();
     const e_float& glaisher                ();
-    const e_float& extreme_value_skewness  ();
-    const e_float& rayleigh_skewness       ();
-    const e_float& rayleigh_kurtosis       ();
-    const e_float& rayleigh_kurtosis_excess();
 
     e_float pow2         (const std::int64_t p);
     e_float inv          (const e_float& x);
