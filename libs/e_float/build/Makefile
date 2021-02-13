@@ -161,7 +161,7 @@ VPATH    := $(sort $(dir $(FILES_ALL)))
 # Development tools
 # ------------------------------------------------------------------------------
 CC    = $(TYP_TOOLSET)
-AR    = ar
+AR    = x86_64-linux-gnu-ar
 SED   = sed
 ECHO  = echo
 MAKE  = make
