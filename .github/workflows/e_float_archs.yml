@@ -1,0 +1,42 @@
+##############################################################################
+#  Copyright Christopher Kormanyos 2021.
+#  Distributed under the Boost Software License,
+#  Version 1.0. (See accompanying file LICENSE_1_0.txt
+#  or copy at http://www.boost.org/LICENSE_1_0.txt)
+
+name: e_float_archs
+on: [push]
+jobs:
+  build_job:
+    # The host should always be linux
+    runs-on: ubuntu-18.04
+    name: gcc-native-efx-${{ matrix.distro }}-${{ matrix.arch }}
+
+    # Run steps on a matrix of 3 arch/distro combinations
+    strategy:
+      matrix:
+        include:
+          - arch: aarch64
+            distro: ubuntu18.04
+          - arch: ppc64le
+            distro: alpine_latest
+          - arch: s390x
+            distro: fedora_latest
+
+    steps:
+      - uses: actions/checkout@v2.1.0
+      - uses: uraimo/run-on-arch-action@v2.0.5
+        name: gcc-native-efx-${{ matrix.distro }}-${{ matrix.arch }}
+        id: build
+        with:
+          arch: ${{ matrix.arch }}
+          distro: ${{ matrix.distro }}
+
+          # The shell to run commands with in the container
+          shell: /bin/sh
+
+          run: |
+            make MP=efx TYP_TOOLSET=g++ TYP_STD=c++11 TYP_TEST=E_FLOAT_TEST_REAL_IMAG_TESTS rebuild
+            ls -la ./unix-efx/e_float.exe
+            ./unix-efx/e_float.exe
+          working-directory: ./libs/e_float/build/
