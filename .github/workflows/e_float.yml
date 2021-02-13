@@ -53,6 +53,11 @@ jobs:
           ls -la ./unix-efx/e_float.exe
           ./unix-efx/e_float.exe
         working-directory: ./libs/e_float/build/
+      - name: gcc-clang-native-efx-ar
+        run: |
+          ar arv libe_float.a e_float.o e_float_base.o constants.o elementary_complex.o elementary_hyper_g.o elementary_math.o elementary_trans.o elementary_trig.o
+          ls -la ./libe_float.a
+        working-directory: ./libs/e_float/build/unix-efx/
   gcc-clang-10-efx:
     runs-on: ubuntu-20.04
     defaults:

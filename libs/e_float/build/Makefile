@@ -148,8 +148,7 @@ FILES_ALL = $(FILES_MP)               \
             $(FILES_FUNCTIONS)        \
             $(FILES_TEST)
 
-FILES_O     = $(addprefix $(PATH_OBJ)/, $(notdir $(addsuffix .o, $(FILES_ALL))))
-FILES_O_LIB = $(addprefix $(PATH_OBJ)/, $(notdir $(addsuffix .o, $(FILES_EF_LIB))))
+FILES_O   = $(addprefix $(PATH_OBJ)/, $(notdir $(addsuffix .o, $(FILES_ALL))))
 
 # ------------------------------------------------------------------------------
 # VPATH definition: VPATH is required for make to find the source files.
@@ -161,7 +160,6 @@ VPATH    := $(sort $(dir $(FILES_ALL)))
 # Development tools
 # ------------------------------------------------------------------------------
 CC    = $(TYP_TOOLSET)
-AR    = x86_64-linux-gnu-ar
 SED   = sed
 ECHO  = echo
 MAKE  = make
