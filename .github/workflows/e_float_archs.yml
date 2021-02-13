@@ -26,4 +26,6 @@ jobs:
       - name: Get the output
         # Echo the `uname` output parameter from the `runcmd` step
         run: |
+          ls -la
           echo "The uname output was ${{ steps.runcmd.outputs.uname }}"
+        working-directory: ./libs/e_float/build/
