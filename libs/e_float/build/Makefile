@@ -226,8 +226,8 @@ Version:
 $(PATH_TARGET)/$(TARGET).$(EXTENSION) : $(FILES_O)
 	@$(ECHO) +++ linking application: link to $(PATH_TARGET)/$(TARGET).$(EXTENSION)
 	@$(CC) $(FILES_O) $(LDFLAGS) -x none -o $(PATH_TARGET)/$(TARGET).$(EXTENSION)
-	@$(ECHO) $(FILES_O_LIB)
-	@$(AR) -v
+	@$(ECHO) +++ archive application to $(PATH_TARGET)/lib$(TARGET).a
+	@$(AR) -arv --output=$(PATH_TARGET) lib$(TARGET).a $(FILES_O_LIB)
 
 # ------------------------------------------------------------------------------
 # include dependency files
