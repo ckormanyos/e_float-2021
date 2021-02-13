@@ -50,7 +50,7 @@ jobs:
       - name: gcc-clang-native-efx
         run: |
           make MP=efx TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
-          ls -la ./unix-efx/e_float.exe
+          ls -la ./unix-efx/e_float.exe ./unix-efx/libe_float.a
           ./unix-efx/e_float.exe
         working-directory: ./libs/e_float/build/
   gcc-clang-10-efx:
@@ -74,7 +74,7 @@ jobs:
       - name: gcc-clang-10-efx
         run: |
           make MP=efx TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
-          ls -la ./unix-efx/e_float.exe
+          ls -la ./unix-efx/e_float.exe ./unix-efx/libe_float.a
           ./unix-efx/e_float.exe
         working-directory: ./libs/e_float/build/
   gcc-clang-native-gmp:
@@ -189,7 +189,7 @@ jobs:
       - name: apple-clang-native-efx
         run: |
           make MP=efx TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
-          ls -la ./unix-efx/e_float.exe
+          ls -la ./unix-efx/e_float.exe ./unix-efx/libe_float.a
           ./unix-efx/e_float.exe
         working-directory: ./libs/e_float/build/
   gcc-native-efx-asan:
@@ -211,6 +211,6 @@ jobs:
       - name: gcc-native-efx-asan
         run: |
           make MP=efx TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} TYP_SAN=ADDR rebuild
-          ls -la ./unix-efx/e_float.exe
+          ls -la ./unix-efx/e_float.exe ./unix-efx/libe_float.a
           ./unix-efx/e_float.exe
         working-directory: ./libs/e_float/build/

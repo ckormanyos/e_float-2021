@@ -129,3 +129,14 @@ FILES_TEST      = ../test/test                                                 \
                   ../test/test_case_base                                       \
                   $(FILES_TEST_REAL)                                           \
                   $(FILES_TEST_IMAG)
+
+#
+# e_floatlib files
+#
+FILES_EF_LIB    = $(FILES_EF)                                                  \
+                  ../src/functions/constants/constants                         \
+                  ../src/functions/elementary/elementary_complex               \
+                  ../src/functions/elementary/elementary_hyper_g               \
+                  ../src/functions/elementary/elementary_math                  \
+                  ../src/functions/elementary/elementary_trans                 \
+                  ../src/functions/elementary/elementary_trig

@@ -34,9 +34,9 @@ from their wrapped libraries.
 
 ## Building and testing
 
-Build in Linux or MacOS with GNUmake.
-  - Open a terminal in the directory  [./libs/e_float/build](./libs/e_float/build).
-  - The terminal should be located directly in [./libs/e_float/build](./libs/e_float/build) for the paths to work out (be found by the upcoming build).
+# Build in Linux or MacOS with bash and GNUmake.
+  - Open a bash shell in a terminal in the directory  [./libs/e_float/build](./libs/e_float/build).
+  - The bash shell should be located directly in [./libs/e_float/build](./libs/e_float/build) for the paths to work out (be found by the upcoming build).
   - Identify the [Makefile](./libs/e_float/build/Makefile).
   - Execute `make` with the command below (or similar with other supported options).
 
@@ -44,12 +44,12 @@ Build in Linux or MacOS with GNUmake.
 make MP=efx TYP_TOOLSET=g++ TYP_STD=c++11 TYP_TEST=E_FLOAT_TEST_REAL_IMAG_TESTS rebuild
 ```
 
-Build in Microsoft Visual Studio
+# Build in Microsoft Visual Studio
   - Identify the `e_float` sln-project file in the directory [./libs/e_float/build](./libs/e_float/build).
   - Rebuild any of the supported configurations such as `release-efx`, as shown in the [build image](./images/e_float_in_vs.jpg).
 
-Two test suites are available in the project. These can be activated
-with preprocessor definitions.
+At the moment, two test suites are available in the project.
+These can be activated with preprocessor definitions.
   - `E_FLOAT_TEST_REAL_IMAG_TESTS` performs low-digit (i.e., around 100-300 decimal digits) tests of algebraic operations, numeric limits, and real-valued and complex-valued elementary transcendental functions.
   - `E_FLOAT_TEST_PI_ALGOS_TESTS` exercises four different variations of iterative, sub-quadratically converging million digit pi calculations.
 

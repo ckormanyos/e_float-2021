@@ -148,8 +148,8 @@ FILES_ALL = $(FILES_MP)               \
             $(FILES_FUNCTIONS)        \
             $(FILES_TEST)
 
-FILES_O = $(addprefix $(PATH_OBJ)/, $(notdir $(addsuffix .o, $(FILES_ALL))))
-
+FILES_O     = $(addprefix $(PATH_OBJ)/, $(notdir $(addsuffix .o, $(FILES_ALL))))
+FILES_O_LIB = $(addprefix $(PATH_OBJ)/, $(notdir $(addsuffix .o, $(FILES_EF_LIB))))
 
 # ------------------------------------------------------------------------------
 # VPATH definition: VPATH is required for make to find the source files.
@@ -225,7 +225,8 @@ Version:
 $(PATH_TARGET)/$(TARGET).$(EXTENSION) : $(FILES_O)
 	@$(ECHO) +++ linking application: link to $(PATH_TARGET)/$(TARGET).$(EXTENSION)
 	@$(CC) $(FILES_O) $(LDFLAGS) -x none -o $(PATH_TARGET)/$(TARGET).$(EXTENSION)
-
+	@$(ECHO) +++ create library (archive): $(PATH_TARGET)/libe_float.a
+	@$(AR) rvs $(PATH_TARGET)/libe_float.a $(FILES_O_LIB)
 
 # ------------------------------------------------------------------------------
 # include dependency files
