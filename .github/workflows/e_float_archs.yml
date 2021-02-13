@@ -14,15 +14,6 @@ jobs:
           arch: armv7
           distro: ubuntu18.04
 
-          # Set an output parameter `uname` for use in subsequent steps
           run: |
-            uname -a
-            echo ::set-output name=uname::$(uname -a)
-
-      - name: Get the output
-        # Echo the `uname` output parameter from the `runcmd` step
-        run: |
-          make MP=efx TYP_TOOLSET=g++ TYP_STD=c++11 TYP_TEST=E_FLOAT_TEST_REAL_IMAG_TESTS rebuild
-          ls -la ./unix-efx/e_float.exe
-          ./unix-efx/e_float.exe
-        working-directory: ./libs/e_float/build/
+            ls -la
+            working-directory: ./libs/e_float/build/
