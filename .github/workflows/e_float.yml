@@ -192,7 +192,7 @@ jobs:
           ls -la ./unix-efx/e_float.exe
           ./unix-efx/e_float.exe
         working-directory: ./libs/e_float/build/
-  gcc-native-efx-asan:
+  gcc-clang-native-efx-asan:
     runs-on: ubuntu-20.04
     defaults:
       run:
@@ -202,13 +202,13 @@ jobs:
       matrix:
         suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS, E_FLOAT_TEST_PI_ALGOS_TESTS ]
         standard: [ c++11, c++14, c++17, c++2a ]
-        compiler: [ g++ ]
+        compiler: [ g++, clang++ ]
     if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: '0'
-      - name: gcc-native-efx-asan
+      - name: gcc-clang-native-efx-asan
         run: |
           make MP=efx TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} TYP_SAN=ADDR rebuild
           ls -la ./unix-efx/e_float.exe
