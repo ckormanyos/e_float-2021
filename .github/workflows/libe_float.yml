@@ -7,21 +7,25 @@
 name: libe_float
 on: [push]
 jobs:
-  gcc-native-efx-libe_float:
+  gcc-native-libe_float:
     runs-on: ubuntu-20.04
     defaults:
       run:
         shell: bash
+    strategy:
+      fail-fast: false
+      matrix:
+        mptype: [ efx, gmp, mpfr ]
     if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: '0'
-      - name: gcc-native-efx-libe_float
+      - name: gcc-native-libe_float
         run: |
-          make MP=efx TYP_TOOLSET=g++ TYP_STD=c++11 TYP_TEST=E_FLOAT_TEST_REAL_IMAG_TESTS rebuild
+          make MP=${{ matrix.mptype }} TYP_TOOLSET=g++ TYP_STD=c++11 TYP_TEST=E_FLOAT_TEST_REAL_IMAG_TESTS rebuild
           cd ./unix-efx/obj
           ar cr ../libe_float.a e_float_efx.o e_float.o e_float_base.o constants.o elementary_complex.o elementary_hyper_g.o elementary_math.o elementary_trans.o elementary_trig.o
           cd ../../
-          ls -la ./unix-efx/e_float.exe ./unix-efx/libe_float.a
+          ls -la ./unix-${{ matrix.mptype }}/e_float.exe ./unix-${{ matrix.mptype }}/libe_float.a
         working-directory: ./libs/e_float/build
