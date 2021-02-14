@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        mpkind: [ efx, gmp, mpfr ]
+        mptype: [ efx, gmp, mpfr ]
     if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
     steps:
       - uses: actions/checkout@v2
@@ -25,9 +25,9 @@ jobs:
         env:
           PATH: '${env:PATH};C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\amd64'
         run: |
-          MSBuild -m e_float.sln -p:Configuration=release-${{ matrix.mpkind }} -p:Platform=x64 /t:Rebuild
-          dir ./x64-release-${{ matrix.mpkind }}/e_float.exe
-          ./x64-release-${{ matrix.mpkind }}/e_float.exe
+          MSBuild -m e_float.sln -p:Configuration=release-${{ matrix.mptype }} -p:Platform=x64 /t:Rebuild
+          dir ./x64-release-${{ matrix.mptype }}/e_float.exe
+          ./x64-release-${{ matrix.mptype }}/e_float.exe
         working-directory: ./libs/e_float/build/
   gcc-clang-native-efx:
     runs-on: ubuntu-20.04

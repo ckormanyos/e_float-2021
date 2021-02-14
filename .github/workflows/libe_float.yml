@@ -24,7 +24,7 @@ jobs:
       - name: gcc-native-libe_float
         run: |
           make MP=${{ matrix.mptype }} TYP_TOOLSET=g++ TYP_STD=c++11 TYP_TEST=E_FLOAT_TEST_REAL_IMAG_TESTS rebuild
-          cd ./unix-efx/obj
+          cd ./unix-${{ matrix.mptype }}/obj
           ar cr ../libe_float.a e_float_efx.o e_float.o e_float_base.o constants.o elementary_complex.o elementary_hyper_g.o elementary_math.o elementary_trans.o elementary_trig.o
           cd ../../
           ls -la ./unix-${{ matrix.mptype }}/e_float.exe ./unix-${{ matrix.mptype }}/libe_float.a
