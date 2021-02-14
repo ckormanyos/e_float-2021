@@ -55,7 +55,7 @@
     static const std::int32_t ef_digits10         = ((ef_digits10_setting < static_cast<std::int32_t>(30)) ? static_cast<std::int32_t>(30) : ((ef_digits10_setting > ef_digits10_limit) ? ef_digits10_limit : ef_digits10_setting));
     static const std::int32_t ef_max_digits10     = static_cast<std::int32_t>(ef_digits10 + 1);
 
-    virtual ~e_float_base() { }
+    virtual ~e_float_base();
 
     // Specific special values.
     virtual const e_float& my_value_nan() const = 0;
@@ -96,12 +96,7 @@
     // Comparison functions.
     virtual std::int32_t cmp(const e_float&) const = 0;
 
-    int compare(const e_float& v) const
-    {
-      const std::int32_t this_compare_result = cmp(v);
-
-      return static_cast<int>(this_compare_result);
-    }
+    int compare(const e_float& v) const;
 
     virtual bool isnan   () const = 0;
     virtual bool isinf   () const = 0;
@@ -179,7 +174,7 @@
     static e_float my_own_cyl_bessel_yn(const std::int32_t, const e_float&);
 
   protected:
-    inline e_float_base();
+    e_float_base();
 
     // Emphasize: This template class can be used with native floating-point
     // types like float, double and long double. Note: For long double,
@@ -251,8 +246,6 @@
                                    std::int64_t& the_exp,
                                    const std::size_t number_of_digits) const = 0;
   };
-
-  inline e_float_base::e_float_base() { }
 
   std::ostream& operator<<(std::ostream& os, const e_float_base& f);
   std::istream& operator>>(std::istream& is,       e_float_base& f);

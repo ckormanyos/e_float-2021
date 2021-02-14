@@ -86,14 +86,14 @@
   }
 
   // Global unary operators of e_float reference.
-  inline e_float operator+(const e_float& self) { return e_float(self); }
-  inline e_float operator-(const e_float& self) { e_float tmp(self); tmp.negate(); return tmp; }
+  e_float operator+(const e_float& self);
+  e_float operator-(const e_float& self);
 
   // Global add/sub/mul/div of const e_float& with const e_float&.
-  inline e_float operator+(const e_float& u, const e_float& v) { return e_float(u) += v; }
-  inline e_float operator-(const e_float& u, const e_float& v) { return e_float(u) -= v; }
-  inline e_float operator*(const e_float& u, const e_float& v) { return e_float(u) *= v; }
-  inline e_float operator/(const e_float& u, const e_float& v) { return e_float(u) /= v; }
+  e_float operator+(const e_float& u, const e_float& v);
+  e_float operator-(const e_float& u, const e_float& v);
+  e_float operator*(const e_float& u, const e_float& v);
+  e_float operator/(const e_float& u, const e_float& v);
 
   // Global add/sub/mul/div of const e_float& with all built-in types.
   template<typename SignedIntegralType>
@@ -311,12 +311,12 @@
   }
 
   // Global comparison operators of const e_float& with const e_float&.
-  inline bool operator< (const e_float& u, const e_float& v) { return (u.cmp(v) <  static_cast<std::int32_t>(0)); }
-  inline bool operator<=(const e_float& u, const e_float& v) { return (u.cmp(v) <= static_cast<std::int32_t>(0)); }
-  inline bool operator==(const e_float& u, const e_float& v) { return (u.cmp(v) == static_cast<std::int32_t>(0)); }
-  inline bool operator!=(const e_float& u, const e_float& v) { return (u.cmp(v) != static_cast<std::int32_t>(0)); }
-  inline bool operator>=(const e_float& u, const e_float& v) { return (u.cmp(v) >= static_cast<std::int32_t>(0)); }
-  inline bool operator> (const e_float& u, const e_float& v) { return (u.cmp(v) >  static_cast<std::int32_t>(0)); }
+  bool operator< (const e_float& u, const e_float& v);
+  bool operator<=(const e_float& u, const e_float& v);
+  bool operator==(const e_float& u, const e_float& v);
+  bool operator!=(const e_float& u, const e_float& v);
+  bool operator>=(const e_float& u, const e_float& v);
+  bool operator> (const e_float& u, const e_float& v);
 
   // Global comparison operators of const e_float& with all built-in types.
   template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value == true, bool>::type operator< (const e_float& u, const ArithmeticType& v) { return (u.cmp(e_float(v)) <  static_cast<std::int32_t>(0)); }

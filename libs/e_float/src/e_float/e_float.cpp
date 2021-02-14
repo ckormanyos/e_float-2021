@@ -11,6 +11,24 @@
 #include <e_float/e_float.h>
 #include <utility/util_lexical_cast.h>
 
+// Global unary operators of e_float reference.
+e_float operator+(const e_float& self) { return e_float(self); }
+e_float operator-(const e_float& self) { e_float tmp(self); tmp.negate(); return tmp; }
+
+// Global add/sub/mul/div of const e_float& with const e_float&.
+e_float operator+(const e_float& u, const e_float& v) { return e_float(u) += v; }
+e_float operator-(const e_float& u, const e_float& v) { return e_float(u) -= v; }
+e_float operator*(const e_float& u, const e_float& v) { return e_float(u) *= v; }
+e_float operator/(const e_float& u, const e_float& v) { return e_float(u) /= v; }
+
+// Global comparison operators of const e_float& with const e_float&.
+bool operator< (const e_float& u, const e_float& v) { return (u.cmp(v) <  static_cast<std::int32_t>(0)); }
+bool operator<=(const e_float& u, const e_float& v) { return (u.cmp(v) <= static_cast<std::int32_t>(0)); }
+bool operator==(const e_float& u, const e_float& v) { return (u.cmp(v) == static_cast<std::int32_t>(0)); }
+bool operator!=(const e_float& u, const e_float& v) { return (u.cmp(v) != static_cast<std::int32_t>(0)); }
+bool operator>=(const e_float& u, const e_float& v) { return (u.cmp(v) >= static_cast<std::int32_t>(0)); }
+bool operator> (const e_float& u, const e_float& v) { return (u.cmp(v) >  static_cast<std::int32_t>(0)); }
+
 const e_float& ef::value_nan() { static const e_float val = e_float().my_value_nan(); return val; }
 const e_float& ef::value_inf() { static const e_float val = e_float().my_value_inf(); return val; }
 const e_float& ef::value_max() { static const e_float val = e_float().my_value_max(); return val; }

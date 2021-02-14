@@ -19,6 +19,28 @@ namespace my
   inline int _finite(double x) { return (((x - x) == 0.0) ? 1 : 0); }
 }
 
+std::int32_t ef::max_iteration() { return static_cast<std::int32_t>(10000); }
+std::int64_t ef::tolerance    () { return static_cast<std::int64_t>(e_float::ef_max_digits10 + (e_float::ef_max_digits10 / 10)); }
+
+bool         ef::isnan    (const e_float& x) { return x.isnan(); }
+bool         ef::isfinite (const e_float& x) { return x.isfinite(); }
+bool         ef::isinf    (const e_float& x) { return x.isinf(); }
+bool         ef::isneg    (const double x)   { return (x < 0.0); }
+bool         ef::isneg    (const e_float& x) { return x.isneg(); }
+e_float      ef::abs      (const e_float& x) { return ef::fabs(x); }
+e_float      ef::real     (const e_float& x) { return x; }
+e_float      ef::imag     (const e_float&)   { return ef::zero(); }
+bool         ef::ispos    (const double x)   { return (!isneg(x)); }
+bool         ef::ispos    (const e_float& x) { return (!x.isneg()); }
+bool         ef::isint    (const e_float& x) { return x.isint(); }
+bool         ef::isone    (const double x)   { using std::fabs; return (fabs(1.0 - x) < (std::numeric_limits<double>::min)() * 2); }
+bool         ef::isone    (const e_float& x) { return x.isone(); }
+bool         ef::iszero   (const double x)   { using std::fabs; return (fabs(x) < (std::numeric_limits<double>::min)() * 2); }
+bool         ef::iszero   (const e_float& x) { return x.iszero(); }
+double       ef::to_double(const double& x)  { return x; }
+std::int64_t ef::order_of (const double x)   { using std::log10; return static_cast<std::int64_t>(static_cast<std::int32_t>(log10(x))); }
+std::int64_t ef::order_of (const e_float& x) { return x.order(); }
+
 e_float ef::fabs(const e_float& x)
 {
   return (x.isneg() ? e_float(x).negate() : x);

@@ -69,6 +69,17 @@ std::istream& operator>>(std::istream& is, e_float_base& f)
   return is;
 }
 
+e_float_base::e_float_base() { }
+
+e_float_base::~e_float_base() { }
+
+int e_float_base::compare(const e_float& v) const
+{
+  const std::int32_t this_compare_result = cmp(v);
+
+  return static_cast<int>(this_compare_result);
+}
+
 const e_float& e_float_base::my_value_max() const
 {
   static const std::string str_max =   std::string("9." + std::string(static_cast<std::size_t>(ef_max_digits10), static_cast<char>('9')))

@@ -20,8 +20,8 @@
 
   namespace ef
   {
-    inline std::int32_t   max_iteration() { return static_cast<std::int32_t>(10000); }
-    inline std::int64_t   tolerance    () { return static_cast<std::int64_t>(e_float::ef_max_digits10 + (e_float::ef_max_digits10 / 10)); }
+    std::int32_t   max_iteration();
+    std::int64_t   tolerance    ();
 
     e_float      fabs (const e_float& x);
     e_float      floor(const e_float& x);
@@ -31,44 +31,44 @@
     e_float      frexp(const e_float& v, int* expon);
     e_float      fmod (const e_float& v1, const e_float& v2);
 
-           bool isnan(const double x);
-    inline bool isnan(const e_float& x) { return x.isnan(); }
+    bool isnan(const double x);
+    bool isnan(const e_float& x);
 
-           bool isfinite(const double x);
-    inline bool isfinite(const e_float& x)     { return x.isfinite(); }
+    bool isfinite(const double x);
+    bool isfinite(const e_float& x);
 
-           bool isinf(const double x);
-    inline bool isinf(const e_float& x)        { return x.isinf(); }
+    bool isinf(const double x);
+    bool isinf(const e_float& x);
 
-    inline bool isneg(const double x)          { return (x < 0.0); }
-    inline bool isneg(const e_float& x)        { return x.isneg(); }
+    bool isneg(const double x);
+    bool isneg(const e_float& x);
 
-    inline e_float abs (const e_float& x)      { return ef::fabs(x); }
-    inline e_float real(const e_float& x)      { return x; }
-    inline e_float imag(const e_float&)        { return ef::zero(); }
+    e_float abs (const e_float& x);
+    e_float real(const e_float& x);
+    e_float imag(const e_float&);
 
-    inline bool ispos(const double x)          { return !isneg(x); }
-    inline bool ispos(const e_float& x)        { return !x.isneg(); }
+    bool ispos(const double x);
+    bool ispos(const e_float& x);
 
-           bool isint(const double x);
-    inline bool isint(const e_float& x)        { return x.isint(); }
+    bool isint(const double x);
+    bool isint(const e_float& x);
 
-    inline bool isone(const double x)          { return (std::fabs(1.0 - x) < (std::numeric_limits<double>::min)() * 2); }
-    inline bool isone(const e_float& x)        { return x.isone(); }
+    bool isone(const double x);
+    bool isone(const e_float& x);
 
-    inline bool iszero(const double x)         { return (std::fabs(x) < (std::numeric_limits<double>::min)() * 2); }
-    inline bool iszero(const e_float& x)       { return x.iszero(); }
+    bool iszero(const double x);
+    bool iszero(const e_float& x);
 
     e_float integer_part(const e_float& x);
     e_float decimal_part(const e_float& x);
 
     void to_parts(const e_float& x, double& mantissa, std::int64_t& exponent);
 
-    inline double to_double(const double& x)   { return x; }
-           double to_double(const e_float& x);
+    double to_double(const double& x);
+    double to_double(const e_float& x);
 
-    inline std::int64_t order_of(const double x)   { return static_cast<std::int64_t>(static_cast<std::int32_t>(::log10(x))); }
-    inline std::int64_t order_of(const e_float& x) { return x.order(); }
+    std::int64_t order_of(const double x);
+    std::int64_t order_of(const e_float& x);
 
     std::int64_t to_int64(const double x);
     std::int64_t to_int64(const e_float& x);
