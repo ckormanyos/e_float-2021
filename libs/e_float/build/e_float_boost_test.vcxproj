@@ -45,13 +45,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug-efx-boost-test|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\modular_boost\boost\libs\math\include;C:\boost\boost_1_75_0;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\modular_boost\boost\libs\multiprecision\include;C:\boost\modular_boost\boost\libs\math\include;C:\boost\boost_1_75_0;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)x64-debug-efx-boost-test\</OutDir>
     <IntDir>$(OutDir)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release-efx-boost-test|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\modular_boost\boost\libs\math\include;C:\boost\boost_1_75_0;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\modular_boost\boost\libs\multiprecision\include;C:\boost\modular_boost\boost\libs\math\include;C:\boost\boost_1_75_0;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)x64-release-efx-boost-test\</OutDir>
     <IntDir>$(OutDir)</IntDir>
   </PropertyGroup>
