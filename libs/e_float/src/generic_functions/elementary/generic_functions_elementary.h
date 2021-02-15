@@ -53,7 +53,8 @@
     template<> long double log<long double>(const long double& x) { return ::log(x); }
     template<> e_float     log<e_float>    (const e_float& x)     { return ef::log(x); }
 
-    template<typename T> double frexp10(const T& x, std::int64_t* ptrexp10)
+    template<typename T>
+    double frexp10(const T& x, std::int64_t* ptrexp10)
     {
       // Use string manipulations to obtain the base-10 mantissa and exponent.
       // Caution: This is slow. It is generic, but has poor performance.
@@ -98,7 +99,8 @@
       return mantissa;
     }
 
-    template<typename T> T pown(const T& t, const std::int64_t p)
+    template<typename T>
+    T pown(const T& t, const std::int64_t p)
     {
       // Compute the pure power of typename T t^p. Binary splitting of the power is
       // used. The resulting computational complexity has the order of log2[abs(p)].
@@ -147,7 +149,8 @@
       }
     }
 
-    template<typename T> T sqrt(const T& x)
+    template<typename T>
+    T sqrt(const T& x)
     {
       if(generic_functions::isneg<T>(x) || (!generic_functions::isfinite<T>(x)))
       {
@@ -207,7 +210,8 @@
       return result;
     }
 
-    template<typename T> T rootn(const T& x, const std::int32_t p)
+    template<typename T>
+    T rootn(const T& x, const std::int32_t p)
     {
       if(!generic_functions::isfinite<T>(x))
       {
@@ -273,14 +277,16 @@
       return static_cast<std::int32_t>(1) / rtn;
     }
 
-    template<typename T> bool small_arg(const T& x)
+    template<typename T>
+    bool small_arg(const T& x)
     {
       // Values less than the sixth root of epsilon are considered small.
       static const T val_small = generic_functions::rootn<T>(std::numeric_limits<T>::epsilon(), static_cast<std::int32_t>(6));
       return (generic_functions::fabs<T>(x) < val_small);
     }
 
-    template<typename T> T log(const T& x)
+    template<typename T>
+    T log(const T& x)
     {
       if(generic_functions::iszero<T>(x) || generic_functions::isneg<T>(x))
       {
