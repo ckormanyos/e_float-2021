@@ -10,5 +10,11 @@
     <ClCompile Include="..\test_boost\test_boost.cpp">
       <Filter>test_boost</Filter>
     </ClCompile>
+    <ClCompile Include="..\test_boost\test_boost_real_concept.cpp">
+      <Filter>test_boost</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test_boost\test_boost_sf.cpp">
+      <Filter>test_boost</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
