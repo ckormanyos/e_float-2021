@@ -73,15 +73,15 @@
       static constexpr bool                    traps             = false;
       static constexpr bool                    tinyness_before   = false;
 
-      static const e_float& (min)        () noexcept { return ef::value_min(); }
-      static const e_float& (max)        () noexcept { return ef::value_max(); }
-      static const e_float& lowest       () noexcept { return ef::zero(); }
-      static const e_float& epsilon      () noexcept { return ef::value_eps(); }
-      static const e_float& round_error  () noexcept { return ef::half(); }
-      static const e_float& infinity     () noexcept { return ef::value_inf(); }
-      static const e_float& quiet_NaN    () noexcept { return ef::value_nan(); }
-      static const e_float& signaling_NaN() noexcept { return ef::zero(); }
-      static const e_float& denorm_min   () noexcept { return ef::zero(); }
+      static const e_float& (min)        () throw() { return ef::value_min(); }
+      static const e_float& (max)        () throw() { return ef::value_max(); }
+      static const e_float& lowest       () throw() { return ef::zero(); }
+      static const e_float& epsilon      () throw() { return ef::value_eps(); }
+      static const e_float& round_error  () throw() { return ef::half(); }
+      static const e_float& infinity     () throw() { return ef::value_inf(); }
+      static const e_float& quiet_NaN    () throw() { return ef::value_nan(); }
+      static const e_float& signaling_NaN() throw() { return ef::zero(); }
+      static const e_float& denorm_min   () throw() { return ef::zero(); }
     };
   }
 

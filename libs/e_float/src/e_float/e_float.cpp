@@ -41,30 +41,30 @@ const e_float& ef::value_eps()
   return val;
 }
 
-const e_float& ef::zero() { static const e_float val(0U);            return val; }
-const e_float& ef::one () { static const e_float val(1U);            return val; }
-const e_float& ef::half() { static const e_float val(50000000U, -8); return val; }
+const e_float& ef::zero() { static const e_float val(0U);    return val; }
+const e_float& ef::one () { static const e_float val(1U);    return val; }
+const e_float& ef::half() { static const e_float val("0.5"); return val; }
 
-constexpr bool                    std::template numeric_limits<e_float>::is_specialized;
-constexpr bool                    std::template numeric_limits<e_float>::is_signed;
-constexpr bool                    std::template numeric_limits<e_float>::is_integer;
-constexpr bool                    std::template numeric_limits<e_float>::is_exact;
-constexpr bool                    std::template numeric_limits<e_float>::is_bounded;
-constexpr bool                    std::template numeric_limits<e_float>::is_modulo;
-constexpr bool                    std::template numeric_limits<e_float>::is_iec559;
-constexpr int                     std::template numeric_limits<e_float>::digits;
-constexpr int                     std::template numeric_limits<e_float>::digits10;
-constexpr int                     std::template numeric_limits<e_float>::max_digits10;
-constexpr int                     std::template numeric_limits<e_float>::min_exponent;
-constexpr int                     std::template numeric_limits<e_float>::min_exponent10;
-constexpr int                     std::template numeric_limits<e_float>::max_exponent;
-constexpr int                     std::template numeric_limits<e_float>::max_exponent10;
-constexpr int                     std::template numeric_limits<e_float>::radix;
-constexpr std::float_round_style  std::template numeric_limits<e_float>::round_style;
-constexpr bool                    std::template numeric_limits<e_float>::has_infinity;
-constexpr bool                    std::template numeric_limits<e_float>::has_quiet_NaN;
-constexpr bool                    std::template numeric_limits<e_float>::has_signaling_NaN;
-constexpr std::float_denorm_style std::template numeric_limits<e_float>::has_denorm;
-constexpr bool                    std::template numeric_limits<e_float>::has_denorm_loss;
-constexpr bool                    std::template numeric_limits<e_float>::traps;
-constexpr bool                    std::template numeric_limits<e_float>::tinyness_before;
+constexpr bool                    std::numeric_limits<e_float>::is_specialized;
+constexpr bool                    std::numeric_limits<e_float>::is_signed;
+constexpr bool                    std::numeric_limits<e_float>::is_integer;
+constexpr bool                    std::numeric_limits<e_float>::is_exact;
+constexpr bool                    std::numeric_limits<e_float>::is_bounded;
+constexpr bool                    std::numeric_limits<e_float>::is_modulo;
+constexpr bool                    std::numeric_limits<e_float>::is_iec559;
+constexpr int                     std::numeric_limits<e_float>::digits;
+constexpr int                     std::numeric_limits<e_float>::digits10;
+constexpr int                     std::numeric_limits<e_float>::max_digits10;
+constexpr int                     std::numeric_limits<e_float>::min_exponent;
+constexpr int                     std::numeric_limits<e_float>::min_exponent10;
+constexpr int                     std::numeric_limits<e_float>::max_exponent;
+constexpr int                     std::numeric_limits<e_float>::max_exponent10;
+constexpr int                     std::numeric_limits<e_float>::radix;
+constexpr std::float_round_style  std::numeric_limits<e_float>::round_style;
+constexpr bool                    std::numeric_limits<e_float>::has_infinity;
+constexpr bool                    std::numeric_limits<e_float>::has_quiet_NaN;
+constexpr bool                    std::numeric_limits<e_float>::has_signaling_NaN;
+constexpr std::float_denorm_style std::numeric_limits<e_float>::has_denorm;
+constexpr bool                    std::numeric_limits<e_float>::has_denorm_loss;
+constexpr bool                    std::numeric_limits<e_float>::traps;
+constexpr bool                    std::numeric_limits<e_float>::tinyness_before;
