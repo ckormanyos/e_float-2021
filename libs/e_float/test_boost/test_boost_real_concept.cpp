@@ -3,9 +3,6 @@
 //    (See accompanying file LICENSE_1_0.txt or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
-#include <iomanip>
-#include <iostream>
-
 #include <boost/math/concepts/real_type_concept.hpp>
 #include <boost/math/constants/constants.hpp>
 #include <boost/math/special_functions/gamma.hpp>

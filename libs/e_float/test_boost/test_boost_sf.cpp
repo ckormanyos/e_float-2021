@@ -3,9 +3,6 @@
 //    (See accompanying file LICENSE_1_0.txt or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
-#include <iomanip>
-#include <iostream>
-
 #include <boost/math/constants/constants.hpp>
 #include <boost/math/special_functions/gamma.hpp>
 #include <boost/math/bindings/e_float.hpp>
@@ -174,13 +171,13 @@ bool test_legendre()
                                                          local::big_float_type(1U) / 7,
                                                          x);
 
-  // N[LegendreP[1/3, 1/7, 2, 789/1000], 1001]
+  // N[LegendreP[1/3, 1/7, 2, 789/1000], 104]
   const local::big_float_type control_lpvu
   {
     "0.99315918549340645725680897933376572969241094126736434178747245976770375217673830111149222182128969080027"
   };
 
-  // N[LegendreQ[1/3, 1/7, 2, 789/1000], 1001]
+  // N[LegendreQ[1/3, 1/7, 2, 789/1000], 104]
   const local::big_float_type control_lqvu
   {
     "0.18027013586354735033576549475861160812128148962186378344662781978695122523958952227406954299821460356031"
