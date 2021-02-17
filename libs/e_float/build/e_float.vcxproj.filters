@@ -459,9 +459,6 @@
     <ClInclude Include="..\src\utility\util_power_j_pow_x.h">
       <Filter>libs\e_float\src\utility</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\utility\util_power_x_pow_n.h">
-      <Filter>libs\e_float\src\utility</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\utility\util_ranged_function_operation.h">
       <Filter>libs\e_float\src\utility</Filter>
     </ClInclude>

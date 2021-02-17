@@ -106,5 +106,5 @@ namespace Util
   }
 }
 
-e_float    Util::j_pow_x(const std::uint32_t j, const e_float&    x, std::map<std::uint32_t, e_float>&    n_pow_x_prime_factor_map) { return Util::j_pow_x_template<e_float>   (j, x, n_pow_x_prime_factor_map); }
+e_float              Util::j_pow_x(const std::uint32_t j, const e_float&              x, std::map<std::uint32_t, e_float>&              n_pow_x_prime_factor_map) { return Util::j_pow_x_template<e_float>             (j, x, n_pow_x_prime_factor_map); }
 ef::complex<e_float> Util::j_pow_x(const std::uint32_t j, const ef::complex<e_float>& x, std::map<std::uint32_t, ef::complex<e_float>>& n_pow_x_prime_factor_map) { return Util::j_pow_x_template<ef::complex<e_float>>(j, x, n_pow_x_prime_factor_map); }

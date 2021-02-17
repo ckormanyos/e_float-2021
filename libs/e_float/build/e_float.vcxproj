@@ -761,7 +761,6 @@
     <ClInclude Include="..\src\utility\util_numeric_cast.h" />
     <ClInclude Include="..\src\utility\util_point.h" />
     <ClInclude Include="..\src\utility\util_power_j_pow_x.h" />
-    <ClInclude Include="..\src\utility\util_power_x_pow_n.h" />
     <ClInclude Include="..\src\utility\util_ranged_function_operation.h" />
     <ClInclude Include="..\src\utility\util_timer.h" />
     <ClInclude Include="..\src\utility\util_trapezoid.h" />
