@@ -90,6 +90,8 @@ namespace Zeta_Series
     using ef::hundred;
     using ef::million;
 
+    using std::fabs;
+
     const bool s_is_pure_real = iszero(imag(s));
 
     if(s_is_pure_real && isint(real(s)))
@@ -162,7 +164,7 @@ namespace Zeta_Series
     {
       static const TR very_large = million() + hundred();
 
-      if(abs(imag(s)) > very_large)
+      if(fabs(TR(imag(s))) > very_large)
       {
         // Return NaN if s has a very large imaginary part.
         return std::numeric_limits<TR>::quiet_NaN();
@@ -242,7 +244,9 @@ e_float ef::riemann_zeta(const std::int32_t n)
   // Check if the result of the expansion will significantly differ from one.
   if(n > static_cast<std::int32_t>(1))
   {
-    static const double log10_of_2 = std::log10(2.0);
+    using std::log10;
+
+    static const double log10_of_2 = log10(2.0);
     static const double dtol       = static_cast<double>(static_cast<std::int32_t>(ef::tolerance()));
 
     const double n_log10_of_2 = static_cast<double>(n) * log10_of_2;

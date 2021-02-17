@@ -25,7 +25,7 @@
 
 e_float ef::sin(const e_float& x)
 {
-  if(!ef::isfinite(x))
+  if(ef::isfinite(x) == false)
   {
     return std::numeric_limits<e_float>::quiet_NaN();
   }
@@ -135,7 +135,7 @@ e_float ef::sin(const e_float& x)
 
 e_float ef::cos(const e_float& x)
 {
-  if(!ef::isfinite(x))
+  if(ef::isfinite(x) == false)
   {
     return std::numeric_limits<e_float>::quiet_NaN();
   }
@@ -162,6 +162,7 @@ e_float ef::cos(const e_float& x)
   if(xx > ef::pi())
   {
     e_float n_pi = ef::integer_part(xx / ef::pi());
+
     xx -= n_pi * ef::pi();
 
     // Adjust signs if the multiple of pi is not even.
@@ -267,7 +268,7 @@ e_float ef::cot(const e_float& x) { return ef::cos(x) / ef::sin(x); }
 
 e_float ef::asin(const e_float& x)
 {
-  if(!ef::isfinite(x))
+  if(ef::isfinite(x) == false)
   {
     return std::numeric_limits<e_float>::quiet_NaN();
   }
@@ -344,12 +345,12 @@ e_float ef::asin(const e_float& x)
     value -= (s - xx) / c;
   }
 
-  return ((!b_neg) ? value : -value);
+  return ((b_neg == false) ? value : -value);
 }
 
 e_float ef::acos(const e_float& x)
 {
-  if(!ef::isfinite(x))
+  if(ef::isfinite(x) == false)
   {
     return std::numeric_limits<e_float>::quiet_NaN();
   }
@@ -373,7 +374,7 @@ e_float ef::acos(const e_float& x)
   }
   else
   {
-    return ((!is_neg) ? ef::zero() : ef::pi());
+    return ((is_neg == false) ? ef::zero() : ef::pi());
   }
 }
 
@@ -403,7 +404,7 @@ static e_float Atan_Series::AtInfinity(const e_float& x)
 
 e_float ef::atan(const e_float& x)
 {
-  if(!ef::isfinite(x))
+  if(ef::isfinite(x) == false)
   {
     return std::numeric_limits<e_float>::quiet_NaN();
   }
@@ -440,18 +441,23 @@ e_float ef::atan(const e_float& x)
 
   // Get initial estimate using standard math function atan or a series
   // expansion for rather large arguments having order 3 or larger.
-  double        dd;
-  std::int64_t  ne;
+  double       dd;
+  std::int64_t ne;
+
   ef::to_parts(xx, dd, ne);
 
   static const std::int64_t p10_min = static_cast<std::int64_t>(std::numeric_limits<double>::min_exponent10);
   static const std::int64_t p10_max = static_cast<std::int64_t>(std::numeric_limits<double>::max_exponent10);
 
-  const double de = static_cast<double>(ne < static_cast<std::int64_t>(0) ? static_cast<std::int32_t>((std::max)(ne, p10_min))
-                                                                   : static_cast<std::int32_t>((std::min)(ne, p10_max)));
+  const double de =
+    static_cast<double>(ne < static_cast<std::int64_t>(0) ? static_cast<std::int32_t>((std::max)(ne, p10_min))
+                                                          : static_cast<std::int32_t>((std::min)(ne, p10_max)));
 
-  e_float value = order < static_cast<std::int64_t>(2) ? e_float(::atan(dd * ::pow(10.0, de)))
-                                                : Atan_Series::AtInfinity(xx);
+  using std::atan;
+  using std::pow;
+
+  e_float value = ((order < static_cast<std::int64_t>(2)) ? e_float(atan(dd * pow(10.0, de)))
+                                                          : Atan_Series::AtInfinity(xx));
 
   // Newton-Raphson iteration
   static const std::int32_t double_digits10_minus_a_few = static_cast<std::int32_t>(static_cast<std::int32_t>(std::numeric_limits<double>::digits10) - static_cast<std::int32_t>(3));
@@ -463,12 +469,12 @@ e_float ef::atan(const e_float& x)
     value += c * ((xx * c) - s);
   }
 
-  return !b_neg ? value : -value;
+  return ((b_neg == false) ? value : -value);
 }
 
 e_float ef::atan2(const e_float& y, const e_float& x)
 {
-  if(!ef::isfinite(x) || !ef::isfinite(y))
+  if((ef::isfinite(x) == false) || (ef::isfinite(y) == false))
   {
     return x;
   }

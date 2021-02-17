@@ -121,7 +121,7 @@
       {
         if(this != &other)
         {
-          static_cast<void>(::mpfr_set(my_rop, other.my_rop, GMP_RNDN));
+          mpfr_set(my_rop, other.my_rop, GMP_RNDN);
         }
 
         return *this;

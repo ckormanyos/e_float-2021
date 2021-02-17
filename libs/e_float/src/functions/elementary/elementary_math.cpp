@@ -13,12 +13,6 @@
 
 #include <e_float/e_float_functions.h>
 
-namespace my
-{
-  inline int _isnan (double x) { return ((x != x) ? 1 : 0); }
-  inline int _finite(double x) { return (((x - x) == 0.0) ? 1 : 0); }
-}
-
 std::int32_t ef::max_iteration() { return static_cast<std::int32_t>(10000); }
 std::int64_t ef::tolerance    () { return static_cast<std::int64_t>(e_float::ef_max_digits10 + (e_float::ef_max_digits10 / 10)); }
 
@@ -100,24 +94,22 @@ e_float ef::fmod(const e_float& v1, const e_float& v2)
 
 bool ef::isfinite(const double x)
 {
-  using my::_finite;
+  using std::isfinite;
 
-  return (_finite(x) != 0);
+  return isfinite(x);
 }
 
 bool ef::isnan(const double x)
 {
-  using my::_isnan;
+  using std::isnan;
 
-  return (_isnan(x) != 0);
+  return isnan(x);
 }
 
 double ef::to_double(const e_float& x)              { return x.extract_double(); }
-//double ef::to_double(const ef::complex<e_float>& z) { return (z.real()).extract_double(); }
 
-std::int64_t ef::to_int64(const double x)                { return static_cast<std::int64_t>(x); }
-std::int64_t ef::to_int64(const e_float& x)              { return static_cast<std::int64_t>(x.extract_signed_long_long()); }
-//std::int64_t ef::to_int64(const ef::complex<e_float>& z) { return ef::to_int64(z.real()); }
+std::int64_t ef::to_int64(const double x)           { return static_cast<std::int64_t>(x); }
+std::int64_t ef::to_int64(const e_float& x)         { return static_cast<std::int64_t>(x.extract_signed_long_long()); }
 
 bool ef::isint(const double x)
 {
@@ -158,11 +150,6 @@ std::int32_t ef::to_int32(const e_float& x)
 
   return static_cast<std::int32_t>((std::min)((std::max)(n64, n32_min), n32_max));
 }
-
-//std::int32_t ef::to_int32(const ef::complex<e_float>& z)
-//{
-//  return ef::to_int32(z.real());
-//}
 
 void ef::to_parts(const e_float& x, double& mantissa, std::int64_t& exponent)
 {

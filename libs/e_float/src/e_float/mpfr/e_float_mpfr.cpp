@@ -315,7 +315,9 @@ void mpfr::e_float::extract_parts(double& mantissa, std::int64_t& exponent) cons
   const double  x_exp_integer_part = static_cast<double>(static_cast<long>(x_exp));
   const double  x_exp_decimal_part = static_cast<double>(x_exp - x_exp_integer_part);
 
-  double m = d2 * std::pow(10.0, x_exp_decimal_part);
+  using std::pow;
+
+  double m = d2 * pow(10.0, x_exp_decimal_part);
   std::int64_t  e = static_cast<std::int64_t>(x_exp_integer_part);
 
   if(m < 1.0)
@@ -542,8 +544,10 @@ std::int64_t mpfr::e_float::get_order_fast() const
   {
     signed long int n2;
 
+    using std::log10;
+
     const double d2    = ::mpfr_get_d_2exp(&n2, xx.my_rop, GMP_RNDN);
-    const double lg10x = static_cast<double>(std::log10(d2) + (static_cast<double>(n2) * local::d_log2()));
+    const double lg10x = static_cast<double>(log10(d2) + (static_cast<double>(n2) * local::d_log2()));
 
     return ((lg10x < 0.0) ? static_cast<std::int64_t>(lg10x - 0.5)
                           : static_cast<std::int64_t>(lg10x + 0.5));

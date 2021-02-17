@@ -393,7 +393,7 @@ e_float ef::rootn(const e_float& x, const std::int32_t p)
 
 e_float ef::rootn_inverse(const e_float& x, const std::int32_t p)
 {
-  if(!ef::isfinite(x))
+  if(ef::isfinite(x) == false)
   {
     return std::numeric_limits<e_float>::quiet_NaN();
   }
@@ -577,10 +577,15 @@ e_float ef::log(const e_float& x)
     }
   }
 
+  using std::fabs;
+  using std::log;
+  using std::log10;
+  using std::pow;
+
   // Generate the initial estimate using double precision log combined with
   // the exponent for a "manual" computation of the initial iteration estimate.
 
-  static const double lg10_d = ::log(10.0);
+  static const double lg10_d = log(10.0);
 
   static const std::int64_t n32_min = static_cast<std::int64_t>((std::numeric_limits<std::int32_t>::min)());
   static const std::int64_t n32_max = static_cast<std::int64_t>((std::numeric_limits<std::int32_t>::max)());
@@ -590,16 +595,17 @@ e_float ef::log(const e_float& x)
   std::int64_t  ne;
   ef::to_parts(xx, dd, ne);
 
-  const double nd = ((ne < static_cast<std::int64_t>(0)) ? static_cast<double>(static_cast<std::int32_t>((std::max)(ne, n32_min)))
-                                                  : static_cast<double>(static_cast<std::int32_t>((std::min)(ne, n32_max))));
+  const double nd =
+    ((ne < static_cast<std::int64_t>(0)) ? static_cast<double>(static_cast<std::int32_t>((std::max)(ne, n32_min)))
+                                         : static_cast<double>(static_cast<std::int32_t>((std::min)(ne, n32_max))));
 
-  const double dlog = ::log(dd) + (nd * lg10_d);
+  const double dlog = log(dd) + (nd * lg10_d);
 
-  const double d10  = ((!ef::iszero(dlog)) ? ::log10(::fabs(dlog)) + 0.5 : 0.0);
+  const double d10  = ((!ef::iszero(dlog)) ? log10(fabs(dlog)) + 0.5 : 0.0);
 
   const std::int64_t  p10  =  (ef::ispos(dlog)  ? static_cast<std::int64_t>(d10) : static_cast<std::int64_t>(-d10));
 
-  e_float log_val   = ((!ef::iszero(dlog)) ? e_float(dlog / ::pow(10.0, static_cast<double>(static_cast<std::int32_t>(p10))), p10)
+  e_float log_val   = ((!ef::iszero(dlog)) ? e_float(dlog / pow(10.0, static_cast<double>(static_cast<std::int32_t>(p10))), p10)
                       : x_minus_one);
 
   // Newton-Raphson iteration
@@ -671,7 +677,7 @@ e_float ef::log1p1m2(const e_float& x)
 
 e_float ef::pow(const e_float& x, const e_float& a)
 {
-  if(!ef::isfinite(x) || ef::isone(a))
+  if((ef::isfinite(x) == false) || ef::isone(a))
   {
     return x;
   }
@@ -698,9 +704,9 @@ e_float ef::pow(const e_float& x, const e_float& a)
     return ef::one() / ef::pow(x, -a);
   }
 
-  const e_float a_int = ef::integer_part(a);
-  const std::int64_t   an    = ef::to_int64(a_int);
-  const e_float da    = a - a_int;
+  const e_float      a_int = ef::integer_part(a);
+  const std::int64_t an    = ef::to_int64(a_int);
+  const e_float      da    = a - a_int;
 
   if(bo_a_isint)
   {
@@ -729,7 +735,7 @@ e_float ef::pow(const e_float& x, const e_float& a)
     // Series expansion for pow(x, a). Note that for large power of a, the power
     // of the integer part of a is calculated using the pown function.
     return ((an != static_cast<std::int64_t>(0)) ? ef::exp(da * ef::log(x)) * ef::detail::pown_template(x, an)
-                                          : ef::exp( a * ef::log(x)));
+                                                 : ef::exp( a * ef::log(x)));
   }
 }
 
@@ -791,7 +797,7 @@ e_float ef::cosh(const e_float& x)
     return e_float::my_own_cosh(x);
   }
 
-  if(!ef::isfinite(x))
+  if(ef::isfinite(x) == false)
   {
     return x;
   }
@@ -803,23 +809,23 @@ e_float ef::cosh(const e_float& x)
 
 void ef::sinhcosh(const e_float& x, e_float* const p_sinh, e_float* const p_cosh)
 {
-  if(!ef::isfinite(x) || (!p_sinh && !p_cosh))
+  if((ef::isfinite(x) == false) || ((p_sinh == nullptr) && (p_cosh == nullptr)))
   {
     return;
   }
   
   if(ef::iszero(x))
   {
-    if(p_sinh)
+    if(p_sinh != nullptr)
     {
       *p_sinh = ef::zero();
     }
 
-    if(p_cosh)
+    if(p_cosh != nullptr)
     {
       *p_cosh = ef::one();
     }
-    
+
     return;
   }
 
@@ -862,7 +868,7 @@ e_float ef::asinh(const e_float& x)
   {
     const e_float value = ef::log(ef::fabs(x) + ef::sqrt((x * x) + ef::one()));
 
-    return !ef::isneg(x) ? value : -value;
+    return ((ef::isneg(x) == false) ? value : -value);
   }
 }
 
@@ -873,7 +879,7 @@ e_float ef::acosh(const e_float& x)
     return e_float::my_own_acosh(x);
   }
 
-  if(!ef::isfinite(x))
+  if(ef::isfinite(x) == false)
   {
     return std::numeric_limits<e_float>::quiet_NaN();
   }
