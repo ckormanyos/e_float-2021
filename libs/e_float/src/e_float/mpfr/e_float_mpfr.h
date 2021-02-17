@@ -101,6 +101,11 @@
       // Constructor from mantissa and exponent.
       e_float(const double mantissa, const std::int64_t exponent);
 
+      // Construct from an initializer list of base-10 integer limbs, an exponent and sign.
+      explicit e_float(std::initializer_list<std::uint32_t> limb_values,
+                       const std::int64_t e = 0,
+                       const bool is_neg = false);
+
       virtual ~e_float();
 
       virtual std::int32_t cmp(const e_float&) const;

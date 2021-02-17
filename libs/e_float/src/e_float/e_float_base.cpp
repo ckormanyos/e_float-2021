@@ -69,8 +69,6 @@ std::istream& operator>>(std::istream& is, e_float_base& f)
   return is;
 }
 
-e_float_base::e_float_base() { }
-
 e_float_base::~e_float_base() { }
 
 int e_float_base::compare(const e_float& v) const

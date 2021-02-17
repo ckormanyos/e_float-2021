@@ -133,6 +133,15 @@
                                                  my_fpclass  (fpc),
                                                  my_prec_elem(ef_elem_number) { }
 
+      explicit e_float(std::initializer_list<std::uint32_t> limb_values,
+                       const std::int64_t e = 0,
+                       const bool is_neg = false)
+        : my_data     (limb_values),
+          my_exp      (e),
+          my_neg      (is_neg),
+          my_fpclass  (ef_finite),
+          my_prec_elem(ef_elem_number) { }
+
       virtual ~e_float() = default;
 
       virtual std::int32_t cmp(const e_float&) const;

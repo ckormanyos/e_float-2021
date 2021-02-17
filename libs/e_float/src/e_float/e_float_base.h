@@ -174,7 +174,7 @@
     static e_float my_own_cyl_bessel_yn(const std::int32_t, const e_float&);
 
   protected:
-    e_float_base();
+    constexpr e_float_base() { }
 
     // Emphasize: This template class can be used with native floating-point
     // types like float, double and long double. Note: For long double,
@@ -183,21 +183,12 @@
     class native_float_parts final
     {
     public:
-      native_float_parts(const native_float_type f) : u(0ULL), e(0) { make_parts(f); }
-
-      const unsigned long long& get_mantissa() const { return u; }
-      const int&                get_exponent() const { return e; }
-
-    private:
-      native_float_parts();
-      native_float_parts(const native_float_parts&);
-
-      const native_float_parts& operator=(const native_float_parts&);
-
-      unsigned long long u;
-      int e;
-
-      void make_parts(const native_float_type f)
+      // Emphasize: This template class can be used with native floating-point
+      // types like float, double and long double. Note: For long double,
+      // you need to verify that the mantissa fits in unsigned long long.
+      native_float_parts(const native_float_type f)
+        : my_mantissa_part(0ULL),
+          my_exponent_part(0)
       {
         const native_float_type ff = ((f < static_cast<native_float_type>(0)) ? -f : f);
 
@@ -209,11 +200,11 @@
         using std::frexp;
 
         // Get the fraction and base-2 exponent.
-        native_float_type man = (native_float_type) frexp(f, &e);
+        native_float_type man = (native_float_type) frexp(f, &my_exponent_part);
 
         std::uint32_t n2 = 0U;
 
-        for(std::uint32_t i = static_cast<std::uint32_t>(0U); i < static_cast<std::uint32_t>(std::numeric_limits<native_float_type>::digits); i++)
+        for(std::uint_fast16_t i = static_cast<std::uint_fast16_t>(0U); i < static_cast<std::uint_fast16_t>(std::numeric_limits<native_float_type>::digits); ++i)
         {
           // Extract the mantissa of the floating-point type in base-2
           // (one bit at a time) and store it in an unsigned long long.
@@ -224,19 +215,31 @@
 
           if(n2 != static_cast<std::uint32_t>(0U))
           {
-            u |= 1U;
+            my_mantissa_part |= 1U;
           }
 
           if(i < static_cast<std::uint32_t>(std::numeric_limits<native_float_type>::digits - 1))
           {
-            u <<= 1U;
+            my_mantissa_part <<= 1U;
           }
         }
 
         // Ensure that the value is normalized and adjust the exponent.
-        u |= static_cast<unsigned long long>(1ULL << (std::numeric_limits<native_float_type>::digits - 1));
-        e -= 1;
+        my_mantissa_part |= static_cast<unsigned long long>(1ULL << (std::numeric_limits<native_float_type>::digits - 1));
+        my_exponent_part -= 1;
       }
+
+      const unsigned long long& get_mantissa() const { return my_mantissa_part; }
+      const int&                get_exponent() const { return my_exponent_part; }
+
+    private:
+      native_float_parts() = delete;
+      native_float_parts(const native_float_parts&) = delete;
+
+      const native_float_parts& operator=(const native_float_parts&) = delete;
+
+      unsigned long long my_mantissa_part;
+      int                my_exponent_part;
     };
 
     virtual std::int64_t get_order_exact() const = 0;

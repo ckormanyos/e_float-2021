@@ -100,9 +100,63 @@ gmp::e_float::e_float(const ::mpf_t& op) : my_rop      (),
   ::mpf_init_set(my_rop, op);
 }
 
+gmp::e_float::e_float(std::initializer_list<std::uint32_t> limb_values,
+                      const std::int64_t e,
+                      const bool is_neg) : my_rop      (),
+                                           my_fpclass  (ef_finite),
+                                           my_prec_elem(ef_max_digits10)
+{
+  std::string str;
+
+  if(is_neg)
+  {
+    str.push_back('-');
+  }
+
+  auto it = limb_values.begin();
+
+  if(limb_values.size() > 0U)
+  {
+    std::stringstream strm;
+
+    strm << *it;
+
+    ++it;
+
+    str += strm.str();
+  }
+
+  if(limb_values.size() > 1U)
+  {
+    str.push_back('.');
+
+    for( ; it != limb_values.end(); ++it)
+    {
+      std::stringstream strm;
+
+      strm << std::setw(8) << std::setfill('0') << *it;
+
+      str += strm.str();
+    }
+  }
+
+  if(e != 0)
+  {
+    std::stringstream strm;
+
+    strm << e;
+
+    str += "e" + strm.str();
+  }
+
+  init();
+
+  static_cast<void>(rd_string(str.c_str()));
+}
+
 gmp::e_float::~e_float()
 {
-  if(my_rop[0]._mp_d != nullptr)
+  if(my_rop[0U]._mp_d != nullptr)
   {
     ::mpf_clear(my_rop);
   }

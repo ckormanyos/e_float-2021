@@ -151,6 +151,7 @@
     e_float log1p        (const e_float& x);
     e_float log1p1m2     (const e_float& x);
     e_float pow          (const e_float& x, const e_float& a);
+    e_float pow          (const e_float& b, const std::int64_t p);
     void    sincos       (const e_float& x, e_float* const p_sin, e_float* const p_cos);
     e_float sin          (const e_float& x);
     e_float cos          (const e_float& x);

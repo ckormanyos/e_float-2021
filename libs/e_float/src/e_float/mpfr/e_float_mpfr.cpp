@@ -62,6 +62,58 @@ mpfr::e_float::e_float(const double mantissa, const std::int64_t exponent)
   }
 }
 
+mpfr::e_float::e_float(std::initializer_list<std::uint32_t> limb_values,
+                       const std::int64_t e,
+                       const bool is_neg)
+{
+  std::string str;
+
+  if(is_neg)
+  {
+    str.push_back('-');
+  }
+
+  auto it = limb_values.begin();
+
+  if(limb_values.size() > 0U)
+  {
+    std::stringstream strm;
+
+    strm << *it;
+
+    ++it;
+
+    str += strm.str();
+  }
+
+  if(limb_values.size() > 1U)
+  {
+    str.push_back('.');
+
+    for( ; it != limb_values.end(); ++it)
+    {
+      std::stringstream strm;
+
+      strm << std::setw(8) << std::setfill('0') << *it;
+
+      str += strm.str();
+    }
+  }
+
+  if(e != 0)
+  {
+    std::stringstream strm;
+
+    strm << e;
+
+    str += "e" + strm.str();
+  }
+
+  init();
+
+  static_cast<void>(rd_string(str.c_str()));
+}
+
 mpfr::e_float::~e_float()
 {
   ::mpfr_clear(my_rop);

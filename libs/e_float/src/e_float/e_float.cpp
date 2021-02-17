@@ -41,9 +41,9 @@ const e_float& ef::value_eps()
   return val;
 }
 
-const e_float& ef::zero() { static const e_float val(0U);    return val; }
-const e_float& ef::one () { static const e_float val(1U);    return val; }
-const e_float& ef::half() { static const e_float val("0.5"); return val; }
+const e_float& ef::zero() { static const e_float val(0U);   return val; }
+const e_float& ef::one () { static const e_float val(1U);   return val; }
+const e_float& ef::half() { static const e_float val(0.5F); return val; }
 
 constexpr bool                    std::numeric_limits<e_float>::is_specialized;
 constexpr bool                    std::numeric_limits<e_float>::is_signed;
