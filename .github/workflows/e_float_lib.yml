@@ -4,10 +4,10 @@
 #  Version 1.0. (See accompanying file LICENSE_1_0.txt
 #  or copy at http://www.boost.org/LICENSE_1_0.txt)
 
-name: libe_float
+name: e_float_lib
 on: [push]
 jobs:
-  gcc-native-libe_float:
+  gcc-native-e_float_lib:
     runs-on: ubuntu-20.04
     defaults:
       run:
@@ -23,7 +23,7 @@ jobs:
           fetch-depth: '0'
       - name: Install packages
         run: sudo apt install libgmp-dev libmpfr-dev
-      - name: gcc-native-libe_float
+      - name: gcc-native-e_float_lib
         run: |
           make MP=${{ matrix.mptype }} TYP_TOOLSET=g++ TYP_STD=c++11 TYP_TEST=E_FLOAT_TEST_REAL_IMAG_TESTS rebuild
           echo run ./unix-${{ matrix.mptype }}/e_float.exe

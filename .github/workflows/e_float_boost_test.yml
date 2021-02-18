@@ -1,0 +1,51 @@
+# Copyright 2020 Evan Miller
+# Copyright 2020 Matt Borland
+# Distributed under the Boost Software License, Version 1.0.
+# (See accompanying file LICENSE_1_0.txt or copy at http://boost.org/LICENSE_1_0.txt)
+
+name: e_float_boost_test
+on: [push]
+jobs:
+  ubuntu-focal:
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler: [ g++, clang++ ]
+        standard: [ gnu++11, gnu++14, gnu++17, gnu++2a ]
+        suite: [ E_FLOAT_TYPE_EFX, E_FLOAT_TYPE_GMP ]
+    if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Set TOOLSET
+        run: echo ${{ matrix.compiler }} | awk '/^g/ { print "TOOLSET=gcc" } /^clang/ { print "TOOLSET=clang" }' >> $GITHUB_ENV
+      - name: Add repository
+        run: sudo apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
+      - name: Install packages
+        run: sudo apt install libgmp-dev libmpfr-dev
+      - name: Checkout main boost
+        run: git clone -b develop --depth 1 https://github.com/boostorg/boost.git ../boost-root
+      - name: Update tools/boostdep
+        run: git submodule update --init tools/boostdep
+        working-directory: ../boost-root
+      - name: Copy files
+        run: cp -r $GITHUB_WORKSPACE/* libs/math
+        working-directory: ../boost-root
+      - name: Install deps
+        run: python tools/boostdep/depinst/depinst.py math
+        working-directory: ../boost-root
+      - name: Bootstrap
+        run: ./bootstrap.sh
+        working-directory: ../boost-root
+      - name: Generate headers
+        run: ./b2 headers
+        working-directory: ../boost-root
+      - name: Test
+        run: |
+          g++ -Wall -Wextra -m64 -O3 -std=${{ matrix.standard }} -D${{ matrix.suite }} -I../../../libs/e_float/src -I../../../../boost-root/libs/multiprecision/include -I../../../../boost-root/libs/multiprecision/include -IC:/boost/boost_1_75_0 ../src/e_float/efx/e_float_efx.cpp ../src/e_float/e_float.cpp ../src/e_float/e_float_base.cpp ../src/functions/constants/constants.cpp ../src/functions/elementary/elementary_complex.cpp ../src/functions/elementary/elementary_hyper_g.cpp ../src/functions/elementary/elementary_math.cpp ../src/functions/elementary/elementary_trans.cpp ../src/functions/elementary/elementary_trig.cpp ../test_boost/test_boost.cpp ../test_boost/test_boost_real_concept.cpp ../test_boost/test_boost_sf.cpp -lgmp -o test_boost.exe
+          ls -la ./test_boost.exe
+          echo run ./test_boost.exe
+          ./test_boost.exe
+        working-directory: ./libs/e_float/build/
