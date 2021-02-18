@@ -15,12 +15,11 @@
 #include <e_float/e_float_functions.h>
 #include <e_float/e_float_functions_complex.h>
 
+#include <functions/gamma/gamma_util.h>
+#include <functions/tables/tables.h>
+
 #include <utility/util_coefficient_expansion.h>
 #include <utility/util_digit_scale.h>
-
-#include "../tables/tables.h"
-
-#include "gamma_util.h"
 
 namespace Gamma_Series
 {

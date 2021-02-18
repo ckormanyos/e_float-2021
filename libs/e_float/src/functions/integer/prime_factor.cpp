@@ -12,7 +12,7 @@
 
 #include <e_float/e_float_functions.h>
 
-#include "prime_factors.h"
+#include <functions/integer/prime_factors.h>
 
 namespace Primes
 {

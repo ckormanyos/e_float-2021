@@ -11,7 +11,7 @@
 #ifndef TEST_CASE_IMAG_2009_10_24_H_
   #define TEST_CASE_IMAG_2009_10_24_H_
 
-  #include "../test_case_base.h"
+  #include <../test/test_case_base.h>
 
   namespace test
   {

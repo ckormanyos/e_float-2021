@@ -11,7 +11,7 @@
 #ifndef UTIL_FIND_ROOT_NEWTON_RAPHSON_2009_10_27_H_
   #define UTIL_FIND_ROOT_NEWTON_RAPHSON_2009_10_27_H_
 
-  #include "util_find_root_base.h"
+  #include <utility/util_find_root_base.h>
 
   namespace Util
   {

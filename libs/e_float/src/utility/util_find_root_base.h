@@ -11,7 +11,7 @@
 #ifndef UTIL_FIND_ROOT_BASE_2009_10_31_H_
   #define UTIL_FIND_ROOT_BASE_2009_10_31_H_
 
-  #include "util_ranged_function_operation.h"
+  #include <utility/util_ranged_function_operation.h>
 
   namespace Util
   {

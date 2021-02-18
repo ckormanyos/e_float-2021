@@ -11,7 +11,7 @@
 #ifndef UTIL_FUNCTION_2009_10_27_H_
   #define UTIL_FUNCTION_2009_10_27_H_
 
-  #include "util_noncopyable.h"
+  #include <utility/util_noncopyable.h>
 
   namespace Util
   {

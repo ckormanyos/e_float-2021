@@ -10,7 +10,7 @@
 
 #include <e_float/e_float_functions.h>
 
-#include "../tables/tables.h"
+#include <functions/tables/tables.h>
 
 namespace Factorial2_Series
 {

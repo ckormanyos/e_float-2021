@@ -10,7 +10,7 @@
 
 #include <e_float/e_float_functions.h>
 
-#include "gamma_util.h"
+#include <functions/gamma/gamma_util.h>
 
 void GammaUtil::GammaOfPlusXMinusX(const e_float& x, e_float& gamma_plus_x, e_float& gamma_minus_x)
 {

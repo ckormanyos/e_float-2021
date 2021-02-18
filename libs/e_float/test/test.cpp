@@ -18,12 +18,12 @@
 // make MP=efx rebuild
 
 #if defined(E_FLOAT_TEST_PI_ALGOS_TESTS)
-#include "pi_test/test_pi.h"
+#include <../test/pi_test/test_pi.h>
 #endif
 
 #if defined(E_FLOAT_TEST_REAL_IMAG_TESTS)
-#include "imag/test_imag.h"
-#include "real/test_real.h"
+#include <../test/imag/test_imag.h>
+#include <../test/real/test_real.h>
 
 #include <utility/util_timer.h>
 

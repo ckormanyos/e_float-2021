@@ -12,7 +12,7 @@
 #include <array>
 #include <vector>
 
-#include "tables.h"
+#include <functions/tables/tables.h>
 
 namespace A000142_Table
 {

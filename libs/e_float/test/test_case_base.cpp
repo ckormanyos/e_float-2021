@@ -12,7 +12,7 @@
 #include <e_float/e_float_complex.h>
 #include <e_float/e_float_functions.h>
 
-#include "test_case_base.h"
+#include <../test/test_case_base.h>
 
 namespace test
 {

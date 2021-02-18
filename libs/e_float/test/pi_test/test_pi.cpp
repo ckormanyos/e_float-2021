@@ -15,8 +15,8 @@
 
 #include <e_float/e_float.h>
 
-#include "pi_algos.h"
-#include "test_pi.h"
+#include <../test/pi_test/pi_algos.h>
+#include <../test/pi_test/test_pi.h>
 
 bool test::pi::test_pi()
 {

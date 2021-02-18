@@ -14,9 +14,9 @@
   #include <sstream>
   #include <string>
 
-  #include "util_function_operation.h"
-  #include "util_lexical_cast.h"
-  #include "util_numeric_cast.h"
+  #include <utility/util_function_operation.h>
+  #include <utility/util_lexical_cast.h>
+  #include <utility/util_numeric_cast.h>
 
   namespace Util
   {

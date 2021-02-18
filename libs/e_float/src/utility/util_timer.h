@@ -11,7 +11,7 @@
 #ifndef UTIL_TIMER_2010_01_26_H_
   #define UTIL_TIMER_2010_01_26_H_
 
-  #include "util_noncopyable.h"
+  #include <utility/util_noncopyable.h>
 
   namespace Util
   {

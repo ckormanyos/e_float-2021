@@ -13,8 +13,8 @@
 
 #include <e_float/e_float.h>
 
-#include "util_digit_scale.h"
-#include "util_interpolate.h"
+#include <utility/util_digit_scale.h>
+#include <utility/util_interpolate.h>
 
 const double& Util::DigitScale()
 {

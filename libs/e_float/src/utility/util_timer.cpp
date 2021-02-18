@@ -9,7 +9,8 @@
 // in ACM TOMS, {VOL 37, ISSUE 4, (February 2011)} (C) ACM, 2011. http://doi.acm.org/10.1145/1916461.1916469
 
 #include <ctime>
-#include "util_timer.h"
+
+#include <utility/util_timer.h>
 
 double Util::timer::get_sec()
 {

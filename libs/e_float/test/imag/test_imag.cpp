@@ -10,7 +10,7 @@
 
 #include <iostream>
 
-#include "test_imag.h"
+#include <../test/imag/test_imag.h>
 
 namespace test
 {

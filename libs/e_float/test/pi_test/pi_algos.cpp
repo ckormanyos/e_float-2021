@@ -17,8 +17,8 @@
 #include <string>
 
 #include <e_float/e_float_functions.h>
+#include <../test/pi_test/pi_algos.h>
 #include <utility/util_timer.h>
-#include "pi_algos.h"
 
 // *****************************************************************************
 // Function    : const e_float& calculate_pi(const bool b_trace)

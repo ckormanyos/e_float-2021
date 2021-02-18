@@ -14,7 +14,7 @@
   #include <algorithm>
   #include <vector>
 
-  #include "util_point.h"
+  #include <utility/util_point.h>
 
   namespace Util
   {
