@@ -1,11 +1,11 @@
-## e_float-2021
+# e_float-2021
 Multiple precision floating point (legacy project) derived work from e_float
 
 This work is based on an earlier work:\
 C.M. Kormanyos, _Algorithm 910: A Portable C++ Multiple-Precision System for Special-Function Calculations_,\
 in [ACM TOMS (37) 4, February 2011](https://doi.acm.org/10.1145/1916461.1916469)
 
-## Description
+# Description
 
 e_float-2021 implements multiple-precision floating-point
 data types in modern C++11. Three versions are supported
@@ -32,9 +32,9 @@ of the original e_float paper.
 The _gmp_ and _mpfr_ versions support high digit counts natively
 from their wrapped libraries.
 
-## Building and testing
+# Building and testing
 
-# Build in Linux or MacOS with bash and GNUmake.
+## Build in Linux or MacOS with bash and GNUmake.
   - Open a bash shell in a terminal in the directory  [./libs/e_float/build](./libs/e_float/build).
   - The bash shell should be located directly in [./libs/e_float/build](./libs/e_float/build) for the paths to work out (be found by the upcoming build).
   - Identify the [Makefile](./libs/e_float/build/Makefile).
@@ -44,7 +44,7 @@ from their wrapped libraries.
 make MP=efx TYP_TOOLSET=g++ TYP_STD=c++11 TYP_TEST=E_FLOAT_TEST_REAL_IMAG_TESTS rebuild
 ```
 
-# Build in Microsoft Visual Studio
+## Build in Microsoft Visual Studio
   - Identify the `e_float` sln-project file in the directory [./libs/e_float/build](./libs/e_float/build).
   - Rebuild any of the supported configurations such as `release-efx`, as shown in the [build image](./images/e_float_in_vs.jpg).
 
@@ -54,9 +54,9 @@ These can be activated with preprocessor definitions.
   - `E_FLOAT_TEST_PI_ALGOS_TESTS` exercises four different variations of iterative, sub-quadratically converging million digit pi calculations.
 
 
-## History
+# History
 
-The e_float project influenced the concept and creation
+The original `e_float` project influenced the concept and creation
 of [Boost.Multiprecision](https://www.boost.org/doc/libs/1_75_0/libs/multiprecision/doc/html/index.html).
 After the publication of the e_float paper in TOMS,
 the code was essentially evaluated as to how it
@@ -76,3 +76,8 @@ Boost.Multiprecision. The algorithms and implementation methods
 in e_float-2021 may also provide guidance and practical implementation advice
 regarding how to deal with big floating-point implementations
 within the context of modern C++.
+
+The `e_float` project itself is derived from an earlier, unpublished
+work. This work, entitled `mp_cpp` was created in the 1990s and was,
+at the time of its creation, quite novel in its approach to dealing
+with bitg floating-point numbers within the context of the C++ language.
