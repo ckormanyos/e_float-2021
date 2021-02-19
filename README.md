@@ -5,7 +5,7 @@ This work is based on an earlier work:\
 C.M. Kormanyos, _Algorithm 910: A Portable C++ Multiple-Precision System for Special-Function Calculations_,\
 in [ACM TOMS (37) 4, February 2011](https://doi.acm.org/10.1145/1916461.1916469)
 
-# Description
+## Description
 
 e_float-2021 implements multiple-precision floating-point
 data types in modern C++11. Three versions are supported
