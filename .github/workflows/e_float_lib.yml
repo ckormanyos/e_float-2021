@@ -16,7 +16,6 @@ jobs:
       fail-fast: false
       matrix:
         mptype: [ efx, gmp, mpfr ]
-    if: "!contains(github.event.commits[0].message, '[CI SKIP]')"
     steps:
       - uses: actions/checkout@v2
         with:

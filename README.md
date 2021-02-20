@@ -17,11 +17,12 @@ and [MPFR](https://www.mpfr.org)
 called `gmp::e_float` and `mpfr::e_float`, respectively.
 
 e_float-2021 is derived from the original work mentioned above.
-In this derived work, the code has been updated to conform with
-C++11, 14, 17, 20. The code has been modernized and a dedicated
-effort has been made to keep it
-compatible with C++ language evolution.
+The e_float-2021 code has been updated to conform with
+C++11, 14, 17, 20. It has been both maintained and modernized,
+and a dedicated effort has been made retain
+compatibility with C++ language evolution.
 Certain special function tests have been removed
+from the larger scope of the original published work,
 retaining just a core of the most essential key functions
 and tests in e_float-2021.
 
@@ -61,17 +62,20 @@ or on the command line of the compiler call.
 
 # History
 
-The original `e_float` project influenced the concept and creation
-of [Boost.Multiprecision](https://www.boost.org/doc/libs/1_75_0/libs/multiprecision/doc/html/index.html).
-After the publication of the e_float paper in TOMS,
+The original `e_float` project influenced the fundamental
+concept and creation of
+[Boost.Multiprecision](https://www.boost.org/doc/libs/1_75_0/libs/multiprecision/doc/html/index.html).
+After the publication of the e_float paper in
+[ACM TOMS (37) 4, February 2011](https://doi.acm.org/10.1145/1916461.1916469),
 the code was essentially evaluated as to how it
 wrapped and implemented certain big number backends.
-This was adopted for the partial early design of `cpp_dec_float`
+This idea was adopted for the partial early design of `cpp_dec_float`
 in Boost.Multiprecision. As Boost.Multiprecision progressed,
 the original rudimentary frontend/backend concept
 from e_float was entirely re-implemented and vastly extended
-for Boost's header-only template design having its own
-novel, flexible and much stronger frontend/backend concept.
+and evolved into today's
+Boost header-only template design having its own
+novel, much more flexible, strong and robust frontend/backend concept.
 
 ## Legacy
 
@@ -84,6 +88,6 @@ within the context of modern C++.
 
 The `e_float` project itself is derived from an earlier, unpublished
 work. This work, entitled `mp_cpp` was created in the 1990s and was,
-at the time of its creation, quite novel in its approach to dealing
+at the time of its creation, quite cutting-edge in its approach to dealing
 with big floating-point numbers within the context of the C++ language.
 
