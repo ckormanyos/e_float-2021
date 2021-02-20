@@ -48,11 +48,14 @@ make MP=efx TYP_TOOLSET=g++ TYP_STD=c++11 TYP_TEST=E_FLOAT_TEST_REAL_IMAG_TESTS 
   - Identify the `e_float` sln-project file in the directory [./libs/e_float/build](./libs/e_float/build).
   - Rebuild any of the supported configurations such as `release-efx`, as shown in the [build image](./images/e_float_in_vs.jpg).
 
+## Tests
+
 At the moment, two test suites are available in the project.
 These can be activated with preprocessor definitions.
   - `E_FLOAT_TEST_REAL_IMAG_TESTS` performs low-digit (i.e., around 100-300 decimal digits) tests of algebraic operations, numeric limits, and real-valued and complex-valued elementary transcendental functions.
   - `E_FLOAT_TEST_PI_ALGOS_TESTS` exercises four different variations of iterative, sub-quadratically converging million digit pi calculations.
 
+These compiler switches can be manualls set [in the file `e_float_base.h` here](https://github.com/ckormanyos/e_float-2021/blob/08a19d7e052200e7a41b65b532f6720aa1f38a49/libs/e_float/src/e_float/e_float_base.h#L21), or on the command line of the compiler call.
 
 # History
 
