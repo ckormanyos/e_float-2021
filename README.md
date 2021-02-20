@@ -55,7 +55,9 @@ These can be activated with preprocessor definitions.
   - `E_FLOAT_TEST_REAL_IMAG_TESTS` performs low-digit (i.e., around 100-300 decimal digits) tests of algebraic operations, numeric limits, and real-valued and complex-valued elementary transcendental functions.
   - `E_FLOAT_TEST_PI_ALGOS_TESTS` exercises four different variations of iterative, sub-quadratically converging million digit pi calculations.
 
-These compiler switches can be manualls set [in the file `e_float_base.h` here](https://github.com/ckormanyos/e_float-2021/blob/08a19d7e052200e7a41b65b532f6720aa1f38a49/libs/e_float/src/e_float/e_float_base.h#L21), or on the command line of the compiler call.
+These compiler switches can be manually set near the top of the file
+[`e_float_base.h` here](https://github.com/ckormanyos/e_float-2021/blob/08a19d7e052200e7a41b65b532f6720aa1f38a49/libs/e_float/src/e_float/e_float_base.h#L21),
+or on the command line of the compiler call.
 
 # History
 
@@ -83,4 +85,5 @@ within the context of modern C++.
 The `e_float` project itself is derived from an earlier, unpublished
 work. This work, entitled `mp_cpp` was created in the 1990s and was,
 at the time of its creation, quite novel in its approach to dealing
-with bitg floating-point numbers within the context of the C++ language.
+with big floating-point numbers within the context of the C++ language.
+
