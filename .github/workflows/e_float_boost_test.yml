@@ -1,6 +1,4 @@
 ##############################################################################
-#  Copyright 2020 Evan Miller
-#  Copyright 2020 Matt Borland
 #  Copyright Christopher Kormanyos 2021.
 #  Distributed under the Boost Software License,
 #  Version 1.0. (See accompanying file LICENSE_1_0.txt
@@ -21,7 +19,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: '0'
-      - name: clone--bootstrap-headers-submods-boost-develop
+      - name: clone-submods-bootstrap-headers-boost-develop
         run: |
           git clone -b develop --depth 1 https://github.com/boostorg/boost.git ../boost-root
           cd ../boost-root
