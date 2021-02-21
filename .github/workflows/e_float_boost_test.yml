@@ -1,8 +1,10 @@
-# Copyright 2020 Evan Miller
-# Copyright 2020 Matt Borland
-# Copyright 2021 Christopher Kormanyos
-# Distributed under the Boost Software License, Version 1.0.
-# (See accompanying file LICENSE_1_0.txt or copy at http://boost.org/LICENSE_1_0.txt)
+##############################################################################
+#  Copyright 2020 Evan Miller
+#  Copyright 2020 Matt Borland
+#  Copyright Christopher Kormanyos 2021.
+#  Distributed under the Boost Software License,
+#  Version 1.0. (See accompanying file LICENSE_1_0.txt
+#  or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 name: e_float_boost_test
 on: [push]
@@ -12,8 +14,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        compiler: [ g++ ]
-        standard: [ gnu++11, gnu++14 ]
+        compiler: [ g++, clang++ ]
+        standard: [ gnu++11, gnu++14, gnu++17, gnu++2a ]
         suite: [ E_FLOAT_TYPE_EFX ]
     steps:
       - uses: actions/checkout@v2
