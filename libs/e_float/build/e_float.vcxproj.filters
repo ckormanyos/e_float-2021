@@ -104,6 +104,21 @@
     <Filter Include="_doc">
       <UniqueIdentifier>{77b8100e-df29-419b-a0e5-e64a2bd5fd10}</UniqueIdentifier>
     </Filter>
+    <Filter Include="libs\math">
+      <UniqueIdentifier>{0dd5e82e-7d6c-488b-a04c-30f1c684e07c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\math\include">
+      <UniqueIdentifier>{3df9ef89-83c7-48e0-9aaa-f9edd8343427}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\math\include\boost">
+      <UniqueIdentifier>{82e964d4-80fe-4015-aa1d-d7bcfd6d9e7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\math\include\boost\math">
+      <UniqueIdentifier>{1dbd5816-342b-405c-9fde-9cd7080394f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\math\include\boost\math\bindings">
+      <UniqueIdentifier>{de5422bb-fd83-4ae3-9a72-5429a23f7000}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\e_float\e_float.cpp">
@@ -554,6 +569,9 @@
     </ClInclude>
     <ClInclude Include="..\src\e_float\mpfr\e_float_mpfr_protos.h">
       <Filter>libs\e_float\src\e_float\mpfr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\math\include\boost\math\bindings\e_float.hpp">
+      <Filter>libs\math\include\boost\math\bindings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

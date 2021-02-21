@@ -679,6 +679,7 @@
     <ClCompile Include="..\test\real\test_real.cpp" />
     <ClCompile Include="..\test\test.cpp" />
     <ClCompile Include="..\test\test_case_base.cpp" />
+    <ClInclude Include="..\..\math\include\boost\math\bindings\e_float.hpp" />
     <ClInclude Include="..\example\examples.h" />
     <ClInclude Include="..\src\e_float\detail\e_float_detail_dynamic_array.h" />
     <ClInclude Include="..\src\e_float\detail\e_float_detail_fft.h" />
