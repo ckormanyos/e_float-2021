@@ -14,8 +14,7 @@
 
 namespace local
 {
-  using big_float_type = boost::multiprecision::number<boost::math::ef::e_float,
-                                                       boost::multiprecision::et_off>;
+  using big_float_type = boost::multiprecision::number<boost::math::ef::e_float, boost::multiprecision::et_off>;
 
   template<typename FloatingPointType>
   FloatingPointType hypergeometric_2f1(const FloatingPointType& a,
@@ -95,10 +94,10 @@ namespace local
     const FloatingPointType one_minus_mu = 1U - u;
 
     const FloatingPointType tgamma_term    = boost::math::tgamma(one_minus_mu);
-    const FloatingPointType h2f1_reg_term  = hypergeometric_2f1_regularized(-v,
-                                                                            1U + v,
+    const FloatingPointType h2f1_reg_term  = hypergeometric_2f1_regularized(FloatingPointType(-v),
+                                                                            FloatingPointType(1U + v),
                                                                             one_minus_mu,
-                                                                            one_minus_x / 2U);
+                                                                            FloatingPointType(one_minus_x / 2U));
 
     return (pow(1U + x, u_half) * h2f1_reg_term) / pow(one_minus_x, u_half);
   }
@@ -128,11 +127,11 @@ namespace local
 
     const FloatingPointType v_plus_one =  v + 1U;
 
-    const FloatingPointType h2f1_1 = hypergeometric_2f1_regularized(-v, v_plus_one, 1U - u, one_minus_x_over_two);
-    const FloatingPointType h2f1_2 = hypergeometric_2f1_regularized(-v, v_plus_one, 1U + u, one_minus_x_over_two);
+    const FloatingPointType h2f1_1 = hypergeometric_2f1_regularized(FloatingPointType(-v), v_plus_one, FloatingPointType(1U - u), one_minus_x_over_two);
+    const FloatingPointType h2f1_2 = hypergeometric_2f1_regularized(FloatingPointType(-v), v_plus_one, FloatingPointType(1U + u), one_minus_x_over_two);
 
     const FloatingPointType term1 = (h2f1_1 * one_plus_x_over_one_minus_x_pow_u_half) * cos_u_pi;
-    const FloatingPointType term2 = (h2f1_2 / one_plus_x_over_one_minus_x_pow_u_half) * pochhammer(v_plus_one - u, u * 2U);
+    const FloatingPointType term2 = (h2f1_2 / one_plus_x_over_one_minus_x_pow_u_half) * pochhammer(FloatingPointType(v_plus_one - u), FloatingPointType(u * 2U));
 
     return (boost::math::constants::half_pi<FloatingPointType>() * (term1 - term2)) / sin_u_pi;
   }
@@ -163,12 +162,12 @@ bool test_legendre()
   // Compute some values of the Legendre function of the second kind
   // on the real axis within the unit circle.
 
-  const local::big_float_type lpvu = local::legendre_pvu(local::big_float_type(1U) / 3,
-                                                         local::big_float_type(1U) / 7,
+  const local::big_float_type lpvu = local::legendre_pvu(local::big_float_type(local::big_float_type(1U) / 3),
+                                                         local::big_float_type(local::big_float_type(1U) / 7),
                                                          x);
 
-  const local::big_float_type lqvu = local::legendre_qvu(local::big_float_type(1U) / 3,
-                                                         local::big_float_type(1U) / 7,
+  const local::big_float_type lqvu = local::legendre_qvu(local::big_float_type(local::big_float_type(1U) / 3),
+                                                         local::big_float_type(local::big_float_type(1U) / 7),
                                                          x);
 
   // N[LegendreP[1/3, 1/7, 2, 789/1000], 104]
