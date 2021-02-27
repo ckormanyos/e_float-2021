@@ -171,8 +171,11 @@ namespace test
         my_test_result &= (+ef::four() == +4.0L);
         my_test_result &= (-ef::four() == -4.0L);
 
-        my_test_result &= (e_float(11.1f) == e_float("11.1000003814697265625"));
+        my_test_result &= (e_float(11.1F) == e_float("11.1000003814697265625"));
         my_test_result &= (e_float(11.1)  == e_float("11.0999999999999996447286321199499070644378662109375"));
+
+        my_test_result &= (e_float(987.875F) == e_float(987875UL) / 1000U);
+        my_test_result &= (e_float(  0.125F) == e_float(   125UL) / 1000U);
 
         my_test_result &= (+ef::pi() > +3.14f);
         my_test_result &= (-ef::pi() < -3.14f);
