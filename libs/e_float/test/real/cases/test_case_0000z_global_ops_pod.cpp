@@ -24,24 +24,31 @@ namespace local
            typename ControlType>
   bool check_minimax_of_type()
   {
-    const e_float the_value_min((std::numeric_limits<CheckType>::min)());
-    const e_float the_value_max((std::numeric_limits<CheckType>::max)());
+    std::string str_max;
+    std::string str_min;
 
-    std::stringstream ss;
+    {
+      std::stringstream strm;
 
-    ss << static_cast<ControlType>((std::numeric_limits<CheckType>::min)());
+      strm << static_cast<ControlType>((std::numeric_limits<CheckType>::max)());
 
-    const std::string str_min(ss.str());
+      str_max = strm.str();
+    }
 
-    ss.clear();
-    ss.str("");
+    {
+      std::stringstream strm;
 
-    ss << static_cast<ControlType>((std::numeric_limits<CheckType>::max)());
+      strm << static_cast<ControlType>((std::numeric_limits<CheckType>::min)());
 
-    const std::string str_max(ss.str());
+      str_min = strm.str();
+    }
 
-    return (   (the_value_min == e_float(str_min))
-            && (the_value_max == e_float(str_max)));
+    const bool result_max_is_ok = (e_float((std::numeric_limits<CheckType>::max)()) == e_float(str_max));
+    const bool result_min_is_ok = (e_float((std::numeric_limits<CheckType>::min)()) == e_float(str_min));
+
+    const bool result_is_ok = (result_max_is_ok && result_min_is_ok);
+
+    return result_is_ok;
   }
 }
 
