@@ -5,7 +5,10 @@
 #  or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 name: e_float
-on: [push]
+on:
+  push:
+  schedule:
+    - cron: '0 4 * * *' # run at 4 AM UTC
 jobs:
   msvc-release:
     runs-on: windows-latest
@@ -207,3 +210,235 @@ jobs:
           ls -la ./unix-efx/e_float.exe
           ./unix-efx/e_float.exe
         working-directory: ./libs/e_float/build/
+  gcc-clang-native-efx-boost:
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler: [ g++, clang++ ]
+        standard: [ c++11, c++14, c++17, c++2a ]
+        suite: [ E_FLOAT_TYPE_EFX ]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: clone-submods-bootstrap-headers-boost-develop
+        run: |
+          git clone -b develop --depth 1 https://github.com/boostorg/boost.git ../boost-root
+          cd ../boost-root
+          git submodule update --init tools
+          git submodule update --init libs/algorithm
+          git submodule update --init libs/align
+          git submodule update --init libs/any
+          git submodule update --init libs/assert
+          git submodule update --init libs/array
+          git submodule update --init libs/atomic
+          git submodule update --init libs/bind
+          git submodule update --init libs/chrono
+          git submodule update --init libs/circular_buffer
+          git submodule update --init libs/compute
+          git submodule update --init libs/concept_check
+          git submodule update --init libs/config
+          git submodule update --init libs/container
+          git submodule update --init libs/container_hash
+          git submodule update --init libs/conversion
+          git submodule update --init libs/core
+          git submodule update --init libs/date_time
+          git submodule update --init libs/detail
+          git submodule update --init libs/dynamic_bitset
+          git submodule update --init libs/endian
+          git submodule update --init libs/exception
+          git submodule update --init libs/filesystem
+          git submodule update --init libs/tokenizer
+          git submodule update --init libs/foreach
+          git submodule update --init libs/format
+          git submodule update --init libs/function
+          git submodule update --init libs/function_types
+          git submodule update --init libs/fusion
+          git submodule update --init libs/intrusive
+          git submodule update --init libs/lexical_cast
+          git submodule update --init libs/logic
+          git submodule update --init libs/math
+          git submodule update --init libs/multi_index
+          git submodule update --init libs/multiprecision
+          git submodule update --init libs/hana
+          git submodule update --init libs/headers
+          git submodule update --init libs/integer
+          git submodule update --init libs/io
+          git submodule update --init libs/iterator
+          git submodule update --init libs/lambda
+          git submodule update --init libs/move
+          git submodule update --init libs/mp11
+          git submodule update --init libs/mpl
+          git submodule update --init libs/numeric/conversion
+          git submodule update --init libs/numeric/interval
+          git submodule update --init libs/optional
+          git submodule update --init libs/phoenix
+          git submodule update --init libs/pool
+          git submodule update --init libs/predef
+          git submodule update --init libs/preprocessor
+          git submodule update --init libs/property_tree
+          git submodule update --init libs/proto
+          git submodule update --init libs/random
+          git submodule update --init libs/range
+          git submodule update --init libs/ratio
+          git submodule update --init libs/rational
+          git submodule update --init libs/regex
+          git submodule update --init libs/serialization
+          git submodule update --init libs/smart_ptr
+          git submodule update --init libs/spirit
+          git submodule update --init libs/static_assert
+          git submodule update --init libs/system
+          git submodule update --init libs/throw_exception
+          git submodule update --init libs/type_traits
+          git submodule update --init libs/tuple
+          git submodule update --init libs/test
+          git submodule update --init libs/thread
+          git submodule update --init libs/tti
+          git submodule update --init libs/type_index
+          git submodule update --init libs/typeof
+          git submodule update --init libs/unordered
+          git submodule update --init libs/utility
+          git submodule update --init libs/uuid
+          git submodule update --init libs/variant
+          git submodule update --init libs/winapi
+          ./bootstrap.sh
+          ./b2 headers
+      - name: gcc-clang-native-efx-boost
+        run: |
+          echo compile and link to e_float_boost_test.exe
+          ${{ matrix.compiler }} -Wall -Wextra -m64 -O3 -std=${{ matrix.standard }} -D${{ matrix.suite }} -I../../../libs/e_float/src -I../../../libs/math/include -I../../../../boost-root ../src/e_float/efx/e_float_efx.cpp ../src/e_float/e_float.cpp ../src/e_float/e_float_base.cpp ../src/functions/constants/constants.cpp ../src/functions/elementary/elementary_complex.cpp ../src/functions/elementary/elementary_hyper_g.cpp ../src/functions/elementary/elementary_math.cpp ../src/functions/elementary/elementary_trans.cpp ../src/functions/elementary/elementary_trig.cpp ../test_boost/test_boost.cpp ../test_boost/test_boost_real_concept.cpp ../test_boost/test_boost_sf.cpp -o e_float_boost_test.exe
+          echo ls -la e_float_boost_test.exe
+          ls -la e_float_boost_test.exe
+          echo run e_float_boost_test.exe
+          ./e_float_boost_test.exe
+        working-directory: ./libs/e_float/build
+  apple-gcc-clang-native-efx-boost:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler: [ g++, clang++ ]
+        standard: [ c++11, c++14, c++17, c++2a ]
+        suite: [ E_FLOAT_TYPE_EFX ]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: clone-submods-bootstrap-headers-boost-develop
+        run: |
+          git clone -b develop --depth 1 https://github.com/boostorg/boost.git ../boost-root
+          cd ../boost-root
+          git submodule update --init tools
+          git submodule update --init libs/algorithm
+          git submodule update --init libs/align
+          git submodule update --init libs/any
+          git submodule update --init libs/assert
+          git submodule update --init libs/array
+          git submodule update --init libs/atomic
+          git submodule update --init libs/bind
+          git submodule update --init libs/chrono
+          git submodule update --init libs/circular_buffer
+          git submodule update --init libs/compute
+          git submodule update --init libs/concept_check
+          git submodule update --init libs/config
+          git submodule update --init libs/container
+          git submodule update --init libs/container_hash
+          git submodule update --init libs/conversion
+          git submodule update --init libs/core
+          git submodule update --init libs/date_time
+          git submodule update --init libs/detail
+          git submodule update --init libs/dynamic_bitset
+          git submodule update --init libs/endian
+          git submodule update --init libs/exception
+          git submodule update --init libs/filesystem
+          git submodule update --init libs/tokenizer
+          git submodule update --init libs/foreach
+          git submodule update --init libs/format
+          git submodule update --init libs/function
+          git submodule update --init libs/function_types
+          git submodule update --init libs/fusion
+          git submodule update --init libs/intrusive
+          git submodule update --init libs/lexical_cast
+          git submodule update --init libs/logic
+          git submodule update --init libs/math
+          git submodule update --init libs/multi_index
+          git submodule update --init libs/multiprecision
+          git submodule update --init libs/hana
+          git submodule update --init libs/headers
+          git submodule update --init libs/integer
+          git submodule update --init libs/io
+          git submodule update --init libs/iterator
+          git submodule update --init libs/lambda
+          git submodule update --init libs/move
+          git submodule update --init libs/mp11
+          git submodule update --init libs/mpl
+          git submodule update --init libs/numeric/conversion
+          git submodule update --init libs/numeric/interval
+          git submodule update --init libs/optional
+          git submodule update --init libs/phoenix
+          git submodule update --init libs/pool
+          git submodule update --init libs/predef
+          git submodule update --init libs/preprocessor
+          git submodule update --init libs/property_tree
+          git submodule update --init libs/proto
+          git submodule update --init libs/random
+          git submodule update --init libs/range
+          git submodule update --init libs/ratio
+          git submodule update --init libs/rational
+          git submodule update --init libs/regex
+          git submodule update --init libs/serialization
+          git submodule update --init libs/smart_ptr
+          git submodule update --init libs/spirit
+          git submodule update --init libs/static_assert
+          git submodule update --init libs/system
+          git submodule update --init libs/throw_exception
+          git submodule update --init libs/type_traits
+          git submodule update --init libs/tuple
+          git submodule update --init libs/test
+          git submodule update --init libs/thread
+          git submodule update --init libs/tti
+          git submodule update --init libs/type_index
+          git submodule update --init libs/typeof
+          git submodule update --init libs/unordered
+          git submodule update --init libs/utility
+          git submodule update --init libs/uuid
+          git submodule update --init libs/variant
+          git submodule update --init libs/winapi
+          ./bootstrap.sh
+          ./b2 headers
+      - name: apple-gcc-clang-native-efx-boost
+        run: |
+          echo compile and link to e_float_boost_test.exe
+          ${{ matrix.compiler }} -Wall -Wextra -m64 -O3 -std=${{ matrix.standard }} -D${{ matrix.suite }} -I../../../libs/e_float/src -I../../../libs/math/include -I../../../../boost-root ../src/e_float/efx/e_float_efx.cpp ../src/e_float/e_float.cpp ../src/e_float/e_float_base.cpp ../src/functions/constants/constants.cpp ../src/functions/elementary/elementary_complex.cpp ../src/functions/elementary/elementary_hyper_g.cpp ../src/functions/elementary/elementary_math.cpp ../src/functions/elementary/elementary_trans.cpp ../src/functions/elementary/elementary_trig.cpp ../test_boost/test_boost.cpp ../test_boost/test_boost_real_concept.cpp ../test_boost/test_boost_sf.cpp -o e_float_boost_test.exe
+          echo ls -la e_float_boost_test.exe
+          ls -la e_float_boost_test.exe
+          echo run e_float_boost_test.exe
+          ./e_float_boost_test.exe
+        working-directory: ./libs/e_float/build
+  gcc-native-lib:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash
+    strategy:
+      fail-fast: false
+      matrix:
+        mptype: [ efx, gmp, mpfr ]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Install packages
+        run: sudo apt install libgmp-dev libmpfr-dev
+      - name: gcc-native-lib
+        run: |
+          make MP=${{ matrix.mptype }} TYP_TOOLSET=g++ TYP_STD=c++11 TYP_TEST=E_FLOAT_TEST_REAL_IMAG_TESTS rebuild
+          echo run ./unix-${{ matrix.mptype }}/e_float.exe
+          ./unix-${{ matrix.mptype }}/e_float.exe
+          echo create archive ./unix-${{ matrix.mptype }}/libe_float.a
+          cd ./unix-${{ matrix.mptype }}/obj
+          ar cr ../libe_float.a e_float_${{ matrix.mptype }}.o e_float.o e_float_base.o constants.o elementary_complex.o elementary_hyper_g.o elementary_math.o elementary_trans.o elementary_trig.o
+          cd ../../
+          ls -la ./unix-${{ matrix.mptype }}/e_float.exe ./unix-${{ matrix.mptype }}/libe_float.a
+        working-directory: ./libs/e_float/build

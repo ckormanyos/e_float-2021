@@ -9,8 +9,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{95B8BB64-4ABE-4783-B287-5CD4A5920D73}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\.github\workflows\e_float.yml = ..\..\..\.github\workflows\e_float.yml
-		..\..\..\.github\workflows\e_float_boost_test.yml = ..\..\..\.github\workflows\e_float_boost_test.yml
-		..\..\..\.github\workflows\e_float_lib.yml = ..\..\..\.github\workflows\e_float_lib.yml
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "e_float_lib", "e_float_lib.vcxproj", "{9907DA49-1E66-408F-B2FF-93AA93A0774A}"
