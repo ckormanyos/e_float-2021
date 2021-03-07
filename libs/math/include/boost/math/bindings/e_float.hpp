@@ -33,9 +33,19 @@
   // Define the number category as a floating-point kind
   // for the e_float. This is needed for properly
   // interacting as a backend with boost::muliprecision.
+  #if (BOOST_VERSION <= 107200)
+  template<>
+  struct boost::multiprecision::number_category<boost::math::ef::e_float>
+    : public boost::integral_constant<int, boost::multiprecision::number_kind_floating_point> { };
+  #elif (BOOST_VERSION <= 107500)
+  template<>
+  struct boost::multiprecision::number_category<boost::math::ef::e_float>
+    : public boost::integral_constant<int, boost::multiprecision::number_kind_floating_point> { };
+  #else
   template<>
   struct boost::multiprecision::number_category<boost::math::ef::e_float>
     : public std::integral_constant<int, boost::multiprecision::number_kind_floating_point> { };
+  #endif
 
   namespace boost { namespace math { namespace ef {
 
@@ -43,9 +53,15 @@
   class e_float
   {
   public:
+    #if (BOOST_VERSION <= 107500)
+    using signed_types   = mpl::list<std::int64_t>;
+    using unsigned_types = mpl::list<std::uint64_t>;
+    using float_types    = mpl::list<long double>;
+    #else
     using   signed_types = std::tuple<  signed char,   signed short,   signed int,   signed long,   signed long long, std::intmax_t>;
     using unsigned_types = std::tuple<unsigned char, unsigned short, unsigned int, unsigned long, unsigned long long, std::uintmax_t>;
     using float_types    = std::tuple<float, double, long double>;
+    #endif
     using exponent_type  = std::int64_t;
 
     e_float() : m_value() { }
@@ -538,9 +554,15 @@
 
     using local_digits_2 = digits2<((::e_float::ef_digits10 + 1LL) * 1000LL) / 301LL>;
 
+    #if (BOOST_VERSION <= 107500)
+    using type = typename mpl::if_c       <((local_digits_2::value <= precision_type::value) || (precision_type::value <= 0)),
+                                           local_digits_2,
+                                           precision_type>::type;
+    #else
     using type = typename std::conditional<((local_digits_2::value <= precision_type::value) || (precision_type::value <= 0)),
                                            local_digits_2,
                                            precision_type>::type;
+    #endif
   };
 
   } } } // namespaces boost::math::policies
