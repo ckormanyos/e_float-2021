@@ -23,5 +23,5 @@ int main()
 
   const bool result_is_ok = (test_boost_sf_is_ok && test_boost_rc_is_ok);
 
-  return result_is_ok ? 0 : -1;
+  return (result_is_ok ? 0 : -1);
 }

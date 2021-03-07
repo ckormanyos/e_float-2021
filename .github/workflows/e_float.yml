@@ -26,19 +26,23 @@ jobs:
           MSBuild -m e_float.sln -p:Configuration=release-${{ matrix.mptype }} -p:Platform=x64 /t:Rebuild
           dir %cd%\x64-release-${{ matrix.mptype }}\e_float.exe
           %cd%\x64-release-${{ matrix.mptype }}\e_float.exe
-  msvc-release-efx-boost-test:
+  msvc-release-boost-test:
     runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        mptype: [ efx, gmp ]
     steps:
       - uses: actions/checkout@v1
       - uses: ilammy/msvc-dev-cmd@v1
-      - name: msvc-release-efx-boost-test
+      - name: msvc-release-boost-test
         shell: cmd
         working-directory: ./libs/e_float/build/
         run: |
           set INCLUDE=%cd%\..\..\..\libs\math\include;%cd%\..\..\..\libs\e_float\src;%BOOST_ROOT_1_72_0%\include\boost-1_72;%INCLUDE%
-          MSBuild -m e_float.sln -p:useenv=true -p:Configuration=release-efx-boost-test -p:Platform=x64 /t:Rebuild
-          dir %cd%\x64-release-efx-boost-test\e_float_boost_test.exe
-          %cd%\x64-release-efx-boost-test\e_float_boost_test.exe
+          MSBuild -m e_float.sln -p:useenv=true -p:Configuration=release-${{ matrix.mptype }}-boost-test -p:Platform=x64 /t:Rebuild
+          dir %cd%\x64-release-${{ matrix.mptype }}-boost-test\e_float_boost_test.exe
+          %cd%\x64-release-${{ matrix.mptype }}-boost-test\e_float_boost_test.exe
   gcc-clang-native-efx:
     runs-on: ubuntu-20.04
     defaults:

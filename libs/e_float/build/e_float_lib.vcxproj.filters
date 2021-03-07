@@ -25,6 +25,9 @@
     <Filter Include="libs\e_float\src\functions\elementary">
       <UniqueIdentifier>{1433d3f3-0dce-49ba-87f5-9c3d6485d929}</UniqueIdentifier>
     </Filter>
+    <Filter Include="libs\e_float\src\e_float\gmp">
+      <UniqueIdentifier>{652dda4f-8d48-4a9c-8c8c-33e9f03b83e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\e_float\efx\e_float_efx.cpp">
@@ -54,6 +57,9 @@
     <ClCompile Include="..\src\functions\elementary\elementary_complex.cpp">
       <Filter>libs\e_float\src\functions\elementary</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\e_float\gmp\e_float_gmp.cpp">
+      <Filter>libs\e_float\src\e_float\gmp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\e_float\efx\e_float_efx.h">
@@ -73,6 +79,12 @@
     </ClInclude>
     <ClInclude Include="..\src\e_float\e_float_functions_complex.h">
       <Filter>libs\e_float\src\e_float</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\gmp\e_float_gmp.h">
+      <Filter>libs\e_float\src\e_float\gmp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\e_float\gmp\e_float_gmp_protos.h">
+      <Filter>libs\e_float\src\e_float\gmp</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

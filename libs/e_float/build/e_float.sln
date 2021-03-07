@@ -29,6 +29,8 @@ Global
 		release-efx-boost-test|x64 = release-efx-boost-test|x64
 		release-efx-lib|x64 = release-efx-lib|x64
 		release-gmp|x64 = release-gmp|x64
+		release-gmp-boost-test|x64 = release-gmp-boost-test|x64
+		release-gmp-lib|x64 = release-gmp-lib|x64
 		release-mpfr|x64 = release-mpfr|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
@@ -42,10 +44,12 @@ Global
 		{79DD124E-E120-40F3-B2F1-127419BDC295}.debug-mpfr|x64.Build.0 = debug-mpfr|x64
 		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-efx|x64.ActiveCfg = release-efx|x64
 		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-efx|x64.Build.0 = release-efx|x64
-		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-efx-boost-test|x64.ActiveCfg = release-gmp|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-efx-boost-test|x64.ActiveCfg = release-efx|x64
 		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-efx-lib|x64.ActiveCfg = release-mpfr|x64
 		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-gmp|x64.ActiveCfg = release-gmp|x64
 		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-gmp|x64.Build.0 = release-gmp|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-gmp-boost-test|x64.ActiveCfg = release-gmp|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-gmp-lib|x64.ActiveCfg = release-gmp|x64
 		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-mpfr|x64.ActiveCfg = release-mpfr|x64
 		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-mpfr|x64.Build.0 = release-mpfr|x64
 		{9907DA49-1E66-408F-B2FF-93AA93A0774A}.debug-efx|x64.ActiveCfg = debug-efx-lib|x64
@@ -61,6 +65,10 @@ Global
 		{9907DA49-1E66-408F-B2FF-93AA93A0774A}.release-efx-lib|x64.ActiveCfg = release-efx-lib|x64
 		{9907DA49-1E66-408F-B2FF-93AA93A0774A}.release-efx-lib|x64.Build.0 = release-efx-lib|x64
 		{9907DA49-1E66-408F-B2FF-93AA93A0774A}.release-gmp|x64.ActiveCfg = release-efx-lib|x64
+		{9907DA49-1E66-408F-B2FF-93AA93A0774A}.release-gmp-boost-test|x64.ActiveCfg = release-gmp-lib|x64
+		{9907DA49-1E66-408F-B2FF-93AA93A0774A}.release-gmp-boost-test|x64.Build.0 = release-gmp-lib|x64
+		{9907DA49-1E66-408F-B2FF-93AA93A0774A}.release-gmp-lib|x64.ActiveCfg = release-gmp-lib|x64
+		{9907DA49-1E66-408F-B2FF-93AA93A0774A}.release-gmp-lib|x64.Build.0 = release-gmp-lib|x64
 		{9907DA49-1E66-408F-B2FF-93AA93A0774A}.release-mpfr|x64.ActiveCfg = release-efx-lib|x64
 		{7F1E4D9D-D973-4BE6-A3EE-E9F7ACBFB3FC}.debug-efx|x64.ActiveCfg = debug-efx-boost-test|x64
 		{7F1E4D9D-D973-4BE6-A3EE-E9F7ACBFB3FC}.debug-efx-boost-test|x64.ActiveCfg = debug-efx-boost-test|x64
@@ -73,6 +81,9 @@ Global
 		{7F1E4D9D-D973-4BE6-A3EE-E9F7ACBFB3FC}.release-efx-boost-test|x64.Build.0 = release-efx-boost-test|x64
 		{7F1E4D9D-D973-4BE6-A3EE-E9F7ACBFB3FC}.release-efx-lib|x64.ActiveCfg = debug-efx-boost-test|x64
 		{7F1E4D9D-D973-4BE6-A3EE-E9F7ACBFB3FC}.release-gmp|x64.ActiveCfg = release-efx-boost-test|x64
+		{7F1E4D9D-D973-4BE6-A3EE-E9F7ACBFB3FC}.release-gmp-boost-test|x64.ActiveCfg = release-gmp-boost-test|x64
+		{7F1E4D9D-D973-4BE6-A3EE-E9F7ACBFB3FC}.release-gmp-boost-test|x64.Build.0 = release-gmp-boost-test|x64
+		{7F1E4D9D-D973-4BE6-A3EE-E9F7ACBFB3FC}.release-gmp-lib|x64.ActiveCfg = release-gmp-boost-test|x64
 		{7F1E4D9D-D973-4BE6-A3EE-E9F7ACBFB3FC}.release-mpfr|x64.ActiveCfg = release-efx-boost-test|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
