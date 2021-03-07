@@ -12,25 +12,20 @@ on:
 jobs:
   msvc-release:
     runs-on: windows-latest
-    defaults:
-      run:
-        shell: cmd
     strategy:
       fail-fast: false
       matrix:
         mptype: [ efx, gmp, mpfr ]
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: '0'
-      - name: msvc-release
-        env:
-          PATH: '${env:PATH};C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\amd64'
+      - uses: actions/checkout@v1
+      - uses: ilammy/msvc-dev-cmd@v1
+      - name: msvc-release-efx-boost-test
+        shell: cmd
+        working-directory: ./libs/e_float/build/
         run: |
           MSBuild -m e_float.sln -p:Configuration=release-${{ matrix.mptype }} -p:Platform=x64 /t:Rebuild
           dir %cd%\x64-release-${{ matrix.mptype }}\e_float.exe
           %cd%\x64-release-${{ matrix.mptype }}\e_float.exe
-        working-directory: ./libs/e_float/build/
   msvc-release-efx-boost-test:
     runs-on: windows-latest
     steps:
@@ -39,8 +34,6 @@ jobs:
       - name: msvc-release-efx-boost-test
         shell: cmd
         working-directory: ./libs/e_float/build/
-        env:
-          PATH: '${env:PATH};C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\amd64'
         run: |
           set INCLUDE=%cd%\..\..\..\libs\math\include;%cd%\..\..\..\libs\e_float\src;%BOOST_ROOT_1_72_0%\include\boost-1_72;%INCLUDE%
           MSBuild -m e_float.sln -p:useenv=true -p:Configuration=release-efx-boost-test -p:Platform=x64 /t:Rebuild
