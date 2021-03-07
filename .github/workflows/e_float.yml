@@ -14,7 +14,7 @@ jobs:
     runs-on: windows-latest
     defaults:
       run:
-        shell: pwsh
+        shell: cmd
     strategy:
       fail-fast: false
       matrix:
@@ -35,7 +35,7 @@ jobs:
     runs-on: windows-latest
     defaults:
       run:
-        shell: pwsh
+        shell: cmd
     steps:
       - uses: actions/checkout@v2
         with:
@@ -44,7 +44,7 @@ jobs:
         env:
           PATH: '${env:PATH};C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\amd64'
         run: |
-          set INCLUDE=%CD%\..\..\..\libs\math\include;%CD%\..\..\..\libs\e_float\src;%BOOST_ROOT_1_72_0%\include\boost-1_72;%INCLUDE%
+          set INCLUDE=%cd%\..\..\..\libs\math\include;%cd%\..\..\..\libs\e_float\src;%BOOST_ROOT_1_72_0%\include\boost-1_72;%INCLUDE%
           MSBuild -m e_float.sln -p:useenv=true -p:Configuration=release-efx-boost-test -p:Platform=x64 /t:Rebuild
           dir ./x64-release-efx-boost-test/e_float_boost_test.exe
           ./x64-release-efx-boost-test/e_float_boost_test.exe
