@@ -1,4 +1,7 @@
-# e_float-2021
+e_float-2021
+[![Build Status](https://github.com/ckormanyos/e_float-2021/actions/workflows/e_float.yml/badge.svg)](https://github.com/ckormanyos/e_float-2021/actions)
+==================
+
 Multiple precision floating point (legacy project) derived work from e_float
 
 This work is based on an earlier work:\
@@ -33,7 +36,7 @@ of the original e_float paper.
 The _gmp_ and _mpfr_ versions support high digit counts natively
 from their wrapped libraries.
 
-# Building and testing
+# Building
 
 ## Build in Linux or MacOS with bash and GNUmake.
   - Open a bash shell in a terminal in the directory  [./libs/e_float/build](./libs/e_float/build).
@@ -49,7 +52,7 @@ make MP=efx TYP_TOOLSET=g++ TYP_STD=c++11 TYP_TEST=E_FLOAT_TEST_REAL_IMAG_TESTS 
   - Identify the `e_float` sln-project file in the directory [./libs/e_float/build](./libs/e_float/build).
   - Rebuild any of the supported configurations such as `release-efx`, as shown in the [build image](./images/e_float_in_vs.jpg).
 
-## Tests
+## Testing and CI
 
 At the moment, two test suites are available in the project.
 These can be activated with preprocessor definitions.
@@ -59,6 +62,13 @@ These can be activated with preprocessor definitions.
 These compiler switches can be manually set near the top of the file
 [`e_float_base.h` here](https://github.com/ckormanyos/e_float-2021/blob/08a19d7e052200e7a41b65b532f6720aa1f38a49/libs/e_float/src/e_float/e_float_base.h#L21),
 or on the command line of the compiler call.
+
+Continuous integration runs on push using GitHub Actions.
+Various compilers, operating systems, and C++ standards
+ranging from C++11, 14, 17, 20 are included in CI.
+
+### Build Status
+[![Build Status](https://github.com/ckormanyos/e_float-2021/actions/workflows/e_float.yml/badge.svg)](https://github.com/ckormanyos/e_float-2021/actions)
 
 # History
 
