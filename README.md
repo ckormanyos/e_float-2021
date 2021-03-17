@@ -45,7 +45,24 @@ from their wrapped libraries.
   - Execute `make` with the command below (or similar with other supported options).
 
 ```
+cd ./libs/e_float/build
 make MP=efx TYP_TOOLSET=g++ TYP_STD=c++11 TYP_TEST=E_FLOAT_TEST_REAL_IMAG_TESTS rebuild
+```
+
+## Build in MinGW or cygwin shell with manualy entered command lines.
+  - Identify the [build directory](./libs/e_float/build).
+  - Execute a manually written command line such as the one below.
+  - File lists (`GCC_FilesPi.txt` or `GCC_FilesTest.txt`) are included with the `@`-_filename_ syntax of GCC.
+  - The type of build is manually specified with either `DE_FLOAT_TEST_PI_ALGOS_TESTS` or `DE_FLOAT_TEST_PI_ALGOS_TESTS`.
+
+```
+cd ./libs/e_float/build
+g++ -finline-functions -finline-limit=32 -march=native -mtune=native -O3 -Wall -Wextra -Wno-cast-function-type -std=c++11 -DE_FLOAT_TYPE_EFX -DE_FLOAT_TEST_PI_ALGOS_TESTS -I../../../libs/e_float/src @GCC_FilesPi.txt ../src/e_float/efx/e_float_efx.cpp -o e_float.exe
+```
+
+```
+cd ./libs/e_float/build
+g++ -finline-functions -finline-limit=32 -march=native -mtune=native -O3 -Wall -Wextra -Wno-cast-function-type -std=c++11 -DE_FLOAT_TEST_REAL_IMAG_TESTS -DE_FLOAT_TEST_PI_ALGOS_TESTS -I../../../libs/e_float/src @GCC_FilesTest.txt ../src/e_float/efx/e_float_efx.cpp -o e_float.exe
 ```
 
 ## Build in Microsoft Visual Studio
