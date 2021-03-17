@@ -134,11 +134,12 @@ jobs:
         compiler: [ g++ ]
     steps:
       - name: gcc-mingw-winhost-efx
+        shell: cmd
+        working-directory: ./libs/e_float/build/
         run: |
           make MP=efx TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
           dir %cd%\unix-efx\e_float.exe
           %cd%\unix-efx\e_float.exe
-        working-directory: ./libs/e_float/build/
   gcc-clang-native-efx:
     runs-on: ubuntu-20.04
     defaults:
