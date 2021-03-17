@@ -124,6 +124,21 @@ jobs:
           MSBuild -m e_float.sln -p:useenv=true -p:Configuration=release-${{ matrix.mptype }}-boost-test -p:Platform=x64 /t:Rebuild
           dir %cd%\x64-release-${{ matrix.mptype }}-boost-test\e_float_boost_test.exe
           %cd%\x64-release-${{ matrix.mptype }}-boost-test\e_float_boost_test.exe
+  gcc-mingw-winhost-efx:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS, E_FLOAT_TEST_PI_ALGOS_TESTS ]
+        standard: [ c++11, c++14, c++17, c++2a ]
+        compiler: [ g++ ]
+    steps:
+      - name: gcc-mingw-winhost-efx
+        run: |
+          make MP=efx TYP_TOOLSET=${{ matrix.compiler }} TYP_STD=${{ matrix.standard }} TYP_TEST=${{ matrix.suite }} rebuild
+          dir %cd%\unix-efx\e_float.exe
+          %cd%\unix-efx\e_float.exe
+        working-directory: ./libs/e_float/build/
   gcc-clang-native-efx:
     runs-on: ubuntu-20.04
     defaults:

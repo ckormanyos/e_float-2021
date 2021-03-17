@@ -571,7 +571,7 @@ efx::e_float& efx::e_float::operator+=(const e_float& v)
     for(j = static_cast<std::int32_t>(ef_elem_number - static_cast<std::int32_t>(1)); j >= static_cast<std::int32_t>(0); j--)
     {
       std::int32_t t = static_cast<std::int32_t>(static_cast<std::int32_t>(  static_cast<std::int32_t>(p_u[j])
-                                                      - static_cast<std::int32_t>(p_v[j])) - borrow);
+                                                                           - static_cast<std::int32_t>(p_v[j])) - borrow);
 
       // Underflow? Borrow?
       if(t < static_cast<std::int32_t>(0))
