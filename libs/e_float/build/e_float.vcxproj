@@ -853,6 +853,24 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release-mpfr|x64'">true</ExcludedFromBuild>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="GCC_FilesPi.txt">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug-mpfr|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release-efx|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug-efx|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release-gmp|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug-gmp|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release-mpfr|x64'">true</ExcludedFromBuild>
+    </Text>
+    <Text Include="GCC_FilesTest.txt">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug-mpfr|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release-efx|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug-efx|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release-gmp|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug-gmp|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release-mpfr|x64'">true</ExcludedFromBuild>
+    </Text>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />

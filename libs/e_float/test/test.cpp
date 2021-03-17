@@ -17,6 +17,15 @@
 // cd C:/Users/User/Documents/Ks/PC_Software/NumericalPrograms/ExtendedNumberTypes/e_float/libs/e_float/build
 // make MP=efx rebuild
 
+// Build locally for test on MinGW via command line
+// cd C:\Users\User\Documents\Ks\PC_Software\NumericalPrograms\ExtendedNumberTypes\e_float\libs\e_float\build
+
+// Build for E_FLOAT_TEST_PI_ALGOS_TESTS
+// g++ -finline-functions -finline-limit=32 -march=native -mtune=native -O3 -Wall -Wextra -Wno-cast-function-type -std=c++11 -DE_FLOAT_TYPE_EFX -DE_FLOAT_TEST_PI_ALGOS_TESTS -I../../../libs/e_float/src @GCC_FilesPi.txt ../src/e_float/efx/e_float_efx.cpp -o e_float.exe
+
+// Build for E_FLOAT_TEST_REAL_IMAG_TESTS
+// g++ -finline-functions -finline-limit=32 -march=native -mtune=native -O3 -Wall -Wextra -Wno-cast-function-type -std=c++11 -DE_FLOAT_TYPE_EFX -DE_FLOAT_TEST_REAL_IMAG_TESTS -I../../../libs/e_float/src @GCC_FilesTest.txt ../src/e_float/efx/e_float_efx.cpp -o e_float.exe
+
 #if defined(E_FLOAT_TEST_PI_ALGOS_TESTS)
 #include <../test/pi_test/test_pi.h>
 #endif

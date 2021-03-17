@@ -606,4 +606,12 @@
       <Filter>_doc</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="GCC_FilesTest.txt">
+      <Filter>libs\e_float\build</Filter>
+    </Text>
+    <Text Include="GCC_FilesPi.txt">
+      <Filter>libs\e_float\build</Filter>
+    </Text>
+  </ItemGroup>
 </Project>
