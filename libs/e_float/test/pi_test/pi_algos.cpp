@@ -65,6 +65,9 @@ const e_float& calculate_pi(const bool b_trace)
     // than about 25 or 30. After about 20 iterations, the precision
     // is about one million decimal digits.
 
+    constexpr std::uint64_t required_precision_half =
+      static_cast<std::uint64_t>((std::numeric_limits<e_float>::digits10 / 2) + 16);
+
     for(unsigned k = 0U; k < 64U; ++k)
     {
       a      += sqrt(bB);
@@ -86,14 +89,14 @@ const e_float& calculate_pi(const bool b_trace)
       // If it is there are enough precise digits, then the calculation
       // is finished.
 
-      double dummy_double;
-      std::int64_t exp10;
+      double       dd;
+      std::int64_t e10;
 
-      iterate_term.extract_parts(dummy_double, exp10);
+      iterate_term.extract_parts(dd, e10);
 
-      static_cast<void>(dummy_double);
+      static_cast<void>(dd);
 
-      const std::int64_t approximate_digits10_of_iteration_term = (std::max)(std::int64_t(0), std::int64_t(-exp10));
+      const std::int64_t approximate_digits10_of_iteration_term = (std::max)(std::int64_t(0), std::int64_t(-e10));
 
       if(b_trace)
       {
@@ -109,9 +112,8 @@ const e_float& calculate_pi(const bool b_trace)
       // with this iteration term, then the calculation is finished
       // because the change from the next iteration will be
       // insignificantly small.
-      const std::uint64_t digits10_iteration_goal = static_cast<std::uint64_t>((std::numeric_limits<e_float>::digits10 / 2) + 16);
 
-      if((std::uint64_t) approximate_digits10_of_iteration_term > digits10_iteration_goal)
+      if((std::uint64_t) approximate_digits10_of_iteration_term > required_precision_half)
       {
         break;
       }
@@ -162,7 +164,7 @@ const e_float& calculate_pi_borwein_cubic(const bool b_trace)
     std::uint64_t three_pow_k = 1;
 
     // Determine the requested precision of the upcoming iteration in units of digits10.
-    const std::int32_t required_precision_third =
+    constexpr std::int32_t required_precision_third =
         static_cast<std::int32_t>(static_cast<std::int32_t>(std::numeric_limits<e_float>::digits10 * 2) + static_cast<std::int32_t>(3))
       / static_cast<std::int32_t>(6);
 
@@ -178,14 +180,14 @@ const e_float& calculate_pi_borwein_cubic(const bool b_trace)
 
       val_pi = (val_pi * rk_squared) - (rk_squared - ef::one()).mul_unsigned_long_long(three_pow_k);
 
-      double dummy_double;
-      std::int64_t exp10;
+      double       dd;
+      std::int64_t e10;
 
-      sk.extract_parts(dummy_double, exp10);
+      sk.extract_parts(dd, e10);
 
-      static_cast<void>(dummy_double);
+      static_cast<void>(dd);
 
-      const std::int64_t approximate_digits10_of_iteration_term = (std::max)(std::int64_t(0), std::int64_t(-exp10));
+      const std::int64_t approximate_digits10_of_iteration_term = (std::max)(std::int64_t(0), std::int64_t(-e10));
 
       if(b_trace)
       {
@@ -247,7 +249,7 @@ const e_float& calculate_pi_borwein_quartic(const bool b_trace)
     std::uint64_t two_pow_2k_plus_3 = 8U;
 
     // Determine the requested precision of the upcoming iteration in units of digits10.
-    const std::int32_t required_precision_quarter =
+    constexpr std::int32_t required_precision_quarter =
         static_cast<std::int32_t>(std::numeric_limits<e_float>::digits10 + 2)
       / static_cast<std::int32_t>(4);
 
@@ -266,14 +268,14 @@ const e_float& calculate_pi_borwein_quartic(const bool b_trace)
              / (one_minus_yk_pow_four_4th_root_inverse + ef::one());
       }
 
-      double dummy_double;
-      std::int64_t exp10;
+      double       dd;
+      std::int64_t e10;
 
-      yk.extract_parts(dummy_double, exp10);
+      yk.extract_parts(dd, e10);
 
-      static_cast<void>(dummy_double);
+      static_cast<void>(dd);
 
-      const std::int64_t approximate_digits10_of_iteration_term = (std::max)(std::int64_t(0), std::int64_t(-exp10));
+      const std::int64_t approximate_digits10_of_iteration_term = (std::max)(std::int64_t(0), std::int64_t(-e10));
 
       if(b_trace)
       {
@@ -340,7 +342,7 @@ const e_float& calculate_pi_borwein_quintic(const bool b_trace)
     e_float sk((ef::sqrt(local_five) - ef::two()).mul_unsigned_long_long(5U));
 
     // Determine the requested precision of the upcoming iteration in units of digits10.
-    const std::int32_t required_precision_fifth =
+    constexpr std::int32_t required_precision_fifth =
         static_cast<std::int32_t>((std::numeric_limits<e_float>::digits10 * 2) + 5)
       / static_cast<std::int32_t>(10);
 
@@ -348,7 +350,7 @@ const e_float& calculate_pi_borwein_quintic(const bool b_trace)
     {
       const e_float x          = (local_five / sk) - ef::one();
       const e_float x_squared  = x * x;
-      const e_float y          = x_squared - e_float(x).mul_unsigned_long_long(2U) + e_float(8U);
+      const e_float y          = x_squared - (x * 2) + e_float(8U);
       const e_float one_over_z = ef::rootn_inverse((x * (y + ef::sqrt((y * y) - (x_squared * x).mul_unsigned_long_long(4U)))).div_unsigned_long_long(2U), 5);
 
       const e_float term = ((ef::one() / one_over_z) + (x * one_over_z) + ef::one());
@@ -362,14 +364,14 @@ const e_float& calculate_pi_borwein_quintic(const bool b_trace)
       - (  (sk_squared - local_five).div_unsigned_long_long(2U)
          +  ef::sqrt(sk * (sk_squared - e_float(sk).mul_unsigned_long_long(2) + local_five))).mul_unsigned_long_long(five_pow_k);
 
-      double dummy_double;
-      std::int64_t exp10;
+      double       dd;
+      std::int64_t e10;
 
-      (val_pi - previous_ak).extract_parts(dummy_double, exp10);
+      (val_pi - previous_ak).extract_parts(dd, e10);
 
-      static_cast<void>(dummy_double);
+      static_cast<void>(dd);
 
-      const std::int64_t approximate_digits10_of_iteration_term = (std::max)(std::int64_t(0), std::int64_t(-exp10));
+      const std::int64_t approximate_digits10_of_iteration_term = (std::max)(std::int64_t(0), std::int64_t(-e10));
 
       if(b_trace)
       {
@@ -424,13 +426,13 @@ const e_float& calculate_pi_borwein_nonic(const bool b_trace)
 
     if(b_trace) { std::cout << "Calculating pi with Borwein nonic.\n"; }
 
-    std::uint64_t nine_pow_k = 1U;
+    e_float nine_pow_k = ef::one() / 3;
 
     e_float rk((ef::sqrt(e_float(3U)) - ef::one()) / 2);
-    e_float sk(ef::cbrt(1 - (rk * (rk * rk))));
+    e_float sk(ef::cbrt(1 - ef::pow(rk, 3)));
 
     // Determine the requested precision of the upcoming iteration in units of digits10.
-    const std::int32_t required_precision_ninth =
+    constexpr std::int32_t required_precision_ninth =
         static_cast<std::int32_t>((std::numeric_limits<e_float>::digits10 * 2) + 9)
       / static_cast<std::int32_t>(18);
 
@@ -443,17 +445,18 @@ const e_float& calculate_pi_borwein_nonic(const bool b_trace)
 
       const e_float previous_ak(val_pi);
 
-      val_pi = (m * val_pi) + (((ef::one() - m) / 3) * nine_pow_k);
+      val_pi = (m * val_pi) + ((ef::one() - m) * nine_pow_k);
 
-      double dummy_double;
-      std::int64_t exp10;
+      double       dd;
+      std::int64_t e10;
 
-      (val_pi - previous_ak).extract_parts(dummy_double, exp10);
+      (val_pi - previous_ak).extract_parts(dd, e10);
 
-      static_cast<void>(dummy_double);
+      static_cast<void>(dd);
 
       const std::int64_t approximate_digits10_of_iteration_term =
-        (k < 2U) ? std::int64_t(0) : (std::max)(std::int64_t(0), std::int64_t(-exp10));
+        ((k < 2U) ? std::int64_t(0)
+                  : (std::max)(std::int64_t(0), std::int64_t(-e10)));
 
       if(b_trace)
       {
@@ -472,10 +475,8 @@ const e_float& calculate_pi_borwein_nonic(const bool b_trace)
         break;
       }
 
-      const e_float one_minus_rk = ef::one() - rk;
-
-      sk = (one_minus_rk * (one_minus_rk * one_minus_rk)) / ((t + (u * 2)) * v);
-      rk = ef::cbrt(ef::one() - (sk * (sk * sk)));
+      sk = ef::pow(ef::one() - rk, 3) / ((t + (u * 2)) * v);
+      rk = ef::cbrt(ef::one() - ef::pow(sk, 3));
 
       nine_pow_k *= 9U;
     }

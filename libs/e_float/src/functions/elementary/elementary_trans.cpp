@@ -483,8 +483,8 @@ e_float ef::pow(const e_float& b, const std::int64_t p)
   else if(p == 0) { result = floating_point_type(1U); }
   else if(p == 1) { result = b; }
   else if(p == 2) { result = b; result *= b; }
-  else if(p == 3) { result = b * b; result *= b; }
-  else if(p == 4) { result = b * b; result *= result; }
+  else if(p == 3) { result = b; result *= b; result *= b; }
+  else if(p == 4) { result = b; result *= b; result *= result; }
   else
   {
     result = floating_point_type(1U);
