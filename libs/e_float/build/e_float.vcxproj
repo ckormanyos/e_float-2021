@@ -405,7 +405,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/NODEFAULTLIB:LIBCMT %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>../src/e_float/gmp/mpir/3.0.0/vc12/x64/mpir.lib;../src/e_float/mpfr/3.1.5/vc12/x64/mpfr.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)../src/e_float/gmp/mpir/3.0.0/vc14/x64/mpir.lib;$(SolutionDir)../src/e_float/mpfr/3.1.5/vc14/x64/mpfr.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)e_float.exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(IntDir)e_float_debug.pdb</ProgramDatabaseFile>

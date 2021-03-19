@@ -5,3 +5,12 @@ libs/e_float/build/x64-debug-mpfr/
 libs/e_float/build/x64-release-efx/
 libs/e_float/build/x64-release-gmp/
 libs/e_float/build/x64-release-mpfr/
+libs/e_float/build/x64-debug-efx-boost-test/
+libs/e_float/build/x64-debug-efx-lib/
+libs/e_float/build/x64-release-efx-boost-test/
+libs/e_float/build/x64-release-efx-lib/
+libs/e_float/build/x64-release-gmp-boost-test/
+libs/e_float/build/x64-release-gmp-lib/
+libs/e_float/build/e_float_boost_test.vcxproj.user
+libs/e_float/build/e_float.vcxproj.user
+libs/e_float/build/pi*.out

@@ -22,17 +22,18 @@
 
 // *****************************************************************************
 // Function    : const e_float& calculate_pi(const bool b_trace)
-// 
+//
 // Description : Compute pi using the quadratically convergent Gauss AGM,
-//               in particular the Schoenhage variant.
-//               For a description of the algorithm see the book "Pi Unleashed":
+//               in particular the Schoenhage variant. For a description
+//               of the algorithm see the book "Pi Unleashed", algorithm 16.149,
+//               page 236.
 //               If the input b_trace = true, then the calculation progress
 //               will be output to cout.
 //
 //               Book reference:
 //               http://www.jjj.de/pibook/pibook.html
 //               http://www.amazon.com/exec/obidos/tg/detail/-/3540665722/qid=1035535482/sr=8-7/ref=sr_8_7/104-3357872-6059916?v=glance&n=507846
-//               
+//
 //               Digits of pi available for test at:
 //               http://www.hepl.phys.nagoya-u.ac.jp/~mitsuru/pi-e.html
 //               http://www.cecm.sfu.ca/projects/ISC/data/pi.html
@@ -92,7 +93,7 @@ const e_float& calculate_pi(const bool b_trace)
 
       static_cast<void>(dummy_double);
 
-      const std::int64_t approximate_digits10_of_iteration_term = (std::max)((std::int64_t) -exp10, (std::int64_t) 0);
+      const std::int64_t approximate_digits10_of_iteration_term = (std::max)(std::int64_t(0), std::int64_t(-exp10));
 
       if(b_trace)
       {
@@ -135,7 +136,9 @@ const e_float& calculate_pi(const bool b_trace)
 // Function    : const e_float& calculate_pi_borwein_cubic(const bool b_trace)
 // 
 // Description : Compute pi using a cubically convergent iteration scheme.
-//               See the book "Pi Unleashed", algorithm 16.151, page 237.
+//               See the book "Pi Unleashed", algorithm 16.151, page 237,
+//               with slight corrections to the term r_(k+1)^2, which should be
+//               multiplied by a_k.
 //               If the input b_trace = true, then the calculation progress
 //               will be output to cout.
 // 
@@ -182,7 +185,7 @@ const e_float& calculate_pi_borwein_cubic(const bool b_trace)
 
       static_cast<void>(dummy_double);
 
-      const std::int64_t approximate_digits10_of_iteration_term = -exp10;
+      const std::int64_t approximate_digits10_of_iteration_term = (std::max)(std::int64_t(0), std::int64_t(-exp10));
 
       if(b_trace)
       {
@@ -270,7 +273,7 @@ const e_float& calculate_pi_borwein_quartic(const bool b_trace)
 
       static_cast<void>(dummy_double);
 
-      const std::int64_t approximate_digits10_of_iteration_term = -exp10;
+      const std::int64_t approximate_digits10_of_iteration_term = (std::max)(std::int64_t(0), std::int64_t(-exp10));
 
       if(b_trace)
       {
@@ -310,10 +313,10 @@ const e_float& calculate_pi_borwein_quartic(const bool b_trace)
 }
 
 // *****************************************************************************
-// Function    : const e_float& calculate_pi_borwein_quartic(const bool b_trace)
+// Function    : const e_float& calculate_pi_borwein_quintic(const bool b_trace)
 // 
-// Description : Compute pi using a cubically convergent iteration scheme.
-//               See the book "Pi Unleashed", algorithm 16.152, page 237.
+// Description : Compute pi using a quintically convergent iteration scheme.
+//               See the book "Pi Unleashed", algorithm 16.153, page 237.
 //               If the input b_trace = true, then the calculation progress
 //               will be output to cout.
 // 
@@ -359,8 +362,6 @@ const e_float& calculate_pi_borwein_quintic(const bool b_trace)
       - (  (sk_squared - local_five).div_unsigned_long_long(2U)
          +  ef::sqrt(sk * (sk_squared - e_float(sk).mul_unsigned_long_long(2) + local_five))).mul_unsigned_long_long(five_pow_k);
 
-      sk = e_float(25U) / (sk * (term * term));
-
       double dummy_double;
       std::int64_t exp10;
 
@@ -368,7 +369,7 @@ const e_float& calculate_pi_borwein_quintic(const bool b_trace)
 
       static_cast<void>(dummy_double);
 
-      const std::int64_t approximate_digits10_of_iteration_term = -exp10;
+      const std::int64_t approximate_digits10_of_iteration_term = (std::max)(std::int64_t(0), std::int64_t(-exp10));
 
       if(b_trace)
       {
@@ -387,6 +388,8 @@ const e_float& calculate_pi_borwein_quintic(const bool b_trace)
         break;
       }
 
+      sk = e_float(25U) / (sk * (term * term));
+
       five_pow_k *= 5U;
     }
 
@@ -399,6 +402,90 @@ const e_float& calculate_pi_borwein_quintic(const bool b_trace)
 
   return val_pi;
 }
+
+// *****************************************************************************
+// Function    : const e_float& calculate_pi_borwein_nonic(const bool b_trace)
+// 
+// Description : Compute pi using a nonically convergent iteration scheme.
+//               See the book "Pi Unleashed", algorithm 16.154, page 238.
+//               If the input b_trace = true, then the calculation progress
+//               will be output to cout.
+// 
+// *****************************************************************************
+const e_float& calculate_pi_borwein_nonic(const bool b_trace)
+{
+  static bool is_init = false;
+
+  static e_float val_pi(ef::one() / 3U);
+
+  if(!is_init)
+  {
+    is_init = true;
+
+    if(b_trace) { std::cout << "Calculating pi with Borwein nonic.\n"; }
+
+    std::uint64_t nine_pow_k = 1U;
+
+    e_float rk((ef::sqrt(e_float(3U)) - ef::one()) / 2);
+    e_float sk(ef::cbrt(1 - (rk * (rk * rk))));
+
+    // Determine the requested precision of the upcoming iteration in units of digits10.
+    const std::int32_t required_precision_ninth =
+        static_cast<std::int32_t>((std::numeric_limits<e_float>::digits10 * 2) + 9)
+      / static_cast<std::int32_t>(18);
+
+    for(std::int32_t k = static_cast<std::int32_t>(1); k < static_cast<std::int32_t>(16); ++k)
+    {
+      const e_float t(ef::one() + (rk * 2));
+      const e_float u(ef::cbrt((ef::one() + rk + (rk * rk)) * (rk * 9)));
+      const e_float v((t * t) + (t * u) + (u * u));
+      const e_float m(((ef::one() + sk + (sk * sk)) * 27) / v);
+
+      const e_float previous_ak(val_pi);
+
+      val_pi = (m * val_pi) + (((ef::one() - m) / 3) * nine_pow_k);
+
+      double dummy_double;
+      std::int64_t exp10;
+
+      (val_pi - previous_ak).extract_parts(dummy_double, exp10);
+
+      static_cast<void>(dummy_double);
+
+      const std::int64_t approximate_digits10_of_iteration_term =
+        (k < 2U) ? std::int64_t(0) : (std::max)(std::int64_t(0), std::int64_t(-exp10));
+
+      if(b_trace)
+      {
+        std::cout << "Approximate decimal digits of this iteration : "
+                  << std::right
+                  << std::setw(12)
+                  << approximate_digits10_of_iteration_term
+                  << '\n';
+      }
+
+      // Test the significant digits of the last iteration change.
+      // If there are enough significant digits, then the calculation
+      // is finished.
+      if(approximate_digits10_of_iteration_term >= required_precision_ninth)
+      {
+        break;
+      }
+
+      const e_float one_minus_rk = ef::one() - rk;
+
+      sk = (one_minus_rk * (one_minus_rk * one_minus_rk)) / ((t + (u * 2)) * v);
+      rk = ef::cbrt(ef::one() - (sk * (sk * sk)));
+
+      nine_pow_k *= 9U;
+    }
+
+    (void) val_pi.calculate_inv();
+  }
+
+  return val_pi;
+}
+
 
 namespace
 {

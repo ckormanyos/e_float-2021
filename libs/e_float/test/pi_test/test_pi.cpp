@@ -26,13 +26,21 @@ bool test::pi::test_pi()
   std::ofstream out1("pi1.out");
   std::ofstream out2("pi2.out");
   std::ofstream out3("pi3.out");
+  std::ofstream out4("pi4.out");
 
-  if(out0.is_open() && out1.is_open() && out2.is_open() && out3.is_open())
+  const bool output_files_are_open = (   out0.is_open()
+                                      && out1.is_open()
+                                      && out2.is_open()
+                                      && out3.is_open()
+                                      && out4.is_open());
+
+  if(output_files_are_open)
   {
     calculate_pi_pfn pfn0 = calculate_pi;
     calculate_pi_pfn pfn1 = calculate_pi_borwein_cubic;
     calculate_pi_pfn pfn2 = calculate_pi_borwein_quartic;
     calculate_pi_pfn pfn3 = calculate_pi_borwein_quintic;
+    calculate_pi_pfn pfn4 = calculate_pi_borwein_nonic;
 
     result_is_ok = true;
 
@@ -40,11 +48,13 @@ bool test::pi::test_pi()
     result_is_ok &= print_pi(pfn1, out1);
     result_is_ok &= print_pi(pfn2, out2);
     result_is_ok &= print_pi(pfn3, out3);
+    result_is_ok &= print_pi(pfn4, out4);
 
     out0.close();
     out1.close();
     out2.close();
     out3.close();
+    out4.close();
   }
 
   return result_is_ok;
