@@ -14,3 +14,4 @@ libs/e_float/build/x64-release-gmp-lib/
 libs/e_float/build/e_float_boost_test.vcxproj.user
 libs/e_float/build/e_float.vcxproj.user
 libs/e_float/build/pi*.out
+libs/e_float/build/TestCase_case_*.txt
