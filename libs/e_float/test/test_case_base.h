@@ -42,7 +42,7 @@
                        const ef::complex<e_float>& my_value,
                        const ef::complex<e_float>& control);
 
-    template<typename T> class TestCaseBase : private Util::noncopyable
+    template<typename T> class TestCaseBase : private util::noncopyable
     {
     public:
       virtual ~TestCaseBase() { }

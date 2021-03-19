@@ -15,7 +15,7 @@
 
   namespace Util
   {
-    struct timer final : private Util::noncopyable
+    struct timer final : private util::noncopyable
     {
     public:
       timer(const double ofs = 0.0) : offset(ofs),

@@ -1,39 +1,40 @@
-
-//          Copyright Christopher Kormanyos 1999 - 2021.
-// Distributed under the Boost Software License, Version 1.0.
-//    (See accompanying file LICENSE_1_0.txt or copy at
-//          http://www.boost.org/LICENSE_1_0.txt)
-
-// This work is based on an earlier work:
-// "Algorithm 910: A Portable C++ Multiple-Precision System for Special-Function Calculations",
-// in ACM TOMS, {VOL 37, ISSUE 4, (February 2011)} (C) ACM, 2011. http://doi.acm.org/10.1145/1916461.1916469
+///////////////////////////////////////////////////////////////////
+//  Copyright Christopher Kormanyos 2009 - 2021.                 //
+//  Distributed under the Boost Software License,                //
+//  Version 1.0. (See accompanying file LICENSE_1_0.txt          //
+//  or copy at http://www.boost.org/LICENSE_1_0.txt)             //
+///////////////////////////////////////////////////////////////////
 
 #ifndef UTIL_NUMERIC_CAST_2009_11_24_H_
   #define UTIL_NUMERIC_CAST_2009_11_24_H_
 
   #include <sstream>
   #include <string>
+  #include <type_traits>
 
   namespace Util
   {
     template<typename T>
     inline T numeric_cast(const std::string& str)
     {
+      constexpr bool numeric_cast_is_signed = (std::numeric_limits<T>::is_signed == true);
+
+      constexpr bool numeric_cast_is_small_type =
+        (   ((numeric_cast_is_signed == true)  && (std::numeric_limits<T>::digits <= 31))
+         || ((numeric_cast_is_signed == false) && (std::numeric_limits<T>::digits <= 32)));
+
+      using value_type = typename std::conditional<(numeric_cast_is_small_type == true),
+                                                    typename std::conditional<(numeric_cast_is_signed == true),
+                                                                               std::int32_t,
+                                                                               std::uint32_t>::type, T
+                                                  >::type;
+
+      // This could be done with a variation of "baselexical_cast".
       std::stringstream ss;
       ss << str;
-      T t;
+      value_type t;
       ss >> t;
-      return t;
-    }
-
-    template<typename T>
-    inline T numeric_cast(const char* const s)
-    {
-      std::stringstream ss;
-      ss << s;
-      T t;
-      ss >> t;
-      return t;
+      return (T) t;
     }
   }
 

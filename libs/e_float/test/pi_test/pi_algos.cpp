@@ -30,13 +30,9 @@
 //               If the input b_trace = true, then the calculation progress
 //               will be output to cout.
 //
-//               Book reference:
+//               Book references:
 //               http://www.jjj.de/pibook/pibook.html
-//               http://www.amazon.com/exec/obidos/tg/detail/-/3540665722/qid=1035535482/sr=8-7/ref=sr_8_7/104-3357872-6059916?v=glance&n=507846
-//
-//               Digits of pi available for test at:
-//               http://www.hepl.phys.nagoya-u.ac.jp/~mitsuru/pi-e.html
-//               http://www.cecm.sfu.ca/projects/ISC/data/pi.html
+//               http://www.springer.com/gp/book/9783642567353
 // 
 // *****************************************************************************
 const e_float& calculate_pi(const bool b_trace)
