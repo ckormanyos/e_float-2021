@@ -1,5 +1,5 @@
 
-//          Copyright Christopher Kormanyos 2014 - 2021.
+//          Copyright Christopher Kormanyos 1999 - 2021.
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file LICENSE_1_0.txt or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
@@ -61,8 +61,9 @@ const e_float& calculate_pi(const bool b_trace)
     // than about 25 or 30. After about 20 iterations, the precision
     // is about one million decimal digits.
 
-    constexpr std::uint64_t required_precision_half =
-      static_cast<std::uint64_t>((std::numeric_limits<e_float>::digits10 / 2) + 16);
+    constexpr std::int32_t required_precision_half =
+        static_cast<std::int32_t>(std::numeric_limits<e_float>::digits10 + 1)
+      / static_cast<std::int32_t>(2);
 
     for(unsigned k = 0U; k < 64U; ++k)
     {
@@ -161,7 +162,7 @@ const e_float& calculate_pi_borwein_cubic(const bool b_trace)
 
     // Determine the requested precision of the upcoming iteration in units of digits10.
     constexpr std::int32_t required_precision_third =
-        static_cast<std::int32_t>(static_cast<std::int32_t>(std::numeric_limits<e_float>::digits10 * 2) + static_cast<std::int32_t>(3))
+        static_cast<std::int32_t>((std::numeric_limits<e_float>::digits10 * 2) + 3)
       / static_cast<std::int32_t>(6);
 
     for(std::int32_t k = static_cast<std::int32_t>(1); k < static_cast<std::int32_t>(40); ++k)
@@ -207,7 +208,7 @@ const e_float& calculate_pi_borwein_cubic(const bool b_trace)
 
     if(b_trace) { std::cout << "Iteration loop done, compute inverse" << '\n'; }
 
-    val_pi.calculate_inv();
+    (void) val_pi.calculate_inv();
 
     if(b_trace) { std::cout << "Pi calculation done" << '\n'; }
   }
@@ -249,12 +250,10 @@ const e_float& calculate_pi_borwein_quartic(const bool b_trace)
         static_cast<std::int32_t>(std::numeric_limits<e_float>::digits10 + 2)
       / static_cast<std::int32_t>(4);
 
-    for(std::int32_t k = static_cast<std::int32_t>(1); k < static_cast<std::int32_t>(30); ++k)
+    for(std::int32_t k = static_cast<std::int32_t>(1); k < static_cast<std::int32_t>(24); ++k)
     {
       // Compute yk^4.
-      e_float yk_pow_four(yk * yk);
-
-      yk_pow_four *= yk_pow_four;
+      const e_float yk_pow_four(ef::pow(yk, 4));
 
       // Compute 1 / [(1 - yk^4)^(1/4)].
       {
@@ -302,7 +301,7 @@ const e_float& calculate_pi_borwein_quartic(const bool b_trace)
 
     if(b_trace) { std::cout << "Iteration loop done, compute inverse" << '\n'; }
 
-    val_pi.calculate_inv();
+    (void) val_pi.calculate_inv();
 
     if(b_trace) { std::cout << "Pi calculation done" << '\n'; }
   }
@@ -335,19 +334,19 @@ const e_float& calculate_pi_borwein_quintic(const bool b_trace)
 
     const e_float local_five(5U);
 
-    e_float sk((ef::sqrt(local_five) - ef::two()).mul_unsigned_long_long(5U));
+    e_float sk((ef::sqrt(local_five) - ef::two()) * 5U);
 
     // Determine the requested precision of the upcoming iteration in units of digits10.
     constexpr std::int32_t required_precision_fifth =
         static_cast<std::int32_t>((std::numeric_limits<e_float>::digits10 * 2) + 5)
       / static_cast<std::int32_t>(10);
 
-    for(std::int32_t k = static_cast<std::int32_t>(1); k < static_cast<std::int32_t>(30); ++k)
+    for(std::int32_t k = static_cast<std::int32_t>(1); k < static_cast<std::int32_t>(24); ++k)
     {
       const e_float x          = (local_five / sk) - ef::one();
       const e_float x_squared  = x * x;
       const e_float y          = x_squared - (x * 2) + e_float(8U);
-      const e_float one_over_z = ef::rootn_inverse((x * (y + ef::sqrt((y * y) - (x_squared * x).mul_unsigned_long_long(4U)))).div_unsigned_long_long(2U), 5);
+      const e_float one_over_z = ef::rootn_inverse((x * (y + ef::sqrt((y * y) - (x_squared * (x * 4))))) / 2U, 5);
 
       const e_float term = ((ef::one() / one_over_z) + (x * one_over_z) + ef::one());
 
@@ -357,8 +356,8 @@ const e_float& calculate_pi_borwein_quintic(const bool b_trace)
 
       val_pi =
          (sk_squared * val_pi)
-      - (  (sk_squared - local_five).div_unsigned_long_long(2U)
-         +  ef::sqrt(sk * (sk_squared - e_float(sk).mul_unsigned_long_long(2) + local_five))).mul_unsigned_long_long(five_pow_k);
+      - (  ((sk_squared - local_five) / 2)
+         +  ef::sqrt(sk * (sk_squared - (sk * 2) + local_five))) * five_pow_k;
 
       double       dd;
       std::int64_t e10;
@@ -393,7 +392,7 @@ const e_float& calculate_pi_borwein_quintic(const bool b_trace)
 
     if(b_trace) { std::cout << "Iteration loop done, compute inverse" << '\n'; }
 
-    val_pi.calculate_inv();
+    (void) val_pi.calculate_inv();
 
     if(b_trace) { std::cout << "Pi calculation done" << '\n'; }
   }
@@ -477,7 +476,11 @@ const e_float& calculate_pi_borwein_nonic(const bool b_trace)
       nine_pow_k *= 9;
     }
 
+    if(b_trace) { std::cout << "Iteration loop done, compute inverse" << '\n'; }
+
     (void) val_pi.calculate_inv();
+
+    if(b_trace) { std::cout << "Pi calculation done" << '\n'; }
   }
 
   return val_pi;
@@ -511,8 +514,8 @@ const e_float& calculate_pi_borwein_hexadecimalic(const bool b_trace)
 
     // Determine the requested precision of the upcoming iteration in units of digits10.
     constexpr std::int32_t required_precision_sixteenth =
-        static_cast<std::int32_t>((std::numeric_limits<e_float>::digits10 * 2) + 16)
-      / static_cast<std::int32_t>(32);
+        static_cast<std::int32_t>(std::numeric_limits<e_float>::digits10 + 8)
+      / static_cast<std::int32_t>(16);
 
     for(std::int32_t k = static_cast<std::int32_t>(1); k < static_cast<std::int32_t>(16); ++k)
     {
@@ -557,7 +560,11 @@ const e_float& calculate_pi_borwein_hexadecimalic(const bool b_trace)
       sixteen_pow_k *= 16;
     }
 
+    if(b_trace) { std::cout << "Iteration loop done, compute inverse" << '\n'; }
+
     (void) val_pi.calculate_inv();
+
+    if(b_trace) { std::cout << "Pi calculation done" << '\n'; }
   }
 
   return val_pi;
