@@ -14,6 +14,8 @@
 
 #include <e_float/e_float.h>
 
+#include <utility/util_timer.h>
+
 // cd C:/Users/User/Documents/Ks/PC_Software/NumericalPrograms/ExtendedNumberTypes/e_float/libs/e_float/build
 // make MP=efx rebuild
 
@@ -34,18 +36,12 @@
 #include <../test/imag/test_imag.h>
 #include <../test/real/test_real.h>
 
-#include <utility/util_timer.h>
-
 namespace
 {
   bool test_real_imag()
   {
-    const Util::timer my_timer;
-
     const bool test_real_ok = test::real::test_real(true);
     const bool test_imag_ok = test::imag::test_imag(true);
-
-    const double elapsed = my_timer.elapsed();
 
     std::string str_real("Real test: ");
     std::string str_imag("Imag test: ");
@@ -56,13 +52,6 @@ namespace
     std::cout << str_real << std::endl;
     std::cout << str_imag << std::endl;
 
-    std::cout << "Elapsed time: "
-              << std::fixed
-              << std::setprecision(2)
-              << elapsed
-              << " seconds"
-              << std::endl;
-
     const bool result_is_ok = (test_real_ok && test_imag_ok);
 
     return result_is_ok;
@@ -72,6 +61,8 @@ namespace
 
 int main()
 {
+  const Util::timer my_timer;
+
   #if defined(E_FLOAT_TEST_PI_ALGOS_TESTS)
   const bool result_is_ok = test::pi::test_pi();
   #endif
@@ -79,6 +70,15 @@ int main()
   #if defined(E_FLOAT_TEST_REAL_IMAG_TESTS)
   const bool result_is_ok = test_real_imag();
   #endif
+
+  const double elapsed = my_timer.elapsed();
+
+  std::cout << "Elapsed time: "
+            << std::fixed
+            << std::setprecision(2)
+            << elapsed
+            << " seconds"
+            << std::endl;
 
   return (result_is_ok ? 0 : -1);
 }

@@ -425,7 +425,7 @@ const e_float& calculate_pi_borwein_nonic(const bool b_trace)
     e_float nine_pow_k = ef::one() / 3;
 
     e_float rk((ef::sqrt(e_float(3U)) - ef::one()) / 2);
-    e_float sk(ef::cbrt(1 - ef::pow(rk, 3)));
+    e_float sk(ef::cbrt(ef::one() - ef::pow(rk, 3)));
 
     // Determine the requested precision of the upcoming iteration in units of digits10.
     constexpr std::int32_t required_precision_ninth =
@@ -451,8 +451,8 @@ const e_float& calculate_pi_borwein_nonic(const bool b_trace)
       static_cast<void>(dd);
 
       const std::int64_t approximate_digits10_of_iteration_term =
-        ((k < 2U) ? std::int64_t(0)
-                  : (std::max)(std::int64_t(0), std::int64_t(-e10)));
+        ((k < 2) ? std::int64_t(0)
+                 : (std::max)(std::int64_t(0), std::int64_t(-e10)));
 
       if(b_trace)
       {
@@ -474,7 +474,7 @@ const e_float& calculate_pi_borwein_nonic(const bool b_trace)
       sk = ef::pow(ef::one() - rk, 3) / ((t + (u * 2)) * v);
       rk = ef::cbrt(ef::one() - ef::pow(sk, 3));
 
-      nine_pow_k *= 9U;
+      nine_pow_k *= 9;
     }
 
     (void) val_pi.calculate_inv();
@@ -483,6 +483,85 @@ const e_float& calculate_pi_borwein_nonic(const bool b_trace)
   return val_pi;
 }
 
+// *****************************************************************************
+// Function    : const e_float& calculate_pi_borwein_hexadecimalic(const bool b_trace)
+// 
+// Description : Compute pi using a hexadecimalically convergent iteration scheme.
+//               See paragraph 10 in http://www.pi314.net/eng/borwein.php.
+//               If the input b_trace = true, then the calculation progress
+//               will be output to cout.
+// 
+// *****************************************************************************
+const e_float& calculate_pi_borwein_hexadecimalic(const bool b_trace)
+{
+  static bool is_init = false;
+
+  static e_float val_pi(ef::one() / 3U);
+
+  if(!is_init)
+  {
+    is_init = true;
+
+    if(b_trace) { std::cout << "Calculating pi with Borwein hexadecimalic.\n"; }
+
+    e_float sixteen_pow_k = e_float(4U);
+
+    e_float sk(ef::sqrt(ef::two()) - ef::one());
+    e_float rk(ef::rootn(ef::one() - ef::pow(sk, 4), 4));
+
+    // Determine the requested precision of the upcoming iteration in units of digits10.
+    constexpr std::int32_t required_precision_sixteenth =
+        static_cast<std::int32_t>((std::numeric_limits<e_float>::digits10 * 2) + 16)
+      / static_cast<std::int32_t>(32);
+
+    for(std::int32_t k = static_cast<std::int32_t>(1); k < static_cast<std::int32_t>(16); ++k)
+    {
+      const e_float t (ef::one() + rk);
+      const e_float u (ef::rootn((ef::one() + (rk * rk)) * (rk * 8), 4));
+      const e_float m1(ef::pow((ef::one() + sk) / t, 4));
+      const e_float m2(ef::pow(ef::one() / t, 4));
+
+      const e_float previous_ak(val_pi);
+
+      val_pi = ((m1 * val_pi) * 16) + (((ef::one() - (m2 * 12) - (m1 * 4)) * sixteen_pow_k) / 3);
+
+      double       dd;
+      std::int64_t e10;
+
+      (val_pi - previous_ak).extract_parts(dd, e10);
+
+      static_cast<void>(dd);
+
+      const std::int64_t approximate_digits10_of_iteration_term = (std::max)(std::int64_t(0), std::int64_t(-e10));
+
+      if(b_trace)
+      {
+        std::cout << "Approximate decimal digits of this iteration : "
+                  << std::right
+                  << std::setw(12)
+                  << approximate_digits10_of_iteration_term
+                  << '\n';
+      }
+
+      // Test the significant digits of the last iteration change.
+      // If there are enough significant digits, then the calculation
+      // is finished.
+      if(approximate_digits10_of_iteration_term >= required_precision_sixteenth)
+      {
+        break;
+      }
+
+      sk = ef::pow(ef::one() - rk, 4) / (ef::pow(t + u, 2) * ((t * t) + (u * u)));
+      rk = ef::rootn(ef::one() - ef::pow(sk, 4), 4);
+
+      sixteen_pow_k *= 16;
+    }
+
+    (void) val_pi.calculate_inv();
+  }
+
+  return val_pi;
+}
 
 namespace
 {

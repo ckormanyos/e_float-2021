@@ -14,11 +14,12 @@
   #include <ostream>
   #include <e_float/e_float.h>
 
-  const e_float& calculate_pi                (const bool b_trace);
-  const e_float& calculate_pi_borwein_cubic  (const bool b_trace);
-  const e_float& calculate_pi_borwein_quartic(const bool b_trace);
-  const e_float& calculate_pi_borwein_quintic(const bool b_trace);
-  const e_float& calculate_pi_borwein_nonic  (const bool b_trace);
+  const e_float& calculate_pi                      (const bool b_trace);
+  const e_float& calculate_pi_borwein_cubic        (const bool b_trace);
+  const e_float& calculate_pi_borwein_quartic      (const bool b_trace);
+  const e_float& calculate_pi_borwein_quintic      (const bool b_trace);
+  const e_float& calculate_pi_borwein_nonic        (const bool b_trace);
+  const e_float& calculate_pi_borwein_hexadecimalic(const bool b_trace);
 
   typedef const e_float& (*calculate_pi_pfn)(const bool);
 
