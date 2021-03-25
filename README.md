@@ -87,6 +87,19 @@ ranging from C++11, 14, 17, 20 are included in CI.
 ### Build Status
 [![Build Status](https://github.com/ckormanyos/e_float-2021/actions/workflows/e_float.yml/badge.svg)](https://github.com/ckormanyos/e_float-2021/actions)
 
+## Boost Bindings
+
+Boost bindings for Boost.Math and Boost.Multiprecision can be found in
+the [`e_float.hpp`](./libs/math/include/boost/math/bindings/e_float.hpp) header.
+Examples of using boost bindings can be found in the [`test_boost` project](./libs/e_float/test_boost).
+
+## Pi Algorithms
+
+An extensive collection of iterative algorithms for calculating
+pi can be found in [`pi_algos.cpp`](./libs/e_float/test/pi_test/pi_algos.cpp).
+Included are algorithms having quadratic, cubic, quintic, nonic and hexadecimalic
+convergence properties. These are used to exercise 1 million digit pi calculations.
+
 # History
 
 The original `e_float` project influenced the fundamental
