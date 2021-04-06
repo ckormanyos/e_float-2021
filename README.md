@@ -2,11 +2,15 @@ e_float-2021
 [![Build Status](https://github.com/ckormanyos/e_float-2021/actions/workflows/e_float.yml/badge.svg)](https://github.com/ckormanyos/e_float-2021/actions)
 ==================
 
-Multiple precision floating point (legacy project) derived work from e_float
+e_float-2021 is a C++ multiple-precision floating point derived work from the original (legacy) e_float code and paper.
+
+---
 
 This work is based on an earlier work:\
 C.M. Kormanyos, _Algorithm 910: A Portable C++ Multiple-Precision System for Special-Function Calculations_,\
 in [ACM TOMS (37) 4, February 2011](https://doi.acm.org/10.1145/1916461.1916469)
+
+---
 
 ## Description
 
