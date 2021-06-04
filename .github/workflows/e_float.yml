@@ -7,8 +7,6 @@
 name: e_float
 on:
   push:
-  schedule:
-    - cron: '0 3 * * *' # run at 3 AM UTC
 jobs:
   msvc-release:
     runs-on: windows-latest
