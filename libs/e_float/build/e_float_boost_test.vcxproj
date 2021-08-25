@@ -59,19 +59,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug-efx-boost-test|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\..\..\libs\math\include;$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\boost_1_75_0;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\libs\math\include;$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\boost_1_77_0;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)x64-debug-efx-boost-test\</OutDir>
     <IntDir>$(OutDir)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release-efx-boost-test|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\..\..\libs\math\include;$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\boost_1_75_0;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\libs\math\include;$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\boost_1_77_0;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)x64-release-efx-boost-test\</OutDir>
     <IntDir>$(OutDir)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release-gmp-boost-test|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\..\..\libs\math\include;$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\boost_1_75_0;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\..\libs\math\include;$(SolutionDir)..\..\..\libs\e_float\src;C:\boost\boost_1_77_0;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)x64-release-gmp-boost-test\</OutDir>
     <IntDir>$(OutDir)</IntDir>
   </PropertyGroup>

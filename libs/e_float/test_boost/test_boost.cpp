@@ -8,7 +8,7 @@
 
 // cd C:\Users\User\Documents\Ks\PC_Software\NumericalPrograms\ExtendedNumberTypes\e_float\libs\e_float\build
 
-// g++ -Wall -Wextra -m64 -O3 -std=gnu++11 -DE_FLOAT_TYPE_EFX -I../../../libs/e_float/src -IC:/boost/modular_boost/boost/libs/multiprecision/include -IC:/boost/modular_boost/boost/libs/math/include -IC:/boost/boost_1_75_0 ../src/e_float/efx/e_float_efx.cpp ../src/e_float/e_float.cpp ../src/e_float/e_float_base.cpp ../src/functions/constants/constants.cpp ../src/functions/elementary/elementary_complex.cpp ../src/functions/elementary/elementary_hyper_g.cpp ../src/functions/elementary/elementary_math.cpp ../src/functions/elementary/elementary_trans.cpp ../src/functions/elementary/elementary_trig.cpp ../test_boost/test_boost.cpp ../test_boost/test_boost_real_concept.cpp ../test_boost/test_boost_sf.cpp -o test_boost.exe
+// g++ -Wall -Wextra -m64 -O3 -std=gnu++11 -DE_FLOAT_TYPE_EFX -I../../../libs/e_float/src -IC:/boost/modular_boost/boost/libs/multiprecision/include -IC:/boost/modular_boost/boost/libs/math/include -IC:/boost/boost_1_77_0 ../src/e_float/efx/e_float_efx.cpp ../src/e_float/e_float.cpp ../src/e_float/e_float_base.cpp ../src/functions/constants/constants.cpp ../src/functions/elementary/elementary_complex.cpp ../src/functions/elementary/elementary_hyper_g.cpp ../src/functions/elementary/elementary_math.cpp ../src/functions/elementary/elementary_trans.cpp ../src/functions/elementary/elementary_trig.cpp ../test_boost/test_boost.cpp ../test_boost/test_boost_real_concept.cpp ../test_boost/test_boost_sf.cpp -o test_boost.exe
 
 extern bool test_boost_sf          ();
 extern bool test_boost_real_concept();
