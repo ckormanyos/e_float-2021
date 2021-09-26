@@ -573,12 +573,13 @@ const e_float& calculate_pi_borwein_hexadecimalic(const bool b_trace)
 namespace
 {
   template<typename float_type>
-  std::ostream& report_pi_timing(std::ostream& os, const float elapsed)
+  std::ostream& report_pi_timing(std::ostream& os, const float elapsed, const std::string& str_name)
   {
     return os << "=================================================" << '\n'
               << "Computed "
               << static_cast<std::uint64_t>(std::numeric_limits<float_type>::digits10 - 1)
               << " digits of pi.\n"
+              << str_name + "\n"
               << "Total computation time : "
               << std::fixed
               << std::setprecision(2)
@@ -590,18 +591,20 @@ namespace
   }
 }
 
-bool print_pi(calculate_pi_pfn pfn, std::ostream& out_stream)
+bool print_pi(calculate_pi_pfn pfn, std::ostream& out_stream, const std::string& str_name)
 {
   const Util::timer my_timer;
 
+  std::cout << "start: " << str_name << std::endl;
+
   pfn(true);
 
-  const double elapsed = my_timer.elapsed();
+  const float elapsed { float(my_timer.elapsed()) };
 
   std::cout << std::endl;
 
-  report_pi_timing<e_float>(std::cout,  (float) elapsed);
-  report_pi_timing<e_float>(out_stream, (float) elapsed);
+  report_pi_timing<e_float>(std::cout,  elapsed, str_name);
+  report_pi_timing<e_float>(out_stream, elapsed, str_name);
 
   // Report that we are writing the output file.
   std::cout << std::endl;

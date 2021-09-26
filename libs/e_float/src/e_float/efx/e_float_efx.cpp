@@ -477,7 +477,7 @@ efx::e_float& efx::e_float::operator+=(const e_float& v)
     else
     {
       std::copy(my_data.cbegin(),
-                my_data.cend()     - static_cast<std::ptrdiff_t>(-ofs),
+                my_data.cend() - static_cast<std::ptrdiff_t>(-ofs),
                 n_data.begin() + static_cast<std::ptrdiff_t>(-ofs));
 
       std::fill(n_data.begin(),

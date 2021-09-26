@@ -47,6 +47,8 @@
                                         && (std::is_unsigned<UnsignedIntegralType>::value == true))>::type const* = nullptr>
       e_float(const UnsignedIntegralType u) : my_rop()
       {
+        init();
+
         from_unsigned_long_long(u);
       }
 
@@ -62,6 +64,8 @@
           ((!is_neg) ? static_cast<unsigned long long>(n)
                      : static_cast<unsigned long long>(-static_cast<signed long long>(n)));
 
+        init();
+
         from_unsigned_long_long(u);
 
         if(is_neg)
@@ -75,6 +79,8 @@
                typename std::enable_if<std::is_floating_point<FloatingPointType>::value == true>::type const* = nullptr>
       e_float(const FloatingPointType f) : my_rop()
       {
+        init();
+
         from_long_double(static_cast<long double>(f));
       }
 
@@ -218,31 +224,31 @@
       static e_float my_own_cyl_bessel_jn(const std::int32_t n, const e_float& x);
       static e_float my_own_cyl_bessel_yn(const std::int32_t n, const e_float& x);
 
-      virtual bool i_have_my_own_cbrt         () const { return true; }
-      virtual bool i_have_my_own_rootn        () const { return true; }
-      virtual bool i_have_my_own_exp          () const { return true; }
-      virtual bool i_have_my_own_log          () const { return true; }
-      virtual bool i_have_my_own_sin          () const { return true; }
-      virtual bool i_have_my_own_cos          () const { return true; }
-      virtual bool i_have_my_own_tan          () const { return true; }
-      virtual bool i_have_my_own_asin         () const { return true; }
-      virtual bool i_have_my_own_acos         () const { return true; }
-      virtual bool i_have_my_own_atan         () const { return true; }
-      virtual bool i_have_my_own_sinh         () const { return true; }
-      virtual bool i_have_my_own_cosh         () const { return true; }
-      virtual bool i_have_my_own_tanh         () const { return true; }
-      virtual bool i_have_my_own_asinh        () const { return true; }
-      virtual bool i_have_my_own_acosh        () const { return true; }
-      virtual bool i_have_my_own_atanh        () const { return true; }
-      virtual bool i_have_my_own_gamma        () const { return false; }
-      virtual bool i_have_my_own_riemann_zeta () const { return false; }
-      virtual bool i_have_my_own_cyl_bessel_jn() const { return false; }
-      virtual bool i_have_my_own_cyl_bessel_yn() const { return false; }
+      virtual bool i_have_my_own_cbrt         () const noexcept { return true; }
+      virtual bool i_have_my_own_rootn        () const noexcept { return true; }
+      virtual bool i_have_my_own_exp          () const noexcept { return true; }
+      virtual bool i_have_my_own_log          () const noexcept { return true; }
+      virtual bool i_have_my_own_sin          () const noexcept { return true; }
+      virtual bool i_have_my_own_cos          () const noexcept { return true; }
+      virtual bool i_have_my_own_tan          () const noexcept { return true; }
+      virtual bool i_have_my_own_asin         () const noexcept { return true; }
+      virtual bool i_have_my_own_acos         () const noexcept { return true; }
+      virtual bool i_have_my_own_atan         () const noexcept { return true; }
+      virtual bool i_have_my_own_sinh         () const noexcept { return true; }
+      virtual bool i_have_my_own_cosh         () const noexcept { return true; }
+      virtual bool i_have_my_own_tanh         () const noexcept { return true; }
+      virtual bool i_have_my_own_asinh        () const noexcept { return true; }
+      virtual bool i_have_my_own_acosh        () const noexcept { return true; }
+      virtual bool i_have_my_own_atanh        () const noexcept { return true; }
+      virtual bool i_have_my_own_gamma        () const noexcept { return false; }
+      virtual bool i_have_my_own_riemann_zeta () const noexcept { return false; }
+      virtual bool i_have_my_own_cyl_bessel_jn() const noexcept { return false; }
+      virtual bool i_have_my_own_cyl_bessel_yn() const noexcept { return false; }
 
     private:
       ::mpfr_t my_rop;
 
-      static const mp_prec_t my_default_prec =
+      static constexpr mp_prec_t my_default_prec =
         static_cast<mp_prec_t>(static_cast<mp_prec_t>(mpfr::e_float::ef_digits) + ((16 * 1000) / 301));
 
       static void init()

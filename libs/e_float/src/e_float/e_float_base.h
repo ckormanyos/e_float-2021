@@ -51,10 +51,10 @@
   class e_float_base
   {
   public:
-    static const std::int32_t ef_digits10_limit   = static_cast<std::int32_t>(1UL << 30);
+    static const std::int32_t ef_digits10_limit   = std::int32_t { 1UL << 30 };
     static const std::int32_t ef_digits10_setting = E_FLOAT_DIGITS10;
     static const std::int32_t ef_digits10         = ((ef_digits10_setting < static_cast<std::int32_t>(30)) ? static_cast<std::int32_t>(30) : ((ef_digits10_setting > ef_digits10_limit) ? ef_digits10_limit : ef_digits10_setting));
-    static const std::int32_t ef_max_digits10     = static_cast<std::int32_t>(ef_digits10 + 1);
+    static const std::int32_t ef_max_digits10     = std::int32_t { ef_digits10 + 1 };
 
     virtual ~e_float_base();
 
@@ -126,29 +126,29 @@
     virtual bool rd_string(const char* const) = 0;
 
     // Specific higher functions which might be present in the MP implementation.
-    virtual bool i_have_my_own_ldexp        () const { return false; }
-    virtual bool i_have_my_own_frexp        () const { return false; }
-    virtual bool i_have_my_own_fmod         () const { return false; }
-    virtual bool i_have_my_own_cbrt         () const { return false; }
-    virtual bool i_have_my_own_rootn        () const { return false; }
-    virtual bool i_have_my_own_exp          () const { return false; }
-    virtual bool i_have_my_own_log          () const { return false; }
-    virtual bool i_have_my_own_sin          () const { return false; }
-    virtual bool i_have_my_own_cos          () const { return false; }
-    virtual bool i_have_my_own_tan          () const { return false; }
-    virtual bool i_have_my_own_asin         () const { return false; }
-    virtual bool i_have_my_own_acos         () const { return false; }
-    virtual bool i_have_my_own_atan         () const { return false; }
-    virtual bool i_have_my_own_sinh         () const { return false; }
-    virtual bool i_have_my_own_cosh         () const { return false; }
-    virtual bool i_have_my_own_tanh         () const { return false; }
-    virtual bool i_have_my_own_asinh        () const { return false; }
-    virtual bool i_have_my_own_acosh        () const { return false; }
-    virtual bool i_have_my_own_atanh        () const { return false; }
-    virtual bool i_have_my_own_gamma        () const { return false; }
-    virtual bool i_have_my_own_riemann_zeta () const { return false; }
-    virtual bool i_have_my_own_cyl_bessel_jn() const { return false; }
-    virtual bool i_have_my_own_cyl_bessel_yn() const { return false; }
+    virtual bool i_have_my_own_ldexp        () const noexcept { return false; }
+    virtual bool i_have_my_own_frexp        () const noexcept { return false; }
+    virtual bool i_have_my_own_fmod         () const noexcept { return false; }
+    virtual bool i_have_my_own_cbrt         () const noexcept { return false; }
+    virtual bool i_have_my_own_rootn        () const noexcept { return false; }
+    virtual bool i_have_my_own_exp          () const noexcept { return false; }
+    virtual bool i_have_my_own_log          () const noexcept { return false; }
+    virtual bool i_have_my_own_sin          () const noexcept { return false; }
+    virtual bool i_have_my_own_cos          () const noexcept { return false; }
+    virtual bool i_have_my_own_tan          () const noexcept { return false; }
+    virtual bool i_have_my_own_asin         () const noexcept { return false; }
+    virtual bool i_have_my_own_acos         () const noexcept { return false; }
+    virtual bool i_have_my_own_atan         () const noexcept { return false; }
+    virtual bool i_have_my_own_sinh         () const noexcept { return false; }
+    virtual bool i_have_my_own_cosh         () const noexcept { return false; }
+    virtual bool i_have_my_own_tanh         () const noexcept { return false; }
+    virtual bool i_have_my_own_asinh        () const noexcept { return false; }
+    virtual bool i_have_my_own_acosh        () const noexcept { return false; }
+    virtual bool i_have_my_own_atanh        () const noexcept { return false; }
+    virtual bool i_have_my_own_gamma        () const noexcept { return false; }
+    virtual bool i_have_my_own_riemann_zeta () const noexcept { return false; }
+    virtual bool i_have_my_own_cyl_bessel_jn() const noexcept { return false; }
+    virtual bool i_have_my_own_cyl_bessel_yn() const noexcept { return false; }
 
     static e_float my_own_ldexp        (const e_float&, int);
     static e_float my_own_frexp        (const e_float&, int*);
@@ -175,7 +175,7 @@
     static e_float my_own_cyl_bessel_yn(const std::int32_t, const e_float&);
 
   protected:
-    constexpr e_float_base() { }
+    constexpr e_float_base() noexcept { }
 
     // Emphasize: This template class can be used with native floating-point
     // types like float, double and long double. Note: For long double,
