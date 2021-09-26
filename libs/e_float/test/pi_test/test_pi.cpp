@@ -8,6 +8,8 @@
 // "Algorithm 910: A Portable C++ Multiple-Precision System for Special-Function Calculations",
 // in ACM TOMS, {VOL 37, ISSUE 4, (February 2011)} (C) ACM, 2011. http://doi.acm.org/10.1145/1916461.1916469
 
+#include <algorithm>
+#include <array>
 #include <ctime>
 #include <fstream>
 #include <iomanip>
@@ -20,46 +22,62 @@
 
 bool test::pi::test_pi()
 {
-  bool result_is_ok = false;
+  using ofstream_array_type         = std::array<std::ofstream, 6U>;
+  using calculate_pi_pfn_array_type = std::array<calculate_pi_pfn, std::tuple_size<ofstream_array_type>::value>;
 
-  std::ofstream out0("pi0.out");
-  std::ofstream out1("pi1.out");
-  std::ofstream out2("pi2.out");
-  std::ofstream out3("pi3.out");
-  std::ofstream out4("pi4.out");
-  std::ofstream out5("pi5.out");
+  ofstream_array_type out =
+  {{
+    std::ofstream("pi.out"),
+    std::ofstream("pi_borwein_cubic.out"),
+    std::ofstream("pi_borwein_quartic.out"),
+    std::ofstream("pi_borwein_quintic.out"),
+    std::ofstream("pi_borwein_nonic.out"),
+    std::ofstream("pi_borwein_hexadecimalic.out")
+  }};
 
-  const bool output_files_are_open = (   out0.is_open()
-                                      && out1.is_open()
-                                      && out2.is_open()
-                                      && out3.is_open()
-                                      && out4.is_open()
-                                      && out5.is_open());
+  const calculate_pi_pfn_array_type pfn =
+  {{
+    calculate_pi,
+    calculate_pi_borwein_cubic,
+    calculate_pi_borwein_quartic,
+    calculate_pi_borwein_quintic,
+    calculate_pi_borwein_nonic,
+    calculate_pi_borwein_hexadecimalic
+  }};
 
-  if(output_files_are_open)
+  bool result_is_ok =
+    std::all_of
+    (
+      out.cbegin(),
+      out.cend(),
+      [](const std::ofstream& of) -> bool
+      {
+        return of.is_open();
+      }
+    );
+
+  if(result_is_ok)
   {
-    calculate_pi_pfn pfn0 = calculate_pi;
-    calculate_pi_pfn pfn1 = calculate_pi_borwein_cubic;
-    calculate_pi_pfn pfn2 = calculate_pi_borwein_quartic;
-    calculate_pi_pfn pfn3 = calculate_pi_borwein_quintic;
-    calculate_pi_pfn pfn4 = calculate_pi_borwein_nonic;
-    calculate_pi_pfn pfn5 = calculate_pi_borwein_hexadecimalic;
+    std::size_t index = 0U;
 
-    result_is_ok = true;
+    const bool result_pi_calculations_is_ok =
+      std::all_of
+      (
+        pfn.cbegin(),
+        pfn.cend(),
+        [&out, &index](const calculate_pi_pfn& pf) -> bool
+        {
+          const bool b_ok = print_pi(pf, out[index]);
 
-    result_is_ok &= print_pi(pfn0, out0);
-    result_is_ok &= print_pi(pfn1, out1);
-    result_is_ok &= print_pi(pfn2, out2);
-    result_is_ok &= print_pi(pfn3, out3);
-    result_is_ok &= print_pi(pfn4, out4);
-    result_is_ok &= print_pi(pfn5, out5);
+          out[index].close();
 
-    out0.close();
-    out1.close();
-    out2.close();
-    out3.close();
-    out4.close();
-    out5.close();
+          ++index;
+
+          return b_ok;
+        }
+      );
+
+    result_is_ok &= result_pi_calculations_is_ok;
   }
 
   return result_is_ok;
