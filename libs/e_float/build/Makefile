@@ -137,11 +137,11 @@ endif
 CFLAGS        = $(CFLAGS_BASE) $(CFLAGS_WARN)
 CXXFLAGS      = $(CFLAGS)
 ifeq ($(TYP_TEST),E_FLOAT_TEST_PI_ALGOS_TESTS)
-CXXFLAGS      = $(CXXFLAGS) -pthread
+CXXFLAGS     := $(CXXFLAGS) -pthread
 endif
 LDFLAGS       = $(LDFLAGS_BASE) $(CXXFLAGS)
 ifeq ($(TYP_TEST),E_FLOAT_TEST_PI_ALGOS_TESTS)
-LDFLAGS       = $(LDFLAGS) -lpthread
+LDFLAGS      := $(LDFLAGS) -lpthread
 endif
 
 # ------------------------------------------------------------------------------
