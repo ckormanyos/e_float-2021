@@ -20,7 +20,7 @@
 
   // Here we can manually set one of the following switches
   // (if not previously set on the compiler command line)
-  #define E_FLOAT_TEST_PI_ALGOS_TESTS
+  //#define E_FLOAT_TEST_PI_ALGOS_TESTS
   //#define E_FLOAT_TEST_REAL_IMAG_TESTS
 
   #if !defined(E_FLOAT_TEST_PI_ALGOS_TESTS) && !defined(E_FLOAT_TEST_REAL_IMAG_TESTS)
