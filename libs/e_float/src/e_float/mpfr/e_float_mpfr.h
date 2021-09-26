@@ -218,26 +218,26 @@
       static e_float my_own_cyl_bessel_jn(const std::int32_t n, const e_float& x);
       static e_float my_own_cyl_bessel_yn(const std::int32_t n, const e_float& x);
 
-      virtual bool i_have_my_own_cbrt         () const { return true; }
-      virtual bool i_have_my_own_rootn        () const { return true; }
-      virtual bool i_have_my_own_exp          () const { return true; }
-      virtual bool i_have_my_own_log          () const { return true; }
-      virtual bool i_have_my_own_sin          () const { return true; }
-      virtual bool i_have_my_own_cos          () const { return true; }
-      virtual bool i_have_my_own_tan          () const { return true; }
-      virtual bool i_have_my_own_asin         () const { return true; }
-      virtual bool i_have_my_own_acos         () const { return true; }
-      virtual bool i_have_my_own_atan         () const { return true; }
-      virtual bool i_have_my_own_sinh         () const { return true; }
-      virtual bool i_have_my_own_cosh         () const { return true; }
-      virtual bool i_have_my_own_tanh         () const { return true; }
-      virtual bool i_have_my_own_asinh        () const { return true; }
-      virtual bool i_have_my_own_acosh        () const { return true; }
-      virtual bool i_have_my_own_atanh        () const { return true; }
-      virtual bool i_have_my_own_gamma        () const { return false; }
-      virtual bool i_have_my_own_riemann_zeta () const { return false; }
-      virtual bool i_have_my_own_cyl_bessel_jn() const { return false; }
-      virtual bool i_have_my_own_cyl_bessel_yn() const { return false; }
+      virtual bool i_have_my_own_cbrt         () const noexcept { return true; }
+      virtual bool i_have_my_own_rootn        () const noexcept { return true; }
+      virtual bool i_have_my_own_exp          () const noexcept { return true; }
+      virtual bool i_have_my_own_log          () const noexcept { return true; }
+      virtual bool i_have_my_own_sin          () const noexcept { return true; }
+      virtual bool i_have_my_own_cos          () const noexcept { return true; }
+      virtual bool i_have_my_own_tan          () const noexcept { return true; }
+      virtual bool i_have_my_own_asin         () const noexcept { return true; }
+      virtual bool i_have_my_own_acos         () const noexcept { return true; }
+      virtual bool i_have_my_own_atan         () const noexcept { return true; }
+      virtual bool i_have_my_own_sinh         () const noexcept { return true; }
+      virtual bool i_have_my_own_cosh         () const noexcept { return true; }
+      virtual bool i_have_my_own_tanh         () const noexcept { return true; }
+      virtual bool i_have_my_own_asinh        () const noexcept { return true; }
+      virtual bool i_have_my_own_acosh        () const noexcept { return true; }
+      virtual bool i_have_my_own_atanh        () const noexcept { return true; }
+      virtual bool i_have_my_own_gamma        () const noexcept { return false; }
+      virtual bool i_have_my_own_riemann_zeta () const noexcept { return false; }
+      virtual bool i_have_my_own_cyl_bessel_jn() const noexcept { return false; }
+      virtual bool i_have_my_own_cyl_bessel_yn() const noexcept { return false; }
 
     private:
       ::mpfr_t my_rop;

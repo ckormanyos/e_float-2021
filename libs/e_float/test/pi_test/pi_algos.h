@@ -12,6 +12,7 @@
   #define PI_ALGOS_2014_08_06_H_
 
   #include <ostream>
+  #include <string>
   #include <e_float/e_float.h>
 
   const e_float& calculate_pi                      (const bool b_trace);
@@ -23,6 +24,6 @@
 
   typedef const e_float& (*calculate_pi_pfn)(const bool);
 
-  bool print_pi(calculate_pi_pfn pfn, std::ostream& os);
+  bool print_pi(calculate_pi_pfn pfn, std::ostream& os, const std::string& str_name);
 
 #endif // PI_ALGOS_2014_08_06_H_

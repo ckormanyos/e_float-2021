@@ -14,25 +14,38 @@
 #include <fstream>
 #include <iomanip>
 #include <iostream>
+#include <string>
 
 #include <e_float/e_float.h>
 
+#include <../test/parallel_for.h>
 #include <../test/pi_test/pi_algos.h>
 #include <../test/pi_test/test_pi.h>
 
 bool test::pi::test_pi()
 {
-  using ofstream_array_type         = std::array<std::ofstream, 6U>;
-  using calculate_pi_pfn_array_type = std::array<calculate_pi_pfn, std::tuple_size<ofstream_array_type>::value>;
+  using str_name_array_type         = std::array<std::string, 6U>;
+  using ofstream_array_type         = std::array<std::ofstream, std::tuple_size<str_name_array_type>::value>;
+  using calculate_pi_pfn_array_type = std::array<calculate_pi_pfn, std::tuple_size<str_name_array_type>::value>;
+
+  str_name_array_type names =
+  {{
+    std::string("pi.out"),
+    std::string("pi_borwein_cubic.out"),
+    std::string("pi_borwein_quartic.out"),
+    std::string("pi_borwein_quintic.out"),
+    std::string("pi_borwein_nonic.out"),
+    std::string("pi_borwein_hexadecimalic.out")
+  }};
 
   ofstream_array_type out =
   {{
-    std::ofstream("pi.out"),
-    std::ofstream("pi_borwein_cubic.out"),
-    std::ofstream("pi_borwein_quartic.out"),
-    std::ofstream("pi_borwein_quintic.out"),
-    std::ofstream("pi_borwein_nonic.out"),
-    std::ofstream("pi_borwein_hexadecimalic.out")
+    std::ofstream(names[0U].c_str()),
+    std::ofstream(names[1U].c_str()),
+    std::ofstream(names[2U].c_str()),
+    std::ofstream(names[3U].c_str()),
+    std::ofstream(names[4U].c_str()),
+    std::ofstream(names[5U].c_str())
   }};
 
   const calculate_pi_pfn_array_type pfn =
@@ -58,24 +71,19 @@ bool test::pi::test_pi()
 
   if(result_is_ok)
   {
-    std::size_t index = 0U;
+    bool result_pi_calculations_is_ok = true;
 
-    const bool result_pi_calculations_is_ok =
-      std::all_of
-      (
-        pfn.cbegin(),
-        pfn.cend(),
-        [&out, &index](const calculate_pi_pfn& pf) -> bool
-        {
-          const bool b_ok = print_pi(pf, out[index]);
+    my_concurrency::parallel_for
+    (
+      std::size_t(0U),
+      std::size_t(pfn.size()),
+      [&out, &pfn, &names, &result_pi_calculations_is_ok](std::size_t j)
+      {
+        result_pi_calculations_is_ok &= print_pi(pfn[j], out[j], names[j].substr(0U, names[j].find(char('.'))));
 
-          out[index].close();
-
-          ++index;
-
-          return b_ok;
-        }
-      );
+        out[j].close();
+      }
+    );
 
     result_is_ok &= result_pi_calculations_is_ok;
   }

@@ -17,8 +17,15 @@
 #include <string>
 
 #include <e_float/e_float_functions.h>
+#include <../test/parallel_for.h>
 #include <../test/pi_test/pi_algos.h>
 #include <utility/util_timer.h>
+
+namespace local { namespace pi_algos {
+
+std::atomic_flag ostream_test_lock = ATOMIC_FLAG_INIT;
+
+} } // namespace local__pi_algos
 
 // *****************************************************************************
 // Function    : const e_float& calculate_pi(const bool b_trace)
@@ -573,12 +580,13 @@ const e_float& calculate_pi_borwein_hexadecimalic(const bool b_trace)
 namespace
 {
   template<typename float_type>
-  std::ostream& report_pi_timing(std::ostream& os, const float elapsed)
+  std::ostream& report_pi_timing(std::ostream& os, const float elapsed, const std::string& str_name)
   {
     return os << "=================================================" << '\n'
               << "Computed "
               << static_cast<std::uint64_t>(std::numeric_limits<float_type>::digits10 - 1)
               << " digits of pi.\n"
+              << str_name + "\n"
               << "Total computation time : "
               << std::fixed
               << std::setprecision(2)
@@ -590,23 +598,29 @@ namespace
   }
 }
 
-bool print_pi(calculate_pi_pfn pfn, std::ostream& out_stream)
+bool print_pi(calculate_pi_pfn pfn, std::ostream& out_stream, const std::string& str_name)
 {
   const Util::timer my_timer;
 
-  pfn(true);
+  while(local::pi_algos::ostream_test_lock.test_and_set()) { ; }
+  std::cout << "start: " << str_name << std::endl;
+  local::pi_algos::ostream_test_lock.clear();
 
-  const double elapsed = my_timer.elapsed();
+  pfn(false);
+
+  const float elapsed { float(my_timer.elapsed()) };
 
   std::cout << std::endl;
 
-  report_pi_timing<e_float>(std::cout,  (float) elapsed);
-  report_pi_timing<e_float>(out_stream, (float) elapsed);
+  while(local::pi_algos::ostream_test_lock.test_and_set()) { ; }
+  report_pi_timing<e_float>(std::cout,  elapsed, str_name);
+  report_pi_timing<e_float>(out_stream, elapsed, str_name);
 
   // Report that we are writing the output file.
   std::cout << std::endl;
   std::cout << "Writing the output file." << '\n';
   std::cout << std::endl;
+  local::pi_algos::ostream_test_lock.clear();
 
   // Pipe value of pi into a stringstream object.
   std::stringstream ss;
