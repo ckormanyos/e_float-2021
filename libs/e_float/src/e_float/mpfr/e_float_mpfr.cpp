@@ -23,11 +23,9 @@
 
 namespace local
 {
-  const double& d_log2()
+  constexpr double d_log2()
   {
-    static const double value_log2 = double(0.30102999566398119521373889472449302676819L);
-
-    return value_log2;
+    return double(0.30102999566398119521373889472449302676819L);
   }
 }
 
@@ -133,8 +131,6 @@ void mpfr::e_float::from_unsigned_long_long(const unsigned long long u)
 
 void mpfr::e_float::from_long_double(const long double l)
 {
-  init();
-
   mpfr_init_set_ld(my_rop, l, GMP_RNDN);
 }
 

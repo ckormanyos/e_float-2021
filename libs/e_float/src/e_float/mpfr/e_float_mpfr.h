@@ -47,6 +47,8 @@
                                         && (std::is_unsigned<UnsignedIntegralType>::value == true))>::type const* = nullptr>
       e_float(const UnsignedIntegralType u) : my_rop()
       {
+        init();
+
         from_unsigned_long_long(u);
       }
 
@@ -62,6 +64,8 @@
           ((!is_neg) ? static_cast<unsigned long long>(n)
                      : static_cast<unsigned long long>(-static_cast<signed long long>(n)));
 
+        init();
+
         from_unsigned_long_long(u);
 
         if(is_neg)
@@ -75,6 +79,8 @@
                typename std::enable_if<std::is_floating_point<FloatingPointType>::value == true>::type const* = nullptr>
       e_float(const FloatingPointType f) : my_rop()
       {
+        init();
+
         from_long_double(static_cast<long double>(f));
       }
 
@@ -242,7 +248,7 @@
     private:
       ::mpfr_t my_rop;
 
-      static const mp_prec_t my_default_prec =
+      static constexpr mp_prec_t my_default_prec =
         static_cast<mp_prec_t>(static_cast<mp_prec_t>(mpfr::e_float::ef_digits) + ((16 * 1000) / 301));
 
       static void init()

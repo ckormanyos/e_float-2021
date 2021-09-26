@@ -573,9 +573,6 @@
     <ClInclude Include="..\..\math\include\boost\math\bindings\e_float.hpp">
       <Filter>libs\math\include\boost\math\bindings</Filter>
     </ClInclude>
-    <ClInclude Include="..\test\parallel_for.h">
-      <Filter>libs\e_float\test</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile">

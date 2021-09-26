@@ -18,7 +18,6 @@
 
 #include <e_float/e_float.h>
 
-#include <../test/parallel_for.h>
 #include <../test/pi_test/pi_algos.h>
 #include <../test/pi_test/test_pi.h>
 
@@ -73,17 +72,14 @@ bool test::pi::test_pi()
   {
     bool result_pi_calculations_is_ok = true;
 
-    my_concurrency::parallel_for
-    (
-      std::size_t(0U),
-      std::size_t(pfn.size()),
-      [&out, &pfn, &names, &result_pi_calculations_is_ok](std::size_t j)
-      {
-        result_pi_calculations_is_ok &= print_pi(pfn[j], out[j], names[j].substr(0U, names[j].find(char('.'))));
+    for(std::size_t j = 0U; ((result_pi_calculations_is_ok == true) && (j < pfn.size())); ++j)
+    {
+      const std::string str_name_j = names[j].substr(0U, names[j].find(char('.')));
 
-        out[j].close();
-      }
-    );
+      result_pi_calculations_is_ok &= print_pi(pfn[j], out[j], str_name_j);
+
+      out[j].close();
+    }
 
     result_is_ok &= result_pi_calculations_is_ok;
   }

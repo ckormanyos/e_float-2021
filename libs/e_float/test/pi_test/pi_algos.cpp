@@ -17,15 +17,8 @@
 #include <string>
 
 #include <e_float/e_float_functions.h>
-#include <../test/parallel_for.h>
 #include <../test/pi_test/pi_algos.h>
 #include <utility/util_timer.h>
-
-namespace local { namespace pi_algos {
-
-std::atomic_flag ostream_test_lock = ATOMIC_FLAG_INIT;
-
-} } // namespace local__pi_algos
 
 // *****************************************************************************
 // Function    : const e_float& calculate_pi(const bool b_trace)
@@ -602,17 +595,14 @@ bool print_pi(calculate_pi_pfn pfn, std::ostream& out_stream, const std::string&
 {
   const Util::timer my_timer;
 
-  while(local::pi_algos::ostream_test_lock.test_and_set()) { ; }
   std::cout << "start: " << str_name << std::endl;
-  local::pi_algos::ostream_test_lock.clear();
 
-  pfn(false);
+  pfn(true);
 
   const float elapsed { float(my_timer.elapsed()) };
 
   std::cout << std::endl;
 
-  while(local::pi_algos::ostream_test_lock.test_and_set()) { ; }
   report_pi_timing<e_float>(std::cout,  elapsed, str_name);
   report_pi_timing<e_float>(out_stream, elapsed, str_name);
 
@@ -620,7 +610,6 @@ bool print_pi(calculate_pi_pfn pfn, std::ostream& out_stream, const std::string&
   std::cout << std::endl;
   std::cout << "Writing the output file." << '\n';
   std::cout << std::endl;
-  local::pi_algos::ostream_test_lock.clear();
 
   // Pipe value of pi into a stringstream object.
   std::stringstream ss;

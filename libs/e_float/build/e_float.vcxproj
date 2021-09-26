@@ -714,7 +714,6 @@
     <ClInclude Include="..\test\linpack_test\gmp\gmp.h" />
     <ClInclude Include="..\test\linpack_test\gmp\gmpxx.h" />
     <ClInclude Include="..\test\linpack_test\libf2c\f2c.h" />
-    <ClInclude Include="..\test\parallel_for.h" />
     <ClInclude Include="..\test\pi_test\pi_algos.h" />
     <ClInclude Include="..\test\pi_test\test_pi.h" />
     <ClInclude Include="..\test\real\test_case_real.h" />
