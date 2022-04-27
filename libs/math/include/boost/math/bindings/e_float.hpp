@@ -25,11 +25,13 @@
   #error BOOST_VERSION is not defined. Ensure that <boost/version.hpp> is properly included.
   #endif
 
-  #if (BOOST_VERSION >= 107900)
+  #if (BOOST_VERSION < 107900)
+  #include <boost/config.hpp>
+  #else
   #define BOOST_MP_STANDALONE
+  #define BOOST_MATH_STANDALONE
   #endif
 
-  #include <boost/config.hpp>
   #include <boost/multiprecision/number.hpp>
 
   namespace boost { namespace math { namespace ef {
