@@ -1,5 +1,5 @@
-
-//          Copyright Christopher Kormanyos 1999 - 2021.
+﻿
+//          Copyright Christopher Kormanyos 1999 - 2022.
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file LICENSE_1_0.txt or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
@@ -16,17 +16,17 @@
 
 #include <utility/util_timer.h>
 
-// cd C:/Users/User/Documents/Ks/PC_Software/NumericalPrograms/ExtendedNumberTypes/e_float/libs/e_float/build
+// cd /mnt/c/Users/User/Documents/Ks/PC_Software/NumericalPrograms/ExtendedNumberTypes/e_float/libs/e_float/build
 // make MP=efx rebuild
 
 // Build locally for test on MinGW via command line
-// cd C:\Users\User\Documents\Ks\PC_Software\NumericalPrograms\ExtendedNumberTypes\e_float\libs\e_float\build
+// cd /mnt/c/Users/User/Documents/Ks/PC_Software/NumericalPrograms/ExtendedNumberTypes/e_float/libs/e_float/build
 
 // Build for E_FLOAT_TEST_PI_ALGOS_TESTS
-// g++ -finline-functions -finline-limit=32 -march=native -mtune=native -O3 -Wall -Wextra -Wno-cast-function-type -std=c++11 -DE_FLOAT_TYPE_EFX -DE_FLOAT_TEST_PI_ALGOS_TESTS -I../../../libs/e_float/src @GCC_FilesPi.txt ../src/e_float/efx/e_float_efx.cpp -o e_float.exe
+// g++ -finline-functions -march=native -mtune=native -O3 -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -std=c++11 -DE_FLOAT_TYPE_EFX -DE_FLOAT_TEST_PI_ALGOS_TESTS -I../../../libs/e_float/src @GCC_FilesPi.txt ../src/e_float/efx/e_float_efx.cpp -o e_float.exe
 
 // Build for E_FLOAT_TEST_REAL_IMAG_TESTS
-// g++ -finline-functions -finline-limit=32 -march=native -mtune=native -O3 -Wall -Wextra -Wno-cast-function-type -std=c++11 -DE_FLOAT_TYPE_EFX -DE_FLOAT_TEST_REAL_IMAG_TESTS -I../../../libs/e_float/src @GCC_FilesTest.txt ../src/e_float/efx/e_float_efx.cpp -o e_float.exe
+// g++ -finline-functions -march=native -mtune=native -O3 -Wall -Wextra -Wpedantic -Wsign-conversion -Wshadow -std=c++11 -DE_FLOAT_TYPE_EFX -DE_FLOAT_TEST_REAL_IMAG_TESTS -I../../../libs/e_float/src @GCC_FilesTest.txt ../src/e_float/efx/e_float_efx.cpp -o e_float.exe
 
 #if defined(E_FLOAT_TEST_PI_ALGOS_TESTS)
 #include <../test/pi_test/test_pi.h>

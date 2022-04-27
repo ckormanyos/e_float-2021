@@ -1,5 +1,5 @@
-
-//          Copyright Christopher Kormanyos 1999 - 2021.
+﻿
+//          Copyright Christopher Kormanyos 1999 - 2022.
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file LICENSE_1_0.txt or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
@@ -8,8 +8,8 @@
 // "Algorithm 910: A Portable C++ Multiple-Precision System for Special-Function Calculations",
 // in ACM TOMS, {VOL 37, ISSUE 4, (February 2011)} (C) ACM, 2011. http://doi.acm.org/10.1145/1916461.1916469
 
-#ifndef E_FLOAT_BASE_2004_06_01_HPP_
-  #define E_FLOAT_BASE_2004_06_01_HPP_
+#ifndef E_FLOAT_BASE_2004_06_01_H
+  #define E_FLOAT_BASE_2004_06_01_H
 
   #include <cmath>
   #include <cstdint>
@@ -18,12 +18,10 @@
   #include <string>
   #include <type_traits>
 
+  #if !defined(E_FLOAT_TEST_PI_ALGOS_TESTS) && !defined(E_FLOAT_TEST_REAL_IMAG_TESTS)
   // Here we can manually set one of the following switches
   // (if not previously set on the compiler command line)
   //#define E_FLOAT_TEST_PI_ALGOS_TESTS
-  //#define E_FLOAT_TEST_REAL_IMAG_TESTS
-
-  #if !defined(E_FLOAT_TEST_PI_ALGOS_TESTS) && !defined(E_FLOAT_TEST_REAL_IMAG_TESTS)
   #define E_FLOAT_TEST_REAL_IMAG_TESTS
   #endif
 
@@ -254,4 +252,4 @@
   std::ostream& operator<<(std::ostream& os, const e_float_base& f);
   std::istream& operator>>(std::istream& is,       e_float_base& f);
 
-#endif // E_FLOAT_BASE_2004_06_01_HPP_
+#endif // E_FLOAT_BASE_2004_06_01_H

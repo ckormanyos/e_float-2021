@@ -1,0 +1,285 @@
+\documentclass{article}[10pt]
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\def\codedefault {\ttfamily}
+
+\lstset
+{
+  language=[ISO]C++,
+  morekeywords={interrupt,static_assert,constexpr,delete,auto,decltype,nullptr,noexcept},
+  framerule=0.40pt,
+  showstringspaces=false,
+  extendedchars=true,
+  basicstyle=\codedefault,
+  commentstyle=\codedefault\itshape,
+  keywordstyle=\codedefault\bfseries,
+  frame=tb,
+  aboveskip={1.1\baselineskip},
+  belowskip={1.1\baselineskip}
+}
+
+\def\cppnineeight {C++$98$}
+\def\cppothree    {C++$03$}
+\def\cppox        {C++$11$}
+\def\cninenine    {C$99$}
+
+\def\trademarksymbolr   {$^{\text{\rm{\scriptsize{\textregistered}}}}$}
+\def\trademarksymboltm  {$^{\text{\rm{\scriptsize{TM}}}}$}
+
+\def\mathematica        {{Mathematica\trademarksymbolr}}
+\def\wolframalpha       {{WolframAlpha\trademarksymbolr}}
+
+\newcommand{\deriveval}[2][]{#1|_{#2}}
+
+\begin{document}
+
+\title{Making a Sine Table with {\codedefault{Boost.Multiprecision}}}
+\maketitle
+
+\noindent
+We will now describe a variety of ways to use
+\lstinline|Boost.Math| in combination with
+\lstinline|Boost.Multiprecision|
+in order to perform floating-point numerical calculations
+with high precision.
+
+The \lstinline|Boost.Multiprecision| library can be used
+for computations requiring precision exceeding that
+of standard built-in types such as
+\lstinline|float|, \lstinline|double| and \lstinline|long double|.
+For extended-precision calculations,
+\lstinline|Boost.Multiprecision| supplies a template data
+type called \lstinline|cpp_dec_float|.
+The number of decimal digits of precision is fixed at compile-time
+via template parameter. For example,
+
+\begin{lstlisting}
+#include <boost/multiprecision/cpp_dec_float.hpp>
+
+using boost::multiprecision::cpp_dec_float;
+
+// A floating-point type with 50 digits of precision.
+typedef cpp_dec_float<50> float50;
+\end{lstlisting}
+
+Here, we have defined the local data type
+\lstinline|float50| with with~$50$ decimal digits of
+precision. We can use this data type to print, for example,
+the value of $1/\,7$ to~$50$ digits.
+
+\begin{lstlisting}
+#include <iostream>
+#include <limits>
+
+// 1/7 with 50 digits of precision.
+float50 seventh = float50(1) / 7;
+
+const int d
+  = std::numeric_limits<float50>::digits10;
+
+// Print 1/7 with 50 digits of precision.
+std::cout << std::setprecision(d)
+          << seventh
+          << std::endl;
+\end{lstlisting}
+
+For the sake of convenience, \lstinline|Boost.Multiprecision|
+defines a variety of data types with fixed precision.
+These include, among others, data types with~$50$ and~$100$
+decimal digits of precision, respectively. In particular,
+
+\begin{lstlisting}
+using boost::multiprecision;
+
+cpp_dec_float_50  f50;  // Has  50 digits.
+cpp_dec_float_100 f100; // Has 100 digits.
+\end{lstlisting}
+
+For more information on the \lstinline|cpp_dec_float| data type,
+see the tutorial in \lstinline|Boost.Multiprecision|.
+
+Mathematical software usually requires one or more
+known constant values such as~$\pi$ or $\log{2}$,~etc.
+It often makes sense
+to initialize a constant value stored in a built-in type
+from a multiprecision value of higher precision.
+This guarantees that the built-in type will be initialized
+to the the very last bit of its own precision.
+
+We will now obtain the value of~$\pi$ with~$50$ decimal
+digits of precision from \lstinline|Boost.Math|'s
+template \lstinline|pi()| function.
+
+\begin{lstlisting}
+using boost::multiprecision;
+
+cpp_dec_float_50 pi_50;
+  = boost::math::constants::pi<cpp_dec_float_50>();
+\end{lstlisting}
+
+A multiprecision value can be converted to a built-in type
+using the member function \lstinline|convert_to()|.
+In particular, the code below initializes a
+value of type \lstinline|long double| from
+a multiprecision value having~$50$ digits of precision.
+
+\begin{lstlisting}
+const long double pi_ld
+  = pi_50.convert_to<long_double>();
+\end{lstlisting}
+
+One usually needs to compute tables of numbers in
+mathematical software. A fast Fourier transform (FFT),
+for example, may use a table of the values of
+$\sin\left({\pi /\,2^n}\right)$
+in its implementation details. In order to maximize the
+precision in the FFT implementation, the precision of the
+tabulated trigonometric values should exceed that of the
+built-in floating-point type used in the FFT.
+
+The sample below computes a table of the values of
+$\sin\left({\pi /\,2^n}\right)$ in the range
+$1\,\le\,n\le\,31$.
+A precision of~$50$ decimal digits is used.
+
+\begin{lstlisting}
+#include <vector>
+#include <algorithm>
+#include <iostream>
+#include <iomanip>
+#include <iterator>
+#include <limits>
+#include <boost/multiprecision/cpp_dec_float.hpp>
+
+using boost::multiprecision::cpp_dec_float_50;
+using boost::math::constants::pi;
+
+typedef cpp_dec_float_50 float50;
+
+int main(int, char**)
+{
+  std::vector<float50> sin_values(31U);
+
+  unsigned n = 1U;
+
+  // Generate the sine values.
+  std::for_each(
+    sin_values.begin(),
+    sin_values.end(),
+    [&n](float50& y)
+    {
+      y = sin(pi<float50>() / pow(float50(2), n));
+      ++n;
+    });
+
+  // Set the output precision.
+  const int d
+    = std::numeric_limits<float50>::digits10;
+
+  std::cout.precision(d);
+
+  // Print the sine table.
+  std::copy(sin_values.begin(),
+            sin_values.end(),
+    std::ostream_iterator<float50>(std::cout, "\n"));
+}
+\end{lstlisting}
+
+This program makes use of, among other program elements,
+the data type \lstinline|cpp_dec_float_50| from
+\lstinline|Boost.Multiprecision|, the value of $\pi$
+retrieved from \lstinline|Boost.Math|
+and a \cppox\ lambda function combined with
+\lstinline|std::for_each()|.
+
+\pagebreak
+
+The output of this program is shown below.
+
+\begin{lstlisting}
+1
+0.70710678118654752440084436210484903928483593768847
+0.38268343236508977172845998403039886676134456248563
+0.19509032201612826784828486847702224092769161775195
+0.098017140329560601994195563888641845861136673167501
+0.049067674327418014254954976942682658314745363025753
+0.024541228522912288031734529459282925065466119239451
+0.012271538285719926079408261951003212140372319591769
+0.0061358846491544753596402345903725809170578863173913
+0.003067956762965976270145365490919842518944610213452
+0.0015339801862847656123036971502640790799548645752374
+0.00076699031874270452693856835794857664314091945206328
+0.00038349518757139558907246168118138126339502603496474
+0.00019174759731070330743990956198900093346887403385916
+9.5873799095977345870517210976476351187065612851145e-05
+4.7936899603066884549003990494658872746866687685767e-05
+2.3968449808418218729186577165021820094761474895673e-05
+1.1984224905069706421521561596988984804731977538387e-05
+5.9921124526424278428797118088908617299871778780951e-06
+2.9960562263346607504548128083570598118251878683408e-06
+1.4980281131690112288542788461553611206917585861527e-06
+7.4901405658471572113049856673065563715595930217207e-07
+3.7450702829238412390316917908463317739740476297248e-07
+1.8725351414619534486882457659356361712045272098287e-07
+9.3626757073098082799067286680885620193236507169473e-08
+4.681337853654909269511551813854009695950362701667e-08
+2.3406689268274552759505493419034844037886207223779e-08
+1.1703344634137277181246213503238103798093456639976e-08
+5.8516723170686386908097901008341396943900085051757e-09
+2.9258361585343193579282304690689559020175857150074e-09
+1.4629180792671596805295321618659637103742615227834e-09
+\end{lstlisting}
+
+This output can be copied
+as text and readily integrated into a given source code file.
+Alternatively, the output can be written to a text file or
+even be used as part of a self-written automatic code generator.
+
+A computer algebra system can be used to verify
+the results obtained from
+\lstinline|Boost.Math| and \lstinline|Boost.Multiprecision|.
+For example, the \mathematica\
+computer algebra system~\cite{bibitem:mathematica}
+can obtain a similar table with the command:
+
+\begin{verbatim}
+Table[N[Sin[Pi / (2^n)], 50], {n, 1, 31, 1}]
+\end{verbatim}
+
+The \wolframalpha\
+Computational Knowledge Engine~\cite{bibitem:wolframalpha}
+can also be used to generate this table.
+The same command can be used.
+
+In general, calculations of special functions inherently
+lose a few bits of precision (or more)
+due to cancellations in series expansions,
+recurrence relations and the like. It often arises, however,
+that data tables originating from
+special function calculations are used as the basis
+of an even higher-level calculation. Computing data tables
+with extended precision can improve the overall accuracy of
+these kinds of calculations because the data have
+more precision than necessary.
+
+It may be wise to warm-cache pre-computed high-precision
+table values in a static container such as \lstinline|std::vector|.
+It can also be convenient to store pre-computed high-precision
+data tables in text-based files that can be parsed whenever
+the values need to be initialized and warm-cached.
+
+\begin{thebibliography}{9}
+\bibitem{bibitem:mathematica}
+Wolfram: {\textit{Wolfram \mathematica}},\\
+{\ttfamily{http://www.wolfram.com/mathematica}} (2013)
+\bibitem{bibitem:wolframalpha}
+Wolfram: {\textit{\wolframalpha\ Comutational Knowledge Engine}},\\
+{\ttfamily{http://www.wolframalpha.com}} (2013)
+\end{thebibliography}
+
+\end{document}
