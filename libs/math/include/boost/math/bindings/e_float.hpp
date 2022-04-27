@@ -1,5 +1,5 @@
-//  Copyright John Maddock 2012 - 2021.
-//  Copyright Christopher Kormanyos 2016 - 2021.
+﻿//  Copyright John Maddock 2012 - 2021.
+//  Copyright Christopher Kormanyos 2016 - 2022.
 //  Use, modification and distribution are subject to the
 //  Boost Software License, Version 1.0. (See accompanying file
 //  LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -8,8 +8,8 @@
 // Wrapper that works with e_float-2021, see also
 // https://github.com/ckormanyos/e_float-2021
 
-#ifndef E_FLOAT_2017_08_18_HPP_
-  #define E_FLOAT_2017_08_18_HPP_
+#ifndef E_FLOAT_2017_08_18_HPP
+  #define E_FLOAT_2017_08_18_HPP
 
   #include <cstdint>
   #include <sstream>
@@ -18,6 +18,16 @@
 
   #include <e_float/e_float.h>
   #include <e_float/e_float_functions.h>
+
+  #include <boost/version.hpp>
+
+  #if !defined(BOOST_VERSION)
+  #error BOOST_VERSION is not defined. Ensure that <boost/version.hpp> is properly included.
+  #endif
+
+  #if (BOOST_VERSION >= 107900)
+  #define BOOST_MP_STANDALONE
+  #endif
 
   #include <boost/config.hpp>
   #include <boost/multiprecision/number.hpp>
@@ -612,4 +622,4 @@
     };
   } // namespace std
 
-#endif // E_FLOAT_2017_08_18_HPP_
+#endif // E_FLOAT_2017_08_18_HPP
