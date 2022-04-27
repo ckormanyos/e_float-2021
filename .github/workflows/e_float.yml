@@ -9,7 +9,7 @@ on:
   push:
 jobs:
   msvc-release:
-    runs-on: windows-latest
+    runs-on: windows-2019
     strategy:
       fail-fast: false
       matrix:
@@ -25,7 +25,7 @@ jobs:
           dir %cd%\x64-release-${{ matrix.mptype }}\e_float.exe
           %cd%\x64-release-${{ matrix.mptype }}\e_float.exe
   msvc-release-boost-test:
-    runs-on: windows-latest
+    runs-on: windows-2019
     strategy:
       fail-fast: false
       matrix:
@@ -55,7 +55,7 @@ jobs:
           dir %cd%\x64-release-${{ matrix.mptype }}-boost-test\e_float_boost_test.exe
           %cd%\x64-release-${{ matrix.mptype }}-boost-test\e_float_boost_test.exe
   gcc-mingw-winhost-efx-pi:
-    runs-on: windows-latest
+    runs-on: windows-2019
     strategy:
       fail-fast: false
       matrix:
@@ -75,7 +75,7 @@ jobs:
           dir %cd%\e_float.exe
           %cd%\e_float.exe
   gcc-mingw-winhost-efx-tests:
-    runs-on: windows-latest
+    runs-on: windows-2019
     strategy:
       fail-fast: false
       matrix:
