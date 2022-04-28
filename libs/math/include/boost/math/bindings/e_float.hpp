@@ -562,17 +562,25 @@
                                                  ExpressionTemplates>,
                    ThisPolicy>
   {
+  private:
+    static constexpr std::intmax_t local_digits2_value =
+      static_cast<std::intmax_t>
+      (
+        static_cast<std::intmax_t>(static_cast<std::intmax_t>(static_cast<std::intmax_t>(::e_float::ef_digits10) + INTMAX_C(1)) * INTMAX_C(1000)) / INTMAX_C(301)
+      );
+
+    using local_digits2_type = digits2<static_cast<long>(local_digits2_value)>;
+
+  public:
     using precision_type = typename ThisPolicy::precision_type;
 
-    using local_digits_2 = digits2<((::e_float::ef_digits10 + 1LL) * 1000LL) / 301LL>;
-
     #if (BOOST_VERSION <= 107500)
-    using type = typename mpl::if_c       <((local_digits_2::value <= precision_type::value) || (precision_type::value <= 0)),
-                                           local_digits_2,
+    using type = typename mpl::if_c       <((local_digits2_type::value <= precision_type::value) || (precision_type::value <= 0)),
+                                           local_digits2_type,
                                            precision_type>::type;
     #else
-    using type = typename std::conditional<((local_digits_2::value <= precision_type::value) || (precision_type::value <= 0)),
-                                           local_digits_2,
+    using type = typename std::conditional<((local_digits2_type::value <= precision_type::value) || (precision_type::value <= 0)),
+                                           local_digits2_type,
                                            precision_type>::type;
     #endif
   };

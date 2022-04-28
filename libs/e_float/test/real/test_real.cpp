@@ -23,7 +23,7 @@ namespace test
     bool test_case_00006_write_os_floatfield_fixed     (const bool b_write_output);
     bool test_case_00007_write_os_floatfield_scientific(const bool b_write_output);
     bool test_case_00008_write_os_floatfield_not_set   (const bool b_write_output);
-    #if !(defined(__clang__) && defined(__APPLE__))
+    #if 1//!(defined(__clang__) && defined(__APPLE__))
     bool test_case_00009_global_ops_pod_equate         (const bool b_write_output);
     #endif
     bool test_case_00010_global_ops_pod_operations     (const bool b_write_output);
@@ -73,7 +73,7 @@ bool test::real::test_real(const bool b_write_output)
   test_ok &= test::real::test_case_00006_write_os_floatfield_fixed     (b_write_output);
   test_ok &= test::real::test_case_00007_write_os_floatfield_scientific(b_write_output);
   test_ok &= test::real::test_case_00008_write_os_floatfield_not_set   (b_write_output);
-  #if !(defined(__clang__) && defined(__APPLE__))
+  #if 1//!(defined(__clang__) && defined(__APPLE__))
   test_ok &= test::real::test_case_00009_global_ops_pod_equate         (b_write_output);
   #endif
   test_ok &= test::real::test_case_00010_global_ops_pod_operations     (b_write_output);

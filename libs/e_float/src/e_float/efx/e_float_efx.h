@@ -1,4 +1,4 @@
-
+﻿
 //          Copyright Christopher Kormanyos 1999 - 2021.
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file LICENSE_1_0.txt or copy at
@@ -25,6 +25,36 @@
 
   namespace efx
   {
+    namespace detail {
+
+    template<typename UnsignedIntegralType>
+    constexpr auto negate(UnsignedIntegralType u) -> typename std::enable_if<(   std::is_integral<UnsignedIntegralType>::value
+                                                                              && std::is_unsigned<UnsignedIntegralType>::value), UnsignedIntegralType>::type
+    {
+      using local_unsigned_integral_type = UnsignedIntegralType;
+
+      return
+        static_cast<local_unsigned_integral_type>
+        (
+          (static_cast<local_unsigned_integral_type>(~u)) + static_cast<local_unsigned_integral_type>(1U)
+        );
+    }
+
+    template<typename SignedIntegralType>
+    constexpr auto negate(SignedIntegralType n) -> typename std::enable_if<(   std::is_integral<SignedIntegralType>::value
+                                                                            && std::is_signed  <SignedIntegralType>::value), SignedIntegralType>::type
+    {
+      using local_signed_integral_type = SignedIntegralType;
+
+      return
+        static_cast<local_signed_integral_type>
+        (
+          detail::negate(static_cast<unsigned long long>(n)) // NOLINT(google-runtime-int)
+        );
+    }
+
+    } // namespace detail
+
     class e_float : public ::e_float_base
     {
     public:
@@ -87,8 +117,11 @@
                                             my_prec_elem(ef_elem_number)
       {
         const unsigned long long u =
-          ((!my_neg) ? static_cast<unsigned long long>(n)
-                     : static_cast<unsigned long long>(-static_cast<signed long long>(n)));
+          static_cast<unsigned long long>
+          (
+            ((!my_neg) ?                static_cast<unsigned long long>(n)
+                       : detail::negate(static_cast<unsigned long long>(n)))
+          );
 
         from_unsigned_long_long(u);
       }
