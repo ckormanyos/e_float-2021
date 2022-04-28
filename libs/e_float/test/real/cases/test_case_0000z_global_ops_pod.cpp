@@ -1,4 +1,4 @@
-﻿
+
 //          Copyright Christopher Kormanyos 1999 - 2021.
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file LICENSE_1_0.txt or copy at
@@ -8,6 +8,7 @@
 // "Algorithm 910: A Portable C++ Multiple-Precision System for Special-Function Calculations",
 // in ACM TOMS, {VOL 37, ISSUE 4, (February 2011)} (C) ACM, 2011. http://doi.acm.org/10.1145/1916461.1916469
 
+#include <cstdint>
 #include <iomanip>
 #include <limits>
 #include <sstream>
@@ -135,34 +136,39 @@ std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl
                                                           : local::check_minimax_of_type<wchar_t, unsigned long long>());
 std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
 
-        my_test_result &= local::check_minimax_of_type<  signed char,        signed long long>();
+        my_test_result &= local::check_minimax_of_type<std::int8_t,        std::intmax_t>();
 std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
-        my_test_result &= local::check_minimax_of_type<  signed short,       signed long long>();
+        my_test_result &= local::check_minimax_of_type<std::int16_t,       std::intmax_t>();
 std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
-        my_test_result &= local::check_minimax_of_type<  signed int,         signed long long>();
+        my_test_result &= local::check_minimax_of_type<std::int32_t,       std::intmax_t>();
 std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
-        my_test_result &= local::check_minimax_of_type<  signed long,        signed long long>();
+        my_test_result &= local::check_minimax_of_type<std::int64_t,        std::intmax_t>();
 std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
-        my_test_result &= local::check_minimax_of_type<  signed long long,   signed long long>();
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
-
-        my_test_result &= local::check_minimax_of_type<unsigned char,      unsigned long long>();
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
-        my_test_result &= local::check_minimax_of_type<unsigned short,     unsigned long long>();
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
-        my_test_result &= local::check_minimax_of_type<unsigned int,       unsigned long long>();
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
-        my_test_result &= local::check_minimax_of_type<unsigned long,      unsigned long long>();
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
-        my_test_result &= local::check_minimax_of_type<unsigned long long, unsigned long long>();
+        my_test_result &= local::check_minimax_of_type<std::intmax_t,       std::intmax_t>();
 std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
 
-        e_float x(123U); // Initialize x with something.
+        my_test_result &= local::check_minimax_of_type<std::uint8_t,       std::uintmax_t>();
+std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
+        my_test_result &= local::check_minimax_of_type<std::uint16_t,      std::uintmax_t>();
+std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
+        my_test_result &= local::check_minimax_of_type<std::uint32_t,      std::uintmax_t>();
+std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
+        my_test_result &= local::check_minimax_of_type<std::uint64_t,      std::uintmax_t>();
+std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
+        my_test_result &= local::check_minimax_of_type<std::uintmax_t,     std::uintmax_t>();
+std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
 
+        // Initialize x with something.
+        e_float x(123U);
         my_test_result &= (static_cast<int>(x.extract_signed_long_long()) == 123);
 std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
 
-        // Reassign x to some floating-point POD values and check some equalities.
+        // Re-initialize x with something else.
+        x = e_float(-456L);
+        my_test_result &= (static_cast<int>(x.extract_signed_long_long()) == -456);
+std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
+
+        // Re-Assign x to some floating-point POD values and check some equalities.
         x = 4.0f;  my_test_result &= (x == e_float(4U));
 std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
         x = 4.0;   my_test_result &= (x == e_float(4U));
