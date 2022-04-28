@@ -1,6 +1,9 @@
-e_float-2021
-[![Build Status](https://github.com/ckormanyos/e_float-2021/actions/workflows/e_float.yml/badge.svg)](https://github.com/ckormanyos/e_float-2021/actions)
+﻿e_float-2021
 ==================
+
+[![Build Status](https://github.com/ckormanyos/e_float-2021/actions/workflows/e_float.yml/badge.svg)](https://github.com/ckormanyos/e_float-2021/actions)
+[![Boost Software License 1.0](https://img.shields.io/badge/license-BSL%201.0-blue.svg)](https://github.com/ckormanyos/e_float-2021/blob/master/LICENSE_1_0.txt)
+[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ckormanyos/e_float-2021)](https://github.com/ckormanyos/e_float-2021)
 
 e_float-2021 is a C++ multiple-precision floating point derived work from the original (legacy) e_float code and paper.
 
@@ -40,6 +43,14 @@ of the original e_float paper.
 The _gmp_ and _mpfr_ versions support high digit counts natively
 from their wrapped libraries.
 
+An old manual can be found [here](./doc/e_float_manual.pdf).
+Posters exhibiting fascinating calculations performed with
+e_float-2021 can be found
+[here](./doc/e_float_poster.pdf)
+and
+[here](./doc/e_float_poster_courier.pdf).
+
+
 # Building
 
 ## Build in Linux or MacOS with bash and GNUmake.
@@ -48,7 +59,7 @@ from their wrapped libraries.
   - Identify the [Makefile](./libs/e_float/build/Makefile).
   - Execute `make` with the command below (or similar with other supported options).
 
-```
+```sh
 cd ./libs/e_float/build
 make MP=efx TYP_TOOLSET=g++ TYP_STD=c++11 TYP_TEST=E_FLOAT_TEST_REAL_IMAG_TESTS rebuild
 ```
@@ -57,16 +68,21 @@ make MP=efx TYP_TOOLSET=g++ TYP_STD=c++11 TYP_TEST=E_FLOAT_TEST_REAL_IMAG_TESTS 
   - Identify the [build directory](./libs/e_float/build).
   - Execute a manually written command line such as the one below.
   - File lists (`GCC_FilesPi.txt` or `GCC_FilesTest.txt`) are included with the `@`-_filename_ syntax of GCC.
-  - The type of build is manually specified with either `DE_FLOAT_TEST_PI_ALGOS_TESTS` or `DE_FLOAT_TEST_PI_ALGOS_TESTS`.
+  - The type of build is manually specified with either `-DE_FLOAT_TEST_PI_ALGOS_TESTS` or `-DE_FLOAT_TEST_PI_ALGOS_TESTS` (in association with the appropriate one of the file lists given in the previous point.
 
-```
+The following command builds the pi algorithm tests for the `efx` backend.
+
+```sh
 cd ./libs/e_float/build
 g++ -finline-functions -finline-limit=32 -march=native -mtune=native -O3 -Wall -Wextra -Wno-cast-function-type -std=c++11 -DE_FLOAT_TYPE_EFX -DE_FLOAT_TEST_PI_ALGOS_TESTS -I../../../libs/e_float/src @GCC_FilesPi.txt ../src/e_float/efx/e_float_efx.cpp -o e_float.exe
 ```
 
-```
+
+The following command builds the real/imaginary `e_float` tests for the `efx` backend.
+
+```sh
 cd ./libs/e_float/build
-g++ -finline-functions -finline-limit=32 -march=native -mtune=native -O3 -Wall -Wextra -Wno-cast-function-type -std=c++11 -DE_FLOAT_TEST_REAL_IMAG_TESTS -DE_FLOAT_TEST_PI_ALGOS_TESTS -I../../../libs/e_float/src @GCC_FilesTest.txt ../src/e_float/efx/e_float_efx.cpp -o e_float.exe
+g++ -finline-functions -finline-limit=32 -march=native -mtune=native -O3 -Wall -Wextra -Wno-cast-function-type -std=c++11 -DE_FLOAT_TYPE_EFX -DE_FLOAT_TEST_REAL_IMAG_TESTS -I../../../libs/e_float/src @GCC_FilesTest.txt ../src/e_float/efx/e_float_efx.cpp -o e_float.exe
 ```
 
 ## Build in Microsoft Visual Studio
@@ -134,4 +150,3 @@ The `e_float` project itself is derived from an earlier, unpublished
 work. This work, entitled `mp_cpp` was created in the 1990s and was,
 at the time of its creation, quite cutting-edge in its approach to dealing
 with big floating-point numbers within the context of the C++ language.
-

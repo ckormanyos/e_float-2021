@@ -1,4 +1,4 @@
-
+﻿
 //          Copyright Christopher Kormanyos 1999 - 2021.
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file LICENSE_1_0.txt or copy at
@@ -8,10 +8,12 @@
 // "Algorithm 910: A Portable C++ Multiple-Precision System for Special-Function Calculations",
 // in ACM TOMS, {VOL 37, ISSUE 4, (February 2011)} (C) ACM, 2011. http://doi.acm.org/10.1145/1916461.1916469
 
+#include <cstdint>
 #include <iomanip>
 #include <limits>
 #include <sstream>
 #include <string>
+#include <type_traits>
 
 #include <e_float/e_float.h>
 #include <e_float/e_float_functions.h>
@@ -24,29 +26,13 @@ namespace local
            typename ControlType>
   bool check_minimax_of_type()
   {
-    std::string str_max;
-    std::string str_min;
+    const auto str_max = std::to_string(static_cast<ControlType>((std::numeric_limits<CheckType>::max)()));
+    const auto str_min = std::to_string(static_cast<ControlType>((std::numeric_limits<CheckType>::min)()));
 
-    {
-      std::stringstream strm;
+    const auto result_max_is_ok = (e_float((std::numeric_limits<CheckType>::max)()) == e_float(str_max));
+    const auto result_min_is_ok = (e_float((std::numeric_limits<CheckType>::min)()) == e_float(str_min));
 
-      strm << static_cast<ControlType>((std::numeric_limits<CheckType>::max)());
-
-      str_max = strm.str();
-    }
-
-    {
-      std::stringstream strm;
-
-      strm << static_cast<ControlType>((std::numeric_limits<CheckType>::min)());
-
-      str_min = strm.str();
-    }
-
-    const bool result_max_is_ok = (e_float((std::numeric_limits<CheckType>::max)()) == e_float(str_max));
-    const bool result_min_is_ok = (e_float((std::numeric_limits<CheckType>::min)()) == e_float(str_min));
-
-    const bool result_is_ok = (result_max_is_ok && result_min_is_ok);
+    const auto result_is_ok = (result_max_is_ok && result_min_is_ok);
 
     return result_is_ok;
   }
@@ -88,6 +74,7 @@ namespace test
           if(!write_output_file(e_float_data))
           {
             std::cout << "Can not write output: FAIL" << std::endl;
+
             return false;
           }
         }
@@ -95,6 +82,7 @@ namespace test
         if(my_test_result)
         {
           std::cout << "Numerical compare OK: PASS"  << std::endl;
+
           return true;
         }
         else
@@ -123,26 +111,32 @@ namespace test
 
         my_test_result = true;
 
-        my_test_result &= (std::numeric_limits< char  >::is_signed ? local::check_minimax_of_type< char,     signed long long>()
-                                                                   : local::check_minimax_of_type< char,   unsigned long long>());
-        my_test_result &= (std::numeric_limits<wchar_t>::is_signed ? local::check_minimax_of_type<wchar_t,   signed long long>()
-                                                                   : local::check_minimax_of_type<wchar_t, unsigned long long>());
+        my_test_result &= (std::is_signed< char  >::value ? local::check_minimax_of_type< char,     signed long long>()
+                                                          : local::check_minimax_of_type< char,   unsigned long long>());
+        my_test_result &= (std::is_signed<wchar_t>::value ? local::check_minimax_of_type<wchar_t,   signed long long>()
+                                                          : local::check_minimax_of_type<wchar_t, unsigned long long>());
 
-        my_test_result &= local::check_minimax_of_type<  signed char,      signed long long>();
-        my_test_result &= local::check_minimax_of_type<  signed short,     signed long long>();
-        my_test_result &= local::check_minimax_of_type<  signed int,       signed long long>();
-        my_test_result &= local::check_minimax_of_type<  signed long,      signed long long>();
-        my_test_result &= local::check_minimax_of_type<  signed long long, signed long long>();
+        my_test_result &= local::check_minimax_of_type<std::int8_t,        std::intmax_t>();
+        my_test_result &= local::check_minimax_of_type<std::int16_t,       std::intmax_t>();
+        my_test_result &= local::check_minimax_of_type<std::int32_t,       std::intmax_t>();
+        my_test_result &= local::check_minimax_of_type<std::int64_t,        std::intmax_t>();
+        my_test_result &= local::check_minimax_of_type<std::intmax_t,       std::intmax_t>();
 
-        my_test_result &= local::check_minimax_of_type<unsigned char,      unsigned long long>();
-        my_test_result &= local::check_minimax_of_type<unsigned short,     unsigned long long>();
-        my_test_result &= local::check_minimax_of_type<unsigned int,       unsigned long long>();
-        my_test_result &= local::check_minimax_of_type<unsigned long,      unsigned long long>();
-        my_test_result &= local::check_minimax_of_type<unsigned long long, unsigned long long>();
+        my_test_result &= local::check_minimax_of_type<std::uint8_t,       std::uintmax_t>();
+        my_test_result &= local::check_minimax_of_type<std::uint16_t,      std::uintmax_t>();
+        my_test_result &= local::check_minimax_of_type<std::uint32_t,      std::uintmax_t>();
+        my_test_result &= local::check_minimax_of_type<std::uint64_t,      std::uintmax_t>();
+        my_test_result &= local::check_minimax_of_type<std::uintmax_t,     std::uintmax_t>();
 
-        e_float x(123U); // Initialize x with something.
+        // Initialize x with something.
+        e_float x(123U);
+        my_test_result &= (static_cast<int>(x.extract_signed_long_long()) == 123);
 
-        // Reassign x to some floating-point POD values and check some equalities.
+        // Re-initialize x with something else.
+        x = e_float(-456L);
+        my_test_result &= (static_cast<int>(x.extract_signed_long_long()) == -456);
+
+        // Re-Assign x to some floating-point POD values and check some equalities.
         x = 4.0f;  my_test_result &= (x == e_float(4U));
         x = 4.0;   my_test_result &= (x == e_float(4U));
         x = 4.0L;  my_test_result &= (x == e_float(4U));

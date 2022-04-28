@@ -1,5 +1,5 @@
-//  Copyright John Maddock 2012 - 2021.
-//  Copyright Christopher Kormanyos 2016 - 2021.
+﻿//  Copyright John Maddock 2012 - 2021.
+//  Copyright Christopher Kormanyos 2016 - 2022.
 //  Use, modification and distribution are subject to the
 //  Boost Software License, Version 1.0. (See accompanying file
 //  LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -8,8 +8,8 @@
 // Wrapper that works with e_float-2021, see also
 // https://github.com/ckormanyos/e_float-2021
 
-#ifndef E_FLOAT_2017_08_18_HPP_
-  #define E_FLOAT_2017_08_18_HPP_
+#ifndef E_FLOAT_2017_08_18_HPP
+  #define E_FLOAT_2017_08_18_HPP
 
   #include <cstdint>
   #include <sstream>
@@ -19,7 +19,19 @@
   #include <e_float/e_float.h>
   #include <e_float/e_float_functions.h>
 
+  #include <boost/version.hpp>
+
+  #if !defined(BOOST_VERSION)
+  #error BOOST_VERSION is not defined. Ensure that <boost/version.hpp> is properly included.
+  #endif
+
+  #if (BOOST_VERSION < 107900)
   #include <boost/config.hpp>
+  #else
+  #define BOOST_MP_STANDALONE
+  #define BOOST_MATH_STANDALONE
+  #endif
+
   #include <boost/multiprecision/number.hpp>
 
   namespace boost { namespace math { namespace ef {
@@ -550,17 +562,25 @@
                                                  ExpressionTemplates>,
                    ThisPolicy>
   {
+  private:
+    static constexpr std::intmax_t local_digits2_value =
+      static_cast<std::intmax_t>
+      (
+        static_cast<std::intmax_t>(static_cast<std::intmax_t>(static_cast<std::intmax_t>(::e_float::ef_digits10) + INTMAX_C(1)) * INTMAX_C(1000)) / INTMAX_C(301)
+      );
+
+    using local_digits2_type = digits2<static_cast<long>(local_digits2_value)>;
+
+  public:
     using precision_type = typename ThisPolicy::precision_type;
 
-    using local_digits_2 = digits2<((::e_float::ef_digits10 + 1LL) * 1000LL) / 301LL>;
-
     #if (BOOST_VERSION <= 107500)
-    using type = typename mpl::if_c       <((local_digits_2::value <= precision_type::value) || (precision_type::value <= 0)),
-                                           local_digits_2,
+    using type = typename mpl::if_c       <((local_digits2_type::value <= precision_type::value) || (precision_type::value <= 0)),
+                                           local_digits2_type,
                                            precision_type>::type;
     #else
-    using type = typename std::conditional<((local_digits_2::value <= precision_type::value) || (precision_type::value <= 0)),
-                                           local_digits_2,
+    using type = typename std::conditional<((local_digits2_type::value <= precision_type::value) || (precision_type::value <= 0)),
+                                           local_digits2_type,
                                            precision_type>::type;
     #endif
   };
@@ -612,4 +632,4 @@
     };
   } // namespace std
 
-#endif // E_FLOAT_2017_08_18_HPP_
+#endif // E_FLOAT_2017_08_18_HPP

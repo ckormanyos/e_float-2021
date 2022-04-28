@@ -1,5 +1,5 @@
-##############################################################################
-#  Copyright Christopher Kormanyos 2021.
+﻿##############################################################################
+#  Copyright Christopher Kormanyos 2021 - 2022.
 #  Distributed under the Boost Software License,
 #  Version 1.0. (See accompanying file LICENSE_1_0.txt
 #  or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -9,7 +9,7 @@ on:
   push:
 jobs:
   msvc-release:
-    runs-on: windows-latest
+    runs-on: windows-2019
     strategy:
       fail-fast: false
       matrix:
@@ -25,7 +25,7 @@ jobs:
           dir %cd%\x64-release-${{ matrix.mptype }}\e_float.exe
           %cd%\x64-release-${{ matrix.mptype }}\e_float.exe
   msvc-release-boost-test:
-    runs-on: windows-latest
+    runs-on: windows-2019
     strategy:
       fail-fast: false
       matrix:
@@ -39,77 +39,12 @@ jobs:
           git clone -b develop --depth 1 https://github.com/boostorg/boost.git ../boost-root
           cd ../boost-root
           git submodule update --init tools
-          git submodule update --init libs/algorithm
-          git submodule update --init libs/align
-          git submodule update --init libs/any
-          git submodule update --init libs/array
-          git submodule update --init libs/assert
-          git submodule update --init libs/atomic
-          git submodule update --init libs/bind
-          git submodule update --init libs/chrono
-          git submodule update --init libs/circular_buffer
-          git submodule update --init libs/compute
           git submodule update --init libs/concept_check
           git submodule update --init libs/config
-          git submodule update --init libs/container
-          git submodule update --init libs/container_hash
-          git submodule update --init libs/conversion
-          git submodule update --init libs/core
-          git submodule update --init libs/date_time
-          git submodule update --init libs/detail
-          git submodule update --init libs/dynamic_bitset
-          git submodule update --init libs/endian
-          git submodule update --init libs/exception
-          git submodule update --init libs/foreach
-          git submodule update --init libs/format
-          git submodule update --init libs/function
-          git submodule update --init libs/function_types
-          git submodule update --init libs/fusion
-          git submodule update --init libs/hana
-          git submodule update --init libs/headers
-          git submodule update --init libs/integer
-          git submodule update --init libs/intrusive
-          git submodule update --init libs/io
-          git submodule update --init libs/iterator
-          git submodule update --init libs/lambda
-          git submodule update --init libs/lexical_cast
-          git submodule update --init libs/logic
           git submodule update --init libs/math
-          git submodule update --init libs/move
-          git submodule update --init libs/mp11
-          git submodule update --init libs/mpl
-          git submodule update --init libs/multi_index
           git submodule update --init libs/multiprecision
-          git submodule update --init libs/numeric/conversion
-          git submodule update --init libs/numeric/interval
-          git submodule update --init libs/optional
-          git submodule update --init libs/phoenix
-          git submodule update --init libs/pool
-          git submodule update --init libs/predef
           git submodule update --init libs/preprocessor
-          git submodule update --init libs/property_tree
-          git submodule update --init libs/proto
-          git submodule update --init libs/random
-          git submodule update --init libs/range
-          git submodule update --init libs/ratio
-          git submodule update --init libs/rational
-          git submodule update --init libs/regex
-          git submodule update --init libs/serialization
-          git submodule update --init libs/smart_ptr
-          git submodule update --init libs/spirit
-          git submodule update --init libs/static_assert
-          git submodule update --init libs/system
-          git submodule update --init libs/thread
-          git submodule update --init libs/throw_exception
-          git submodule update --init libs/tokenizer
-          git submodule update --init libs/tti
-          git submodule update --init libs/tuple
-          git submodule update --init libs/type_index
           git submodule update --init libs/type_traits
-          git submodule update --init libs/typeof
-          git submodule update --init libs/unordered
-          git submodule update --init libs/utility
-          git submodule update --init libs/variant
           ./bootstrap.bat
           ./b2 headers
       - uses: actions/checkout@v1
@@ -123,7 +58,7 @@ jobs:
           dir %cd%\x64-release-${{ matrix.mptype }}-boost-test\e_float_boost_test.exe
           %cd%\x64-release-${{ matrix.mptype }}-boost-test\e_float_boost_test.exe
   gcc-mingw-winhost-efx-pi:
-    runs-on: windows-latest
+    runs-on: windows-2019
     strategy:
       fail-fast: false
       matrix:
@@ -139,11 +74,11 @@ jobs:
         run: |
           echo compile ./e_float.exe
           ${{ matrix.compiler }} -v
-          ${{ matrix.compiler }} -finline-functions -finline-limit=32 -march=native -mtune=native -O3 -Wall -Wextra -Wno-cast-function-type -std=${{ matrix.standard }} -DE_FLOAT_TYPE_EFX -DE_FLOAT_TEST_PI_ALGOS_TESTS -I../../../libs/e_float/src @GCC_FilesPi.txt ../src/e_float/efx/e_float_efx.cpp -o e_float.exe
+          ${{ matrix.compiler }} -finline-functions -finline-limit=32 -march=native -mtune=native -O3 -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -std=${{ matrix.standard }} -DE_FLOAT_TYPE_EFX -DE_FLOAT_TEST_PI_ALGOS_TESTS -I../../../libs/e_float/src @GCC_FilesPi.txt ../src/e_float/efx/e_float_efx.cpp -o e_float.exe
           dir %cd%\e_float.exe
           %cd%\e_float.exe
   gcc-mingw-winhost-efx-tests:
-    runs-on: windows-latest
+    runs-on: windows-2019
     strategy:
       fail-fast: false
       matrix:
@@ -159,7 +94,7 @@ jobs:
         run: |
           echo compile ./e_float.exe
           ${{ matrix.compiler }} -v
-          ${{ matrix.compiler }} -finline-functions -finline-limit=32 -march=native -mtune=native -O3 -Wall -Wextra -Wno-cast-function-type -std=${{ matrix.standard }} -DE_FLOAT_TYPE_EFX -DE_FLOAT_TEST_REAL_IMAG_TESTS -I../../../libs/e_float/src @GCC_FilesTest.txt ../src/e_float/efx/e_float_efx.cpp -o e_float.exe
+          ${{ matrix.compiler }} -finline-functions -finline-limit=32 -march=native -mtune=native -O3 -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -std=${{ matrix.standard }} -DE_FLOAT_TYPE_EFX -DE_FLOAT_TEST_REAL_IMAG_TESTS -I../../../libs/e_float/src @GCC_FilesTest.txt ../src/e_float/efx/e_float_efx.cpp -o e_float.exe
           dir %cd%\e_float.exe
           %cd%\e_float.exe
   gcc-clang-native-efx:
@@ -346,7 +281,8 @@ jobs:
       matrix:
         compiler: [ g++, clang++ ]
         standard: [ c++11, c++14, c++17, c++2a ]
-        suite: [ E_FLOAT_TYPE_EFX ]
+        suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS ]
+        mpdef: [ E_FLOAT_TYPE_EFX ]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -356,83 +292,18 @@ jobs:
           git clone -b develop --depth 1 https://github.com/boostorg/boost.git ../boost-root
           cd ../boost-root
           git submodule update --init tools
-          git submodule update --init libs/algorithm
-          git submodule update --init libs/align
-          git submodule update --init libs/any
-          git submodule update --init libs/array
-          git submodule update --init libs/assert
-          git submodule update --init libs/atomic
-          git submodule update --init libs/bind
-          git submodule update --init libs/chrono
-          git submodule update --init libs/circular_buffer
-          git submodule update --init libs/compute
           git submodule update --init libs/concept_check
           git submodule update --init libs/config
-          git submodule update --init libs/container
-          git submodule update --init libs/container_hash
-          git submodule update --init libs/conversion
-          git submodule update --init libs/core
-          git submodule update --init libs/date_time
-          git submodule update --init libs/detail
-          git submodule update --init libs/dynamic_bitset
-          git submodule update --init libs/endian
-          git submodule update --init libs/exception
-          git submodule update --init libs/foreach
-          git submodule update --init libs/format
-          git submodule update --init libs/function
-          git submodule update --init libs/function_types
-          git submodule update --init libs/fusion
-          git submodule update --init libs/hana
-          git submodule update --init libs/headers
-          git submodule update --init libs/integer
-          git submodule update --init libs/intrusive
-          git submodule update --init libs/io
-          git submodule update --init libs/iterator
-          git submodule update --init libs/lambda
-          git submodule update --init libs/lexical_cast
-          git submodule update --init libs/logic
           git submodule update --init libs/math
-          git submodule update --init libs/move
-          git submodule update --init libs/mp11
-          git submodule update --init libs/mpl
-          git submodule update --init libs/multi_index
           git submodule update --init libs/multiprecision
-          git submodule update --init libs/numeric/conversion
-          git submodule update --init libs/numeric/interval
-          git submodule update --init libs/optional
-          git submodule update --init libs/phoenix
-          git submodule update --init libs/pool
-          git submodule update --init libs/predef
           git submodule update --init libs/preprocessor
-          git submodule update --init libs/property_tree
-          git submodule update --init libs/proto
-          git submodule update --init libs/random
-          git submodule update --init libs/range
-          git submodule update --init libs/ratio
-          git submodule update --init libs/rational
-          git submodule update --init libs/regex
-          git submodule update --init libs/serialization
-          git submodule update --init libs/smart_ptr
-          git submodule update --init libs/spirit
-          git submodule update --init libs/static_assert
-          git submodule update --init libs/system
-          git submodule update --init libs/thread
-          git submodule update --init libs/throw_exception
-          git submodule update --init libs/tokenizer
-          git submodule update --init libs/tti
-          git submodule update --init libs/tuple
-          git submodule update --init libs/type_index
           git submodule update --init libs/type_traits
-          git submodule update --init libs/typeof
-          git submodule update --init libs/unordered
-          git submodule update --init libs/utility
-          git submodule update --init libs/variant
           ./bootstrap.sh
           ./b2 headers
       - name: gcc-clang-native-efx-boost
         run: |
           echo compile and link to e_float_boost_test.exe
-          ${{ matrix.compiler }} -Wall -Wextra -m64 -O3 -std=${{ matrix.standard }} -D${{ matrix.suite }} -I../../../libs/e_float/src -I../../../libs/math/include -I../../../../boost-root ../src/e_float/efx/e_float_efx.cpp ../src/e_float/e_float.cpp ../src/e_float/e_float_base.cpp ../src/functions/constants/constants.cpp ../src/functions/elementary/elementary_complex.cpp ../src/functions/elementary/elementary_hyper_g.cpp ../src/functions/elementary/elementary_math.cpp ../src/functions/elementary/elementary_trans.cpp ../src/functions/elementary/elementary_trig.cpp ../test_boost/test_boost.cpp ../test_boost/test_boost_real_concept.cpp ../test_boost/test_boost_sf.cpp -o e_float_boost_test.exe
+          ${{ matrix.compiler }} -Wall -Wextra -m64 -O3 -std=${{ matrix.standard }} -D${{ matrix.mpdef }} -D${{ matrix.suite }} -I../../../libs/e_float/src -I../../../libs/math/include -I../../../../boost-root ../src/e_float/efx/e_float_efx.cpp ../src/e_float/e_float.cpp ../src/e_float/e_float_base.cpp ../src/functions/constants/constants.cpp ../src/functions/elementary/elementary_complex.cpp ../src/functions/elementary/elementary_hyper_g.cpp ../src/functions/elementary/elementary_math.cpp ../src/functions/elementary/elementary_trans.cpp ../src/functions/elementary/elementary_trig.cpp ../test_boost/test_boost.cpp ../test_boost/test_boost_real_concept.cpp ../test_boost/test_boost_sf.cpp -o e_float_boost_test.exe
           echo ls -la e_float_boost_test.exe
           ls -la e_float_boost_test.exe
           echo run e_float_boost_test.exe
@@ -445,7 +316,8 @@ jobs:
       matrix:
         compiler: [ g++, clang++ ]
         standard: [ c++11, c++14, c++17, c++2a ]
-        suite: [ E_FLOAT_TYPE_EFX ]
+        suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS ]
+        mpdef: [ E_FLOAT_TYPE_EFX ]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -455,83 +327,18 @@ jobs:
           git clone -b develop --depth 1 https://github.com/boostorg/boost.git ../boost-root
           cd ../boost-root
           git submodule update --init tools
-          git submodule update --init libs/algorithm
-          git submodule update --init libs/align
-          git submodule update --init libs/any
-          git submodule update --init libs/array
-          git submodule update --init libs/assert
-          git submodule update --init libs/atomic
-          git submodule update --init libs/bind
-          git submodule update --init libs/chrono
-          git submodule update --init libs/circular_buffer
-          git submodule update --init libs/compute
           git submodule update --init libs/concept_check
           git submodule update --init libs/config
-          git submodule update --init libs/container
-          git submodule update --init libs/container_hash
-          git submodule update --init libs/conversion
-          git submodule update --init libs/core
-          git submodule update --init libs/date_time
-          git submodule update --init libs/detail
-          git submodule update --init libs/dynamic_bitset
-          git submodule update --init libs/endian
-          git submodule update --init libs/exception
-          git submodule update --init libs/foreach
-          git submodule update --init libs/format
-          git submodule update --init libs/function
-          git submodule update --init libs/function_types
-          git submodule update --init libs/fusion
-          git submodule update --init libs/hana
-          git submodule update --init libs/headers
-          git submodule update --init libs/integer
-          git submodule update --init libs/intrusive
-          git submodule update --init libs/io
-          git submodule update --init libs/iterator
-          git submodule update --init libs/lambda
-          git submodule update --init libs/lexical_cast
-          git submodule update --init libs/logic
           git submodule update --init libs/math
-          git submodule update --init libs/move
-          git submodule update --init libs/mp11
-          git submodule update --init libs/mpl
-          git submodule update --init libs/multi_index
           git submodule update --init libs/multiprecision
-          git submodule update --init libs/numeric/conversion
-          git submodule update --init libs/numeric/interval
-          git submodule update --init libs/optional
-          git submodule update --init libs/phoenix
-          git submodule update --init libs/pool
-          git submodule update --init libs/predef
           git submodule update --init libs/preprocessor
-          git submodule update --init libs/property_tree
-          git submodule update --init libs/proto
-          git submodule update --init libs/random
-          git submodule update --init libs/range
-          git submodule update --init libs/ratio
-          git submodule update --init libs/rational
-          git submodule update --init libs/regex
-          git submodule update --init libs/serialization
-          git submodule update --init libs/smart_ptr
-          git submodule update --init libs/spirit
-          git submodule update --init libs/static_assert
-          git submodule update --init libs/system
-          git submodule update --init libs/thread
-          git submodule update --init libs/throw_exception
-          git submodule update --init libs/tokenizer
-          git submodule update --init libs/tti
-          git submodule update --init libs/tuple
-          git submodule update --init libs/type_index
           git submodule update --init libs/type_traits
-          git submodule update --init libs/typeof
-          git submodule update --init libs/unordered
-          git submodule update --init libs/utility
-          git submodule update --init libs/variant
           ./bootstrap.sh
           ./b2 headers
       - name: apple-gcc-clang-native-efx-boost
         run: |
           echo compile and link to e_float_boost_test.exe
-          ${{ matrix.compiler }} -Wall -Wextra -m64 -O3 -std=${{ matrix.standard }} -D${{ matrix.suite }} -I../../../libs/e_float/src -I../../../libs/math/include -I../../../../boost-root ../src/e_float/efx/e_float_efx.cpp ../src/e_float/e_float.cpp ../src/e_float/e_float_base.cpp ../src/functions/constants/constants.cpp ../src/functions/elementary/elementary_complex.cpp ../src/functions/elementary/elementary_hyper_g.cpp ../src/functions/elementary/elementary_math.cpp ../src/functions/elementary/elementary_trans.cpp ../src/functions/elementary/elementary_trig.cpp ../test_boost/test_boost.cpp ../test_boost/test_boost_real_concept.cpp ../test_boost/test_boost_sf.cpp -o e_float_boost_test.exe
+          ${{ matrix.compiler }} -Wall -Wextra -m64 -O3 -std=${{ matrix.standard }} -D${{ matrix.mpdef }} -D${{ matrix.suite }} -I../../../libs/e_float/src -I../../../libs/math/include -I../../../../boost-root ../src/e_float/efx/e_float_efx.cpp ../src/e_float/e_float.cpp ../src/e_float/e_float_base.cpp ../src/functions/constants/constants.cpp ../src/functions/elementary/elementary_complex.cpp ../src/functions/elementary/elementary_hyper_g.cpp ../src/functions/elementary/elementary_math.cpp ../src/functions/elementary/elementary_trans.cpp ../src/functions/elementary/elementary_trig.cpp ../test_boost/test_boost.cpp ../test_boost/test_boost_real_concept.cpp ../test_boost/test_boost_sf.cpp -o e_float_boost_test.exe
           echo ls -la e_float_boost_test.exe
           ls -la e_float_boost_test.exe
           echo run e_float_boost_test.exe

@@ -100,9 +100,10 @@ CFLAGS_BASE = -march=native                     \
 
 CFLAGS_WARN = -Wall                             \
               -Wextra                           \
-              -pedantic                         \
+              -Wpedantic                        \
               -Wmain                            \
               -Wundef                           \
+              -Wconversion                      \
               -Wsign-conversion                 \
               -Wunused-parameter                \
               -Wuninitialized                   \
