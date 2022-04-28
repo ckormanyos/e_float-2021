@@ -1,4 +1,4 @@
-
+﻿
 //          Copyright Christopher Kormanyos 1999 - 2021.
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file LICENSE_1_0.txt or copy at
@@ -26,31 +26,17 @@ namespace local
            typename ControlType>
   bool check_minimax_of_type()
   {
-    std::string str_max;
-    std::string str_min;
+    const std::string str_max = std::to_string(static_cast<ControlType>((std::numeric_limits<CheckType>::max)()));
+    const std::string str_min = std::to_string(static_cast<ControlType>((std::numeric_limits<CheckType>::min)()));
 
-    {
-      std::stringstream strm;
-
-      constexpr ControlType check_val_max = static_cast<ControlType>((std::numeric_limits<CheckType>::max)());
-
-      strm << check_val_max;
-
-      str_max = strm.str();
-    }
-
-    {
-      std::stringstream strm;
-
-      constexpr ControlType check_val_min = static_cast<ControlType>((std::numeric_limits<CheckType>::min)());
-
-      strm << check_val_min;
-
-      str_min = strm.str();
-    }
+    std::cout << "str_max: " << str_max << std::endl;
+    std::cout << "str_min: " << str_min << std::endl;
 
     const bool result_max_is_ok = (e_float((std::numeric_limits<CheckType>::max)()) == e_float(str_max));
     const bool result_min_is_ok = (e_float((std::numeric_limits<CheckType>::min)()) == e_float(str_min));
+
+    std::cout << "result_max_is_ok: " << std::boolalpha << result_max_is_ok << std::endl;
+    std::cout << "result_min_is_ok: " << std::boolalpha << result_min_is_ok << std::endl;
 
     const bool result_is_ok = (result_max_is_ok && result_min_is_ok);
 
@@ -94,6 +80,7 @@ namespace test
           if(!write_output_file(e_float_data))
           {
             std::cout << "Can not write output: FAIL" << std::endl;
+
             return false;
           }
         }
@@ -101,6 +88,7 @@ namespace test
         if(my_test_result)
         {
           std::cout << "Numerical compare OK: PASS"  << std::endl;
+
           return true;
         }
         else
@@ -125,6 +113,7 @@ namespace test
       }
       virtual void e_float_test(std::vector<e_float>& data) const
       {
+std::cout << std::endl;
         data.clear();
 
         my_test_result = true;
