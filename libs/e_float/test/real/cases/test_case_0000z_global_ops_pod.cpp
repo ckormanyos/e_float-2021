@@ -26,19 +26,13 @@ namespace local
            typename ControlType>
   bool check_minimax_of_type()
   {
-    const std::string str_max = std::to_string(static_cast<ControlType>((std::numeric_limits<CheckType>::max)()));
-    const std::string str_min = std::to_string(static_cast<ControlType>((std::numeric_limits<CheckType>::min)()));
+    const auto str_max = std::to_string(static_cast<ControlType>((std::numeric_limits<CheckType>::max)()));
+    const auto str_min = std::to_string(static_cast<ControlType>((std::numeric_limits<CheckType>::min)()));
 
-    std::cout << "str_max: " << str_max << std::endl;
-    std::cout << "str_min: " << str_min << std::endl;
+    const auto result_max_is_ok = (e_float((std::numeric_limits<CheckType>::max)()) == e_float(str_max));
+    const auto result_min_is_ok = (e_float((std::numeric_limits<CheckType>::min)()) == e_float(str_min));
 
-    const bool result_max_is_ok = (e_float((std::numeric_limits<CheckType>::max)()) == e_float(str_max));
-    const bool result_min_is_ok = (e_float((std::numeric_limits<CheckType>::min)()) == e_float(str_min));
-
-    std::cout << "result_max_is_ok: " << std::boolalpha << result_max_is_ok << std::endl;
-    std::cout << "result_min_is_ok: " << std::boolalpha << result_min_is_ok << std::endl;
-
-    const bool result_is_ok = (result_max_is_ok && result_min_is_ok);
+    const auto result_is_ok = (result_max_is_ok && result_min_is_ok);
 
     return result_is_ok;
   }
@@ -113,64 +107,43 @@ namespace test
       }
       virtual void e_float_test(std::vector<e_float>& data) const
       {
-std::cout << std::endl;
         data.clear();
 
         my_test_result = true;
 
         my_test_result &= (std::is_signed< char  >::value ? local::check_minimax_of_type< char,     signed long long>()
                                                           : local::check_minimax_of_type< char,   unsigned long long>());
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
         my_test_result &= (std::is_signed<wchar_t>::value ? local::check_minimax_of_type<wchar_t,   signed long long>()
                                                           : local::check_minimax_of_type<wchar_t, unsigned long long>());
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
 
         my_test_result &= local::check_minimax_of_type<std::int8_t,        std::intmax_t>();
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
         my_test_result &= local::check_minimax_of_type<std::int16_t,       std::intmax_t>();
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
         my_test_result &= local::check_minimax_of_type<std::int32_t,       std::intmax_t>();
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
         my_test_result &= local::check_minimax_of_type<std::int64_t,        std::intmax_t>();
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
         my_test_result &= local::check_minimax_of_type<std::intmax_t,       std::intmax_t>();
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
 
         my_test_result &= local::check_minimax_of_type<std::uint8_t,       std::uintmax_t>();
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
         my_test_result &= local::check_minimax_of_type<std::uint16_t,      std::uintmax_t>();
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
         my_test_result &= local::check_minimax_of_type<std::uint32_t,      std::uintmax_t>();
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
         my_test_result &= local::check_minimax_of_type<std::uint64_t,      std::uintmax_t>();
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
         my_test_result &= local::check_minimax_of_type<std::uintmax_t,     std::uintmax_t>();
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
 
         // Initialize x with something.
         e_float x(123U);
         my_test_result &= (static_cast<int>(x.extract_signed_long_long()) == 123);
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
 
         // Re-initialize x with something else.
         x = e_float(-456L);
         my_test_result &= (static_cast<int>(x.extract_signed_long_long()) == -456);
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
 
         // Re-Assign x to some floating-point POD values and check some equalities.
         x = 4.0f;  my_test_result &= (x == e_float(4U));
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
         x = 4.0;   my_test_result &= (x == e_float(4U));
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
         x = 4.0L;  my_test_result &= (x == e_float(4U));
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
 
         my_test_result &= (e_float(0.0f) == ef::zero());
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
         my_test_result &= (e_float(0.0)  == ef::zero());
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
         my_test_result &= (e_float(0.0L) == ef::zero());
-std::cout << "my_test_result: " << std::boolalpha << my_test_result << std::endl;
       }
     };
 
