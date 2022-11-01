@@ -42,9 +42,12 @@ jobs:
           git clone -b develop --depth 1 https://github.com/boostorg/boost.git ../boost-root
           cd ../boost-root
           git submodule update --init tools
+          git submodule update --init libs/concept_check
           git submodule update --init libs/config
           git submodule update --init libs/math
           git submodule update --init libs/multiprecision
+          git submodule update --init libs/preprocessor
+          git submodule update --init libs/type_traits
           ./bootstrap.bat
           ./b2 headers
       - uses: actions/checkout@v1
@@ -317,9 +320,12 @@ jobs:
           git clone -b develop --depth 1 https://github.com/boostorg/boost.git ../boost-root
           cd ../boost-root
           git submodule update --init tools
+          git submodule update --init libs/concept_check
           git submodule update --init libs/config
           git submodule update --init libs/math
           git submodule update --init libs/multiprecision
+          git submodule update --init libs/preprocessor
+          git submodule update --init libs/type_traits
           ./bootstrap.sh
           ./b2 headers
       - name: gcc-clang-native-efx-boost
@@ -349,9 +355,12 @@ jobs:
           git clone -b develop --depth 1 https://github.com/boostorg/boost.git ../boost-root
           cd ../boost-root
           git submodule update --init tools
+          git submodule update --init libs/concept_check
           git submodule update --init libs/config
           git submodule update --init libs/math
           git submodule update --init libs/multiprecision
+          git submodule update --init libs/preprocessor
+          git submodule update --init libs/type_traits
           ./bootstrap.sh
           ./b2 headers
       - name: apple-gcc-clang-native-efx-boost
