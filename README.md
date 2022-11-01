@@ -3,7 +3,7 @@
 
 <p align="center">
     <a href="https://github.com/ckormanyos/e_float-2021/actions">
-        <img src="https://github.com/ckormanyos/e_float-2021/actions/workflows/wide_decimal.yml/badge.svg" alt="Build Status"></a>
+        <img src="https://github.com/ckormanyos/e_float-2021/actions/workflows/e_float.yml/badge.svg" alt="Build Status"></a>
     <a href="https://github.com/ckormanyos/e_float-2021/issues">
         <img src="https://img.shields.io/github/issues-raw/ckormanyos/e_float-2021" alt="Open Issues" /></a>
     <a href="https://github.com/ckormanyos/e_float-2021/blob/master/LICENSE_1_0.txt">
