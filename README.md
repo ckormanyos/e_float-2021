@@ -1,11 +1,27 @@
 ﻿e_float-2021
 ==================
 
-[![Build Status](https://github.com/ckormanyos/e_float-2021/actions/workflows/e_float.yml/badge.svg)](https://github.com/ckormanyos/e_float-2021/actions)
-[![Boost Software License 1.0](https://img.shields.io/badge/license-BSL%201.0-blue.svg)](https://github.com/ckormanyos/e_float-2021/blob/master/LICENSE_1_0.txt)
-[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ckormanyos/e_float-2021)](https://github.com/ckormanyos/e_float-2021)
+<p align="center">
+    <a href="https://github.com/ckormanyos/e_float-2021/actions">
+        <img src="https://github.com/ckormanyos/e_float-2021/actions/workflows/e_float.yml/badge.svg" alt="Build Status"></a>
+    <a href="https://github.com/ckormanyos/e_float-2021/issues">
+        <img src="https://img.shields.io/github/issues-raw/ckormanyos/e_float-2021" alt="Open Issues" /></a>
+    <a href="https://github.com/ckormanyos/e_float-2021/blob/master/LICENSE_1_0.txt">
+        <img src="https://img.shields.io/badge/license-BSL%201.0-blue.svg" alt="Boost Software License 1.0"></a>
+    <a href="https://img.shields.io/github/commit-activity/y/ckormanyos/e_float-2021">
+        <img src="https://img.shields.io/github/commit-activity/y/ckormanyos/e_float-2021" alt="GitHub commit activity" /></a>
+    <a href="https://github.com/ckormanyos/e_float-2021">
+        <img src="https://img.shields.io/github/languages/code-size/ckormanyos/e_float-2021" alt="GitHub code size in bytes" /></a>
+</p>
 
-e_float-2021 is a C++ multiple-precision floating point derived work from the original (legacy) e_float code and paper.
+e_float-2021 is a C++ multiple-precision floating point library that
+implements drop-in big decimal float types that can be used essentially
+like regular built-in floating-point types.
+e_float-2021 is a derived work from the original (legacy) e_float code and paper.
+
+e_float-2021 is written as a classic source/header C++11 library,
+and is compatible through C++11, 14, 17, 20, 23 and beyond.
+
 
 ---
 

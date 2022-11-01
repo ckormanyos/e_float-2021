@@ -38,10 +38,10 @@
 
 namespace
 {
-  bool test_real_imag()
+  auto test_real_imag() -> bool
   {
-    const bool test_real_ok = test::real::test_real(true);
-    const bool test_imag_ok = test::imag::test_imag(true);
+    const auto test_real_ok = test::real::test_real(true);
+    const auto test_imag_ok = test::imag::test_imag(true);
 
     std::string str_real("Real test: ");
     std::string str_imag("Imag test: ");
@@ -52,33 +52,39 @@ namespace
     std::cout << str_real << std::endl;
     std::cout << str_imag << std::endl;
 
-    const bool result_is_ok = (test_real_ok && test_imag_ok);
+    const auto result_is_ok = (test_real_ok && test_imag_ok);
 
     return result_is_ok;
   }
 }
 #endif
 
-int main()
+auto main() -> int
 {
   const Util::timer my_timer;
 
   #if defined(E_FLOAT_TEST_PI_ALGOS_TESTS)
-  const bool result_is_ok = test::pi::test_pi();
+  const auto result_is_ok = test::pi::test_pi();
   #endif
 
   #if defined(E_FLOAT_TEST_REAL_IMAG_TESTS)
-  const bool result_is_ok = test_real_imag();
+  const auto result_is_ok = test_real_imag();
   #endif
 
-  const double elapsed = my_timer.elapsed();
+  const auto elapsed = my_timer.elapsed();
 
-  std::cout << "Elapsed time: "
-            << std::fixed
-            << std::setprecision(2)
-            << elapsed
-            << " seconds"
-            << std::endl;
+  {
+    const auto flg = std::cout.flags();
+
+    std::cout << "Elapsed time: "
+              << std::fixed
+              << std::setprecision(2)
+              << elapsed
+              << " seconds"
+              << std::endl;
+
+    std::cout.flags(flg);
+  }
 
   return (result_is_ok ? 0 : -1);
 }
