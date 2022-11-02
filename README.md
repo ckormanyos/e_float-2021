@@ -140,7 +140,7 @@ convergence properties. These are used to exercise 1 million digit pi calculatio
 
 The original `e_float` project influenced the fundamental
 concept and creation of
-[Boost.Multiprecision](https://www.boost.org/doc/libs/1_75_0/libs/multiprecision/doc/html/index.html).
+[Boost.Multiprecision](https://www.boost.org/doc/libs/1_80_0/libs/multiprecision/doc/html/index.html).
 After the publication of the e_float paper in
 [ACM TOMS (37) 4, February 2011](https://doi.acm.org/10.1145/1916461.1916469),
 the code was essentially evaluated as to how it
@@ -157,8 +157,11 @@ novel, much more flexible, strong and robust frontend/backend concept.
 
 e_float-2021 remains supported in order to provide historical
 and legacy insight into the early origins of a work that influenced
-Boost.Multiprecision. The algorithms and implementation methods
-in e_float-2021 may also provide guidance and practical implementation advice
+[Boost.Multiprecision](https://www.boost.org/doc/libs/1_80_0/libs/multiprecision/doc/html/index.html).
+
+The algorithms and implementation methods
+in e_float-2021 may also provide some level
+of guidance and practical implementation advice
 regarding how to deal with big floating-point implementations
 within the context of modern C++.
 
