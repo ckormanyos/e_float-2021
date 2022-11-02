@@ -158,10 +158,9 @@ e_float-2021 remains supported in order to provide historical
 and legacy insight into the early origins of a work that influenced
 [Boost.Multiprecision](https://www.boost.org/doc/libs/1_80_0/libs/multiprecision/doc/html/index.html).
 
-The algorithms and implementation methods
-in e_float-2021 may also provide some level
-of guidance and practical implementation advice
-on how to deal with big floating-point implementations
+The algorithms and implementation methods in e_float-2021
+may also provide some level of guidance and practical advice
+on how to deal with big floating-point realizations
 within the context of modern C++.
 
 The `e_float` project itself is derived from an earlier, unpublished
