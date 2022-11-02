@@ -1,5 +1,5 @@
 
-//          Copyright Christopher Kormanyos 1999 - 2021.
+//          Copyright Christopher Kormanyos 1999 - 2022.
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file LICENSE_1_0.txt or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
@@ -48,7 +48,7 @@ efx::e_float::e_float(const double mantissa,
     return;
   }
 
-  const bool b_neg = (mantissa < 0.0);
+  const auto b_neg = (mantissa < 0.0);
 
   double d = ((!b_neg) ? mantissa : -mantissa);
   std::int64_t  e = exponent;
@@ -56,7 +56,7 @@ efx::e_float::e_float(const double mantissa,
   while(d > 10.0) { d /= 10.0; ++e; }
   while(d <  1.0) { d *= 10.0; --e; }
 
-  std::int32_t shift = static_cast<std::int32_t>(e % static_cast<std::int32_t>(ef_elem_digits10));
+  auto shift = static_cast<std::int32_t>(e % static_cast<std::int32_t>(ef_elem_digits10));
 
   while(static_cast<std::int32_t>(shift-- % ef_elem_digits10) != static_cast<std::int32_t>(0))
   {
@@ -69,12 +69,14 @@ efx::e_float::e_float(const double mantissa,
 
   std::fill(my_data.begin(), my_data.end(), static_cast<array_type::value_type>(0));
 
-  static const std::int32_t digit_ratio = static_cast<std::int32_t>(static_cast<std::int32_t>(std::numeric_limits<double>::digits10) / static_cast<std::int32_t>(ef_elem_digits10));
-  static const std::int32_t digit_loops = static_cast<std::int32_t>(digit_ratio + static_cast<std::int32_t>(2));
+  static const auto digit_ratio = static_cast<std::int32_t>(static_cast<std::int32_t>(std::numeric_limits<double>::digits10) / static_cast<std::int32_t>(ef_elem_digits10));
+  static const auto digit_loops = static_cast<std::int32_t>(digit_ratio + static_cast<std::int32_t>(2));
 
-  for(array_type::size_type i = static_cast<array_type::size_type>(0); i < static_cast<array_type::size_type>(digit_loops); i++)
+  for(auto   i = static_cast<array_type::size_type>(0);
+             i < static_cast<array_type::size_type>(digit_loops);
+           ++i)
   {
-    std::uint32_t n = static_cast<std::uint32_t>(static_cast<std::uint64_t>(d));
+    auto n = static_cast<std::uint32_t>(static_cast<std::uint64_t>(d));
 
     my_data[i]  = static_cast<array_type::value_type>(n);
     d          -= static_cast<double>(n);
@@ -120,9 +122,9 @@ void efx::e_float::from_unsigned_long_long(const unsigned long long u)
 
   my_exp = static_cast<std::int64_t>(0);
 
-  std::size_t i =static_cast<std::size_t>(0U);
+  auto i =static_cast<std::size_t>(0U);
 
-  unsigned long long uu = u;
+  auto uu = u;
 
   std::uint32_t temp[(std::numeric_limits<unsigned long long>::digits10 / static_cast<int>(ef_elem_digits10)) + 3] = { static_cast<std::uint32_t>(0U) };
 
@@ -185,13 +187,15 @@ void efx::e_float::from_long_double(const long double l)
 
 std::uint32_t efx::e_float::mul_loop_uv(std::uint32_t* const u, const std::uint32_t* const v, const std::int32_t p)
 {
-  std::uint64_t carry = static_cast<std::uint64_t>(0U);
+  auto carry = static_cast<std::uint64_t>(0U);
 
-  for(std::int32_t j = static_cast<std::int32_t>(p - 1); j >= static_cast<std::int32_t>(0); j--)
+  for(auto   j  = static_cast<std::int32_t>(p - 1);
+             j >= static_cast<std::int32_t>(0);
+           --j)
   {
     std::uint64_t sum = carry;
 
-    for(std::int32_t i = j; i >= static_cast<std::int32_t>(0); i--)
+    for(auto i = j; i >= static_cast<std::int32_t>(0); --i)
     {
       sum += static_cast<std::uint64_t>(u[j - i] * static_cast<std::uint64_t>(v[i]));
     }
@@ -489,13 +493,18 @@ efx::e_float& efx::e_float::operator+=(const e_float& v)
     }
 
     // Addition algorithm
-    std::uint32_t carry = static_cast<std::uint32_t>(0U);
+    auto carry = static_cast<std::uint32_t>(0U);
 
     for(std::int32_t j = static_cast<std::int32_t>(ef_elem_number - static_cast<std::int32_t>(1)); j >= static_cast<std::int32_t>(0); j--)
     {
-      std::uint32_t t = static_cast<std::uint32_t>(static_cast<std::uint32_t>(p_u[j] + p_v[j]) + carry);
-      carry           = t / static_cast<std::uint32_t>(ef_elem_mask);
-      p_u[j]          = static_cast<std::uint32_t>(t - static_cast<std::uint32_t>(carry * static_cast<std::uint32_t>(ef_elem_mask)));
+      const auto t =
+        static_cast<std::uint32_t>
+        (
+          static_cast<std::uint32_t>(p_u[j] + p_v[j]) + carry
+        );
+
+      carry  = t / static_cast<std::uint32_t>(ef_elem_mask);
+      p_u[j] = static_cast<std::uint32_t>(t - static_cast<std::uint32_t>(carry * static_cast<std::uint32_t>(ef_elem_mask)));
     }
 
     if(b_copy)
@@ -616,8 +625,7 @@ efx::e_float& efx::e_float::operator+=(const e_float& v)
       else
       {
         // Justify the data
-        const std::ptrdiff_t sj =
-          static_cast<std::ptrdiff_t>(first_nonzero_elem - my_data.cbegin());
+        const auto sj = static_cast<std::ptrdiff_t>(first_nonzero_elem - my_data.cbegin());
 
         std::copy(my_data.cbegin() + static_cast<std::ptrdiff_t>(sj),
                   my_data.cend(),
@@ -691,8 +699,8 @@ efx::e_float& efx::e_float::operator*=(const e_float& v)
   }
 
   // Check for overflow or underflow.
-  const bool u_exp_is_neg = (  my_exp < static_cast<std::int64_t>(0));
-  const bool v_exp_is_neg = (v.my_exp < static_cast<std::int64_t>(0));
+  const auto u_exp_is_neg = (  my_exp < static_cast<std::int64_t>(0));
+  const auto v_exp_is_neg = (v.my_exp < static_cast<std::int64_t>(0));
 
   if(u_exp_is_neg == v_exp_is_neg)
   {
@@ -701,7 +709,7 @@ efx::e_float& efx::e_float::operator*=(const e_float& v)
     const std::int64_t v_exp = ((!v_exp_is_neg) ? v.my_exp : static_cast<std::int64_t>(-v.my_exp));
 
     // Check the range of the upcoming multiplication.
-    const bool b_result_is_out_of_range = (v_exp >= static_cast<std::int64_t>(ef_max_exp10 - u_exp));
+    const auto b_result_is_out_of_range = (v_exp >= static_cast<std::int64_t>(ef_max_exp10 - u_exp));
 
     if(b_result_is_out_of_range)
     {
@@ -722,8 +730,8 @@ efx::e_float& efx::e_float::operator*=(const e_float& v)
   // Set the exponent of the result.
   my_exp += v.my_exp;
 
-  const std::int32_t prec_for_multiply     = (std::min)(my_prec_elem, v.my_prec_elem);
-  const std::int32_t digits10_for_multiply = static_cast<std::int32_t>(prec_for_multiply * ef_elem_digits10);
+  const auto prec_for_multiply     = (std::min)(my_prec_elem, v.my_prec_elem);
+  const auto digits10_for_multiply = static_cast<std::int32_t>(prec_for_multiply * ef_elem_digits10);
 
   // Note: Karatsuba multiplication is not used for intermediate digit counts.
   // Consider implementing Karatsuba multiplication for intermediate digit counts.
@@ -731,7 +739,7 @@ efx::e_float& efx::e_float::operator*=(const e_float& v)
   if(digits10_for_multiply < static_cast<std::int32_t>(5000))
   {
     // Use school multiplication.
-    const std::uint32_t carry = mul_loop_uv(my_data.data(), v.my_data.data(), prec_for_multiply);
+    const auto carry = mul_loop_uv(my_data.data(), v.my_data.data(), prec_for_multiply);
 
     // Handle a potential carry.
     if(carry != static_cast<std::uint32_t>(0U))
@@ -777,7 +785,7 @@ efx::e_float& efx::e_float::operator*=(const e_float& v)
 
 efx::e_float& efx::e_float::operator/=(const e_float& v)
 {
-  const bool u_and_v_are_finite_and_identical =
+  const auto u_and_v_are_finite_and_identical =
     (   isfinite()
      && (my_fpclass == v.my_fpclass)
      && (my_exp     == v.my_exp)
@@ -825,8 +833,8 @@ efx::e_float& efx::e_float::mul_unsigned_long_long(const unsigned long long n)
   my_neg = false;
 
   // Handle special cases like zero, inf and NaN.
-  const bool b_u_is_inf  = isinf();
-  const bool b_n_is_zero = (n == static_cast<std::int32_t>(0));
+  const auto b_u_is_inf  = isinf();
+  const auto b_n_is_zero = (n == static_cast<std::int32_t>(0));
 
   if(isnan() || (b_u_is_inf && b_n_is_zero))
   {
@@ -862,8 +870,8 @@ efx::e_float& efx::e_float::mul_unsigned_long_long(const unsigned long long n)
   }
 
   // Set up the multiplication loop.
-  const std::uint32_t nn    = static_cast<std::uint32_t>(n);
-  const std::uint32_t carry = mul_loop_n(my_data.data(), nn, my_prec_elem);
+  const auto nn    = static_cast<std::uint32_t>(n);
+  const auto carry = mul_loop_n(my_data.data(), nn, my_prec_elem);
 
   // Handle the carry and adjust the exponent.
   if(carry != static_cast<std::uint32_t>(0U))
@@ -889,7 +897,7 @@ efx::e_float& efx::e_float::div_unsigned_long_long(const unsigned long long n)
   // Divide *this by a constant unsigned long long.
 
   // Evaluate the sign of the result.
-  const bool b_neg = my_neg;
+  const auto b_neg = my_neg;
 
   // Artificially set the sign of the result to be positive.
   my_neg = false;
@@ -936,7 +944,7 @@ efx::e_float& efx::e_float::div_unsigned_long_long(const unsigned long long n)
     return operator/=(e_float(n));
   }
 
-  const std::uint32_t nn = static_cast<std::uint32_t>(n);
+  const auto nn = static_cast<std::uint32_t>(n);
 
   if(nn > static_cast<std::uint32_t>(1U))
   {
@@ -987,7 +995,7 @@ void efx::e_float::swap(e_float& other)
 efx::e_float& efx::e_float::calculate_inv()
 {
   // Compute the inverse of *this.
-  const bool b_neg = my_neg;
+  const auto b_neg = my_neg;
 
   my_neg = false;
 
@@ -1037,9 +1045,15 @@ efx::e_float& efx::e_float::calculate_inv()
   // is used. During the iterative steps, the precision of the calculation is limited
   // to the minimum required in order to minimize the run-time.
 
-  static const std::int32_t double_digits10_minus_a_few = static_cast<std::int32_t>(static_cast<std::int32_t>(std::numeric_limits<double>::digits10) - static_cast<std::int32_t>(3));
+  static const auto double_digits10_minus_a_few =
+    static_cast<std::int32_t>
+    (
+      static_cast<std::int32_t>(std::numeric_limits<double>::digits10) - static_cast<std::int32_t>(3)
+    );
 
-  for(std::int32_t digits = double_digits10_minus_a_few; digits <= static_cast<std::int32_t>(ef::tolerance()); digits *= static_cast<std::int32_t>(2))
+  for(auto digits  = double_digits10_minus_a_few;
+           digits <= static_cast<std::int32_t>(ef::tolerance());
+           digits *= static_cast<std::int32_t>(2))
   {
     // Adjust precision of the terms.
       precision(static_cast<std::int32_t>(digits * 2) + 10);
@@ -1094,7 +1108,7 @@ efx::e_float& efx::e_float::calculate_sqrt()
   // Estimate the square root using simple manipulations.
   const double sqd = sqrt(dd);
 
-  const std::int32_t original_prec_elem = my_prec_elem;
+  const auto original_prec_elem = my_prec_elem;
 
   *this = e_float(sqd, static_cast<std::int64_t>(ne / static_cast<std::int64_t>(2)));
 
@@ -1111,12 +1125,18 @@ efx::e_float& efx::e_float::calculate_sqrt()
   // http://www.jjj.de/pibook/pibook.html
   // http://www.amazon.com/exec/obidos/tg/detail/-/3540665722/qid=1035535482/sr=8-7/ref=sr_8_7/104-3357872-6059916?v=glance&n=507846
 
-  static const std::int32_t double_digits10_minus_a_few = static_cast<std::int32_t>(static_cast<std::int32_t>(std::numeric_limits<double>::digits10) - static_cast<std::int32_t>(3));
+  static const auto double_digits10_minus_a_few =
+    static_cast<std::int32_t>
+    (
+      static_cast<std::int32_t>(std::numeric_limits<double>::digits10) - static_cast<std::int32_t>(3)
+    );
 
-  for(std::int32_t digits = double_digits10_minus_a_few; digits <= static_cast<std::int32_t>(ef::tolerance()); digits *= static_cast<std::int32_t>(2))
+  for(auto digits  = double_digits10_minus_a_few;
+           digits <= static_cast<std::int32_t>(ef::tolerance());
+           digits *= static_cast<std::int32_t>(2))
   {
     // Adjust precision of the terms.
-    const std::int32_t new_prec = static_cast<std::int32_t>(digits * 2) + 10;
+    const auto new_prec = static_cast<std::int32_t>(static_cast<std::int32_t>(digits * 2) + 10);
 
        precision(new_prec);
     vi.precision(new_prec);
@@ -1165,7 +1185,7 @@ std::int32_t efx::e_float::cmp_data(const array_type& vd) const
                   array_type::const_iterator> mismatch_pair =
     std::mismatch(my_data.cbegin(), my_data.cend(), vd.cbegin());
 
-  const bool is_equal = ((mismatch_pair.first == my_data.cend()) && (mismatch_pair.second == vd.cend()));
+  const auto is_equal = ((mismatch_pair.first == my_data.cend()) && (mismatch_pair.second == vd.cend()));
 
   if(is_equal)
   {
