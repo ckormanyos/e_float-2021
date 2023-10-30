@@ -56,14 +56,14 @@
       static constexpr bool                    is_bounded        = true;
       static constexpr bool                    is_modulo         = false;
       static constexpr bool                    is_iec559         = false;
-      static constexpr int                     digits            = (int) e_float::ef_digits;
-      static constexpr int                     digits10          = (int) e_float::ef_digits10;
-      static constexpr int                     max_digits10      = (int) e_float::ef_max_digits10;
-      static constexpr int                     min_exponent      = (int) e_float::ef_min_exp;
-      static constexpr int                     min_exponent10    = (int) e_float::ef_min_exp10;
-      static constexpr int                     max_exponent      = (int) e_float::ef_max_exp;
-      static constexpr int                     max_exponent10    = (int) e_float::ef_max_exp10;
-      static constexpr int                     radix             = (int) e_float::ef_radix;
+      static constexpr int                     digits            = static_cast<int>(e_float::ef_digits);
+      static constexpr int                     digits10          = static_cast<int>(e_float::ef_digits10);
+      static constexpr int                     max_digits10      = static_cast<int>(e_float::ef_max_digits10);
+      static constexpr int                     min_exponent      = static_cast<int>(e_float::ef_min_exp);
+      static constexpr int                     min_exponent10    = static_cast<int>(e_float::ef_min_exp10);
+      static constexpr int                     max_exponent      = static_cast<int>(e_float::ef_max_exp);
+      static constexpr int                     max_exponent10    = static_cast<int>(e_float::ef_max_exp10);
+      static constexpr int                     radix             = static_cast<int>(e_float::ef_radix);
       static constexpr std::float_round_style  round_style       = std::round_to_nearest;
       static constexpr bool                    has_infinity      = true;
       static constexpr bool                    has_quiet_NaN     = true;
@@ -73,15 +73,15 @@
       static constexpr bool                    traps             = false;
       static constexpr bool                    tinyness_before   = false;
 
-      static const e_float& (min)        () throw() { return ef::value_min(); }
-      static const e_float& (max)        () throw() { return ef::value_max(); }
-      static const e_float& lowest       () throw() { return ef::zero(); }
-      static const e_float& epsilon      () throw() { return ef::value_eps(); }
-      static const e_float& round_error  () throw() { return ef::half(); }
-      static const e_float& infinity     () throw() { return ef::value_inf(); }
-      static const e_float& quiet_NaN    () throw() { return ef::value_nan(); }
-      static const e_float& signaling_NaN() throw() { return ef::zero(); }
-      static const e_float& denorm_min   () throw() { return ef::zero(); }
+      static const e_float& (min)        () noexcept { return ef::value_min(); }
+      static const e_float& (max)        () noexcept { return ef::value_max(); }
+      static const e_float& lowest       () noexcept { return ef::zero(); }
+      static const e_float& epsilon      () noexcept { return ef::value_eps(); }
+      static const e_float& round_error  () noexcept { return ef::half(); }
+      static const e_float& infinity     () noexcept { return ef::value_inf(); }
+      static const e_float& quiet_NaN    () noexcept { return ef::value_nan(); }
+      static const e_float& signaling_NaN() noexcept { return ef::zero(); }
+      static const e_float& denorm_min   () noexcept { return ef::zero(); }
     };
   }
 
@@ -319,19 +319,19 @@
   bool operator> (const e_float& u, const e_float& v);
 
   // Global comparison operators of const e_float& with all built-in types.
-  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value == true, bool>::type operator< (const e_float& u, const ArithmeticType& v) { return (u.cmp(e_float(v)) <  static_cast<std::int32_t>(0)); }
-  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value == true, bool>::type operator<=(const e_float& u, const ArithmeticType& v) { return (u.cmp(e_float(v)) <= static_cast<std::int32_t>(0)); }
-  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value == true, bool>::type operator==(const e_float& u, const ArithmeticType& v) { return (u.cmp(e_float(v)) == static_cast<std::int32_t>(0)); }
-  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value == true, bool>::type operator!=(const e_float& u, const ArithmeticType& v) { return (u.cmp(e_float(v)) != static_cast<std::int32_t>(0)); }
-  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value == true, bool>::type operator>=(const e_float& u, const ArithmeticType& v) { return (u.cmp(e_float(v)) >= static_cast<std::int32_t>(0)); }
-  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value == true, bool>::type operator> (const e_float& u, const ArithmeticType& v) { return (u.cmp(e_float(v)) >  static_cast<std::int32_t>(0)); }
+  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value, bool>::type operator< (const e_float& u, const ArithmeticType& v) { return (u.cmp(e_float(v)) <  static_cast<std::int32_t>(0)); }
+  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value, bool>::type operator<=(const e_float& u, const ArithmeticType& v) { return (u.cmp(e_float(v)) <= static_cast<std::int32_t>(0)); }
+  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value, bool>::type operator==(const e_float& u, const ArithmeticType& v) { return (u.cmp(e_float(v)) == static_cast<std::int32_t>(0)); }
+  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value, bool>::type operator!=(const e_float& u, const ArithmeticType& v) { return (u.cmp(e_float(v)) != static_cast<std::int32_t>(0)); }
+  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value, bool>::type operator>=(const e_float& u, const ArithmeticType& v) { return (u.cmp(e_float(v)) >= static_cast<std::int32_t>(0)); }
+  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value, bool>::type operator> (const e_float& u, const ArithmeticType& v) { return (u.cmp(e_float(v)) >  static_cast<std::int32_t>(0)); }
 
   // Global comparison operators of all built-in types with const e_float&.
-  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value == true, bool>::type operator< (ArithmeticType u, const e_float& v) { return (e_float(u).cmp(v) <  static_cast<std::int32_t>(0)); }
-  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value == true, bool>::type operator<=(ArithmeticType u, const e_float& v) { return (e_float(u).cmp(v) <= static_cast<std::int32_t>(0)); }
-  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value == true, bool>::type operator==(ArithmeticType u, const e_float& v) { return (e_float(u).cmp(v) == static_cast<std::int32_t>(0)); }
-  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value == true, bool>::type operator!=(ArithmeticType u, const e_float& v) { return (e_float(u).cmp(v) != static_cast<std::int32_t>(0)); }
-  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value == true, bool>::type operator>=(ArithmeticType u, const e_float& v) { return (e_float(u).cmp(v) >= static_cast<std::int32_t>(0)); }
-  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value == true, bool>::type operator> (ArithmeticType u, const e_float& v) { return (e_float(u).cmp(v) >  static_cast<std::int32_t>(0)); }
+  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value, bool>::type operator< (ArithmeticType u, const e_float& v) { return (e_float(u).cmp(v) <  static_cast<std::int32_t>(0)); }
+  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value, bool>::type operator<=(ArithmeticType u, const e_float& v) { return (e_float(u).cmp(v) <= static_cast<std::int32_t>(0)); }
+  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value, bool>::type operator==(ArithmeticType u, const e_float& v) { return (e_float(u).cmp(v) == static_cast<std::int32_t>(0)); }
+  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value, bool>::type operator!=(ArithmeticType u, const e_float& v) { return (e_float(u).cmp(v) != static_cast<std::int32_t>(0)); }
+  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value, bool>::type operator>=(ArithmeticType u, const e_float& v) { return (e_float(u).cmp(v) >= static_cast<std::int32_t>(0)); }
+  template<typename ArithmeticType> typename std::enable_if<std::is_arithmetic<ArithmeticType>::value, bool>::type operator> (ArithmeticType u, const e_float& v) { return (e_float(u).cmp(v) >  static_cast<std::int32_t>(0)); }
 
 #endif // E_FLOAT_2004_06_01_HPP_

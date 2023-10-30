@@ -28,21 +28,6 @@
     <Filter Include="libs\e_float\src\e_float\gmp">
       <UniqueIdentifier>{652dda4f-8d48-4a9c-8c8c-33e9f03b83e6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="libs\math">
-      <UniqueIdentifier>{5b4f7641-ea44-4355-8241-690ecffd877d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="libs\math\include">
-      <UniqueIdentifier>{bd01a696-4d89-47fa-80b8-cb40a7af82ca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="libs\math\include\boost">
-      <UniqueIdentifier>{6403a87a-7b8e-4aab-86de-7f44fa1b4734}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="libs\math\include\boost\math">
-      <UniqueIdentifier>{3b61ee2d-93f8-4c8a-8a8b-6ae633f9d4de}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="libs\math\include\boost\math\bindings">
-      <UniqueIdentifier>{8d7613c5-6e1a-4160-8745-4ca26ba185c2}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\e_float\efx\e_float_efx.cpp">
@@ -100,9 +85,6 @@
     </ClInclude>
     <ClInclude Include="..\src\e_float\gmp\e_float_gmp_protos.h">
       <Filter>libs\e_float\src\e_float\gmp</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\math\include\boost\math\bindings\e_float.hpp">
-      <Filter>libs\math\include\boost\math\bindings</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

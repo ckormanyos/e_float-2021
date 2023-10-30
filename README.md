@@ -142,12 +142,14 @@ concept and creation of
 [Boost.Multiprecision](https://www.boost.org/doc/libs/1_80_0/libs/multiprecision/doc/html/index.html).
 After the publication of the e_float paper in
 [ACM TOMS (37) 4, February 2011](https://doi.acm.org/10.1145/1916461.1916469),
-the code was fundamentally evaluated regarding how it
+the code was evaluated regarding how it
 wrapped and implemented certain big number backends.
-This idea was adopted for the partial early design of `cpp_dec_float`
+
+This idea for wrapping big number backends
+was adopted for the partial early design of `cpp_dec_float`
 in Boost.Multiprecision. As Boost.Multiprecision progressed,
 the original rudimentary frontend/backend concept
-from e_float was entirely re-implemented. Boost.Multiprecision
+from `e_float` was entirely re-implemented. Boost.Multiprecision
 was subsequently improved, corrected and vastly extended
 and evolved into today's header-only template design having its own
 novel, much more flexible, strong and robust frontend/backend concept.

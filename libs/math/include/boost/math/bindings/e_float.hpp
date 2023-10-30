@@ -84,17 +84,17 @@
     e_float(e_float&& other) : m_value(static_cast<::e_float&&>(other.m_value)) { }
 
     template<typename UnsignedIntegralType,
-             typename std::enable_if<(   (std::is_integral<UnsignedIntegralType>::value == true)
-                                      && (std::is_unsigned<UnsignedIntegralType>::value == true))>::type const* = nullptr>
+             typename std::enable_if<(   std::is_integral<UnsignedIntegralType>::value
+                                      && std::is_unsigned<UnsignedIntegralType>::value)>::type const* = nullptr>
     e_float(UnsignedIntegralType u) : m_value(::e_float(std::uint64_t(u))) { }
 
     template<typename SignedIntegralType,
-             typename std::enable_if<(   (std::is_integral<SignedIntegralType>::value == true)
-                                      && (std::is_signed  <SignedIntegralType>::value == true))>::type const* = nullptr>
+             typename std::enable_if<(   std::is_integral<SignedIntegralType>::value
+                                      && std::is_signed  <SignedIntegralType>::value)>::type const* = nullptr>
     e_float(SignedIntegralType n) : m_value(::e_float(std::int64_t(n))) { }
 
     template<typename FloatingPointType,
-             typename std::enable_if<std::is_floating_point<FloatingPointType>::value == true>::type const* = nullptr>
+             typename std::enable_if<std::is_floating_point<FloatingPointType>::value>::type const* = nullptr>
     e_float(FloatingPointType f) : m_value(::e_float(static_cast<long double>(f))) { }
 
     e_float(const char* c) : m_value(c) { }
@@ -121,7 +121,7 @@
     }
 
     template<typename ArithmeticType,
-             typename std::enable_if<std::is_arithmetic<ArithmeticType>::value == true>::type const* = nullptr>
+             typename std::enable_if<std::is_arithmetic<ArithmeticType>::value>::type const* = nullptr>
     e_float& operator=(const ArithmeticType& x)
     {
       m_value = ::e_float(x);
@@ -166,7 +166,7 @@
     }
 
     template<typename ArithmeticType,
-             typename std::enable_if<std::is_arithmetic<ArithmeticType>::value == true>::type const* = nullptr>
+             typename std::enable_if<std::is_arithmetic<ArithmeticType>::value>::type const* = nullptr>
     int compare(ArithmeticType x)
     {
       return static_cast<int>(m_value.compare(::e_float(x)));
@@ -199,8 +199,8 @@
   }
 
   template<typename SignedIntegralType,
-           typename std::enable_if<(   (std::is_integral<SignedIntegralType>::value == true)
-                                    && (std::is_signed  <SignedIntegralType>::value == true))>::type const* = nullptr>
+           typename std::enable_if<(   std::is_integral<SignedIntegralType>::value
+                                    && std::is_signed  <SignedIntegralType>::value)>::type const* = nullptr>
   void eval_multiply(e_float& result, const SignedIntegralType& n)
   {
     result.representation().mul_signed_long_long(static_cast<std::int64_t>(n));
@@ -212,8 +212,8 @@
   }
 
   template<typename SignedIntegralType,
-           typename std::enable_if<(   (std::is_integral<SignedIntegralType>::value == true)
-                                    && (std::is_signed  <SignedIntegralType>::value == true))>::type const* = nullptr>
+           typename std::enable_if<(   std::is_integral<SignedIntegralType>::value
+                                    && std::is_signed  <SignedIntegralType>::value)>::type const* = nullptr>
   void eval_divide(e_float& result, const SignedIntegralType& n)
   {
     result.representation().div_signed_long_long(static_cast<std::int64_t>(n));
@@ -225,14 +225,14 @@
   }
 
   template<typename ArithmeticType,
-           typename std::enable_if<std::is_arithmetic<ArithmeticType>::value == true>::type const* = nullptr>
+           typename std::enable_if<std::is_arithmetic<ArithmeticType>::value>::type const* = nullptr>
   bool eval_eq(const e_float& a, const ArithmeticType& b)
   {
     return (a.compare(b) == 0);
   }
 
   template<typename ArithmeticType,
-           typename std::enable_if<std::is_arithmetic<ArithmeticType>::value == true>::type const* = nullptr>
+           typename std::enable_if<std::is_arithmetic<ArithmeticType>::value>::type const* = nullptr>
   bool eval_eq(const ArithmeticType& a, const e_float& b)
   {
     return (e_float(a).compare(b) == 0);
@@ -244,7 +244,7 @@
   }
 
   template<typename ArithmeticType,
-           typename std::enable_if<std::is_arithmetic<ArithmeticType>::value == true>::type const* = nullptr>
+           typename std::enable_if<std::is_arithmetic<ArithmeticType>::value>::type const* = nullptr>
   bool eval_gt(const e_float& a, const ArithmeticType& b)
   {
     return (a.compare(b) == 1);
@@ -263,14 +263,14 @@
   }
 
   template<typename ArithmeticType,
-           typename std::enable_if<std::is_arithmetic<ArithmeticType>::value == true>::type const* = nullptr>
+           typename std::enable_if<std::is_arithmetic<ArithmeticType>::value>::type const* = nullptr>
   bool eval_lt(const e_float& a, const ArithmeticType& b)
   {
     return (a.compare(b) == -1);
   }
 
   template<typename ArithmeticType,
-           typename std::enable_if<std::is_arithmetic<ArithmeticType>::value == true>::type const* = nullptr>
+           typename std::enable_if<std::is_arithmetic<ArithmeticType>::value>::type const* = nullptr>
   bool eval_lt(const ArithmeticType& a, const e_float& b)
   {
     return (e_float(a).compare(b) == -1);
@@ -372,8 +372,8 @@
   }
 
   template<typename IntegralType,
-           typename std::enable_if<(   (std::is_fundamental<IntegralType>::value == true)
-                                    && (std::is_integral   <IntegralType>::value == true))>::type const* = nullptr>
+           typename std::enable_if<(   std::is_fundamental<IntegralType>::value
+                                    && std::is_integral   <IntegralType>::value)>::type const* = nullptr>
   void eval_scalbn(e_float& result, const e_float& val, IntegralType e)
   {
     const std::int64_t my_e = static_cast<std::int64_t>(e);
