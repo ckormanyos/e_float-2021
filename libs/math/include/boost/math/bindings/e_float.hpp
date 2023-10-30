@@ -1,5 +1,5 @@
 ﻿//  Copyright John Maddock 2012 - 2021.
-//  Copyright Christopher Kormanyos 2016 - 2022.
+//  Copyright Christopher Kormanyos 2015 - 2023.
 //  Use, modification and distribution are subject to the
 //  Boost Software License, Version 1.0. (See accompanying file
 //  LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -534,8 +534,7 @@
 
       const ::e_float integer_part = ::ef::floor(x.crepresentation() / y.crepresentation());
 
-      result.representation() =
-        x.crepresentation() - (integer_part * y.crepresentation());
+      result.representation() = x.crepresentation() - (integer_part * y.crepresentation());
 
       if(x.crepresentation().isneg() != y.crepresentation().isneg())
       {

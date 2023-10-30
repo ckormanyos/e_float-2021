@@ -7,10 +7,6 @@
 #include <boost/math/constants/constants.hpp>
 #include <boost/math/special_functions/gamma.hpp>
 
-// cd C:\Users\User\Documents\Ks\PC_Software\NumericalPrograms\ExtendedNumberTypes\e_float\libs\e_float\build
-
-// g++ -Wall -Wextra -m64 -O3 -std=gnu++11 -DE_FLOAT_TYPE_EFX -I../../../libs/e_float/src -IC:/boost/modular_boost/boost/libs/multiprecision/include -IC:/boost/modular_boost/boost/libs/math/include -IC:/boost/boost_1_75_0 ../src/e_float/efx/e_float_efx.cpp ../src/e_float/e_float.cpp ../src/e_float/e_float_base.cpp ../src/functions/constants/constants.cpp ../src/functions/elementary/elementary_complex.cpp ../src/functions/elementary/elementary_hyper_g.cpp ../src/functions/elementary/elementary_math.cpp ../src/functions/elementary/elementary_trans.cpp ../src/functions/elementary/elementary_trig.cpp ../test_boost/test_boost.cpp -o test_boost.exe
-
 namespace local
 {
   using big_float_type = boost::multiprecision::number<boost::math::ef::e_float, boost::multiprecision::et_off>;
