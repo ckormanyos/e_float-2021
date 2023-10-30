@@ -1,11 +1,26 @@
 ﻿e_float-2021
 ==================
 
-[![Build Status](https://github.com/ckormanyos/e_float-2021/actions/workflows/e_float.yml/badge.svg)](https://github.com/ckormanyos/e_float-2021/actions)
-[![Boost Software License 1.0](https://img.shields.io/badge/license-BSL%201.0-blue.svg)](https://github.com/ckormanyos/e_float-2021/blob/master/LICENSE_1_0.txt)
-[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ckormanyos/e_float-2021)](https://github.com/ckormanyos/e_float-2021)
+<p align="center">
+    <a href="https://github.com/ckormanyos/e_float-2021/actions">
+        <img src="https://github.com/ckormanyos/e_float-2021/actions/workflows/e_float.yml/badge.svg" alt="Build Status"></a>
+    <a href="https://github.com/ckormanyos/e_float-2021/issues">
+        <img src="https://img.shields.io/github/issues-raw/ckormanyos/e_float-2021" alt="Open Issues" /></a>
+    <a href="https://github.com/ckormanyos/e_float-2021/blob/master/LICENSE_1_0.txt">
+        <img src="https://img.shields.io/badge/license-BSL%201.0-blue.svg" alt="Boost Software License 1.0"></a>
+    <a href="https://img.shields.io/github/commit-activity/y/ckormanyos/e_float-2021">
+        <img src="https://img.shields.io/github/commit-activity/y/ckormanyos/e_float-2021" alt="GitHub commit activity" /></a>
+    <a href="https://github.com/ckormanyos/e_float-2021">
+        <img src="https://img.shields.io/github/languages/code-size/ckormanyos/e_float-2021" alt="GitHub code size in bytes" /></a>
+</p>
 
-e_float-2021 is a C++ multiple-precision floating point derived work from the original (legacy) e_float code and paper.
+e_float-2021 is a C++ multiple-precision floating point library that
+implements drop-in _big_ _float_ types that can be used essentially
+like regular built-in floating-point types.
+e_float-2021 is written as a classic source/header C++11 library,
+and is compatible through C++11, 14, 17, 20, 23 and beyond.
+
+e_float-2021 is a derived work from the original (legacy) e_float code and paper.
 
 ---
 
@@ -28,7 +43,7 @@ called `gmp::e_float` and `mpfr::e_float`, respectively.
 
 e_float-2021 is derived from the original work mentioned above.
 The e_float-2021 code has been updated to conform with
-C++11, 14, 17, 20. It has been both maintained and modernized,
+C++11, 14, 17, 20, 23 and beyond. It has been both maintained and modernized,
 and a dedicated effort has been made retain
 compatibility with C++ language evolution.
 Certain special function tests have been removed
@@ -124,26 +139,28 @@ convergence properties. These are used to exercise 1 million digit pi calculatio
 
 The original `e_float` project influenced the fundamental
 concept and creation of
-[Boost.Multiprecision](https://www.boost.org/doc/libs/1_75_0/libs/multiprecision/doc/html/index.html).
+[Boost.Multiprecision](https://www.boost.org/doc/libs/1_80_0/libs/multiprecision/doc/html/index.html).
 After the publication of the e_float paper in
 [ACM TOMS (37) 4, February 2011](https://doi.acm.org/10.1145/1916461.1916469),
-the code was essentially evaluated as to how it
+the code was fundamentally evaluated regarding how it
 wrapped and implemented certain big number backends.
 This idea was adopted for the partial early design of `cpp_dec_float`
 in Boost.Multiprecision. As Boost.Multiprecision progressed,
 the original rudimentary frontend/backend concept
-from e_float was entirely re-implemented and vastly extended
-and evolved into today's
-Boost header-only template design having its own
+from e_float was entirely re-implemented. Boost.Multiprecision
+was subsequently improved, corrected and vastly extended
+and evolved into today's header-only template design having its own
 novel, much more flexible, strong and robust frontend/backend concept.
 
 ## Legacy
 
 e_float-2021 remains supported in order to provide historical
 and legacy insight into the early origins of a work that influenced
-Boost.Multiprecision. The algorithms and implementation methods
-in e_float-2021 may also provide guidance and practical implementation advice
-regarding how to deal with big floating-point implementations
+[Boost.Multiprecision](https://www.boost.org/doc/libs/1_80_0/libs/multiprecision/doc/html/index.html).
+
+The algorithms and implementation methods in e_float-2021
+may also provide some level of guidance and practical advice
+on how to deal with big floating-point realizations
 within the context of modern C++.
 
 The `e_float` project itself is derived from an earlier, unpublished
