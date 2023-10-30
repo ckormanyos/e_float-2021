@@ -139,7 +139,7 @@ convergence properties. These are used to exercise 1 million digit pi calculatio
 
 The original `e_float` project influenced the fundamental
 concept and creation of
-[Boost.Multiprecision](https://www.boost.org/doc/libs/1_80_0/libs/multiprecision/doc/html/index.html).
+[Boost.Multiprecision](https://www.boost.org/doc/libs/1_83_0/libs/multiprecision/doc/html/index.html).
 After the publication of the e_float paper in
 [ACM TOMS (37) 4, February 2011](https://doi.acm.org/10.1145/1916461.1916469),
 the code was evaluated regarding how it
@@ -158,14 +158,17 @@ novel, much more flexible, strong and robust frontend/backend concept.
 
 e_float-2021 remains supported in order to provide historical
 and legacy insight into the early origins of a work that influenced
-[Boost.Multiprecision](https://www.boost.org/doc/libs/1_80_0/libs/multiprecision/doc/html/index.html).
+[Boost.Multiprecision](https://www.boost.org/doc/libs/1_83_0/libs/multiprecision/doc/html/index.html).
 
 The algorithms and implementation methods in e_float-2021
 may also provide some level of guidance and practical advice
 on how to deal with big floating-point realizations
 within the context of modern C++.
 
-The `e_float` project itself is derived from an earlier, unpublished
-work. This work, entitled `mp_cpp` was created in the 1990s and was,
-at the time of its creation, quite cutting-edge in its approach to dealing
-with big floating-point numbers within the context of the C++ language.
+The `e_float` project itself is derived from an earlier
+work named [`mp_cpp`](https://github.com/ckormanyos/mp_cpp).
+`mp_cpp` was created in the 1990s and its source code
+has been preserved. At the time of its creation,
+`mp_cpp` seemed subjectively to be quite cutting-edge
+in its approach to dealing with big floating-point numbers
+within the context of the C++ language.
