@@ -72,7 +72,7 @@ bool test::pi::test_pi()
   {
     bool result_pi_calculations_is_ok = true;
 
-    for(std::size_t j = 0U; ((result_pi_calculations_is_ok == true) && (j < pfn.size())); ++j)
+    for(std::size_t j = 0U; (result_pi_calculations_is_ok && (j < pfn.size())); ++j)
     {
       const std::string str_name_j = names[j].substr(0U, names[j].find(char('.')));
 

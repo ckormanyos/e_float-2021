@@ -3,13 +3,15 @@
 //    (See accompanying file LICENSE_1_0.txt or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
+#include <cmath>
+#include <cstdint>
+#include <iomanip>
+#include <iostream>
+
 #include <boost/math/bindings/e_float.hpp>
 #include <boost/math/constants/constants.hpp>
+#include <boost/math/special_functions/bessel.hpp>
 #include <boost/math/special_functions/gamma.hpp>
-
-// cd C:\Users\User\Documents\Ks\PC_Software\NumericalPrograms\ExtendedNumberTypes\e_float\libs\e_float\build
-
-// g++ -Wall -Wextra -m64 -O3 -std=gnu++11 -DE_FLOAT_TYPE_EFX -I../../../libs/e_float/src -IC:/boost/modular_boost/boost/libs/multiprecision/include -IC:/boost/modular_boost/boost/libs/math/include -IC:/boost/boost_1_75_0 ../src/e_float/efx/e_float_efx.cpp ../src/e_float/e_float.cpp ../src/e_float/e_float_base.cpp ../src/functions/constants/constants.cpp ../src/functions/elementary/elementary_complex.cpp ../src/functions/elementary/elementary_hyper_g.cpp ../src/functions/elementary/elementary_math.cpp ../src/functions/elementary/elementary_trans.cpp ../src/functions/elementary/elementary_trig.cpp ../test_boost/test_boost.cpp -o test_boost.exe
 
 namespace local
 {
@@ -154,6 +156,27 @@ bool test___tgamma()
   return result_is_ok;
 }
 
+bool test_cyl_bess()
+{
+  const local::big_float_type x = local::big_float_type(123) / 100;
+  const local::big_float_type v = local::big_float_type(1) / 3;
+
+  const local::big_float_type b    = boost::math::cyl_bessel_j(v, x);
+
+  // N[BesselJ[1/3, 123/100], 151]
+  const local::big_float_type ctrl("0.7032619586000570114857911121353869447952993725829738953379392689399277015064945632458153390182959910995019985394945689815738479854956823861854328596734");
+
+  std::cout << std::setprecision(std::numeric_limits<local::big_float_type>::digits10) << b    << std::endl;
+  std::cout << std::setprecision(std::numeric_limits<local::big_float_type>::digits10) << ctrl << std::endl;
+
+  const local::big_float_type ratio = b / ctrl;
+  const local::big_float_type delta = fabs(1 - ratio);
+
+  const bool result_is_ok = delta < std::numeric_limits<local::big_float_type>::epsilon() * 100U;
+
+  return result_is_ok;
+}
+
 bool test_legendre()
 {
   const local::big_float_type x = local::big_float_type(UINT32_C(789)) / 1000U;
@@ -202,12 +225,18 @@ bool test_legendre()
 bool test_boost_sf()
 {
   const bool test_tgamma___is_ok = test___tgamma();
+  const bool test_cyl_bess_is_ok = test_cyl_bess();
   const bool test_legendre_is_ok = test_legendre();
 
+  const auto flg = std::cout.flags();
+
   std::cout << "test_tgamma___is_ok: " << std::boolalpha << test_tgamma___is_ok << std::endl;
+  std::cout << "test_cyl_bess_is_ok: " << std::boolalpha << test_cyl_bess_is_ok << std::endl;
   std::cout << "test_legendre_is_ok: " << std::boolalpha << test_legendre_is_ok << std::endl;
 
-  const bool result_is_ok = (test_tgamma___is_ok && test_legendre_is_ok);
+  std::cout.flags(flg);
+
+  const bool result_is_ok = (test_tgamma___is_ok && test_cyl_bess_is_ok && test_legendre_is_ok);
 
   return result_is_ok;
 }

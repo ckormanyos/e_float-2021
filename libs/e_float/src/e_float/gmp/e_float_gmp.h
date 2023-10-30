@@ -60,8 +60,8 @@
 
       // Constructors from built-in unsigned integral types.
       template<typename UnsignedIntegralType,
-               typename std::enable_if<(   (std::is_integral<UnsignedIntegralType>::value == true)
-                                        && (std::is_unsigned<UnsignedIntegralType>::value == true))>::type const* = nullptr>
+               typename std::enable_if<(   std::is_integral<UnsignedIntegralType>::value
+                                        && std::is_unsigned<UnsignedIntegralType>::value)>::type const* = nullptr>
       e_float(const UnsignedIntegralType u) : my_rop      (),
                                               my_fpclass  (ef_finite),
                                               my_prec_elem(ef_max_digits10)
@@ -73,8 +73,8 @@
 
       // Constructors from built-in signed integral types.
       template<typename SignedIntegralType,
-               typename std::enable_if<(   (std::is_integral<SignedIntegralType>::value == true)
-                                        && (std::is_signed  <SignedIntegralType>::value == true))>::type const* = nullptr>
+               typename std::enable_if<(   std::is_integral<SignedIntegralType>::value
+                                        && std::is_signed  <SignedIntegralType>::value)>::type const* = nullptr>
       e_float(const SignedIntegralType n) : my_rop      (),
                                             my_fpclass  (ef_finite),
                                             my_prec_elem(ef_max_digits10)
@@ -97,7 +97,7 @@
 
       // Constructors from built-in floating-point types.
       template<typename FloatingPointType,
-               typename std::enable_if<std::is_floating_point<FloatingPointType>::value == true>::type const* = nullptr>
+               typename std::enable_if<std::is_floating_point<FloatingPointType>::value>::type const* = nullptr>
       e_float(const FloatingPointType f) : my_rop      (),
                                            my_fpclass  (ef_finite),
                                            my_prec_elem(ef_max_digits10)
