@@ -1,6 +1,13 @@
 ﻿e_float-2021
 ==================
 
+---
+**NOTE**
+
+`e_float-2021` preserves a _legacy_ library. More modern work can be found in the [wide-decimal](https://github.com/ckormanyos/wide-decimal) project.
+
+---
+
 <p align="center">
     <a href="https://github.com/ckormanyos/e_float-2021/actions">
         <img src="https://github.com/ckormanyos/e_float-2021/actions/workflows/e_float.yml/badge.svg" alt="Build Status"></a>
@@ -14,13 +21,14 @@
         <img src="https://img.shields.io/github/languages/code-size/ckormanyos/e_float-2021" alt="GitHub code size in bytes" /></a>
 </p>
 
-e_float-2021 is a C++ multiple-precision floating point library that
+`e_float-2021` is a C++ multiple-precision floating point library that
 implements drop-in _big_ _float_ types that can be used essentially
 like regular built-in floating-point types.
 e_float-2021 is written as a classic source/header C++11 library,
 and is compatible through C++11, 14, 17, 20, 23 and beyond.
 
-e_float-2021 is a derived work from the original (legacy) e_float code and paper.
+`e_float-2021` is a derived work from the original (legacy) e_float code and
+[paper](https://doi.acm.org/10.1145/1916461.1916469).
 
 ---
 
@@ -32,7 +40,7 @@ in [ACM TOMS (37) 4, February 2011](https://doi.acm.org/10.1145/1916461.1916469)
 
 ## Description
 
-e_float-2021 implements multiple-precision floating-point
+`e_float-2021` implements multiple-precision floating-point
 data types in modern C++11. Three versions are supported
 in three individual build configurations. There is a native,
 portable decimal float type called `efx::e_float`.
@@ -41,15 +49,15 @@ for [GMP](https://gmplib.org/)
 and [MPFR](https://www.mpfr.org)
 called `gmp::e_float` and `mpfr::e_float`, respectively.
 
-e_float-2021 is derived from the original work mentioned above.
-The e_float-2021 code has been updated to conform with
-C++11, 14, 17, 20, 23 and beyond. It has been both maintained and modernized,
+`e_float-2021` is derived from the original work mentioned above.
+The code has been updated to conform with
+C++11, 14, 17, 20, 23 and beyond. It has been maintained and modernized,
 and a dedicated effort has been made retain
 compatibility with C++ language evolution.
 Certain special function tests have been removed
 from the larger scope of the original published work,
 retaining just a core of the most essential key functions
-and tests in e_float-2021.
+and tests.
 
 For the _efx_ version (which is a decimal floating point implementation),
 a naive FFT brings the digit range up to a million decimal digits or more.
@@ -60,18 +68,17 @@ from their wrapped libraries.
 
 An old manual can be found [here](./doc/e_float_manual.pdf).
 Posters exhibiting fascinating calculations performed with
-e_float-2021 can be found
+the original (legacy) e_float code can be found
 [here](./doc/e_float_poster.pdf)
 and
 [here](./doc/e_float_poster_courier.pdf).
 
-
 # Building
 
 ## Build in Linux or MacOS with bash and GNUmake.
-  - Open a bash shell in a terminal in the directory  [./libs/e_float/build](./libs/e_float/build).
-  - The bash shell should be located directly in [./libs/e_float/build](./libs/e_float/build) for the paths to work out (be found by the upcoming build).
-  - Identify the [Makefile](./libs/e_float/build/Makefile).
+  - Open a bash shell in a terminal in the directory  [`libs/e_float/build`](./libs/e_float/build).
+  - The bash shell should be located directly in [`libs/e_float/build`](./libs/e_float/build) for the paths to work out (be found by the upcoming build).
+  - Identify the [`Makefile`](./libs/e_float/build/Makefile).
   - Execute `make` with the command below (or similar with other supported options).
 
 ```sh
@@ -89,15 +96,14 @@ The following command builds the pi algorithm tests for the `efx` backend.
 
 ```sh
 cd ./libs/e_float/build
-g++ -finline-functions -finline-limit=32 -march=native -mtune=native -O3 -Wall -Wextra -Wno-cast-function-type -std=c++11 -DE_FLOAT_TYPE_EFX -DE_FLOAT_TEST_PI_ALGOS_TESTS -I../../../libs/e_float/src @GCC_FilesPi.txt ../src/e_float/efx/e_float_efx.cpp -o e_float.exe
+g++ -march=native -mtune=native -O3 -Wall -Wextra -Wno-cast-function-type -std=c++11 -DE_FLOAT_TYPE_EFX -DE_FLOAT_TEST_PI_ALGOS_TESTS -I../../../libs/e_float/src @GCC_FilesPi.txt ../src/e_float/efx/e_float_efx.cpp -o e_float.exe
 ```
-
 
 The following command builds the real/imaginary `e_float` tests for the `efx` backend.
 
 ```sh
 cd ./libs/e_float/build
-g++ -finline-functions -finline-limit=32 -march=native -mtune=native -O3 -Wall -Wextra -Wno-cast-function-type -std=c++11 -DE_FLOAT_TYPE_EFX -DE_FLOAT_TEST_REAL_IMAG_TESTS -I../../../libs/e_float/src @GCC_FilesTest.txt ../src/e_float/efx/e_float_efx.cpp -o e_float.exe
+g++ -march=native -mtune=native -O3 -Wall -Wextra -Wno-cast-function-type -std=c++11 -DE_FLOAT_TYPE_EFX -DE_FLOAT_TEST_REAL_IMAG_TESTS -I../../../libs/e_float/src @GCC_FilesTest.txt ../src/e_float/efx/e_float_efx.cpp -o e_float.exe
 ```
 
 ## Build in Microsoft Visual Studio
@@ -146,17 +152,19 @@ the code was evaluated regarding how it
 wrapped and implemented certain big number backends.
 
 This idea for wrapping big number backends
-was adopted for the partial early design of `cpp_dec_float`
+was adopted for the partial early design of
+[`cpp_dec_float`](https://www.boost.org/doc/libs/1_83_0/libs/multiprecision/doc/html/boost_multiprecision/tut/floats/cpp_dec_float.html)
 in Boost.Multiprecision. As Boost.Multiprecision progressed,
 the original rudimentary frontend/backend concept
-from `e_float` was entirely re-implemented. Boost.Multiprecision
-was subsequently improved, corrected and vastly extended
-and evolved into today's header-only template design having its own
-novel, much more flexible, strong and robust frontend/backend concept.
+from `e_float` was redesigned and improved.
+
+Boost.Multiprecision was subsequently expanded.
+Its functionality was extended and it evolved into today's header-only,
+template design having its own novel, flexible, robust frontend/backend concept.
 
 ## Legacy
 
-e_float-2021 remains supported in order to provide historical
+`e_float-2021` remains supported in order to provide historical
 and legacy insight into the early origins of a work that influenced
 [Boost.Multiprecision](https://www.boost.org/doc/libs/1_83_0/libs/multiprecision/doc/html/index.html).
 
@@ -165,7 +173,7 @@ may also provide some level of guidance and practical advice
 on how to deal with big floating-point realizations
 within the context of modern C++.
 
-The `e_float` project itself is derived from an earlier
+The e_float project itself and `e_float-2021` are, in fact, derived from an earlier
 work named [`mp_cpp`](https://github.com/ckormanyos/mp_cpp).
 `mp_cpp` was created in the 1990s and its source code
 has been preserved. At the time of its creation,
