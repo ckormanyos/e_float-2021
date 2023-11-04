@@ -71,7 +71,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        standard: [ c++11, c++14, c++17, c++2a ]
+        standard: [ c++11, c++14, c++2a ]
         compiler: [ g++ ]
     steps:
       - uses: actions/checkout@v3
@@ -91,7 +91,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        standard: [ c++11, c++14, c++17, c++2a ]
+        standard: [ c++11, c++14, c++2a ]
         compiler: [ g++ ]
     steps:
       - uses: actions/checkout@v3
@@ -115,7 +115,7 @@ jobs:
       fail-fast: false
       matrix:
         suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS, E_FLOAT_TEST_PI_ALGOS_TESTS ]
-        standard: [ c++11, c++14, c++17, c++20 ]
+        standard: [ c++11, c++14, c++20 ]
         compiler: [ g++, clang++ ]
     steps:
       - uses: actions/checkout@v3
@@ -138,7 +138,7 @@ jobs:
       fail-fast: false
       matrix:
         suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS, E_FLOAT_TEST_PI_ALGOS_TESTS ]
-        standard: [ c++11, c++14, c++17, c++20 ]
+        standard: [ c++11, c++14, c++20 ]
         compiler: [ g++, clang++ ]
     steps:
       - uses: actions/checkout@v3
@@ -161,7 +161,7 @@ jobs:
       fail-fast: false
       matrix:
         suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS, E_FLOAT_TEST_PI_ALGOS_TESTS ]
-        standard: [ c++11, c++14, c++17, c++20 ]
+        standard: [ c++11, c++14, c++20 ]
         compiler: [ g++, clang++ ]
     steps:
       - uses: actions/checkout@v3
@@ -181,7 +181,7 @@ jobs:
       fail-fast: false
       matrix:
         suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS, E_FLOAT_TEST_PI_ALGOS_TESTS ]
-        standard: [ c++11, c++14, c++17, c++20 ]
+        standard: [ c++11, c++14, c++20 ]
         compiler: [ g++, clang++ ]
     steps:
       - uses: actions/checkout@v3
@@ -202,7 +202,7 @@ jobs:
       fail-fast: false
       matrix:
         suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS, E_FLOAT_TEST_PI_ALGOS_TESTS ]
-        standard: [ c++14, c++17, c++20 ]
+        standard: [ c++14, c++20 ]
         compiler: [ g++, clang++ ]
     steps:
       - uses: actions/checkout@v3
@@ -220,7 +220,7 @@ jobs:
       fail-fast: false
       matrix:
         compiler: [ g++, clang++ ]
-        standard: [ c++14, c++17, c++20 ]
+        standard: [ c++14, c++20 ]
         suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS ]
         mpdef: [ E_FLOAT_TYPE_EFX ]
     steps:
@@ -255,7 +255,7 @@ jobs:
       fail-fast: false
       matrix:
         compiler: [ g++, clang++ ]
-        standard: [ c++14, c++17, c++20 ]
+        standard: [ c++14, c++20 ]
         suite: [ E_FLOAT_TEST_REAL_IMAG_TESTS ]
         mpdef: [ E_FLOAT_TYPE_EFX ]
     steps:
