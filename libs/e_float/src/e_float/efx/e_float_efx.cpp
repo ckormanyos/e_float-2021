@@ -1,5 +1,5 @@
 
-//          Copyright Christopher Kormanyos 1999 - 2022.
+//          Copyright Christopher Kormanyos 1999 - 2023.
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file LICENSE_1_0.txt or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
@@ -765,9 +765,12 @@ efx::e_float& efx::e_float::operator*=(const e_float& v)
     // Check for justify
     if(my_data.front() == static_cast<std::uint32_t>(0U))
     {
+      const auto my_size_limit =
+        (std::min)(ef_elem_number, static_cast<std::int32_t>(my_prec_elem + static_cast<std::int32_t>(INT8_C(1))));
+
       // Justify the data.
-      std::copy(my_data.cbegin() + 1,
-                my_data.cbegin() + (std::min)(ef_elem_number, (std::int32_t) (my_prec_elem + 1)),
+      std::copy(my_data.cbegin() + static_cast<std::int32_t>(INT8_C(1)),
+                my_data.cbegin() + my_size_limit,
                 my_data.begin());
 
       my_data.back() = static_cast<std::uint32_t>(0U);
